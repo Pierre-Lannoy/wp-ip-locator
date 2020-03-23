@@ -195,9 +195,10 @@ class IP_Locator_Admin {
 			if ( array_key_exists( '_wpnonce', $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'iplocator-plugin-options' ) ) {
 				Option::network_set( 'use_cdn', array_key_exists( 'iplocator_plugin_options_usecdn', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_usecdn' ) : false );
 				Option::network_set( 'display_nag', array_key_exists( 'iplocator_plugin_options_nag', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_nag' ) : false );
-				Option::network_set( 'status', array_key_exists( 'iplocator_plugin_features_status', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_status' ) : false );
-				Option::network_set( 'info', array_key_exists( 'iplocator_plugin_features_info', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_info' ) : false );
-				flush_rewrite_rules();
+				Option::network_set( 'autoupdate', array_key_exists( 'iplocator_plugin_options_autoupdate', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_autoupdate' ) : false );
+				Option::network_set( 'override', array_key_exists( 'iplocator_plugin_options_override', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_override' ) : false );
+				Option::network_set( 'shortcode', array_key_exists( 'iplocator_plugin_features_shortcode', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_shortcode' ) : false );
+				Option::network_set( 'css', array_key_exists( 'iplocator_plugin_features_css', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_css' ) : false );
 				$message = esc_html__( 'Plugin settings have been saved.', 'ip-locator' );
 				$code    = 0;
 				add_settings_error( 'iplocator_no_error', $code, $message, 'updated' );
@@ -240,6 +241,38 @@ class IP_Locator_Admin {
 	 */
 	public function plugin_options_section_callback() {
 		$form = new Form();
+		add_settings_field(
+			'iplocator_plugin_options_override',
+			__( 'Detection', 'ip-locator' ),
+			[ $form, 'echo_field_checkbox' ],
+			'iplocator_plugin_options_section',
+			'iplocator_plugin_options_section',
+			[
+				'text'        => esc_html__( 'Ignore HTTP header', 'ip-locator' ),
+				'id'          => 'iplocator_plugin_options_override',
+				'checked'     => Option::network_get( 'override' ),
+				'description' => esc_html__( 'If checked, IP Locator will not try to verify country in the request header.', 'ip-locator' ) . '<br/>' . esc_html__( 'Note: to use CloudFlare, AWS CloudFront or Apache mod_geoip geolocation, uncheck this.', 'ip-locator' ),
+				'full_width'  => false,
+				'enabled'     => true,
+			]
+		);
+		register_setting( 'iplocator_plugin_options_section', 'iplocator_plugin_options_override' );
+		add_settings_field(
+			'iplocator_plugin_options_autoupdate',
+			__( 'IP database', 'ip-locator' ),
+			[ $form, 'echo_field_checkbox' ],
+			'iplocator_plugin_options_section',
+			'iplocator_plugin_options_section',
+			[
+				'text'        => esc_html__( 'Auto-update', 'ip-locator' ),
+				'id'          => 'iplocator_plugin_options_autoupdate',
+				'checked'     => Option::network_get( 'autoupdate' ),
+				'description' => esc_html__( 'If checked, IP Locator will regularly update its IP database.', 'ip-locator' ) . '<br/>' . sprintf( esc_html__( 'Note: IP data is provided by %s and is donationware.', 'ip-locator' ), '<a href="http://software77.net/geo-ip/?license">WebNet77</a>' ),
+				'full_width'  => false,
+				'enabled'     => true,
+			]
+		);
+		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_autoupdate' );
 		if ( defined( 'DECALOG_VERSION' ) ) {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'thumbs-up', 'none', '#00C800' ) . '" />&nbsp;';
 			$help .= sprintf( esc_html__('Your site is currently using %s.', 'ip-locator' ), '<em>DecaLog v' . DECALOG_VERSION .'</em>' );
@@ -300,37 +333,40 @@ class IP_Locator_Admin {
 	public function plugin_features_section_callback() {
 		$form = new Form();
 		add_settings_field(
-			'iplocator_plugin_features_status',
-			__( 'Server status', 'ip-locator' ),
+			'iplocator_plugin_features_shortcode',
+			__( 'Shortcodes', 'ip-locator' ),
 			[ $form, 'echo_field_checkbox' ],
 			'iplocator_plugin_features_section',
 			'iplocator_plugin_features_section',
 			[
-				'text'        => sprintf( esc_html__( 'Activate .htaccess rule for %s', 'ip-locator' ), 'mod_status' ),
-				'id'          => 'iplocator_plugin_features_status',
-				'checked'     => Option::network_get( 'status' ),
-				'description' => sprintf( esc_html__( 'If checked, Apache server status will be served via the url %s.', 'ip-locator' ), site_url( 'server-status') ) . '<br/>' . esc_html__( 'Note: this only sets up your .htaccess file. For this to work, the module must be activated in your Apache configuration.', 'ip-locator' ),
+				'text'        => esc_html__( 'Activate shortcodes rendering', 'ip-locator' ),
+				'id'          => 'iplocator_plugin_features_shortcode',
+				'checked'     => Option::network_get( 'shortcode' ),
+				'description' => sprintf( esc_html__( 'If checked, IP Locator will render its own shortcodes when needed (%s).', 'ip-locator' ), sprintf( '<a href="https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/SHORTCODES.md">%s</a>', esc_html__( 'see details', 'ip-locator' ) ) ),
 				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
-		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_status' );
+		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_shortcode' );
+
+
 		add_settings_field(
-			'iplocator_plugin_features_info',
-			__( 'Server info', 'htaccess-server-info-server-info' ),
+			'iplocator_plugin_features_css',
+			__( 'CSS', 'ip-locator' ),
 			[ $form, 'echo_field_checkbox' ],
 			'iplocator_plugin_features_section',
 			'iplocator_plugin_features_section',
 			[
-				'text'        => sprintf( esc_html__( 'Activate .htaccess rule for %s', 'ip-locator' ), 'mod_info' ),
-				'id'          => 'iplocator_plugin_features_info',
-				'checked'     => Option::network_get( 'info' ),
-				'description' => sprintf( esc_html__( 'If checked, Apache server info will be served via the url %s.', 'ip-locator' ), site_url( 'server-info') ) . '<br/>' . esc_html__( 'Note: this only sets up your .htaccess file. For this to work, the module must be activated in your Apache configuration.', 'ip-locator' ),
+				'text'        => esc_html__( 'Add country as CSS class', 'ip-locator' ),
+				'id'          => 'iplocator_plugin_features_css',
+				'checked'     => Option::network_get( 'css' ),
+				'description' => sprintf( esc_html__( 'If checked, IP Locator will append a CSS class (to the body tag) containing the detected country like %s or %s.', 'ip-locator' ), '<code>ip-locator-us</code>', '<code>ip-locator-fr</code>' ),
 				'full_width'  => false,
 				'enabled'     => true,
 			]
 		);
-		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_info' );
+		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_css' );
+		
 	}
 
 }
