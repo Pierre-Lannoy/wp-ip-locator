@@ -140,34 +140,23 @@ class Schema {
 	 */
 	private function create_tables() {
 		global $wpdb;
-		/*$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics;
-		$sql            .= " (`timestamp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',";
-		$sql            .= " `delta` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `status` enum('" . implode( "','", APCu::$status ) . "') NOT NULL DEFAULT 'disabled',";
-		$sql            .= " `mem_total` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `mem_used` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `slot_total` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `slot_used` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `frag_small` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `frag_big` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `frag_count` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `miss` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `ins` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " PRIMARY KEY (`timestamp`)";
+		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$ipv4;
+		$sql            .= " (`from` VARBINARY(4) NOT NULL DEFAULT INET6_ATON('0.0.0.0'),";
+		$sql            .= " `to` VARBINARY(4) NOT NULL DEFAULT INET6_ATON('0.0.0.0'),";
+		$sql            .= " `country` VARCHAR(2) DEFAULT NULL DEFAULT 'XX',";
+		$sql            .= " PRIMARY KEY (`from`,`to`)";
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
 		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$details;
-		$sql            .= " (`timestamp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',";
-		$sql            .= " `id` varchar(100) NOT NULL DEFAULT '-',";
-		$sql            .= " `items` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `size` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= ' UNIQUE KEY u_stat (timestamp, id)';
+		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$ipv6;
+		$sql            .= " (`from` VARBINARY(16) NOT NULL DEFAULT INET6_ATON('0000:0000:0000:0000:0000:0000:0000:0000'),";
+		$sql            .= " `to` VARBINARY(16) NOT NULL DEFAULT INET6_ATON('0000:0000:0000:0000:0000:0000:0000:0000'),";
+		$sql            .= " `country` VARCHAR(2) DEFAULT NULL DEFAULT 'XX',";
+		$sql            .= " PRIMARY KEY (`from`,`to`)";
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
-		$wpdb->query( $sql );*/
+		$wpdb->query( $sql );
 	}
 }

@@ -203,6 +203,16 @@ class IP_Locator_Admin {
 				$code    = 0;
 				add_settings_error( 'iplocator_no_error', $code, $message, 'updated' );
 				Logger::info( 'Plugin settings updated.', $code );
+
+
+
+
+
+
+
+
+				$a = bin2hex(\inet_pton('2002:4559:1FE2:4559:1FE2:21E3:F3E3:0055'));
+				Logger::emergency('x : ' . $a);
 			} else {
 				$message = esc_html__( 'Plugin settings have not been saved. Please try again.', 'ip-locator' );
 				$code    = 2;
@@ -366,6 +376,8 @@ class IP_Locator_Admin {
 			]
 		);
 		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_css' );
+
+
 		
 	}
 
