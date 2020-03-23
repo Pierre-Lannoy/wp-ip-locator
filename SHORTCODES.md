@@ -1,0 +1,1 @@
+https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/SHORTCODES.md
