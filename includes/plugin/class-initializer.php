@@ -38,7 +38,6 @@ class Initializer {
 		\IPLocator\System\Logger::init();
 		\IPLocator\System\Cache::init();
 		\IPLocator\System\Sitehealth::init();
-		\IPLocator\Plugin\Feature\Rules::init( true );
 		\IPLocator\System\APCu::init();
 	}
 

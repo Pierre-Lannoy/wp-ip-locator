@@ -10,6 +10,7 @@
 namespace IPLocator\Plugin;
 
 use IPLocator\Plugin\Feature\Rules;
+use IPLocator\Plugin\Feature\Schema;
 
 /**
  * Fired during plugin activation.
@@ -28,8 +29,8 @@ class Activator {
 	 * @since 1.0.0
 	 */
 	public static function activate() {
-		Rules::init( true );
-		flush_rewrite_rules();
+		$schema = new Schema();
+		$schema->initialize();
 	}
 
 }

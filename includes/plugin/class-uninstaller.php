@@ -11,6 +11,7 @@ namespace IPLocator\Plugin;
 
 use IPLocator\System\Option;
 use IPLocator\System\User;
+use IPLocator\Plugin\Feature\Schema;
 
 /**
  * Fired during plugin deletion.
@@ -31,6 +32,8 @@ class Uninstaller {
 	public static function uninstall() {
 		Option::site_delete_all();
 		User::delete_all_meta();
+		$schema = new Schema();
+		$schema->finalize();
 	}
 
 }

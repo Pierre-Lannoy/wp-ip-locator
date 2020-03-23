@@ -16,6 +16,7 @@ use IPLocator\System\Environment;
 use IPLocator\System\Logger;
 use IPLocator\System\Role;
 use Exception;
+use IPLocator\Plugin\Feature\Schema;
 
 /**
  * Plugin updates handling.
@@ -70,7 +71,8 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function update( $from ) {
-
+		$schema = new Schema();
+		$schema->update();
 	}
 
 	/**

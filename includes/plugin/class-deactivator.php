@@ -30,7 +30,6 @@ class Deactivator {
 	 */
 	public static function deactivate() {
 		Rules::shutdown();
-		flush_rewrite_rules();
 	}
 
 }
