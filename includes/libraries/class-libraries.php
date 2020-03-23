@@ -58,6 +58,17 @@ class Libraries {
 	 */
 	public static function init() {
 		self::$psr4_libraries              = [];
+		self::$psr4_libraries['flagiconcss'] = [
+			'name'    => 'Flag-Icon-CSS',
+			'prefix'  => 'Flagiconcss',
+			'base'    => DECALOG_VENDOR_DIR . 'flagiconcss/',
+			'version' => '3.4.2',
+			// phpcs:ignore
+			'author'  => sprintf( esc_html__( '%s & contributors', 'decalog' ), 'Panayiotis Lipiridis' ),
+			'url'     => 'https://github.com/lipis/flag-icon-css',
+			'license' => 'mit',
+			'langs'   => 'en',
+		];
 		self::$psr4_libraries['feather']   = [
 			'name'    => 'Feather',
 			'prefix'  => 'Feather',
@@ -166,44 +177,6 @@ class Libraries {
 		$item['license'] = $this->license_name( 'gpl3' );
 		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
 		$list[]          = $item;
-		/*$item            = [];
-		$item['name']    = 'Switchery';
-		$item['version'] = '0.8.2';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Alexander Petkov' );
-		$item['url']     = 'https://github.com/abpetkov/switchery';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item            = [];
-		$item['name']    = 'Date Range Picker';
-		$item['version'] = '3.0.5';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Dan Grossman' );
-		$item['url']     = 'https://github.com/dangrossman/daterangepicker';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item            = [];
-		$item['name']    = 'Moment';
-		$item['version'] = '2.24.0';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Tim Wood' );
-		$item['url']     = 'https://github.com/moment/moment';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item['name']    = 'SVG-Loaders';
-		$item['version'] = '1.0.2';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Sam Herbert' );
-		$item['url']     = 'https://github.com/SamHerbert/SVG-Loaders';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;
-		$item['name']    = 'Chartist-JS';
-		$item['version'] = '0.11.4';
-		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Gion Kunz' );
-		$item['url']     = 'https://github.com/gionkunz/chartist-js';
-		$item['license'] = $this->license_name( 'mit' );
-		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
-		$list[]          = $item;*/
 		usort( $list, function ( $a, $b ) { return strcmp( strtolower( $a['name'] ), strtolower( $b['name'] ) );} );
 		if ( 'html' === $style ) {
 			$items = [];
