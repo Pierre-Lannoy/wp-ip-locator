@@ -71,11 +71,12 @@ class Option {
 		self::$defaults['nags']             = [];
 		self::$defaults['version']          = '0.0.0';
 		self::$defaults['last_check']       = [];
-		self::$defaults['history']          = 21;
-		self::$defaults['analytics']        = true;
-		self::$defaults['status']           = true;
-		self::$defaults['info']             = true;
-		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'analytics', 'history', 'status', 'info' ];
+		self::$defaults['dbversion']        = 0;
+		self::$defaults['override']         = false;  // Override headers
+		self::$defaults['css']              = false;
+		self::$defaults['shortcode']        = false;
+		self::$defaults['autoupdate']       = true;
+		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate' ];
 	}
 
 	/**
@@ -224,10 +225,10 @@ class Option {
 		self::network_set( 'use_cdn', self::$defaults['use_cdn'] );
 		self::network_set( 'script_in_footer', self::$defaults['script_in_footer'] );
 		self::network_set( 'display_nag', self::$defaults['display_nag'] );
-		self::network_set( 'analytics', self::$defaults['analytics'] );
-		self::network_set( 'history', self::$defaults['history'] );
-		self::network_set( 'status', self::$defaults['status'] );
-		self::network_set( 'info', self::$defaults['info'] );
+		self::network_set( 'override', self::$defaults['override'] );
+		self::network_set( 'css', self::$defaults['css'] );
+		self::network_set( 'shortcode', self::$defaults['shortcode'] );
+		self::network_set( 'autoupdate', self::$defaults['autoupdate'] );
 	}
 
 	/**
