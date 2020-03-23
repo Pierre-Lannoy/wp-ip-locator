@@ -18,7 +18,7 @@ use IPLocator\System\Assets;
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   1.0.0
  */
-class IPLocator_Public {
+class IP_Locator_Public {
 
 
 	/**

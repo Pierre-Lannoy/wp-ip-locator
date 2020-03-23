@@ -30,7 +30,7 @@ use PerfOpsOne\AdminMenus;
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   1.0.0
  */
-class IPLocator_Admin {
+class IP_Locator_Admin {
 
 	/**
 	 * The assets manager that's responsible for handling all assets of the plugin.
@@ -57,11 +57,6 @@ class IPLocator_Admin {
 	 */
 	public function enqueue_styles() {
 		$this->assets->register_style( IPLOCATOR_ASSETS_ID, IPLOCATOR_ADMIN_URL, 'css/ip-locator.min.css' );
-		$this->assets->register_style( 'iplocator-daterangepicker', IPLOCATOR_ADMIN_URL, 'css/daterangepicker.min.css' );
-		$this->assets->register_style( 'iplocator-switchery', IPLOCATOR_ADMIN_URL, 'css/switchery.min.css' );
-		$this->assets->register_style( 'iplocator-tooltip', IPLOCATOR_ADMIN_URL, 'css/tooltip.min.css' );
-		$this->assets->register_style( 'iplocator-chartist', IPLOCATOR_ADMIN_URL, 'css/chartist.min.css' );
-		$this->assets->register_style( 'iplocator-chartist-tooltip', IPLOCATOR_ADMIN_URL, 'css/chartist-plugin-tooltip.min.css' );
 
 	}
 
@@ -72,11 +67,6 @@ class IPLocator_Admin {
 	 */
 	public function enqueue_scripts() {
 		$this->assets->register_script( IPLOCATOR_ASSETS_ID, IPLOCATOR_ADMIN_URL, 'js/ip-locator.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'iplocator-moment-with-locale', IPLOCATOR_ADMIN_URL, 'js/moment-with-locales.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'iplocator-daterangepicker', IPLOCATOR_ADMIN_URL, 'js/daterangepicker.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'iplocator-switchery', IPLOCATOR_ADMIN_URL, 'js/switchery.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'iplocator-chartist', IPLOCATOR_ADMIN_URL, 'js/chartist.min.js', [ 'jquery' ] );
-		$this->assets->register_script( 'iplocator-chartist-tooltip', IPLOCATOR_ADMIN_URL, 'js/chartist-plugin-tooltip.min.js', [ 'iplocator-chartist' ] );
 	}
 
 	/**
@@ -161,16 +151,6 @@ class IPLocator_Admin {
 			$links[] = '<a href="https://github.com/Pierre-Lannoy/wp-ip-locator">' . __( 'GitHub repository', 'ip-locator' ) . '</a>';
 		}
 		return $links;
-	}
-
-	/**
-	 * Get the content of the tools page.
-	 *
-	 * @since 1.0.0
-	 */
-	public function get_viewer_page() {
-		$analytics = AnalyticsFactory::get_analytics();
-		include IPLOCATOR_ADMIN_DIR . 'partials/ip-locator-admin-view-analytics.php';
 	}
 
 	/**
