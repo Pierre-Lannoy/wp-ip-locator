@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for WordPress plugin boilerplate
+about: Suggest an idea for IP Locator
 title: ''
 labels: enhancement
 assignees: Pierre-Lannoy

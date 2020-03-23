@@ -7,7 +7,9 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\Plugin;
+namespace IPLocator\Plugin;
+
+use IPLocator\Plugin\Feature\Rules;
 
 /**
  * Fired during plugin activation.
@@ -20,13 +22,14 @@ namespace WPPluginBoilerplate\Plugin;
  */
 class Activator {
 
-
 	/**
 	 * Activate the plugin.
 	 *
 	 * @since 1.0.0
 	 */
 	public static function activate() {
+		Rules::init( true );
+		flush_rewrite_rules();
 	}
 
 }

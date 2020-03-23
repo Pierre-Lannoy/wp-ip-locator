@@ -7,7 +7,9 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\Plugin;
+namespace IPLocator\Plugin;
+
+use IPLocator\Plugin\Feature\Rules;
 
 /**
  * Fired during plugin deactivation.
@@ -27,7 +29,8 @@ class Deactivator {
 	 * @since 1.0.0
 	 */
 	public static function deactivate() {
-
+		Rules::shutdown();
+		flush_rewrite_rules();
 	}
 
 }

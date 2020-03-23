@@ -9,7 +9,7 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\System;
+namespace IPLocator\System;
 
 /**
  * Define the Blog (site) functionality.

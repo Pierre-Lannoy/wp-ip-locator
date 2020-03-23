@@ -7,10 +7,10 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\Plugin;
+namespace IPLocator\Plugin;
 
-use WPPluginBoilerplate\System\Option;
-use WPPluginBoilerplate\System\User;
+use IPLocator\System\Option;
+use IPLocator\System\User;
 
 /**
  * Fired during plugin deletion.
@@ -31,7 +31,6 @@ class Uninstaller {
 	public static function uninstall() {
 		Option::site_delete_all();
 		User::delete_all_meta();
-		// Delete cache?
 	}
 
 }

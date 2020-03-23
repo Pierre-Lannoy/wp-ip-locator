@@ -8,7 +8,9 @@
  * @noinspection PhpCSValidationInspection
  */
 
-namespace WPPluginBoilerplate\System;
+namespace IPLocator\System;
+
+use IPLocator\System\Conversion;
 
 /**
  * The class responsible to handle cache management.
@@ -25,7 +27,7 @@ class Cache {
 	 * @since  1.0.0
 	 * @var    string    $pool_name    The pool's name.
 	 */
-	private static $pool_name = WPPB_SLUG;
+	private static $pool_name = IPLOCATOR_SLUG;
 
 	/**
 	 * Available TTLs.
@@ -109,8 +111,8 @@ class Cache {
 			wp_cache_add_global_groups( self::$pool_name );
 		}
 		self::$apcu_available = function_exists( 'apcu_delete' ) && function_exists( 'apcu_fetch' ) && function_exists( 'apcu_store' );
-		add_action( 'shutdown', [ 'WPPluginBoilerplate\System\Cache', 'log_debug' ], 10, 0 );
-		add_filter( 'perfopsone_icache_introspection', [ 'WPPluginBoilerplate\System\Cache', 'introspection' ] );
+		add_action( 'shutdown', [ 'IPLocator\System\Cache', 'log_debug' ], 10, 0 );
+		add_filter( 'perfopsone_icache_introspection', [ 'IPLocator\System\Cache', 'introspection' ] );
 	}
 
 	/**
@@ -119,7 +121,7 @@ class Cache {
 	 * @since 1.0.0
 	 */
 	public static function introspection( $endpoints ) {
-		$endpoints[ WPPB_SLUG ] = [ 'name' => WPPB_PRODUCT_NAME, 'version' => WPPB_VERSION, 'endpoint' => [ 'WPPluginBoilerplate\System\Cache', 'get_analytics' ] ];
+		$endpoints[ IPLOCATOR_SLUG ] = [ 'name' => IPLOCATOR_PRODUCT_NAME, 'version' => IPLOCATOR_VERSION, 'endpoint' => [ 'IPLocator\System\Cache', 'get_analytics' ] ];
 		return $endpoints;
 	}
 

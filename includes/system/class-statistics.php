@@ -9,7 +9,7 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\System;
+namespace IPLocator\System;
 
 /**
  * Define the plugin statistics functionality.
@@ -77,7 +77,7 @@ class Statistics {
 	 * @since   1.0.0
 	 */
 	private function get_wp_stats() {
-		$stats = Cache::get_global( 'self_wp_stats' );
+		$stats = Cache::get_global( '/Plugin/WPstats' );
 		if ( ! $stats ) {
 			try {
 				if ( ! function_exists( 'plugins_api' ) ) {
@@ -92,13 +92,13 @@ class Statistics {
 				$api   = plugins_api(
 					'plugin_information',
 					[
-						'slug'   => DECALOG_SLUG,
+						'slug'   => IPLOCATOR_SLUG,
 						'fields' => $query,
 					]
 				);
 				if ( ! is_wp_error( $api ) ) {
 					$result = get_object_vars( $api );
-					Cache::set_global( 'self_wp_stats', $result, 'plugin-statistics' );
+					Cache::set_global( '/Plugin/WPstats', $result, 'plugin-statistics' );
 					$stats = $result;
 				} else {
 					$stats = false;

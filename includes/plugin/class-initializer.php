@@ -7,7 +7,7 @@
  * @since   1.0.0
  */
 
-namespace WPPluginBoilerplate\Plugin;
+namespace IPLocator\Plugin;
 
 /**
  * Fired after 'plugins_loaded' hook.
@@ -35,9 +35,20 @@ class Initializer {
 	 * @since 1.0.0
 	 */
 	public function initialize() {
-		\WPPluginBoilerplate\System\Logger::init();
-		\WPPluginBoilerplate\System\Cache::init();
-		\WPPluginBoilerplate\System\APCu::init();
+		\IPLocator\System\Logger::init();
+		\IPLocator\System\Cache::init();
+		\IPLocator\System\Sitehealth::init();
+		\IPLocator\Plugin\Feature\Rules::init( true );
+		\IPLocator\System\APCu::init();
+	}
+
+	/**
+	 * Initialize the plugin.
+	 *
+	 * @since 1.0.0
+	 */
+	public function late_initialize() {
+		require_once IPLOCATOR_PLUGIN_DIR . 'perfopsone/init.php';
 	}
 
 }
