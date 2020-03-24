@@ -177,6 +177,14 @@ class Libraries {
 		$item['license'] = $this->license_name( 'gpl3' );
 		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
 		$list[]          = $item;
+		$item            = [];
+		$item['name']    = 'Action Scheduler';
+		$item['version'] = '3.1.4';
+		$item['author']  = 'Automattic / Woocommerce';
+		$item['url']     = 'https://actionscheduler.org';
+		$item['license'] = $this->license_name( 'gpl3' );
+		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
+		$list[]          = $item;
 		usort( $list, function ( $a, $b ) { return strcmp( strtolower( $a['name'] ), strtolower( $b['name'] ) );} );
 		if ( 'html' === $style ) {
 			$items = [];
