@@ -17,6 +17,7 @@ use IPLocator\System\Option;
 use IPLocator\System\Database;
 use IPLocator\System\Logger;
 use IPLocator\System\Cache;
+use IPLocator\Plugin\Feature\IPData;
 
 /**
  * Define the schema functionality.
@@ -92,6 +93,7 @@ class Schema {
 			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv4 ) );
 			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv6 ) );
 			Logger::info( 'Schema installed.' );
+			$this->init_data();
 		} catch ( \Throwable $e ) {
 			Logger::alert( sprintf( 'Unable to create "%s" and/or "%s" table: %s', $wpdb->base_prefix . self::$ipv4, $wpdb->base_prefix . self::$ipv6, $e->getMessage() ), $e->getCode() );
 			Logger::alert( 'Schema not installed.', $e->getCode() );
@@ -128,9 +130,59 @@ class Schema {
 			Logger::debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$ipv4 ) );
 			Logger::debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$ipv6 ) );
 			Logger::info( 'Schema updated.' );
+			$this->init_data();
 		} catch ( \Throwable $e ) {
 			Logger::alert( sprintf( 'Unable to update "%s" and/or "%s" table: %s', $wpdb->base_prefix . self::$ipv4, $wpdb->base_prefix . self::$ipv6, $e->getMessage() ), $e->getCode() );
 		}
+	}
+
+	/**
+	 * Init data.
+	 *
+	 * @since    1.0.0
+	 */
+	public function init_data() {
+		global $wpdb;
+		$needed_v4 = true;
+		$sql       = 'SELECT COUNT(*) as CNT FROM `' . $wpdb->base_prefix . self::$ipv4 . '`;';
+		// phpcs:ignore
+		$cnt = $wpdb->get_results( $sql, ARRAY_A );
+		if ( count( $cnt ) > 0 ) {
+			if ( array_key_exists( 'CNT', $cnt[0] ) ) {
+				$needed_v4 = ( 0 === (int) $cnt[0]['CNT'] );
+			}
+		}
+		$needed_v6 = true;
+		$sql       = 'SELECT COUNT(*) as CNT FROM `' . $wpdb->base_prefix . self::$ipv6 . '`;';
+		// phpcs:ignore
+		$cnt = $wpdb->get_results( $sql, ARRAY_A );
+		if ( count( $cnt ) > 0 ) {
+			if ( array_key_exists( 'CNT', $cnt[0] ) ) {
+				$needed_v6 = ( 0 === (int) $cnt[0]['CNT'] );
+			}
+		}
+		if ( $needed_v4 ) {
+			$semaphore = Cache::get( 'update/v4/initsemaphore' );
+			if ( 1 !== (int) $semaphore || false === $semaphore ) {
+				if ( -1 === (int) $semaphore || false === $semaphore ) {
+					Cache::set( 'update/v4/initsemaphore', 1 );
+					Logger::info( 'IPV4 data initialization is needed.' );
+				} else {
+					if ( time() - (int) $semaphore > IPLOCATOR_INIT_TIMEOUT ) {
+						Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
+						Logger::info( 'Semaphore for IPV4 data initialization has been reset.' );
+						Logger::warning( 'Incomplete IPV4 data initialization.' );
+					}
+				}
+			}
+		} else {
+			Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
+			Logger::info( 'No need to initialize IPV4 data.' );
+		}
+
+
+
+
 	}
 
 	/**
