@@ -9,7 +9,7 @@
 
 namespace IPLocator\Plugin;
 
-use IPLocator\Plugin\Feature\Rules;
+use IPLocator\System\Cache;
 
 /**
  * Fired during plugin deactivation.
@@ -29,7 +29,8 @@ class Deactivator {
 	 * @since 1.0.0
 	 */
 	public static function deactivate() {
-		Rules::shutdown();
+		Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
+		Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
 	}
 
 }

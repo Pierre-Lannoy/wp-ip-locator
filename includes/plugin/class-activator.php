@@ -9,8 +9,8 @@
 
 namespace IPLocator\Plugin;
 
-use IPLocator\Plugin\Feature\Rules;
 use IPLocator\Plugin\Feature\Schema;
+use IPLocator\System\Cache;
 
 /**
  * Fired during plugin activation.
@@ -29,6 +29,8 @@ class Activator {
 	 * @since 1.0.0
 	 */
 	public static function activate() {
+		Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
+		Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
 		$schema = new Schema();
 		$schema->initialize();
 	}

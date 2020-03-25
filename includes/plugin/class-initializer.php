@@ -9,6 +9,9 @@
 
 namespace IPLocator\Plugin;
 
+use IPLocator\System\Cache;
+use IPLocator\System\Logger;
+
 /**
  * Fired after 'plugins_loaded' hook.
  *
@@ -35,10 +38,9 @@ class Initializer {
 	 * @since 1.0.0
 	 */
 	public function initialize() {
-		\IPLocator\System\Logger::init();
-		\IPLocator\System\Cache::init();
 		\IPLocator\System\Sitehealth::init();
 		\IPLocator\System\APCu::init();
+		$this->action_schedule();
 	}
 
 	/**
@@ -48,6 +50,23 @@ class Initializer {
 	 */
 	public function late_initialize() {
 		require_once IPLOCATOR_PLUGIN_DIR . 'perfopsone/init.php';
+	}
+
+	/**
+	 * Initialize the shedulable actions.
+	 *
+	 * @since 1.0.0
+	 */
+	public function action_schedule() {
+		add_action( 'ip-locator-init-v4', [ 'IPLocator\Plugin\Feature\IPData', 'init_v4' ], 10, 0 );
+		add_action( 'ip-locator-init-v6', [ 'IPLocator\Plugin\Feature\IPData', 'init_v6' ], 10, 0 );
+		add_action( 'ip-locator-update-v4', [ 'IPLocator\Plugin\Feature\IPData', 'update_v4' ], 10, 0 );
+		add_action( 'ip-locator-update-v6', [ 'IPLocator\Plugin\Feature\IPData', 'update_v6' ], 10, 0 );
+		$semaphore = Cache::get( 'update/v4/initsemaphore' );
+		if ( 1 === $semaphore ) {
+			Logger::debug('Scheduling ip-locator-init-v4 action.');
+			as_enqueue_async_action( 'ip-locator-init-v4', [], IPLOCATOR_SLUG );
+		}
 	}
 
 }
