@@ -76,6 +76,7 @@ class Option {
 		self::$defaults['css']              = false;
 		self::$defaults['shortcode']        = false;
 		self::$defaults['autoupdate']       = true;
+		self::$defaults['infolog']          = [];
 		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate' ];
 	}
 
