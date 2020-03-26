@@ -54,7 +54,7 @@ class Infolog {
 			function ( $a, $b ) {
 				if ( $a['timestamp'] === $b['timestamp'] ) {
 					return 0;
-				} return ( $a['timestamp'] < $b['timestamp'] ) ? -1 : 1;
+				} return ( $a['timestamp'] < $b['timestamp'] ) ? 1 : -1;
 			}
 		);
 		$infos = array_slice( $infos, 0, self::$keep );
