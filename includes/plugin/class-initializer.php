@@ -64,6 +64,7 @@ class Initializer {
 		add_action( 'ip-locator-update-v6', [ 'IPLocator\Plugin\Feature\IPData', 'update_v6' ], 10, 0 );
 		$semaphore = Cache::get( 'update/v4/initsemaphore' );
 		if ( 1 === $semaphore ) {
+			Cache::set( 'update/v4/initsemaphore', 2, 'infinite' );
 			Logger::debug('Scheduling ip-locator-init-v4 action.');
 			as_enqueue_async_action( 'ip-locator-init-v4', [], IPLOCATOR_SLUG );
 		}

@@ -18,6 +18,7 @@ use IPLocator\System\Database;
 use IPLocator\System\Logger;
 use IPLocator\System\Cache;
 use IPLocator\Plugin\Feature\IPData;
+use IPLocator\System\Infolog;
 
 /**
  * Define the schema functionality.
@@ -55,30 +56,90 @@ class Schema {
 	}
 
 	/**
-	 * Effectively write a record in the database.
+	 * Sets an IPv4 range.
 	 *
-	 * @param   array  $record    The record to write.
-	 * @param   string $table     The table to write in.
+	 * @param   string  $from     The start of the range.
+	 * @param   string  $to       The end of the range.
+	 * @param   string  $country  The country code.
+	 * @return  string  The "value" item of the insert string.
 	 * @since    1.0.0
 	 **/
-	private function write_to_database( $record, $table ) {
-		/*$field_insert = [];
-		$value_insert = [];
-		$value_update = [];
-		foreach ( $record as $k => $v ) {
-			$field_insert[] = '`' . $k . '`';
-			$value_insert[] = "'" . $v . "'";
-			$value_update[] = '`' . $k . '`=' . "'" . $v . "'";
+	public function get_for_multiple_range( $from, $to, $country ) {
+		return "(INET6_ATON('" . $from . "'),INET6_ATON('" . $to . "'),'" . $country . "')";
+	}
+
+	/**
+	 * Adds many IPv4 ranges.
+	 *
+	 * @param   array  $values     The values to add.
+	 * @since    1.0.0
+	 **/
+	public function add_multiple_v4( $values ) {
+		if ( count( $values ) > 0 ) {
+			global $wpdb;
+			$sql  = 'INSERT INTO `' . $wpdb->base_prefix . self::$ipv4 . '` ';
+			$sql .= '(`from`,`to`,`country`) ';
+			$sql .= 'VALUES ' . implode( ',', $values ) . ';';
+			// phpcs:ignore
+			$wpdb->query( $sql );
 		}
+	}
+
+	/**
+	 * Adds an IPv4 range.
+	 *
+	 * @param   string  $to       The start of the range.
+	 * @param   string  $from     The end of the range.
+	 * @param   string  $country  The country code.
+	 * @return  string  The insert string, ready to execute.
+	 * @since    1.0.0
+	 **/
+	public function get_add_v4( $to, $from, $country ) {
+		$country        = substr( strtoupper( $country ), 0, 2 );
+		$field_insert   = [];
+		$value_insert   = [];
+		$value_update   = [];
+		$field_insert[] = '`to`';
+		$value_insert[] = "INET6_ATON('" . $to . "')";
+		$field_insert[] = '`from`';
+		$value_insert[] = "INET6_ATON('" . $from . "')";
+		$field_insert[] = '`country`';
+		$value_insert[] = "'" . $country . "'";
+		$value_update[] = '`country`=' . "'" . $country . "'";
+		$value_update[] = '`flag`=' . "'U'";
 		if ( count( $field_insert ) > 0 ) {
 			global $wpdb;
-			$sql  = 'INSERT INTO `' . $wpdb->base_prefix . $table . '` ';
+			$sql  = 'INSERT INTO `' . $wpdb->base_prefix . self::$ipv4 . '` ';
 			$sql .= '(' . implode( ',', $field_insert ) . ') ';
 			$sql .= 'VALUES (' . implode( ',', $value_insert ) . ') ';
 			$sql .= 'ON DUPLICATE KEY UPDATE ' . implode( ',', $value_update ) . ';';
-			// phpcs:ignore
-			$wpdb->query( $sql );
-		}*/
+			return $sql;
+		}
+		return '';
+	}
+
+	/**
+	 * Effectively adds an IPv4 range.
+	 *
+	 * @param   string  $to       The start of the range.
+	 * @param   string  $from     The end of the range.
+	 * @param   string  $country  The country code.
+	 * @since    1.0.0
+	 **/
+	public function add_v4( $to, $from, $country ) {
+		self::execute_query( self::get_add_v4( $to, $from, $country ) );
+	}
+
+	/**
+	 * Executes a query.
+	 *
+	 * @param   string  $sql  The query to execute.
+	 * @since    1.0.0
+	 **/
+	public function execute_query( $sql ) {
+		global $wpdb;
+		// phpcs:ignore
+		$wpdb->query( $sql );
 	}
 
 	/**
@@ -162,10 +223,12 @@ class Schema {
 			}
 		}
 		if ( $needed_v4 ) {
+			/* translators: %s can be "IPv4" or "IPv6" */
+			Infolog::add( sprintf( esc_html__( '%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…', 'ip-locator' ), 'IPv4' ) );
 			$semaphore = Cache::get( 'update/v4/initsemaphore' );
-			if ( 1 !== (int) $semaphore || false === $semaphore ) {
+			if ( ( 1 !== (int) $semaphore && 2 !== (int) $semaphore ) || false === $semaphore ) {
 				if ( -1 === (int) $semaphore || false === $semaphore ) {
-					Cache::set( 'update/v4/initsemaphore', 1 );
+					Cache::set( 'update/v4/initsemaphore', 1, 'infinite' );
 					Logger::info( 'IPV4 data initialization is needed.' );
 				} else {
 					if ( time() - (int) $semaphore > IPLOCATOR_INIT_TIMEOUT ) {
@@ -197,6 +260,7 @@ class Schema {
 		$sql            .= " (`from` VARBINARY(4) NOT NULL DEFAULT INET6_ATON('0.0.0.0'),";
 		$sql            .= " `to` VARBINARY(4) NOT NULL DEFAULT INET6_ATON('0.0.0.0'),";
 		$sql            .= " `country` VARCHAR(2) DEFAULT NULL DEFAULT 'XX',";
+		$sql            .= " `flag` VARCHAR(1) DEFAULT NULL DEFAULT 'I',";
 		$sql            .= " PRIMARY KEY (`from`,`to`)";
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
@@ -206,6 +270,7 @@ class Schema {
 		$sql            .= " (`from` VARBINARY(16) NOT NULL DEFAULT INET6_ATON('0000:0000:0000:0000:0000:0000:0000:0000'),";
 		$sql            .= " `to` VARBINARY(16) NOT NULL DEFAULT INET6_ATON('0000:0000:0000:0000:0000:0000:0000:0000'),";
 		$sql            .= " `country` VARCHAR(2) DEFAULT NULL DEFAULT 'XX',";
+		$sql            .= " `flag` VARCHAR(1) DEFAULT NULL DEFAULT 'I',";
 		$sql            .= " PRIMARY KEY (`from`,`to`)";
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore

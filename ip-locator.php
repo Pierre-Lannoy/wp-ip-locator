@@ -69,6 +69,7 @@ function iplocator_uninstall() {
  */
 function iplocator_run() {
 	\IPLocator\System\Logger::init();
+	\IPLocator\System\Cache::init();
 	$plugin = new IPLocator\Plugin\Core();
 	$plugin->run();
 }
