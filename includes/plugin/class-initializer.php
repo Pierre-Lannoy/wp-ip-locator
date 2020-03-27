@@ -65,8 +65,14 @@ class Initializer {
 		$semaphore = Cache::get( 'update/v4/initsemaphore' );
 		if ( 1 === $semaphore ) {
 			Cache::set( 'update/v4/initsemaphore', 2, 'infinite' );
-			Logger::debug('Scheduling ip-locator-init-v4 action.');
+			Logger::debug( 'Scheduling ip-locator-init-v4 action.' );
 			as_enqueue_async_action( 'ip-locator-init-v4', [], IPLOCATOR_SLUG );
+		}
+		$semaphore = Cache::get( 'update/v6/initsemaphore' );
+		if ( 1 === $semaphore ) {
+			Cache::set( 'update/v6/initsemaphore', 2, 'infinite' );
+			Logger::debug( 'Scheduling ip-locator-init-v6 action.' );
+			as_enqueue_async_action( 'ip-locator-init-v6', [], IPLOCATOR_SLUG );
 		}
 	}
 

@@ -32,18 +32,18 @@ use IPLocator\System\Infolog;
 class Schema {
 
 	/**
-	 * IPV4 table name.
+	 * IPv4 table name.
 	 *
 	 * @since  1.0.0
-	 * @var    string    $ipv4    The IPV4 table name.
+	 * @var    string    $ipv4    The IPv4 table name.
 	 */
 	private static $ipv4 = IPLOCATOR_PRODUCT_ABBREVIATION . '_v4';
 
 	/**
-	 * IPV6 table name.
+	 * IPv6 table name.
 	 *
 	 * @since  1.0.0
-	 * @var    string    $ipv6    The IPV4 table name.
+	 * @var    string    $ipv6    The IPv6 table name.
 	 */
 	private static $ipv6 = IPLOCATOR_PRODUCT_ABBREVIATION . '_v6';
 
@@ -53,6 +53,72 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+	}
+
+	/**
+	 * Prepare a table for mass replaces.
+	 *
+	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
+	 * @param string    $mode       The mode. Must be 'init' or 'update'.
+	 * @since 1.0.0
+	 */
+	public function prepare_table( $version, $mode ) {
+		if ( 'v4' !== $version && 'v6' !== $version ) {
+			return;
+		}
+		if ( 'init' !== $mode && 'update' !== $mode ) {
+			return;
+		}
+		if ( 'init' === $mode ) {
+			return;
+		}
+		global $wpdb;
+		switch ( $version ) {
+			case 'v4':
+				$table = $wpdb->base_prefix . self::$ipv4;
+				break;
+			case 'v6':
+				$table = $wpdb->base_prefix . self::$ipv6;
+				break;
+			default:
+				return;
+		}
+		$sql = "UPDATE `" . $table . "` SET `flag`='D';";
+		// phpcs:ignore
+		$wpdb->query( $sql );
+	}
+
+	/**
+	 * Finalize a table after mass replaces.
+	 *
+	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
+	 * @param string    $mode       The mode. Must be 'init' or 'update'.
+	 * @since 1.0.0
+	 */
+	public function finalize_table( $version, $mode ) {
+		if ( 'v4' !== $version && 'v6' !== $version ) {
+			return;
+		}
+		if ( 'init' !== $mode && 'update' !== $mode ) {
+			return;
+		}
+		if ( 'init' === $mode ) {
+			return;
+		}
+		global $wpdb;
+		switch ( $version ) {
+			case 'v4':
+				$table = $wpdb->base_prefix . self::$ipv4;
+				break;
+			case 'v6':
+				$table = $wpdb->base_prefix . self::$ipv6;
+				break;
+			default:
+				return;
+		}
+		$sql = "DELETE FROM `" . $table . "` WHERE `flag`='D';";
+		// phpcs:ignore
+		$wpdb->query( $sql );
 	}
 
 	/**
@@ -71,75 +137,29 @@ class Schema {
 	/**
 	 * Adds many IPv4 ranges.
 	 *
-	 * @param   array  $values     The values to add.
+	 * @param   array     $values     The values to add.
+	 * @param   string    $version    The IP version. Must be 'v4' or 'v6'.
 	 * @since    1.0.0
 	 **/
-	public function add_multiple_v4( $values ) {
+	public function add_multiple_range( $values, $version ) {
 		if ( count( $values ) > 0 ) {
 			global $wpdb;
-			$sql  = 'INSERT INTO `' . $wpdb->base_prefix . self::$ipv4 . '` ';
+			switch ( $version ) {
+				case 'v4':
+					$table = $wpdb->base_prefix . self::$ipv4;
+					break;
+				case 'v6':
+					$table = $wpdb->base_prefix . self::$ipv6;
+					break;
+				default:
+					return;
+			}
+			$sql  = 'REPLACE INTO `' . $table . '` ';
 			$sql .= '(`from`,`to`,`country`) ';
 			$sql .= 'VALUES ' . implode( ',', $values ) . ';';
 			// phpcs:ignore
 			$wpdb->query( $sql );
 		}
-	}
-
-	/**
-	 * Adds an IPv4 range.
-	 *
-	 * @param   string  $to       The start of the range.
-	 * @param   string  $from     The end of the range.
-	 * @param   string  $country  The country code.
-	 * @return  string  The insert string, ready to execute.
-	 * @since    1.0.0
-	 **/
-	public function get_add_v4( $to, $from, $country ) {
-		$country        = substr( strtoupper( $country ), 0, 2 );
-		$field_insert   = [];
-		$value_insert   = [];
-		$value_update   = [];
-		$field_insert[] = '`to`';
-		$value_insert[] = "INET6_ATON('" . $to . "')";
-		$field_insert[] = '`from`';
-		$value_insert[] = "INET6_ATON('" . $from . "')";
-		$field_insert[] = '`country`';
-		$value_insert[] = "'" . $country . "'";
-		$value_update[] = '`country`=' . "'" . $country . "'";
-		$value_update[] = '`flag`=' . "'U'";
-		if ( count( $field_insert ) > 0 ) {
-			global $wpdb;
-			$sql  = 'INSERT INTO `' . $wpdb->base_prefix . self::$ipv4 . '` ';
-			$sql .= '(' . implode( ',', $field_insert ) . ') ';
-			$sql .= 'VALUES (' . implode( ',', $value_insert ) . ') ';
-			$sql .= 'ON DUPLICATE KEY UPDATE ' . implode( ',', $value_update ) . ';';
-			return $sql;
-		}
-		return '';
-	}
-
-	/**
-	 * Effectively adds an IPv4 range.
-	 *
-	 * @param   string  $to       The start of the range.
-	 * @param   string  $from     The end of the range.
-	 * @param   string  $country  The country code.
-	 * @since    1.0.0
-	 **/
-	public function add_v4( $to, $from, $country ) {
-		self::execute_query( self::get_add_v4( $to, $from, $country ) );
-	}
-
-	/**
-	 * Executes a query.
-	 *
-	 * @param   string  $sql  The query to execute.
-	 * @since    1.0.0
-	 **/
-	public function execute_query( $sql ) {
-		global $wpdb;
-		// phpcs:ignore
-		$wpdb->query( $sql );
 	}
 
 	/**
@@ -229,23 +249,39 @@ class Schema {
 			if ( ( 1 !== (int) $semaphore && 2 !== (int) $semaphore ) || false === $semaphore ) {
 				if ( -1 === (int) $semaphore || false === $semaphore ) {
 					Cache::set( 'update/v4/initsemaphore', 1, 'infinite' );
-					Logger::info( 'IPV4 data initialization is needed.' );
+					Logger::info( 'IPv4 data initialization is needed. This initialization will start in some minutes.' );
 				} else {
 					if ( time() - (int) $semaphore > IPLOCATOR_INIT_TIMEOUT ) {
 						Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
-						Logger::info( 'Semaphore for IPV4 data initialization has been reset.' );
-						Logger::warning( 'Incomplete IPV4 data initialization.' );
+						Logger::info( 'Semaphore for IPv4 data initialization has been reset.' );
+						Logger::warning( 'Incomplete IPv4 data initialization.' );
 					}
 				}
 			}
 		} else {
 			Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
-			Logger::info( 'No need to initialize IPV4 data.' );
+			Logger::info( 'No need to initialize IPv4 data.' );
 		}
-
-
-
-
+		if ( $needed_v6 ) {
+			/* translators: %s can be "IPv4" or "IPv6" */
+			Infolog::add( sprintf( esc_html__( '%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…', 'ip-locator' ), 'IPv6' ) );
+			$semaphore = Cache::get( 'update/v6/initsemaphore' );
+			if ( ( 1 !== (int) $semaphore && 2 !== (int) $semaphore ) || false === $semaphore ) {
+				if ( -1 === (int) $semaphore || false === $semaphore ) {
+					Cache::set( 'update/v6/initsemaphore', 1, 'infinite' );
+					Logger::info( 'IPv6 data initialization is needed. This initialization will start in some minutes.' );
+				} else {
+					if ( time() - (int) $semaphore > IPLOCATOR_INIT_TIMEOUT ) {
+						Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
+						Logger::info( 'Semaphore for IPv6 data initialization has been reset.' );
+						Logger::warning( 'Incomplete IPv6 data initialization.' );
+					}
+				}
+			}
+		} else {
+			Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
+			Logger::info( 'No need to initialize IPv6 data.' );
+		}
 	}
 
 	/**

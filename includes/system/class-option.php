@@ -71,12 +71,13 @@ class Option {
 		self::$defaults['nags']             = [];
 		self::$defaults['version']          = '0.0.0';
 		self::$defaults['last_check']       = [];
-		self::$defaults['dbversion']        = 0;
 		self::$defaults['override']         = false;  // Override headers
 		self::$defaults['css']              = false;
 		self::$defaults['shortcode']        = false;
 		self::$defaults['autoupdate']       = true;
 		self::$defaults['infolog']          = [];
+		self::$defaults['dbversion_v4']     = 0;
+		self::$defaults['dbversion_v6']     = 0;
 		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate' ];
 	}
 
