@@ -54,6 +54,19 @@ $url        = esc_url(
 		);
 		?>
 		" class="nav-tab <?php echo 'about' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'About', 'ip-locator' ); ?></a>
+        <a href="
+		<?php
+		echo esc_url(
+			add_query_arg(
+				array(
+					'page' => 'iplocator-settings',
+					'tab'  => 'data',
+				),
+				admin_url( 'admin.php' )
+			)
+		);
+		?>
+		" class="nav-tab <?php echo 'data' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'IP Data', 'ip-locator' ); ?></a>
 	</h2>
     
 	<?php if ( 'misc' === $active_tab ) { ?>
@@ -61,5 +74,8 @@ $url        = esc_url(
 	<?php } ?>
 	<?php if ( 'about' === $active_tab ) { ?>
 		<?php include __DIR__ . '/ip-locator-admin-settings-about.php'; ?>
+	<?php } ?>
+	<?php if ( 'data' === $active_tab ) { ?>
+		<?php include __DIR__ . '/ip-locator-admin-settings-data.php'; ?>
 	<?php } ?>
 </div>
