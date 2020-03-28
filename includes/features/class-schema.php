@@ -53,6 +53,38 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+
+	}
+
+	/**
+	 * Get ranges count.
+	 *
+	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
+	 * @return  integer The number of ranges.
+	 * @since 1.0.0
+	 */
+	public function count_ranges( $version ) {
+		global $wpdb;
+		switch ( $version ) {
+			case 'v4':
+				$table = $wpdb->base_prefix . self::$ipv4;
+				break;
+			case 'v6':
+				$table = $wpdb->base_prefix . self::$ipv6;
+				break;
+			default:
+				return 0;
+		}
+		$result = 0;
+		$sql    = 'SELECT COUNT(*) as CNT FROM `' . $table . '`;';
+		// phpcs:ignore
+		$cnt = $wpdb->get_results( $sql, ARRAY_A );
+		if ( count( $cnt ) > 0 ) {
+			if ( array_key_exists( 'CNT', $cnt[0] ) ) {
+				$result = $cnt[0]['CNT'];
+			}
+		}
+		return $result;
 	}
 
 	/**
