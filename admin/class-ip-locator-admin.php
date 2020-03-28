@@ -277,7 +277,7 @@ class IP_Locator_Admin {
 				'text'        => esc_html__( 'Auto-update', 'ip-locator' ),
 				'id'          => 'iplocator_plugin_options_autoupdate',
 				'checked'     => Option::network_get( 'autoupdate' ),
-				'description' => esc_html__( 'If checked, IP Locator will regularly update its IP database.', 'ip-locator' ) . '<br/>' . sprintf( esc_html__( 'Note: IP data is provided by %s and is donationware.', 'ip-locator' ), '<a href="http://software77.net/geo-ip/?license">WebNet77</a>' ),
+				'description' => esc_html__( 'If checked, IP Locator will regularly update its IP database.', 'ip-locator' ),
 				'full_width'  => false,
 				'enabled'     => true,
 			]
