@@ -28,6 +28,36 @@ class Hosting {
 	}
 
 	/**
+	 * Check if Cloudflare Geoip is enabled.
+	 *
+	 * @return bool    True if Cloudflare Geoip is enabled.
+	 * @since  1.0.0
+	 */
+	public static function is_cloudflare_geoip_enabled() {
+		return array_key_exists( 'HTTP_CF_IPCOUNTRY', $_SERVER ) || array_key_exists( 'CF-IPCountry', $_SERVER );
+	}
+
+	/**
+	 * Check if Cloudfront (AWS) Geoip is enabled.
+	 *
+	 * @return bool    True if Cloudfront Geoip is enabled.
+	 * @since  1.0.0
+	 */
+	public static function is_cloudfront_geoip_enabled() {
+		return array_key_exists( 'CloudFront-Viewer-Country', $_SERVER );
+	}
+
+	/**
+	 * Check if Apache Geoip is enabled.
+	 *
+	 * @return bool    True if Cloudfront Geoip is enabled.
+	 * @since  1.0.0
+	 */
+	public static function is_apache_geoip_enabled() {
+		return array_key_exists( 'GEOIP_COUNTRY_CODE', $_SERVER );
+	}
+
+	/**
 	 * Check if the server config allows shell_exec().
 	 *
 	 * @return bool    True if shell_exec() can be used, false otherwise.
