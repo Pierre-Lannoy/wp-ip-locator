@@ -165,6 +165,32 @@ class Environment {
 	}
 
 	/**
+	 * Verification of PHP GeoIP.
+	 *
+	 * @return boolean     True if PHP GeoIP, false otherwise.
+	 * @since  1.0.0
+	 */
+	public static function has_phpgeoip_installed() {
+		return '' !== self::phpgeoip_version_text();
+	}
+
+	/**
+	 * Get the WordPress version ID.
+	 *
+	 * @return string  The WordPress version ID.
+	 * @since  1.0.0
+	 */
+	public static function phpgeoip_version_text() {
+		if ( function_exists( 'geoip_database_info' ) && function_exists( 'geoip_country_code_by_name' ) ) {
+			$info = geoip_database_info();
+			if ( isset( $info ) ) {
+				return $info;
+			}
+		}
+		return '';
+	}
+
+	/**
 	 * Verification of WP MU.
 	 *
 	 * @return boolean     True if MU, false otherwise.
