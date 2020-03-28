@@ -214,9 +214,9 @@ class IPData {
 					/* translators: %1$s can be "IPv4" or "IPv6" */
 					Infolog::add( sprintf( esc_html__( '%1$s initialization completed in %2$d seconds: %3$d IP ranges have been added.', 'ip-locator' ), 'IP' . $version, $time, $cpt ) );
 				} else {
-					Logger::info( sprintf( 'IP' . $version . ' update completed in %d seconds: %d IP ranges have been added or updated.', $time, $cpt ) );
+					Logger::info( sprintf( 'IP' . $version . ' update completed in %d seconds: %d IP ranges have been added, updated or deleted.', $time, $cpt ) );
 					/* translators: %1$s can be "IPv4" or "IPv6" */
-					Infolog::add( sprintf( esc_html__( '%1$s update completed in %2$d seconds: %3$d IP ranges have been added or updated.', 'ip-locator' ), 'IP' . $version, $time, $cpt ) );
+					Infolog::add( sprintf( esc_html__( '%1$s update completed in %2$d seconds: %3$d IP ranges have been added, updated or deleted.', 'ip-locator' ), 'IP' . $version, $time, $cpt ) );
 				}
 			} else {
 				Logger::error( 'IP' . $version . ' data files are corrupted or empty.', 404 );
