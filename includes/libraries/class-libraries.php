@@ -61,10 +61,10 @@ class Libraries {
 		self::$psr4_libraries['flagiconcss'] = [
 			'name'    => 'Flag-Icon-CSS',
 			'prefix'  => 'Flagiconcss',
-			'base'    => DECALOG_VENDOR_DIR . 'flagiconcss/',
-			'version' => '3.4.2',
+			'base'    => IPLOCATOR_VENDOR_DIR . 'flagiconcss/',
+			'version' => '3.4.6',
 			// phpcs:ignore
-			'author'  => sprintf( esc_html__( '%s & contributors', 'decalog' ), 'Panayiotis Lipiridis' ),
+			'author'  => sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Panayiotis Lipiridis' ),
 			'url'     => 'https://github.com/lipis/flag-icon-css',
 			'license' => 'mit',
 			'langs'   => 'en',
