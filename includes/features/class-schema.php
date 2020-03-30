@@ -57,6 +57,38 @@ class Schema {
 	}
 
 	/**
+	 * Get country code for an IP.
+	 *
+	 * @param string    $ip         The IP version.
+	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
+	 * @return  string The country code.
+	 * @since 1.0.0
+	 */
+	public static function get_country( $ip, $version ) {
+		global $wpdb;
+		switch ( $version ) {
+			case 'v4':
+				$table = $wpdb->base_prefix . self::$ipv4;
+				break;
+			case 'v6':
+				$table = $wpdb->base_prefix . self::$ipv6;
+				break;
+			default:
+				return '00';
+		}
+		$result = '00';
+		$sql    = "SELECT `country` FROM `" . $table . "` WHERE `from` <= INET6_ATON('" . $ip . "') AND `to` >= INET6_ATON('" . $ip . "') ;";
+		// phpcs:ignore
+		$country = $wpdb->get_results( $sql, ARRAY_A );
+		if ( count( $country ) > 0 ) {
+			if ( array_key_exists( 'country', $country[0] ) ) {
+				$result = strtoupper( $country[0]['country'] );
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get ranges count.
 	 *
 	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
