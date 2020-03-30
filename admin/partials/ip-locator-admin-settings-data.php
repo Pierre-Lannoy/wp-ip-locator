@@ -43,9 +43,9 @@ foreach ( Option::network_get( 'infolog' ) as $s ) {
 <?php if (Environment::has_phpgeoip_installed()) { ?>
     <p><?php echo sprintf( esc_html__( '%s fallback data: ', 'ip-locator' ), 'IPv4/IPv6' ); ?><strong><?php echo Environment::phpgeoip_version_text(); ?></strong></p>
 <?php } ?>
-<p><?php echo esc_html__( 'Apache mod_geoip detection: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_apache_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
-<p><?php echo esc_html__( 'AWS CloudFront detection: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_cloudfront_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
-<p><?php echo esc_html__( 'Cloudflare IP Geolocation detection: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_cloudflare_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
+<p><?php echo esc_html__( 'Apache mod_geoip reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_apache_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
+<p><?php echo esc_html__( 'AWS CloudFront reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_cloudfront_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
+<p><?php echo esc_html__( 'Cloudflare IP Geolocation reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_cloudflare_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
 
 <h2><?php esc_html_e( 'Last operations transcript', 'ip-locator' ); ?></h2>
 <textarea style="width:100%;resize:none;white-space: pre;overflow-wrap:normal;overflow-x:scroll;line-height:1.6em;font-size:smaller;font-family:'Courier New', Courier, monospace" rows="10" readonly>
