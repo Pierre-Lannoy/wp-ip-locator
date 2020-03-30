@@ -105,6 +105,7 @@ class Cache {
 			'ephemeral'         => -1,
 			'infinite'          => 10 * YEAR_IN_SECONDS,
 			'diagnosis'         => HOUR_IN_SECONDS,
+			'ip'                => 72 * HOUR_IN_SECONDS,
 			'plugin-statistics' => DAY_IN_SECONDS,
 		];
 		if ( wp_using_ext_object_cache() ) {
