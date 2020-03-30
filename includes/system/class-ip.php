@@ -42,7 +42,7 @@ class IP {
 	 * @since   1.0.0
 	 */
 	public static function normalize_v4( $ip ) {
-		return long2ip( (int) str_replace( self::$clean, '', $ip ) );
+		return long2ip( ip2long( str_replace( self::$clean, '', $ip ) ) );
 	}
 
 	/**
