@@ -40,6 +40,7 @@ class Initializer {
 	public function initialize() {
 		\IPLocator\System\Sitehealth::init();
 		\IPLocator\System\APCu::init();
+		require_once IPLOCATOR_PLUGIN_DIR . 'includes/api/functions.php';
 		$this->action_schedule();
 	}
 
