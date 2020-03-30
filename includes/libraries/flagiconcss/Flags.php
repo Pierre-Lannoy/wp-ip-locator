@@ -49,7 +49,7 @@ class Flags {
 	 * @return  string  The raw value of the SVG flag.
 	 * @since   1.0.0
 	 */
-	public static function get_raw( $name = 'fr', $squared = false ) {
+	public static function get_raw( $name = 'zz', $squared = false ) {
 		$fname    = ( $squared ? '1x1/' : '4x3/' ) . strtolower( $name );
 		$filename = __DIR__ . '/flags/' . $fname . '.svg';
 		// phpcs:ignore
@@ -65,7 +65,7 @@ class Flags {
 			}
 		}
 		if ( ! file_exists( $filename ) ) {
-			return ( 'fr' === $name ? '' : self::get_raw() );
+			return ( 'zz' === $name ? '' : self::get_raw( 'zz', $squared ) );
 		}
 		if ( Cache::is_memory() ) {
 			// phpcs:ignore

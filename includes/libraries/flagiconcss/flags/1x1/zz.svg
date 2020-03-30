@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-pw" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="a">
+      <path fill-opacity=".7" d="M61.7 4.2h170.8V175H61.7z"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#a)" transform="translate(-185 -12.5) scale(2.9973)">
+    <path fill="#OOOOOO" fill-opacity="0.4" d="M0 4.2h301.2V175H0z"/>
+  </g>
+</svg>
