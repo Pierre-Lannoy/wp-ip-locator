@@ -9,7 +9,7 @@
 
 namespace IPLocator;
 
-use Flagiconcss\Flags;
+use Flagiconcss\Flag as SvgFlag;
 use IPLocator\System\EmojiFlag;
 
 /**
@@ -48,6 +48,36 @@ class Flag {
 	 */
 	public function emoji() {
 		return EmojiFlag::get( $this->cc );
+	}
+
+	/**
+	 * Get the svg flag base 64 encoded.
+	 *
+	 * @param boolean $squared Optional. The flag must be squared.
+	 * @return  string   The svg flag base 64 encoded.
+	 * @since 1.0.0
+	 */
+	public function svg( $squared = false ) {
+		return SvgFlag::get_base64( $this->cc, $squared );
+	}
+
+	/**
+	 * Get the image flag.
+	 *
+	 * @param   string    $class      Optional. The class(es) name(s).
+	 * @param   string    $style      Optional. The style.
+	 * @param   string    $id         Optional. The ID.
+	 * @param   string    $alt        Optional. The alt text.
+	 * @param   boolean   $squared    Optional. The flag must be squared.
+	 * @return  string                The flag html image tag, ready to print.
+	 * @since 1.0.0
+	 */
+	public function image( $class = '', $style = '', $id = '', $alt = '', $squared = false ) {
+		$class = '' === $class ? ' class="iplocator-country-flag"' : ' class="iplocator-country-flag ' . $class . '"';
+		$style = '' === $style ? '' : ' style="' . $style . '"';
+		$id    = '' === $id ? '' : ' $id="' . $id . '"';
+		$alt   = '' === $alt ? '' : ' alt="' . $alt . '"';
+		return '<img' . $class . $style . $id . $alt . ' src="' . $this->svg( $squared ) . '" />';
 	}
 
 }
