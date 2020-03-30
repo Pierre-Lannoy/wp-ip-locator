@@ -17,6 +17,6 @@ define( 'IPLOCATOR_CODENAME', '"-"' );
 
 define( 'IPLOCATOR_INIT_TIMEOUT', 1 * HOUR_IN_SECONDS );
 define( 'IPLOCATOR_UPDATE_TIMEOUT', 12 * HOUR_IN_SECONDS );
-define( 'IPLOCATOR_UPDATE_CYCLE', 1 ); // Update cycle in days
+define( 'IPLOCATOR_UPDATE_CYCLE', 2 ); // Update cycle in days
 
 define( 'IPLOCATOR_CDN_AVAILABLE', true );
