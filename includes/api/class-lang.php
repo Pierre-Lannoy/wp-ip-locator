@@ -40,9 +40,9 @@ class Lang {
 	}
 
 	/**
-	 * Get the country main language.
+	 * Get the country main language code.
 	 *
-	 * @return string   The main language if found, '' otherwise.
+	 * @return string   The main language code if found, '' otherwise.
 	 * @since 1.0.0
 	 */
 	public function code() {
