@@ -55,7 +55,7 @@ class Flags {
 		// phpcs:ignore
 		$id = Cache::id( serialize( [ 'name' => $name, 'squared' => $squared ] ), 'flags/' );
 		if ( Cache::is_memory() ) {
-			$flag = Cache::get_shared( $id );
+			$flag = Cache::get( $id );
 			if ( isset( $flag ) ) {
 				return $flag;
 			}
@@ -69,7 +69,7 @@ class Flags {
 		}
 		if ( Cache::is_memory() ) {
 			// phpcs:ignore
-			Cache::set_shared( $id, file_get_contents( $filename ), 'infinite' );
+			Cache::set( $id, file_get_contents( $filename ), 'infinite' );
 		} else {
 			// phpcs:ignore
 			self::$flags[ $fname ] = file_get_contents( $filename );
