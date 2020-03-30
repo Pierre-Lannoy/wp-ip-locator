@@ -34,6 +34,7 @@ class L10n {
 	 */
 	public static $countries = [
 		'00' => '[unknown]',
+		'01' => '[loopback]',
 		'A0' => '[private network]',
 		'A1' => '[anonymous proxy]',
 		'A2' => '[satellite]',
@@ -50,6 +51,8 @@ class L10n {
 		'AR' => 'Argentina',
 		'AM' => 'Armenia',
 		'AW' => 'Aruba',
+		'AC' => 'Ascension Island',
+		'AP' => 'Asia/Pacific countries',
 		'AU' => 'Australia',
 		'AT' => 'Austria',
 		'AZ' => 'Azerbaijan',
@@ -78,13 +81,16 @@ class L10n {
 		'KH' => 'Cambodia',
 		'CM' => 'Cameroon',
 		'CA' => 'Canada',
+		'IC' => 'Canary Islands',
 		'CV' => 'Cape Verde',
 		'KY' => 'Cayman Islands',
 		'CF' => 'Central African Republic',
+		'EA' => 'Ceuta, Melilla',
 		'TD' => 'Chad',
 		'CL' => 'Chile',
 		'CN' => 'China',
 		'CX' => 'Christmas Island',
+		'CP' => 'Clipperton Island',
 		'CC' => 'Cocos (Keeling) Islands',
 		'CO' => 'Colombia',
 		'KM' => 'Comoros',
@@ -98,6 +104,7 @@ class L10n {
 		'CY' => 'Cyprus',
 		'CZ' => 'Czech Republic',
 		'DK' => 'Denmark',
+		'DG' => 'Diego Garcia',
 		'DJ' => 'Djibouti',
 		'DM' => 'Dominica',
 		'DO' => 'Dominican Republic',
@@ -106,6 +113,8 @@ class L10n {
 		'SV' => 'El Salvador',
 		'GQ' => 'Equatorial Guinea',
 		'ER' => 'Eritrea',
+		'EU' => 'European Union',
+		'EZ' => 'Eurozone',
 		'EE' => 'Estonia',
 		'ET' => 'Ethiopia',
 		'FK' => 'Falkland Islands',
@@ -113,6 +122,7 @@ class L10n {
 		'FJ' => 'Fiji',
 		'FI' => 'Finland',
 		'FR' => 'France',
+		'FX' => 'France, Metropolitan',
 		'GF' => 'French Guiana',
 		'PF' => 'French Polynesia',
 		'TF' => 'French Southern Territories',
@@ -261,6 +271,7 @@ class L10n {
 		'TK' => 'Tokelau',
 		'TO' => 'Tonga',
 		'TT' => 'Trinidad and Tobago',
+		'TA' => 'Tristan da Cunha',
 		'TN' => 'Tunisia',
 		'TR' => 'Turkey',
 		'TM' => 'Turkmenistan',
@@ -270,8 +281,11 @@ class L10n {
 		'UA' => 'Ukraine',
 		'AE' => 'United Arab Emirates',
 		'GB' => 'United Kingdom (UK)',
+		'UK' => 'United Kingdom (UK)',
+		'UN' => 'United Nations (UN)',
 		'US' => 'United States (US)',
 		'UM' => 'United States (US) Minor Outlying Islands',
+		'SU' => 'Union of Soviet Socialist Republics (USSR)',
 		'UY' => 'Uruguay',
 		'UZ' => 'Uzbekistan',
 		'VU' => 'Vanuatu',
@@ -286,6 +300,47 @@ class L10n {
 		'YE' => 'Yemen',
 		'ZM' => 'Zambia',
 		'ZW' => 'Zimbabwe',
+		'AA' => '[reserved]',
+		'QM' => '[reserved]',
+		'QN' => '[reserved]',
+		'QO' => '[reserved]',
+		'QP' => '[reserved]',
+		'QQ' => '[reserved]',
+		'QR' => '[reserved]',
+		'QS' => '[reserved]',
+		'QT' => '[reserved]',
+		'QU' => '[reserved]',
+		'QV' => '[reserved]',
+		'QW' => '[reserved]',
+		'QX' => '[reserved]',
+		'QY' => '[reserved]',
+		'QZ' => '[reserved]',
+		'XA' => '[reserved]',
+		'XB' => '[reserved]',
+		'XC' => '[reserved]',
+		'XD' => '[reserved]',
+		'XE' => '[reserved]',
+		'XF' => '[reserved]',
+		'XG' => '[reserved]',
+		'XH' => '[reserved]',
+		'XI' => '[reserved]',
+		'XJ' => '[reserved]',
+		'XK' => '[reserved]',
+		'XL' => '[reserved]',
+		'XM' => '[reserved]',
+		'XN' => '[reserved]',
+		'XO' => '[reserved]',
+		'XP' => '[reserved]',
+		'XQ' => '[reserved]',
+		'XR' => '[reserved]',
+		'XS' => '[reserved]',
+		'XT' => '[reserved]',
+		'XU' => '[reserved]',
+		'XV' => '[reserved]',
+		'XW' => '[reserved]',
+		'XX' => '[reserved]',
+		'XY' => '[reserved]',
+		'XZ' => '[reserved]',
 		'ZZ' => '[reserved]',
 	];
 
@@ -298,11 +353,55 @@ class L10n {
 	}
 
 	/**
+	 * Try to get the "default" locale for a country.
+	 *
+	 * @param  string $country The country code.
+	 * @return string The probable locale.
+	 * @since  1.0.0
+	 */
+	public static function get_main_lang_code( $country ) {
+		if ( I18n::is_extension_loaded() ) {
+			$subtags = \ResourceBundle::create( 'likelySubtags', 'ICUDATA', false );
+			$country = \Locale::canonicalize( 'und_' . $country );
+			$locale  = $subtags->get( $country ) ? $subtags->get( $country ) : $subtags->get( 'und' );
+			return \Locale::getPrimaryLanguage( $locale );
+		}
+		return '';
+	}
+
+	/**
+	 * Returns an appropriately localized display name for a lang.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string    $country    The ISO-2 country code.
+	 * @param string    $lang       The locale.
+	 * @param string    $locale     Optional. The locale string.
+	 * @return string Display name of the region for the current locale.
+	 */
+	public static function get_main_lang_name( $country, $lang, $locale = null ) {
+		if ( ! isset( $locale ) ) {
+			$locale = self::get_display_locale();
+		}
+		if ( 'self' === $locale ) {
+			$locale = self::get_main_lang_code( $country );
+		}
+		$result = '[unknown]';
+		if ( I18n::is_extension_loaded() ) {
+			$tmp = \Locale::getDisplayLanguage( $lang, $locale );
+			if ( $tmp !== $country ) {
+				$result = $tmp;
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the proper user locale.
 	 *
 	 * @param  int|WP_User $user_id User's ID or a WP_User object. Defaults to current user.
 	 * @return string The locale of the user.
-	 * @since  3.0.8
+	 * @since  1.0.0
 	 */
 	public static function get_display_locale( $user_id = 0 ) {
 		global $current_user;
@@ -353,13 +452,19 @@ class L10n {
 		if ( ! isset( $locale ) ) {
 			$locale = self::get_display_locale();
 		}
+		if ( 'self' === $locale ) {
+			$locale = self::get_main_lang_code( $country );
+		}
 		if ( array_key_exists( $country, self::$countries ) ) {
 			$result = self::$countries[ $country ];
 		} else {
 			$result = '[unknown]';
 		}
 		if ( I18n::is_extension_loaded() ) {
-			$result = \Locale::getDisplayRegion( '-' . strtoupper( $country ), $locale );
+			$tmp = \Locale::getDisplayRegion( '-' . strtoupper( $country ), $locale );
+			if ( $tmp !== $country ) {
+				$result = $tmp;
+			}
 		}
 		return $result;
 	}
