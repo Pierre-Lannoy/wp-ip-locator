@@ -78,4 +78,5 @@ $url        = esc_url(
 	<?php if ( 'data' === $active_tab ) { ?>
 		<?php include __DIR__ . '/ip-locator-admin-settings-data.php'; ?>
 	<?php } ?>
+
 </div>
