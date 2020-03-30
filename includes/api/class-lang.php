@@ -9,13 +9,6 @@
 
 namespace IPLocator;
 
-use IPLocator\System\Environment;
-use IPLocator\System\Logger;
-use IPLocator\System\Option;
-use IPLocator\System\Hosting;
-use IPLocator\System\IP;
-use IPLocator\System\Cache;
-use IPLocator\Plugin\Feature\Schema;
 use IPLocator\System\L10n;
 
 /**
