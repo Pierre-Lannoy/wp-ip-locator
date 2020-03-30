@@ -22,6 +22,7 @@ use IPLocator\System\Timezone;
 use IPLocator\System\GeoIP;
 use IPLocator\System\Environment;
 use PerfOpsOne\AdminMenus;
+use IPLocator\Plugin\Feature\CSSModifier;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -360,7 +361,8 @@ class IP_Locator_Admin {
 				'text'        => esc_html__( 'Add country as CSS class', 'ip-locator' ),
 				'id'          => 'iplocator_plugin_features_css',
 				'checked'     => Option::network_get( 'css' ),
-				'description' => sprintf( esc_html__( 'If checked, IP Locator will append a CSS class (to the body tag) containing the detected country like %s or %s.', 'ip-locator' ), '<code>ip-locator-us</code>', '<code>ip-locator-fr</code>' ),
+				'description' => esc_html__( 'If checked, IP Locator will append to the body tag a CSS class describing the detected connexion (mainly countries).', 'ip-locator' ),
+				'more'        => CSSModifier::get_example(),
 				'full_width'  => false,
 				'enabled'     => true,
 			]

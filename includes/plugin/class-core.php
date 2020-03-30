@@ -17,6 +17,7 @@ use IPLocator\System\I18n;
 use IPLocator\System\Assets;
 use IPLocator\Library\Libraries;
 use IPLocator\System\Nag;
+use IPLocator\Plugin\Feature\CSSModifier;
 
 /**
  * The core plugin class.
@@ -88,6 +89,7 @@ class Core {
 		add_shortcode( 'iplocator-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'iplocator-libraries', [ $libraries, 'sc_get_list' ] );
 		add_shortcode( 'iplocator-statistics', [ 'IPLocator\System\Statistics', 'sc_get_raw' ] );
+		CSSModifier::init();
 	}
 
 	/**

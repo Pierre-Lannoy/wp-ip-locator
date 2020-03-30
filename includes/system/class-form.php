@@ -11,6 +11,8 @@
 
 namespace IPLocator\System;
 
+use Feather;
+
 /**
  * Define the forms functionality.
  *
