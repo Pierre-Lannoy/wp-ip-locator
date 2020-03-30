@@ -52,15 +52,15 @@ class Flag {
 		$fname    = ( $squared ? '1x1/' : '4x3/' ) . strtolower( $name );
 		$filename = __DIR__ . '/flags/' . $fname . '.svg';
 		// phpcs:ignore
-		$id = Cache::id( serialize( [ 'name' => $name, 'squared' => $squared ] ), 'flags/' );
+		$id = Cache::id( $filename, 'flags/' );
 		if ( Cache::is_memory() ) {
 			$flag = Cache::get( $id );
 			if ( isset( $flag ) ) {
 				return $flag;
 			}
 		} else {
-			if ( array_key_exists( $fname, self::$flags ) ) {
-				return self::$flags[ $fname ];
+			if ( array_key_exists( $filename, self::$flags ) ) {
+				return self::$flags[ $filename ];
 			}
 		}
 		if ( ! file_exists( $filename ) ) {
@@ -71,10 +71,9 @@ class Flag {
 			Cache::set( $id, file_get_contents( $filename ), 'infinite' );
 		} else {
 			// phpcs:ignore
-			self::$flags[ $fname ] = file_get_contents( $filename );
+			self::$flags[ $filename ] = file_get_contents( $filename );
 		}
-
-		return ( self::get_raw( $name ) );
+		return ( self::get_raw( $name, $squared ) );
 	}
 
 	/**
