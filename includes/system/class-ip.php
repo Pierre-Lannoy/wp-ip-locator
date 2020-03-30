@@ -42,6 +42,17 @@ class IP {
 	 * @since   1.0.0
 	 */
 	public static function normalize_v4( $ip ) {
+		return long2ip( (int) str_replace( self::$clean, '', $ip ) );
+	}
+
+	/**
+	 * Normalizes an IPv4 address.
+	 *
+	 * @param string    $ip     The IP to normalize.
+	 * @return  string  The normalized IP.
+	 * @since   1.0.0
+	 */
+	public static function expand_v4( $ip ) {
 		return long2ip( ip2long( str_replace( self::$clean, '', $ip ) ) );
 	}
 
