@@ -18,14 +18,16 @@ spl_autoload_register(
 			$filename = 'class-' . str_replace( '_', '-', strtolower( $classname ) ) . '.php';
 			if ( strpos( $class, 'IPLocator\System\\' ) === 0 ) {
 				$filepath = IPLOCATOR_INCLUDES_DIR . 'system/';
-			}
-			if ( strpos( $class, 'IPLocator\Plugin\Feature\\' ) === 0 ) {
+			} elseif ( strpos( $class, 'IPLocator\Plugin\Feature\\' ) === 0 ) {
 				$filepath = IPLOCATOR_INCLUDES_DIR . 'features/';
 			} elseif ( strpos( $class, 'IPLocator\Plugin\\' ) === 0 ) {
 				$filepath = IPLOCATOR_INCLUDES_DIR . 'plugin/';
-			}
-			if ( strpos( $class, 'IPLocator\Library\\' ) === 0 ) {
+			} elseif ( strpos( $class, 'IPLocator\Library\\' ) === 0 ) {
 				$filepath = IPLOCATOR_VENDOR_DIR;
+			} elseif ( strpos( $class, 'IPLocator\API\\' ) === 0 ) {
+				$filepath = IPLOCATOR_INCLUDES_DIR . 'api/';
+			} elseif ( strpos( $class, 'IPLocator\\' ) === 0 ) {
+				$filepath = IPLOCATOR_INCLUDES_DIR . 'api/';
 			}
 			if ( strpos( $filename, '-public' ) !== false ) {
 				$filepath = IPLOCATOR_PUBLIC_DIR;
