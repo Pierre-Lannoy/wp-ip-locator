@@ -42,7 +42,6 @@ class Initializer {
 		\IPLocator\System\Sitehealth::init();
 		\IPLocator\System\APCu::init();
 		require_once IPLOCATOR_PLUGIN_DIR . 'includes/api/functions.php';
-		$this->action_schedule();
 	}
 
 	/**
@@ -51,6 +50,7 @@ class Initializer {
 	 * @since 1.0.0
 	 */
 	public function late_initialize() {
+		$this->action_schedule();
 		require_once IPLOCATOR_PLUGIN_DIR . 'perfopsone/init.php';
 	}
 

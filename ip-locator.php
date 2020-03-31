@@ -33,7 +33,11 @@ require_once __DIR__ . '/includes/system/class-environment.php';
 require_once __DIR__ . '/autoload.php';
 require_once __DIR__ . '/includes/libraries/class-libraries.php';
 require_once __DIR__ . '/includes/libraries/autoload.php';
+
+// Automattic action scheduler
+add_filter( 'action_scheduler_migration_dependencies_met', '__return_false' );
 require_once __DIR__ . '/includes/libraries/action-scheduler/action-scheduler.php';
+
 
 /**
  * The code that runs during plugin activation.
