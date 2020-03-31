@@ -1,1 +1,3 @@
-https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/SHORTCODES.md
+# Shortcodes documentation coming soon
+
+> If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
