@@ -1,6 +1,6 @@
 <?php
 /**
- * Device css modification handling
+ * IP Locator css modification handling
  *
  * Handles all css modification operations.
  *
@@ -13,8 +13,6 @@ namespace IPLocator\Plugin\Feature;
 
 use IPLocator\System\Option;
 use IPLocator\System\Logger;
-use IPLocator\API\Device;
-use IPLocator\Plugin\Feature\Detector;
 use IPLocator\System\L10n;
 
 /**
