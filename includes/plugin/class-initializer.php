@@ -11,6 +11,7 @@ namespace IPLocator\Plugin;
 
 use IPLocator\System\Cache;
 use IPLocator\System\Logger;
+use IPLocator\System\Option;
 
 /**
  * Fired after 'plugins_loaded' hook.
@@ -75,15 +76,21 @@ class Initializer {
 			Logger::debug( 'Scheduling ip-locator-init-v6 action.' );
 			as_enqueue_async_action( 'ip-locator-init-v6', [], IPLOCATOR_SLUG );
 		}
-		if ( false === as_next_scheduled_action( 'ip-locator-update-v4' ) ) {
+		if ( false === as_next_scheduled_action( 'ip-locator-update-v4' ) && (bool) Option::network_get( 'autoupdate ' ) ) {
 			$start = time() + 1 * DAY_IN_SECONDS;
 			$recur = IPLOCATOR_UPDATE_CYCLE * DAY_IN_SECONDS + random_int( -12, 12 ) * HOUR_IN_SECONDS + random_int( 1, 59 ) * MINUTE_IN_SECONDS;
 			as_schedule_recurring_action( $start, $recur, 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
 		}
-		if ( false === as_next_scheduled_action( 'ip-locator-update-v6' ) ) {
+		if ( as_next_scheduled_action( 'ip-locator-update-v4' ) && ! (bool) Option::network_get( 'autoupdate ' ) ) {
+			as_unschedule_all_actions( 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
+		}
+		if ( false === as_next_scheduled_action( 'ip-locator-update-v6' ) && (bool) Option::network_get( 'autoupdate ' ) ) {
 			$start = time() + 2 * DAY_IN_SECONDS;
 			$recur = IPLOCATOR_UPDATE_CYCLE * DAY_IN_SECONDS + random_int( -12, 12 ) * HOUR_IN_SECONDS + random_int( 1, 59 ) * MINUTE_IN_SECONDS;
 			as_schedule_recurring_action( $start, $recur, 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
+		}
+		if ( as_next_scheduled_action( 'ip-locator-update-v6' ) && ! (bool) Option::network_get( 'autoupdate ' ) ) {
+			as_unschedule_all_actions( 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
 		}
 	}
 

@@ -180,7 +180,7 @@ class Libraries {
 		$item            = [];
 		$item['name']    = 'Action Scheduler';
 		$item['version'] = '3.1.4';
-		$item['author']  = 'Automattic / Woocommerce';
+		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Automattic' );
 		$item['url']     = 'https://actionscheduler.org';
 		$item['license'] = $this->license_name( 'gpl3' );
 		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
