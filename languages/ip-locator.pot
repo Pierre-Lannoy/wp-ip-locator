@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: IP Locator\n"
-"POT-Creation-Date: 2020-03-31 11:23+0200\n"
+"POT-Creation-Date: 2020-03-31 15:03+0200\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -290,37 +290,37 @@ msgstr ""
 msgid "Reset to Defaults"
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:45
+#: includes/features/class-cssmodifier.php:43
 #, php-format
 msgid "Unknown / undetected: %s."
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:48
+#: includes/features/class-cssmodifier.php:46
 #, php-format
 msgid "Loopback: %s."
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:51
+#: includes/features/class-cssmodifier.php:49
 #, php-format
 msgid "Private network: %s."
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:54
+#: includes/features/class-cssmodifier.php:52
 #, php-format
 msgid "Anonymous proxy: %s."
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:57
+#: includes/features/class-cssmodifier.php:55
 #, php-format
 msgid "Satellite: %s."
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:60
+#: includes/features/class-cssmodifier.php:58
 #, php-format
 msgid "Reserved / unused: %s."
 msgstr ""
 
-#: includes/features/class-cssmodifier.php:66
+#: includes/features/class-cssmodifier.php:64
 #, php-format
 msgid "Countries: %s."
 msgstr ""
@@ -1478,9 +1478,7 @@ msgid "https://github.com/Pierre-Lannoy/wp-ip-locator"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"Automatically add rules to .htaccess file to support server-info and server-status "
-"Apache mod."
+msgid "Country and language IP-based detection."
 msgstr ""
 
 #. Author of the plugin/theme
