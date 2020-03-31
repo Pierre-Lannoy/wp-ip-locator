@@ -7,7 +7,7 @@
  * @since   1.0.0
  */
 
-namespace IPLocator;
+namespace IPLocator\API;
 
 use Flagiconcss\Flag as SvgFlag;
 use IPLocator\System\EmojiFlag;

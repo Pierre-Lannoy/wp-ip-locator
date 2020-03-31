@@ -7,7 +7,7 @@
  * @since   1.0.0
  */
 
-namespace IPLocator;
+namespace IPLocator\API;
 
 use IPLocator\System\L10n;
 

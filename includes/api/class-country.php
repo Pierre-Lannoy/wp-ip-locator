@@ -7,7 +7,7 @@
  * @since   1.0.0
  */
 
-namespace IPLocator;
+namespace IPLocator\API;
 
 use IPLocator\System\Environment;
 use IPLocator\System\Logger;
@@ -17,8 +17,8 @@ use IPLocator\System\IP;
 use IPLocator\System\Cache;
 use IPLocator\Plugin\Feature\Schema;
 use IPLocator\System\L10n;
-use IPLocator\Lang;
-use IPLocator\Flag;
+use IPLocator\API\Lang;
+use IPLocator\API\Flag;
 
 /**
  * IP Locator country detector class.
@@ -102,9 +102,9 @@ class Country {
 	/**
 	 * Set the IP to detect from.
 	 *
-	 * @param string $ip            Optional. The ip to detect from.
-	 *                              If not specified, get the ip of the current request.
-	 * @return \IPLocator\Country   The self instance.
+	 * @param string $ip                Optional. The ip to detect from.
+	 *                                  If not specified, get the ip of the current request.
+	 * @return \IPLocator\API\Country   The self instance.
 	 * @since 1.0.0
 	 */
 	public function ip( $ip = null ) {
@@ -150,7 +150,7 @@ class Country {
 	/**
 	 * Get the language object.
 	 *
-	 * @return \IPLocator\Lang  The language object.
+	 * @return \IPLocator\API\Lang  The language object.
 	 * @since 1.0.0
 	 */
 	public function lang() {
@@ -160,7 +160,7 @@ class Country {
 	/**
 	 * Get the flag object.
 	 *
-	 * @return \IPLocator\Flag  The flag object.
+	 * @return \IPLocator\API\Flag  The flag object.
 	 * @since 1.0.0
 	 */
 	public function flag() {

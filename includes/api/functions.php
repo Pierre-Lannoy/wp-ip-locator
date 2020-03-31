@@ -8,7 +8,7 @@
  */
 
 
-use IPLocator\Country;
+use IPLocator\API\Country;
 
 if ( ! function_exists( 'iplocator_get_ip' ) ) {
 	/**
