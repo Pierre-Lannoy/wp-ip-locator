@@ -119,7 +119,7 @@ class Country {
 	 * @return string   The current IP.
 	 * @since 1.0.0
 	 */
-	public function get_ip() {
+	public function source() {
 		if ( ! isset( $this->ip ) ) {
 			return 'none';
 		}

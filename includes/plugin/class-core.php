@@ -18,6 +18,7 @@ use IPLocator\System\Assets;
 use IPLocator\Library\Libraries;
 use IPLocator\System\Nag;
 use IPLocator\Plugin\Feature\CSSModifier;
+use IPLocator\System\Option;
 
 /**
  * The core plugin class.
@@ -88,7 +89,6 @@ class Core {
 		$this->loader->add_action( 'wp_head', $assets, 'prefetch' );
 		add_shortcode( 'iplocator-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'iplocator-libraries', [ $libraries, 'sc_get_list' ] );
-		add_shortcode( 'iplocator-statistics', [ 'IPLocator\System\Statistics', 'sc_get_raw' ] );
 		CSSModifier::init();
 	}
 
@@ -110,7 +110,6 @@ class Core {
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'add_row_meta', 10, 2 );
 		$this->loader->add_action( 'admin_notices', $nag, 'display' );
 		$this->loader->add_action( 'wp_ajax_hide_iplocator_nag', $nag, 'hide_callback' );
-		//$this->loader->add_action( 'wp_ajax_iplocator_get_stats', 'IPLocator\Plugin\Feature\AnalyticsFactory', 'get_stats_callback' );
 	}
 
 	/**
@@ -124,6 +123,13 @@ class Core {
 		$plugin_public = new IP_Locator_Public();
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		if ( Option::network_get( 'shortcode' ) ) {
+			add_shortcode( 'iplocator-ip', [ $plugin_public, 'sc_get_ip' ] );
+			add_shortcode( 'iplocator-code', [ $plugin_public, 'sc_get_code' ] );
+			add_shortcode( 'iplocator-country', [ $plugin_public, 'sc_get_country' ] );
+			add_shortcode( 'iplocator-flag', [ $plugin_public, 'sc_get_flag' ] );
+			add_shortcode( 'iplocator-lang', [ $plugin_public, 'sc_get_lang' ] );
+		}
 	}
 
 	/**

@@ -21,7 +21,7 @@ if ( ! function_exists( 'iplocator_get_ip' ) ) {
 	 */
 	function iplocator_get_ip( $ip = null ) {
 		$country = new Country( $ip );
-		return $country->get_ip();
+		return $country->source();
 	}
 }
 
