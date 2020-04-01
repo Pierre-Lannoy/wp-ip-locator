@@ -80,11 +80,13 @@ class IP_Locator_Public {
 	/**
 	 * Get the current detected IP.
 	 *
-	 * @param   array $attributes  Unused.
+	 * @param   array   $attributes     Optional. The shortcode attributes.
+	 * @param   string  $content        Optional. The shortcode content.
+	 * @param   string  $name           Optional. The name of the shortcode.
 	 * @return  string  The output of the shortcode, ready to print.
 	 * @since 1.0.0
 	 */
-	public function sc_get_ip( $attributes ) {
+	public function sc_get_ip( $attributes = [], $content = null, $name = '' ) {
 		$this->init();
 		return $this->country->source();
 	}
@@ -92,11 +94,13 @@ class IP_Locator_Public {
 	/**
 	 * Get the current detected country code.
 	 *
-	 * @param   array $attributes  Unused.
+	 * @param   array   $attributes     Optional. The shortcode attributes.
+	 * @param   string  $content        Optional. The shortcode content.
+	 * @param   string  $name           Optional. The name of the shortcode.
 	 * @return  string  The output of the shortcode, ready to print.
 	 * @since 1.0.0
 	 */
-	public function sc_get_code( $attributes ) {
+	public function sc_get_code( $attributes = [], $content = null, $name = '' ) {
 		$this->init();
 		return $this->country->code();
 	}
@@ -104,11 +108,13 @@ class IP_Locator_Public {
 	/**
 	 * Get the current detected country name.
 	 *
-	 * @param   array $attributes  'language' => 'fr' (optional).
+	 * @param   array   $attributes     Optional. The shortcode attributes.
+	 * @param   string  $content        Optional. The shortcode content.
+	 * @param   string  $name           Optional. The name of the shortcode.
 	 * @return  string  The output of the shortcode, ready to print.
 	 * @since 1.0.0
 	 */
-	public function sc_get_country( $attributes ) {
+	public function sc_get_country( $attributes = [], $content = null, $name = '' ) {
 		$lang = null;
 		if ( is_array( $attributes ) && array_key_exists( 'language', $attributes ) ) {
 			$lang = $attributes['language'];
@@ -120,11 +126,13 @@ class IP_Locator_Public {
 	/**
 	 * Get the current detected country lang.
 	 *
-	 * @param   array $attributes  'language' => 'fr' (optional).
+	 * @param   array   $attributes     Optional. The shortcode attributes.
+	 * @param   string  $content        Optional. The shortcode content.
+	 * @param   string  $name           Optional. The name of the shortcode.
 	 * @return  string  The output of the shortcode, ready to print.
 	 * @since 1.0.0
 	 */
-	public function sc_get_lang( $attributes ) {
+	public function sc_get_lang( $attributes = [], $content = null, $name = '' ) {
 		$lang = null;
 		if ( is_array( $attributes ) && array_key_exists( 'language', $attributes ) ) {
 			$lang = $attributes['language'];
@@ -136,11 +144,13 @@ class IP_Locator_Public {
 	/**
 	 * Get the current detected country flag.
 	 *
-	 * @param   array $attributes  'type' => 'emoji'.
+	 * @param   array   $attributes     Optional. The shortcode attributes.
+	 * @param   string  $content        Optional. The shortcode content.
+	 * @param   string  $name           Optional. The name of the shortcode.
 	 * @return  string  The output of the shortcode, ready to print.
 	 * @since 1.0.0
 	 */
-	public function sc_get_flag( $attributes ) {
+	public function sc_get_flag( $attributes = [], $content = null, $name = '' ) {
 		$_attributes = shortcode_atts(
 			[
 				'type'  => 'emoji',  // Can be 'emoji', 'image' or 'squared-image'.
@@ -162,6 +172,55 @@ class IP_Locator_Public {
 			return $this->country->flag()->emoji();
 		}
 		return $this->country->flag()->image( $class, $style, $id, $alt, $squared );
+	}
+
+	/**
+	 * Process the content, regarding attributes.
+	 *
+	 * @param   array   $attributes     Optional. The shortcode attributes.
+	 * @param   string  $content        Optional. The shortcode content.
+	 * @param   string  $name           Optional. The name of the shortcode.
+	 * @return  string  The output of the shortcode, ready to print.
+	 * @since 1.0.0
+	 */
+	public function sc_if( $attributes = [], $content = null, $name = '' ) {
+		$_attributes = shortcode_atts(
+			[
+				'operation'   => 'show',  // Can be 'show' or 'hide'.
+				'country'     => '',
+				'not-country' => '',
+				'lang'        => '',
+				'not-lang'    => '',
+			],
+			$attributes
+		);
+		$operation   = $attributes['operation'];
+		$country     = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['country'] ) ) );
+		$notcountry  = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-country'] ) ) );
+		$lang        = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['lang'] ) ) );
+		$notlang     = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-lang'] ) ) );
+		$condition   = false;
+		$this->init();
+		if ( 0 < count( $country ) ) {
+			$condition = in_array( (string) $this->country->code(), $country, true );
+		}
+		if ( 0 < count( $notcountry ) ) {
+			$condition = ! in_array( (string) $this->country->code(), $notcountry, true );
+		}
+		if ( 0 < count( $lang ) ) {
+			$condition = in_array( strtoupper( $this->country->lang()->code() ), $lang, true );
+		}
+		if ( 0 < count( $notlang ) ) {
+			$condition = ! in_array( strtoupper( $this->country->lang()->code() ), $notlang, true );
+		}
+		switch ( $operation ) {
+			case 'show':
+				return $condition ? do_shortcode( $content ) : '';
+			case 'hide':
+				return $condition ? '' : do_shortcode( $content );
+			default:
+				return __( 'Malformed Shortcode', 'ip-locator' );
+		}
 	}
 
 }
