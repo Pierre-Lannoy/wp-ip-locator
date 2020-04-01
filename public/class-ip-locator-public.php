@@ -11,6 +11,7 @@ namespace IPLocator\Plugin;
 
 use IPLocator\System\Assets;
 use IPLocator\API\Country;
+use IPLocator\System\Logger;
 
 /**
  * The class responsible for the public-facing functionality of the plugin.
@@ -195,23 +196,23 @@ class IP_Locator_Public {
 			$attributes
 		);
 		$operation   = $attributes['operation'];
-		$country     = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['country'] ) ) );
-		$notcountry  = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-country'] ) ) );
-		$lang        = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['lang'] ) ) );
-		$notlang     = array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-lang'] ) ) );
-		$condition   = false;
+		$country     = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['country'] ) ) ) );
+		$notcountry  = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-country'] ) ) ) );
+		$lang        = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['lang'] ) ) ) );
+		$notlang     = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-lang'] ) ) ) );
+		$condition   = true;
 		$this->init();
 		if ( 0 < count( $country ) ) {
-			$condition = in_array( (string) $this->country->code(), $country, true );
+			$condition &= in_array( (string) $this->country->code(), $country, true );
 		}
 		if ( 0 < count( $notcountry ) ) {
-			$condition = ! in_array( (string) $this->country->code(), $notcountry, true );
+			$condition &= ! in_array( (string) $this->country->code(), $notcountry, true );
 		}
 		if ( 0 < count( $lang ) ) {
-			$condition = in_array( strtoupper( $this->country->lang()->code() ), $lang, true );
+			$condition &= in_array( strtoupper( $this->country->lang()->code() ), $lang, true );
 		}
 		if ( 0 < count( $notlang ) ) {
-			$condition = ! in_array( strtoupper( $this->country->lang()->code() ), $notlang, true );
+			$condition &= ! in_array( strtoupper( $this->country->lang()->code() ), $notlang, true );
 		}
 		switch ( $operation ) {
 			case 'show':
