@@ -39,6 +39,9 @@ Technically, **IP Locator**:
 
 (2): [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use it in IP Locator.
 
+> **IP Locator uses IP data from [WebNet77 / Software77](http://software77.net/geo-ip/) which is [donationware](http://software77.net/geo-ip/?license). If you find this data useful, consider making a donation - even a small one - to help keep it free.**
+> **IP Locator accesses this service on a regular basis (if the option is checked) to maintain an up-to-date version of the data. By using IP Locator, you agree with the [Software77 license](http://software77.net/geo-ip/?license)**
+
 **IP Locator**  is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
 = Developers =
