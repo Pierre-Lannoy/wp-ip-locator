@@ -1,6 +1,6 @@
 # IP Locator shortcodes
 
-You can
+With the current IP Locator version, you can output the following items via shortcodes:
 
 1. [IP address](#ip-address)
 2. [Country code](#country-code)
@@ -71,13 +71,7 @@ Example, if the detected language is Swedish (country code `SE`):
 - `[iplocator-country language="self"]` outputs `svenska` 
 - `[iplocator-country language="vi"]` outputs `Thụy Điển` 
 
-
-
 #### Notes
-##### [1] Language
-[PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use names translation. If this extension is not installed, output of country name and language name will always be in english.
-
-
-
+__[1] Language:__ [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use names translation. If this extension is not installed, output of country name and language name will always be in english.
 
 > If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
