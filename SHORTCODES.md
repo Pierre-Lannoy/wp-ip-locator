@@ -11,19 +11,19 @@ With the current IP Locator version, you can output the following items via shor
 ## IP address
 To render the IP address detected by IP Locator, use the following shortcode:
 ```
-[iplocator-ip]
+  [iplocator-ip]
 ```
 
 ## Country code
 To render the [country code](/COUNTRYCODES.md) detected by IP Locator, use the following shortcode:
 ```
-[iplocator-code]
+  [iplocator-code]
 ```
 
 ## Country name
 To render the country name detected by IP Locator, use the following shortcode:
 ```
-[iplocator-country language=""]
+  [iplocator-country language=""]
 ```
 The `language`[[1](#notes)] parameter can be omitted. If so, the country name will be outputted in the visitor language. Otherwise you can specify the following values:
 - `self`: renders the country name in the main language of the country;
@@ -38,7 +38,7 @@ Example, if the detected country is Sweden (country code `SE`):
 ## Country flag
 To render the flag of the country detected by IP Locator, use the following shortcode:
 ```
-[iplocator-flag type="" class="" style="" id="" alt=""]
+  [iplocator-flag type="" class="" style="" id="" alt=""]
 ```
 If you omit all parameters, the flag will be rendered as an emoji but, if you want to render it as an image you have to specify the type as follow:
 - `"image"`: the flag with a 4:3 w/h ratio
@@ -53,7 +53,7 @@ To control how the image is rendered, you cans specify the following attributes 
 ## Language name
 IP Locator tries, for each detected country, to "infer" its main language. It isn't an "error-proof" method (as many countries have more than one official language), but it gives significantly good results. To render this language name, use the following shortcode:
 ```
-[iplocator-lang language=""]
+  [iplocator-lang language=""]
 ```
 The `language`[[1](#notes)] parameter can be omitted. If so, the language name will be outputted in the visitor language. Otherwise you can specify the following values:
 - `self`: renders the language name in its own language;
@@ -68,9 +68,9 @@ Example, if the detected language is Swedish (country code `SE`):
 ## Conditional shortcode
 You can choose to show or hide something, regarding the detected country and/or language. To do so, use the following shortcode:
 ```
-[iplocator-if country="" not-country="" lang="" not-lang="" operation=""] A string or a shortcode [/iplocator-if]
+  [iplocator-if country="" not-country="" lang="" not-lang="" operation=""] A string or a shortcode [/iplocator-if]
 ```
-Where `operation` can be `"show"` (to display " A string or a shortcode ") or `"hide"` (to not display " A string or a shortcode ").
+Where `operation` can be `"show"` (to display "A string or a shortcode") or `"hide"` (to not display "A string or a shortcode").
 
 The operators `country`, `not-country`, `lang` and `not-lang` may contain one or more parameters (comma separated) and are cumulative (ie. you can use several of them). You can use any lang identifier or [country code](/COUNTRYCODES.md).
 
