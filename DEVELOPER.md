@@ -15,7 +15,7 @@ Now, what's the menu today?
 4. [Code of Conduct](/CODE_OF_CONDUCT.md)
 
 ## What is IP Locator?
-IP Locator is mainly a tool to analyze remote IP from which a WordPress site is accessed. It has the same pros and cons as all other tools using remote IPs: it is operational for every web server, there's no need of javascript from the client-side, but think about it as something "fakable" or "maskable". It can not be seen as something 100% reliable
+IP Locator is mainly a tool to analyze remote IP from which a WordPress site is accessed. It has the same pros and cons as all other tools using remote IPs: it is operational for every web server, there's no need of javascript from the client-side, but think about it as something "fakable" or "maskable". It can not be seen as something 100% reliable.
 
 IP Locator, once activated, is ready to be queried via some simple API calls. When you use this API, you don't have to worry about detection and cache management. You can call this API as many times as you want without any performance impact and you can do it as soon as the `init` hook is executed.
 
@@ -138,7 +138,7 @@ To control how the image is rendered, you can specify the following attributes o
 - `$class` (string): the css class name(s), for example `"my-image-class"`
 - `$style` (string): the css style, for example `"width:20px;float:left;"`
 - `$id` (string): the css id, for example `"my-image-id"`
-- `$alt` (string): the alternative text, for example `"flag country for the visitor"`
+- `$alt` (string): the alternative text, for example `"this is a country flag"`
 - `$squared` (boolean): is the image should be 1:1 w/h ration (otherwise it is 4:3 w/h ratio).
 
 Example:

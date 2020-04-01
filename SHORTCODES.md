@@ -48,7 +48,7 @@ To control how the image is rendered, you can specify the following attributes o
 - `class`: the css class name(s), for example `"my-image-class"`
 - `style`: the css style, for example `"width:20px;float:left;"`
 - `id`: the css id, for example `"my-image-id"`
-- `alt`: the alternative text, for example `"flag country for the visitor"`
+- `alt`: the alternative text, for example `"this is a country flagr"`
 
 ## Language name
 IP Locator tries, for each detected country, to "infer" its main language. It isn't an "error-proof" method (as many countries have more than one official language), but it gives significantly good results. To render this language name, use the following shortcode:
