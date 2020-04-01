@@ -8,6 +8,7 @@ Now, what's the menu today?
 2. [IP Locator API](#ip-locator-api)
     - [IP and IP detection](#ip-and-ip-detection)
     - [Country codes and names](#country-codes-and-names)
+    - [Language codes and names](#language-codes-and-names)
 3. [Contribution Guidelines](/CONTRIBUTING.md)
 4. [Code of Conduct](/CODE_OF_CONDUCT.md)
 
@@ -43,9 +44,65 @@ As previously seen, you can "force" the IP to analyze:
     // Echoes the forced IP.
     echo iplocator_get_ip( '192.18.19.20' );
 ```
+
 ### Country codes and names
+To get the [country code](/COUNTRYCODES.md) or name from the IP address it's, once again, very simple: 
+```php
+    // O-O Style
+    // Echoes the country code & name.
+    $country = new IPLocator\API\Country();
+    echo $country->code();
+    echo $country->name();
+    
+    // Procedural Style
+    // Echoes the country code & name.
+    echo iplocator_get_country_code();
+    echo iplocator_get_country_name();
+```
+Note `IPLocator\API\Country::name()` and `iplocator_get_country_name` can be called with an optional `$lang` parameter. Accepted values for this parameter are:
+- `"self"` to render the country name in the main language of the country;
+- a locale id (like `"en"` or `"fr_CA"`) to render the country name in the specified language.
 
+Example:
+```php
+    // O-O Style
+    // Echoes the country french name.
+    $country = new IPLocator\API\Country();
+    echo $country->name( 'fr' );
+    
+    // Procedural Style
+    // Echoes the country vietnamese name.
+    echo iplocator_get_country_name( 'vi' );
+```
 
+### Language codes and names
+To get the main country language code or name from the IP address just do it like that: 
+```php
+    // O-O Style
+    // Echoes the language code & name.
+    $country = new IPLocator\API\Country();
+    echo $country->lang()->code();
+    echo $country->lang()->name();
+    
+    // Procedural Style
+    // Echoes the language code & name.
+    echo iplocator_get_language_code()();
+    echo iplocator_get_language_name();
+```
+Note `IPLocator\API\Lang::name()` and `iplocator_get_language_name` can be called with an optional `$lang` parameter. Accepted values for this parameter are:
+- `"self"` to render the language name in in its own language;
+- a locale id (like `"en"` or `"fr_CA"`) to render the language name in the specified language.
 
+Example:
+```php
+    // O-O Style
+    // Echoes the country french name.
+    $country = new IPLocator\API\Country();
+    echo $country->lang()->name( 'fr' );
+    
+    // Procedural Style
+    // Echoes the country vietnamese name.
+    echo iplocator_get_language_name( 'vi' );
+```
 
 > If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
