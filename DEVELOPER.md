@@ -1,3 +1,51 @@
-# Coming Soon...
+# Developing for IP Locator
+
+Before starting to explain how to use IP Locator from a developer point of view, I would like to thank you to take the time to invest your knowledge and skills in making IP Locator better and more useful. I'll only have one word: you rock! (OK, that's two words)
+
+Now, what's the menu today?
+
+1. [What is IP Locator?](#what-is-ip-locator)
+2. [IP Locator API](#ip-locator-api)
+    - [IP and IP detection](#ip-and-ip-detection)
+    - [Country codes and names](#country-codes-and-names)
+3. [Contribution Guidelines](/CONTRIBUTING.md)
+4. [Code of Conduct](/CODE_OF_CONDUCT.md)
+
+## What is IP Locator?
+IP Locator is mainly a tool to analyze remote IP from which a WordPress site is accessed. It has the same pros and cons as all other tools using remote IPs: it is operational for every web server, there's no need of javascript from the client-side, but think about it as something "fakable" or "maskable". It can not be seen as something 100% reliable
+
+IP Locator, once activated, is ready to be queried via some simple API calls. When you use this API, you don't have to worry about detection and cache management. You can call this API as many times as you want without any performance impact and you can do it as soon as the `init` hook is executed.
+
+## IP Locator API
+This API is callable in procedural style or O-O style. It's up to you to choose your prefered way to use it. There's no feature or performance difference between these two styles. 
+
+### IP and IP detection
+
+IP Locator API lets you set the IP you want to analyze by yourself. But, if you want IP Locator detect the IP of the current request, just set this IP as `null` in all API calls like that:
+```php
+    // O-O Style
+    // Echoes the detected IP.
+    $country = new IPLocator\API\Country();
+    echo $country->source();
+    
+    // Procedural Style
+    // Echoes the detected IP.
+    echo iplocator_get_ip();
+```
+As previously seen, you can "force" the IP to analyze:
+```php
+    // O-O Style
+    // Echoes the forced IP.
+    $country = new IPLocator\API\Country( '192.18.19.20' );
+    echo $country->source();
+    
+    // Procedural Style
+    // Echoes the forced IP.
+    echo iplocator_get_ip( '192.18.19.20' );
+```
+### Country codes and names
+
+
+
 
 > If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
