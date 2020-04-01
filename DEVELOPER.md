@@ -9,6 +9,8 @@ Now, what's the menu today?
     - [IP and IP detection](#ip-and-ip-detection)
     - [Country codes and names](#country-codes-and-names)
     - [Language codes and names](#language-codes-and-names)
+    - [Emoji flags](#emoji-flags)
+    - [Vectorized flags](#vectorized-flags)
 3. [Contribution Guidelines](/CONTRIBUTING.md)
 4. [Code of Conduct](/CODE_OF_CONDUCT.md)
 
@@ -86,11 +88,11 @@ To get the main country language code or name from the IP address just do it lik
     
     // Procedural Style
     // Echoes the language code & name.
-    echo iplocator_get_language_code()();
+    echo iplocator_get_language_code();
     echo iplocator_get_language_name();
 ```
 Note `IPLocator\API\Lang::name()` and `iplocator_get_language_name` can be called with an optional `$lang` parameter. Accepted values for this parameter are:
-- `"self"` to render the language name in in its own language;
+- `"self"` to render the language name in its own language;
 - a locale id (like `"en"` or `"fr_CA"`) to render the language name in the specified language.
 
 Example:
@@ -104,5 +106,24 @@ Example:
     // Echoes the country vietnamese name.
     echo iplocator_get_language_name( 'vi' );
 ```
+
+### Emoji flags
+To get the country flag as emoji it's, again, very simple: 
+```php
+    // O-O Style
+    // Echoes the flag as emoji.
+    $country = new IPLocator\API\Country();
+    echo $country->flag()->emoji();
+    
+    // Procedural Style
+    // Echoes the flag as emoji.
+    echo iplocator_get_flag_emoji();
+```
+
+### Vectorized flags
+
+
+
+
 
 > If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
