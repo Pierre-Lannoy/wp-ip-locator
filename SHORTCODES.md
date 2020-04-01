@@ -44,7 +44,7 @@ If you omit all parameters, the flag will be rendered as an emoji but, if you wa
 - `"image"`: the flag with a 4:3 w/h ratio
 - `"squared-image"`: the flag with a 1:1 w/h ratio
 
-To control how the image is rendered, you cans specify the following attributes of the image tag:
+To control how the image is rendered, you can specify the following attributes of the image tag:
 - `class`: the css class name(s), for example `"my-image-class"`
 - `style`: the css style, for example `"width:20px;float:left;"`
 - `id`: the css id, for example `"my-image-id"`
