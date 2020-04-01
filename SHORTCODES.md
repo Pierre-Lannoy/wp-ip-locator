@@ -1,5 +1,4 @@
 # IP Locator shortcodes
-
 With the current IP Locator version, you can output the following items via shortcodes:
 
 1. [IP address](#ip-address)
@@ -7,24 +6,21 @@ With the current IP Locator version, you can output the following items via shor
 3. [Country name](#country-name)
 4. [Country flag](#country-flag)
 5. [Language name](#language-name)
-
+6. [Conditional shortcode](#conditional-shortcode)
 
 ## IP address
-
 To render the IP address detected by IP Locator, use the following shortcode:
 ```
     [iplocator-ip]
 ```
 
 ## Country code
-
 To render the [country code](/COUNTRYCODES.md) detected by IP Locator, use the following shortcode:
 ```
     [iplocator-code]
 ```
 
 ## Country name
-
 To render the country name detected by IP Locator, use the following shortcode:
 ```
     [iplocator-country language=""]
@@ -40,7 +36,6 @@ Example, if the detected country is Sweden (country code `SE`):
 - `[iplocator-country language="fr"]` outputs `Suède`
 
 ## Country flag
-
 To render the flag of the country detected by IP Locator, use the following shortcode:
 ```
     [iplocator-flag type="" class="" style="" id="" alt=""]
@@ -56,7 +51,6 @@ To control how the image is rendered, you cans specify the following attributes 
 - `alt`: the alternative text, for example `"flag country for the visitor"`
 
 ## Language name
-
 IP Locator tries, for each detected country, to "infer" its main language. It isn't an "error-proof" method (as many countries have more than one official language), but it gives significantly good results. To render this language name, use the following shortcode:
 ```
     [iplocator-lang language=""]
@@ -67,9 +61,27 @@ The `language`[[1](#notes)] parameter can be omitted. If so, the language name w
 
 Example, if the detected language is Swedish (country code `SE`):
 
-- `[iplocator-country]` outputs `sueco` if the user language is `es_ES`, 
-- `[iplocator-country language="self"]` outputs `svenska` 
-- `[iplocator-country language="vi"]` outputs `Thụy Điển` 
+- `[iplocator-lang]` outputs `sueco` if the user language is `es_ES`, 
+- `[iplocator-lang language="self"]` outputs `svenska` 
+- `[iplocator-lang language="vi"]` outputs `Thụy Điển`
+
+## Conditional shortcode
+You can choose to show or hide something, regarding the detected country and/or language. To do so, use the following shortcode:
+```
+    [iplocator-if country="" not-country="" lang="" not-lang="" operation=""] A string or a shortcode [/iplocator-if]
+```
+Where `operation` can be `"show"` (to display " A string or a shortcode ") or `"hide"` (to not display " A string or a shortcode ").
+
+The operators `country`, `not-country`, `lang` and `not-lang` may contain one or more parameters (comma separated) and are cumulative (ie. you can use several of them). You can use any lang identifier or [country code](/COUNTRYCODES.md).
+
+Note shortcodes can be nested only if they have not the same name (that's a WordPress limitation).
+
+Examples
+- `[iplocator-if lang="EN" operation="show"] something in english [/iplocator-if]` outputs the string "something in english" only for countries having english as main language, 
+- `[iplocator-if country="FR,BE,CA" operation="show"] [iplocator-flag] [/iplocator-if]` outputs flags only if detected country is France, Belgium or Canada, 
+- `[iplocator-if not-country="00,A1" operation="show"] you're identified [/iplocator-if]` outputs the string "you're identified" for everyone except undetected or behind anonymous proxies users,
+- `[iplocator-if not-country="FR" not-lang="EN" operation="hide"] something [/iplocator-if]` do not output the string "something" for everyone except for French visitors and English-speaking countries ,
+- `[iplocator-if country="A0" operation="hide"] Hello, stranger! [/iplocator-if]` outputs the string "Hello, stranger!" for everyone who are not on the local network, 
 
 #### Notes
 __[1] Language:__ [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use names translation. If this extension is not installed, output of country name and language name will always be in english.
