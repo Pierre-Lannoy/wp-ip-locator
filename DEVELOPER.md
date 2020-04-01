@@ -1,4 +1,4 @@
-# Developing for IP Locator
+# Developing with IP Locator
 
 Before starting to explain how to use IP Locator from a developer point of view, I would like to thank you to take the time to invest your knowledge and skills in making IP Locator better and more useful. I'll only have one word: you rock! (OK, that's two words)
 
@@ -76,6 +76,7 @@ Example:
     // Echoes the country vietnamese name.
     echo iplocator_get_country_name( 'vi' );
 ```
+If no parameter is provided, the display language is set to the current viewer language (based on WordPress user's settings or website settings). 
 
 ### Language codes and names
 To get the main country language code or name from the IP address just do it like that: 
@@ -106,6 +107,7 @@ Example:
     // Echoes the country vietnamese name.
     echo iplocator_get_language_name( 'vi' );
 ```
+If no parameter is provided, the display language is set to the current viewer language (based on WordPress user's settings or website settings). 
 
 ### Emoji flags
 To get the country flag as emoji it's, again, very simple: 
@@ -121,9 +123,34 @@ To get the country flag as emoji it's, again, very simple:
 ```
 
 ### Vectorized flags
+To get the country as a full `img` HTML tag with a base 64 encoded inline SVG, you can use :
+```php
+    // O-O Style
+    // Echoes the flag as image tag.
+    $country = new IPLocator\API\Country();
+    echo $country->flag()->image();
+    
+    // Procedural Style
+    // Echoes the flag as image tag.
+    echo iplocator_get_flag_image();
+```
+To control how the image is rendered, you can specify the following attributes of the image tag:
+- `$class` (string): the css class name(s), for example `"my-image-class"`
+- `$style` (string): the css style, for example `"width:20px;float:left;"`
+- `$id` (string): the css id, for example `"my-image-id"`
+- `$alt` (string): the alternative text, for example `"flag country for the visitor"`
+- `$squared` (boolean): is the image should be 1:1 w/h ration (otherwise it is 4:3 w/h ratio).
 
-
-
-
+Example:
+```php
+    // O-O Style
+    // Echoes the flag as image tag, with specific attributes.
+    $country = new IPLocator\API\Country();
+    echo $country->flag()->image( 'my-image-class', 'width:20px;float:left;', 'my-image-id', 'this is a country flag', true );
+    
+    // Procedural Style
+    // Echoes the flag as image tag, with specific attributes.
+    echo iplocator_get_flag_image( 'my-image-class', 'width:20px;float:left;', 'my-image-id', 'this is a country flag', true );
+```
 
 > If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
