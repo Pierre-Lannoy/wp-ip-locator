@@ -14,6 +14,7 @@ __IP Locator__ can detect and render the country, the main language and the coun
 
 * a strong, accurate and ultra-fast IP and country detection;
 * many shortcodes to display country names, languages and flags (emoji or vectorized);
+* a shortcode to conditionally hide or show strings or other shortcodes;
 * a CSS modifier to add a country-specific class to the `body` tag of your site;
 * an automatic system to be always up to date (no API key, no IP data files to manually import);
 * a full-featured API for plugins / themes developers.
