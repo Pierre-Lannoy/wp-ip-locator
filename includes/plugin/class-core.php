@@ -129,6 +129,7 @@ class Core {
 			add_shortcode( 'iplocator-country', [ $plugin_public, 'sc_get_country' ] );
 			add_shortcode( 'iplocator-flag', [ $plugin_public, 'sc_get_flag' ] );
 			add_shortcode( 'iplocator-lang', [ $plugin_public, 'sc_get_lang' ] );
+			add_shortcode( 'iplocator-if', [ $plugin_public, 'sc_if' ] );
 		}
 	}
 
