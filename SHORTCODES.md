@@ -68,20 +68,20 @@ Example, if the detected language is Swedish (country code `SE`):
 ## Conditional shortcode
 You can choose to show or hide something, regarding the detected country and/or language. To do so, use the following shortcode:
 ```
-  [iplocator-if country="" not-country="" lang="" not-lang="" operation=""] A string or a shortcode [/iplocator-if]
+  [iplocator-if country="" not-country="" lang="" not-lang="" do=""] A string or a shortcode [/iplocator-if]
 ```
-Where `operation` can be `"show"` (to display "A string or a shortcode") or `"hide"` (to not display "A string or a shortcode").
+Where `do` can be `"show"` (to display "A string or a shortcode") or `"hide"` (to not display "A string or a shortcode").
 
 The operators `country`, `not-country`, `lang` and `not-lang` may contain one or more parameters (comma separated) and are cumulative (ie. you can use several of them). You can use any lang identifier or [country code](/COUNTRYCODES.md).
 
 Note shortcodes can be nested only if they have not the same name (that's a WordPress limitation).
 
 Examples
-- `[iplocator-if lang="EN" operation="show"] something in english [/iplocator-if]` outputs the string "something in english" only for countries having english as main language, 
-- `[iplocator-if country="FR,BE,CA" operation="show"] [iplocator-flag] [/iplocator-if]` outputs flags only if detected country is France, Belgium or Canada, 
-- `[iplocator-if not-country="00,A1" operation="show"] you're identified [/iplocator-if]` outputs the string "you're identified" for everyone except undetected or behind anonymous proxies users,
-- `[iplocator-if not-country="FR" not-lang="EN" operation="hide"] something [/iplocator-if]` do not output the string "something" for everyone except for French visitors and English-speaking countries ,
-- `[iplocator-if country="A0" operation="hide"] Hello, stranger! [/iplocator-if]` outputs the string "Hello, stranger!" for everyone who are not on the local network, 
+- `[iplocator-if lang="EN" do="show"] something in english [/iplocator-if]` outputs the string "something in english" only for countries having english as main language, 
+- `[iplocator-if country="FR,BE,CA" do="show"] [iplocator-flag] [/iplocator-if]` outputs flags only if detected country is France, Belgium or Canada, 
+- `[iplocator-if not-country="00,A1" do="show"] you're identified [/iplocator-if]` outputs the string "you're identified" for everyone except undetected or behind anonymous proxies users,
+- `[iplocator-if not-country="FR" not-lang="EN" do="hide"] something [/iplocator-if]` do not output the string "something" for everyone except for French visitors and English-speaking countries ,
+- `[iplocator-if country="A0" do="hide"] Hello, stranger! [/iplocator-if]` outputs the string "Hello, stranger!" for everyone who are not on the local network, 
 
 #### Notes
 __[1] Language:__ [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use names translation. If this extension is not installed, output of country name and language name will always be in english.

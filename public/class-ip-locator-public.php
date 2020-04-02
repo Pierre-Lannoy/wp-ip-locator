@@ -187,7 +187,7 @@ class IP_Locator_Public {
 	public function sc_if( $attributes = [], $content = null, $name = '' ) {
 		$_attributes = shortcode_atts(
 			[
-				'operation'   => 'show',  // Can be 'show' or 'hide'.
+				'do'          => 'show',  // Can be 'show' or 'hide'.
 				'country'     => '',
 				'not-country' => '',
 				'lang'        => '',
@@ -195,7 +195,7 @@ class IP_Locator_Public {
 			],
 			$attributes
 		);
-		$operation   = $attributes['operation'];
+		$operation   = $_attributes['do'];
 		$country     = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['country'] ) ) ) );
 		$notcountry  = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['not-country'] ) ) ) );
 		$lang        = array_filter( array_map( function ( $s ) { return strtoupper( $s ); }, explode( ',', str_replace( ' ', '', $_attributes['lang'] ) ) ) );
