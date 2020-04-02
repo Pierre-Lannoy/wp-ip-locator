@@ -109,4 +109,3 @@ Please, see [full changelog](https://github.com/Pierre-Lannoy/wp-ip-locator/blob
 
 == Screenshots ==
 
-1. Settings screen.
