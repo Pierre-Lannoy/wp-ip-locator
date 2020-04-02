@@ -11,10 +11,6 @@
 
 namespace IPLocator\System;
 
-use IPLocator\System\Logger;
-use IPLocator\System\Option;
-use IPLocator\System\File;
-
 /**
  * Define the IP functionality.
  *
@@ -35,14 +31,31 @@ class IP {
 	private static $clean = [ '"', '%' ];
 
 	/**
-	 * Normalizes an IPv4 address.
+	 * Expands an IPv4 or IPv6 address.
 	 *
-	 * @param string    $ip     The IP to normalize.
-	 * @return  string  The normalized IP.
+	 * @param string    $ip     The IP to expand.
+	 * @return  string  The expanded IP.
 	 * @since   1.0.0
 	 */
-	public static function normalize_v4( $ip ) {
-		return long2ip( (int) str_replace( self::$clean, '', $ip ) );
+	public static function expand( $ip ) {
+		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) ) {
+			return self::expand_v6( $ip );
+		}
+		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+			return self::expand_v4( $ip );
+		}
+		return '';
+	}
+
+	/**
+	 * Expands an IPv4 address.
+	 *
+	 * @param string    $ip     The IP to expand.
+	 * @return  string  The expanded IP.
+	 * @since   1.0.0
+	 */
+	public static function expand_v4( $ip ) {
+		return long2ip( ip2long( str_replace( self::$clean, '', $ip ) ) );
 	}
 
 	/**
@@ -52,8 +65,8 @@ class IP {
 	 * @return  string  The normalized IP.
 	 * @since   1.0.0
 	 */
-	public static function expand_v4( $ip ) {
-		return long2ip( ip2long( str_replace( self::$clean, '', $ip ) ) );
+	public static function normalize_v4( $ip ) {
+		return long2ip( (int) str_replace( self::$clean, '', $ip ) );
 	}
 
 	/**
