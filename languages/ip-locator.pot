@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: IP Locator\n"
-"POT-Creation-Date: 2020-03-31 15:03+0200\n"
+"POT-Creation-Date: 2020-04-02 09:22+0200\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -1096,7 +1096,7 @@ msgid "Migrated action with ID %1$d in %2$s to ID %3$d in %4$s"
 msgstr ""
 
 #: includes/libraries/class-libraries.php:67 includes/libraries/class-libraries.php:78
-#: includes/libraries/class-libraries.php:90
+#: includes/libraries/class-libraries.php:90 includes/libraries/class-libraries.php:183
 #, php-format
 msgid "%s & contributors"
 msgstr ""
@@ -1467,6 +1467,10 @@ msgstr ""
 #: perfopsone/class-adminmenus.php:379
 #, php-format
 msgid "Requires at least PHP %1$s%2$s and WordPress %3$s%4$s."
+msgstr ""
+
+#: public/class-ip-locator-public.php:223
+msgid "Malformed Shortcode"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
