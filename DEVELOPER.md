@@ -139,7 +139,7 @@ To control how the image is rendered, you can specify the following attributes o
 - `$style` (string): the css style, for example `"width:20px;float:left;"`
 - `$id` (string): the css id, for example `"my-image-id"`
 - `$alt` (string): the alternative text, for example `"this is a country flag"`
-- `$squared` (boolean): is the image should be 1:1 w/h ration (otherwise it is 4:3 w/h ratio).
+- `$squared` (boolean): is the image should be 1:1 w/h ratio (otherwise it is 4:3 w/h ratio).
 
 Example:
 ```php
