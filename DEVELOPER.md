@@ -99,12 +99,12 @@ Note `IPLocator\API\Lang::name()` and `iplocator_get_language_name` can be calle
 Example:
 ```php
     // O-O Style
-    // Echoes the country french name.
+    // Echoes the language french name.
     $country = new IPLocator\API\Country();
     echo $country->lang()->name( 'fr' );
     
     // Procedural Style
-    // Echoes the country vietnamese name.
+    // Echoes the language vietnamese name.
     echo iplocator_get_language_name( 'vi' );
 ```
 If no parameter is provided, the display language is set to the current viewer language (based on WordPress user's settings or website settings). 
