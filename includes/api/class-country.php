@@ -185,7 +185,7 @@ class Country {
 	 */
 	private function detect_ip() {
 		if ( ! isset( $this->ip ) ) {
-			$this->ip = Environment::current_ip();
+			$this->ip = IP::get_current();
 		}
 		$this->ip_v4       = false;
 		$this->ip_v6       = false;
