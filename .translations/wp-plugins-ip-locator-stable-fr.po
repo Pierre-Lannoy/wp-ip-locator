@@ -1,0 +1,1365 @@
+# Translation of Plugins - IP Locator - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - IP Locator - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-04-04 14:18+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Poedit 2.2.4\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - IP Locator - Stable (latest release)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#: perfopsone/class-adminmenus.php:379
+msgid "Requires at least PHP %1$s%2$s and WordPress %3$s%4$s."
+msgstr "Nécessite au moins PHP %1$s%2$s et WordPress %3$s%4$s."
+
+#: perfopsone/class-adminmenus.php:370
+msgid "contribution"
+msgstr "contribution"
+
+#: perfopsone/class-adminmenus.php:369
+msgid "support"
+msgstr "assistance"
+
+#: perfopsone/class-adminmenus.php:368
+msgid "about"
+msgstr "à propos"
+
+#: perfopsone/class-adminmenus.php:367
+msgid "settings"
+msgstr "réglages"
+
+#: perfopsone/class-adminmenus.php:241
+msgid "No review yet."
+msgstr "Pas encore d’avis."
+
+#: perfopsone/class-adminmenus.php:238
+msgid "%s reviews."
+msgstr "%s avis."
+
+#: perfopsone/class-adminmenus.php:233
+msgid "%s downloads."
+msgstr "%s téléchargements."
+
+#: perfopsone/class-adminmenus.php:228
+msgid "%s+ installs."
+msgstr "%s+ installations."
+
+#: perfopsone/class-adminmenus.php:211 perfopsone/class-adminmenus.php:218
+msgid "need update"
+msgstr "nécessite une mise à jour"
+
+#: perfopsone/class-adminmenus.php:209 perfopsone/class-adminmenus.php:216
+msgid "OK"
+msgstr "OK"
+
+#: perfopsone/class-adminmenus.php:203
+msgid "Need to be updated to %s."
+msgstr "Nécessite d’être mis à jour vers %s."
+
+#: perfopsone/class-adminmenus.php:108
+msgid "This analytics feature is currently disabled. Click here to activate it."
+msgstr "Cette fonctionnalité d’analyse est actuellement désactivée. Cliquez ici pour l’activer."
+
+#: perfopsone/class-adminmenus.php:70 perfopsone/class-adminmenus.php:71
+msgid "Control Center"
+msgstr "Centre de contrôle"
+
+#: perfopsone/class-adminmenus.php:66
+msgid "%s Records"
+msgstr "Enregistrements %s"
+
+#: perfopsone/class-adminmenus.php:66 perfopsone/class-adminmenus.php:67
+msgid "Available Catalogues"
+msgstr "Catalogues disponibles"
+
+#: perfopsone/class-adminmenus.php:62
+msgid "%s Insights"
+msgstr "Idées %s"
+
+#: perfopsone/class-adminmenus.php:62 perfopsone/class-adminmenus.php:63
+msgid "Available Reports"
+msgstr "Rapports disponibles"
+
+#: perfopsone/class-adminmenus.php:58
+msgid "%s Tools"
+msgstr "Outils %s"
+
+#: perfopsone/class-adminmenus.php:58 perfopsone/class-adminmenus.php:59
+msgid "Available Tools"
+msgstr "Outils disponibles"
+
+#: perfopsone/class-adminmenus.php:54
+msgid "%s Analytics"
+msgstr "Statistiques %s"
+
+#: perfopsone/class-adminmenus.php:54 perfopsone/class-adminmenus.php:55
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: includes/system/class-environment.php:229
+msgid "Debug disabled"
+msgstr "Débogage désactivé"
+
+#: includes/system/class-environment.php:229
+msgid "Debug enabled"
+msgstr "Débogage activé"
+
+#: includes/system/class-environment.php:223
+msgid "display"
+msgstr "affichage"
+
+#: includes/system/class-environment.php:218
+msgid "log"
+msgstr "journal"
+
+#: includes/system/class-conversion.php:88
+msgctxt "Abbreviation - Stands for \"exabytes\"."
+msgid "EB"
+msgstr "Eo"
+
+#: includes/system/class-conversion.php:87
+msgctxt "Abbreviation - Stands for \"petabytes\"."
+msgid "PB"
+msgstr "Po"
+
+#: includes/system/class-conversion.php:86
+msgctxt "Abbreviation - Stands for \"terabytes\"."
+msgid "TB"
+msgstr "To"
+
+#: includes/system/class-conversion.php:85
+msgctxt "Abbreviation - Stands for \"gigabytes\"."
+msgid "GB"
+msgstr "Go"
+
+#: includes/system/class-conversion.php:84
+msgctxt "Abbreviation - Stands for \"megabytes\"."
+msgid "MB"
+msgstr "Mo"
+
+#: includes/system/class-conversion.php:83
+msgctxt "Abbreviation - Stands for \"kilobytes\"."
+msgid "KB"
+msgstr "Ko"
+
+#: includes/system/class-conversion.php:82
+msgctxt "Abbreviation - Stands for \"byte\"."
+msgid "B"
+msgstr "o"
+
+#: includes/system/class-conversion.php:51
+msgctxt "Abbreviation - Stands for \"quintillion\"."
+msgid "Qi"
+msgstr "Qi"
+
+#: includes/system/class-conversion.php:50
+msgctxt "Abbreviation - Stands for \"quadrillion\"."
+msgid "Qa"
+msgstr "Qa"
+
+#: includes/system/class-conversion.php:49
+msgctxt "Abbreviation - Stands for \"trillion\"."
+msgid "T"
+msgstr "T"
+
+#: includes/system/class-conversion.php:48
+msgctxt "Abbreviation - Stands for \"billion\"."
+msgid "B"
+msgstr "G"
+
+#: includes/system/class-conversion.php:47
+msgctxt "Abbreviation - Stands for \"million\"."
+msgid "M"
+msgstr "M"
+
+#: includes/system/class-conversion.php:46
+msgctxt "Abbreviation - Stands for \"thousand\"."
+msgid "K"
+msgstr "K"
+
+#: includes/system/class-date.php:114
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "heure"
+msgstr[1] "heures"
+
+#: includes/system/class-date.php:113
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minute"
+msgstr[1] "minutes"
+
+#: includes/system/class-date.php:112
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "seconde"
+msgstr[1] "secondes"
+
+#: includes/system/class-date.php:108
+msgctxt "Unit abbreviation - Stands for \"hour\"."
+msgid "hr"
+msgstr "h."
+
+#: includes/system/class-date.php:107
+msgctxt "Unit abbreviation - Stands for \"minute\"."
+msgid "min"
+msgstr "min"
+
+#: includes/system/class-date.php:106
+msgctxt "Unit abbreviation - Stands for \"second\"."
+msgid "sec"
+msgstr "sec"
+
+#: includes/system/class-date.php:73
+msgid "in %s"
+msgstr "dans %s"
+
+#: includes/system/class-date.php:58
+msgid "currently"
+msgstr "actuellement"
+
+#: includes/system/class-date.php:56 includes/system/class-date.php:71
+msgid "%s ago"
+msgstr "il y a %s"
+
+#: includes/system/class-sitehealth.php:320
+msgid "You should consider using PHP Intl extension. It would improve localization features on your site."
+msgstr "Vous devriez envisager d’utiliser l’extension PHP Intl. Cela permettrait d’améliorer les fonctionnalités de traduction sur votre site."
+
+#: includes/system/class-sitehealth.php:314
+msgid "You should use Intl extension"
+msgstr "Vous devriez utiliser l’extension Intl"
+
+#: includes/system/class-sitehealth.php:308
+msgid "Your site uses PHP Intl extension to improve localization features. That's great."
+msgstr "Votre site utilise l’extension PHP Intl pour améliorer les fonctionnalités de traduction. C’est super."
+
+#: includes/system/class-sitehealth.php:305
+#: includes/system/class-sitehealth.php:317
+msgid "Internationalization"
+msgstr "Internationalisation"
+
+#: includes/system/class-sitehealth.php:302
+msgid "Your site uses Intl extension"
+msgstr "Votre site utilise l’extension Intl"
+
+#: includes/system/class-sitehealth.php:285
+msgid "I18n Extension Test"
+msgstr "Test d’extension I18n"
+
+#: includes/system/class-sitehealth.php:266
+msgid "You should consider using OPcache. It would improve PHP performance of your site."
+msgstr "Vous devriez envisager d’utiliser OPcache. Cela permettrait d’améliorer les performances PHP de votre site."
+
+#: includes/system/class-sitehealth.php:260
+msgid "You should use OPcache"
+msgstr "Vous devriez utiliser OPcache"
+
+#: includes/system/class-sitehealth.php:254
+msgid "Your site uses OPcache to improve PHP performance. That's great."
+msgstr "Votre site utilise OPcache pour améliorer les performances de PHP. C’est super."
+
+#: includes/system/class-sitehealth.php:248
+msgid "Your site uses OPcache"
+msgstr "Votre site utilise OPcache"
+
+#: includes/system/class-sitehealth.php:231
+msgid "OPcache Test"
+msgstr "Test OPcache"
+
+#: includes/system/class-sitehealth.php:212
+msgid "Your site uses a dedicated object caching mechanism. That's great."
+msgstr "Votre site utilise un mécanisme dédié de mise cache d’objets. C'est super."
+
+#: includes/system/class-sitehealth.php:206
+msgid "Your site uses object caching"
+msgstr "Votre site utilise la mise en cache d’objets"
+
+#: includes/system/class-sitehealth.php:200
+msgid "Your site uses APCu, but only a few plugins know how to take advantage of it."
+msgstr "Votre site utilise APCu, mais seules quelques extensions savent comment en profiter."
+
+#: includes/system/class-sitehealth.php:194
+msgid "You should improve object caching"
+msgstr "Vous devriez améliorer la mise en cache d’objets"
+
+#: includes/system/class-sitehealth.php:188
+#: includes/system/class-sitehealth.php:200
+msgid "You should consider using a dedicated object caching mechanism, like Memcached or Redis, to improve your site's speed."
+msgstr "Vous devriez envisager d’utiliser un mécanisme dédié de mise en cache d’objets, comme Memcached ou Redis, pour améliorer la vitesse de votre site."
+
+#: includes/system/class-sitehealth.php:188
+msgid "Your site uses database transient."
+msgstr "Votre site utilise des Transients stockés en base de données."
+
+#: includes/system/class-sitehealth.php:185
+#: includes/system/class-sitehealth.php:197
+#: includes/system/class-sitehealth.php:209
+#: includes/system/class-sitehealth.php:251
+#: includes/system/class-sitehealth.php:263
+msgid "Performance"
+msgstr "Performance"
+
+#: includes/system/class-sitehealth.php:182
+msgid "You should use object caching"
+msgstr "Vous devriez utiliser la mise en cache d’objets"
+
+#: includes/system/class-sitehealth.php:164
+msgid "Object Cache Test"
+msgstr "Test de cache objet"
+
+#: includes/system/class-sitehealth.php:147
+msgid "Plugin diagnostic information"
+msgstr "Informations de diagnostique de l’extension"
+
+#: includes/system/class-sitehealth.php:130
+msgid "OPcache settings and status"
+msgstr "Paramètres et état OPcache"
+
+#: includes/system/class-sitehealth.php:122
+msgid "Object cache"
+msgstr "Cache objet"
+
+#. translators: as in the sentence "Product W version X by author Y (license
+#. Z)"
+#: includes/libraries/class-libraries.php:193
+msgid "<a href=\"%1$s\">%2$s %3$s</a>%4$s by %5$s (%6$s)"
+msgstr "<a href=\"%1$s\">%2$s %3$s</a>%4$s par %5$s (%6$s)"
+
+#: includes/libraries/class-libraries.php:139
+msgid "unknown license"
+msgstr "licence inconnue"
+
+#: includes/libraries/class-libraries.php:136
+msgid "GPL-3.0 license"
+msgstr "Licence GPL-3.0"
+
+#: includes/libraries/class-libraries.php:133
+msgid "GPL-2.0 license"
+msgstr "Licence GPL-2.0"
+
+#: includes/libraries/class-libraries.php:130
+msgid "Apache license, version 2.0"
+msgstr "Licence Apache, version 2.0"
+
+#: includes/libraries/class-libraries.php:127
+msgid "MIT license"
+msgstr "Licence MIT"
+
+#: includes/libraries/class-libraries.php:67
+#: includes/libraries/class-libraries.php:78
+#: includes/libraries/class-libraries.php:90
+#: includes/libraries/class-libraries.php:183
+msgid "%s & contributors"
+msgstr "%s et contributeurs"
+
+#. translators: 1: action ID 2: arguments
+#: includes/libraries/action-scheduler/classes/ActionScheduler_InvalidActionException.php:40
+msgid "Action [%1$s] has invalid arguments. It cannot be JSON decoded to an array. $args = %2$s"
+msgstr "L’action [%1$s] comporte des arguments non valides. Elle ne peut pas être un JSON décodé dans un tableau. $args = %2$s"
+
+#. translators: 1: action ID 2: schedule
+#: includes/libraries/action-scheduler/classes/ActionScheduler_InvalidActionException.php:21
+msgid "Action [%1$s] has an invalid schedule: %2$s"
+msgstr "La planification de l'action [%1$s] n'est pas valide : %2$s"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_QueueRunner.php:193
+msgid "Every minute"
+msgstr "Chaque minute"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:840
+msgid "Unknown status found for action."
+msgstr "Statut d'action inconnu détecté."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:268
+msgid "Invalid value for select or count parameter. Cannot query actions."
+msgstr "Valeur du paramètre select ou count non valide. Impossible d'interroger les actions."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:67
+msgid "Database error."
+msgstr "Erreur de la base de données."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:840
+msgid "%s Support for strings longer than this will be removed in a future version."
+msgstr "La prise en charge par %s de chaînes d'une longueur supérieure à cette valeur sera supprimée dans une version à venir."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:740
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:838
+msgid "Invalid action ID. No status found."
+msgstr "ID d'action non valide. Aucun état trouvé."
+
+#. translators: %s: action ID
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:716
+msgid "Unable to mark failure on action %s. Database error."
+msgstr "Impossible de marquer l'échec de l'action %s. Erreur de la base de données."
+
+#. translators: %s: action ID
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:704
+msgid "Unable to unlock claim on action %s. Database error."
+msgstr "Impossible de déverrouiller la demande d'action %s. Erreur de la base de données."
+
+#. translators: %s: claim ID
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:689
+msgid "Unable to unlock claim %s. Database error."
+msgstr "Impossible de déverrouiller la demande %s. Erreur de la base de données."
+
+#. translators: %s: group name
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:627
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:661
+msgid "The group \"%s\" does not exist."
+msgstr "Le groupe « %s » n'existe pas."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:607
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:675
+msgid "Unable to claim actions. Database error."
+msgstr "Impossible de demander des actions. Erreur de la base de données."
+
+#. translators: %s: action ID
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:457
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:468
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:495
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:773
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:458
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:548
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:580
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:777
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:819
+msgid "Unidentified action %s"
+msgstr "Action %s non identifiée"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:283
+msgid "Invalid schedule. Cannot save action."
+msgstr "Planification non valide. Impossible d'enregistrer l'action."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:62
+msgid "Unable to save action."
+msgstr "Impossible d'enregistrer l'action."
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_TaxonomyRegistrar.php:14
+msgid "Action Group"
+msgstr "Groupe d’action"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:42
+msgid "No actions found in trash"
+msgstr "Aucune action dans la corbeille"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:41
+msgid "No actions found"
+msgstr "Aucune action détectée"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:40
+msgid "Search Scheduled Actions"
+msgstr "Rechercher des actions planifiées"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:38
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:39
+msgid "View Action"
+msgstr "Voir l'action"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:37
+msgid "New Scheduled Action"
+msgstr "Nouvelle action planifiée"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:36
+msgid "Edit Scheduled Action"
+msgstr "Modifier l'action planifiée"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:35
+msgid "Edit"
+msgstr "Modifier"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:34
+msgid "Add New Scheduled Action"
+msgstr "Ajouter une action de planifiée"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:33
+msgid "Add"
+msgstr "Ajouter"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:32
+msgctxt "Admin menu name"
+msgid "Scheduled Actions"
+msgstr "Actions planifiées"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:31
+msgid "Scheduled Action"
+msgstr "Action planifiée"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:20
+msgid "Scheduled actions are hooks triggered on a cetain date and time."
+msgstr "Les actions planifiées sont des crochets déclenchés à une certaine date et à une certaine heure."
+
+#. translators: %s: count
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostStatusRegistrar.php:53
+msgid "In-Progress <span class=\"count\">(%s)</span>"
+msgid_plural "In-Progress <span class=\"count\">(%s)</span>"
+msgstr[0] "En cours <span class=\"count\">(%s)</span>"
+msgstr[1] "En cours <span class=\"count\">(%s)</span>"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostStatusRegistrar.php:51
+msgctxt "post"
+msgid "In-Progress"
+msgstr "En cours"
+
+#. translators: %s: count
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostStatusRegistrar.php:38
+msgid "Failed <span class=\"count\">(%s)</span>"
+msgid_plural "Failed <span class=\"count\">(%s)</span>"
+msgstr[0] "Echouée <span class=\"count\">(%s)</span>"
+msgstr[1] "Echouées <span class=\"count\">(%s)</span>"
+
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostStatusRegistrar.php:36
+msgctxt "post"
+msgid "Failed"
+msgstr "Échec"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ActionFactory.php:161
+msgid "Invalid action - must be a recurring action."
+msgstr "Action non valide - il doit s'agit d'une action récurrente."
+
+#. translators: 1: action ID 2: exception message
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:170
+msgid "Error processing action %1$s: %2$s"
+msgstr "Erreur lors de l'enregistrement de l'action %1$s : %2$s"
+
+#. translators: 1: action ID 2: hook name
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:155
+msgid "Completed processing action %1$s with hook: %2$s"
+msgstr "Action de traitement %1$s terminée avec le crochet Web : %2$s"
+
+#. translators: %s refers to the action ID
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:138
+msgid "Started processing action %s"
+msgstr "Traitement de l'action %s commencé"
+
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:113
+msgid "The claim has been lost. Aborting current batch."
+msgstr "La demande a été perdue. Abandon du lot actuel."
+
+#. translators: %d: amount of actions
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:93
+msgid "Running %d action"
+msgid_plural "Running %d actions"
+msgstr[0] "%d action en cours d'exécution"
+msgstr[1] "%d actions en cours d'exécution"
+
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:61
+msgid "There are too many concurrent batches."
+msgstr "Nombre de lots concurrents trop élevé."
+
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:59
+msgid "There are too many concurrent batches, but the run is forced to continue."
+msgstr "Nombre de lots concurrents trop élevé, mais l'exécution doit continuer."
+
+#. translators: %d refers to the total number of taskes completed
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:153
+msgid "%d scheduled task completed."
+msgid_plural "%d scheduled tasks completed."
+msgstr[0] "%d tâche planifiée terminée."
+msgstr[1] "%d tâches planifiées terminées."
+
+#. translators: %s refers to the exception error message
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:136
+msgid "There was an error running the action scheduler: %s"
+msgstr "Une erreur est survenue lors de l'exécution du planificateur d'actions : %s"
+
+#. translators: %d refers to the total number of batches executed
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:117
+msgid "%d batch executed."
+msgid_plural "%d batches executed."
+msgstr[0] "%d lot exécuté."
+msgstr[1] "%d lots exécutés."
+
+#. translators: %d refers to how many scheduled taks were found to run
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:100
+msgid "Found %d scheduled task"
+msgid_plural "Found %d scheduled tasks"
+msgstr[0] "%d tâche planifiée détectée"
+msgstr[1] "%d tâches planifiées détectées"
+
+#. translators: %s php class name
+#: includes/libraries/action-scheduler/classes/WP_CLI/ProgressBar.php:47
+#: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:33
+msgid "The %s class can only be run within WP CLI."
+msgstr "La classe %s peut uniquement être exécutée avec WP CLI."
+
+#. translators: 1: next cleanup message 2: github issue URL
+#: includes/libraries/action-scheduler/classes/ActionScheduler_WPCommentCleaner.php:108
+msgid "Action Scheduler has migrated data to custom tables; however, orphaned log entries exist in the WordPress Comments table. %1$s <a href=\"%2$s\">Learn more &raquo;</a>"
+msgstr "Le planificateur d'actions a migré les données dans des tableaux personnalisés. Il existe toutefois des entrées de journal orphelines dans le tableau de commentaires WordPress. %1$s <a href=\"%2$s\">En savoir plus »</a>"
+
+#. translators: %s: date interval
+#: includes/libraries/action-scheduler/classes/ActionScheduler_WPCommentCleaner.php:103
+msgid "This data will be deleted in %s."
+msgstr "Cette date sera supprimée dans %s."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:112
+msgid "Newest Scheduled Date"
+msgstr "Date planifiée la plus récente"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:111
+msgid "Oldest Scheduled Date"
+msgstr "Date planifiée la plus ancienne"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:110
+msgid "Count"
+msgstr "Décompte"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:108
+msgid "Action Status"
+msgstr "État de l’action"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:104
+msgid "Version:"
+msgstr "Version :"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:101
+msgid "This section shows scheduled action counts."
+msgstr "Cette section montre le nombre d’actions planifiées."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:101
+msgid "Action Scheduler"
+msgstr "Planificateur d’actions"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:305
+msgid "Canceled"
+msgstr "Annulé"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:304
+msgid "Failed"
+msgstr "Échoué"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:303
+msgid "In-progress"
+msgstr "En cours"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:302
+msgid "Pending"
+msgstr "En attente"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:301
+msgid "Complete"
+msgstr "Terminé"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:227
+msgid "ActionScheduler_Action::$args too long. To ensure the args column can be indexed, action args should not be more than %d characters when encoded as JSON."
+msgstr "ActionScheduler_Action::$args trop long. Pour garantir l'indexation de la colonne des arguments, les arguments d'action ne doivent pas comprendre plus de %d caractères lors de l'encodage au format JSON."
+
+#. translators: %s: exception message
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:156
+msgid "There was a failure scheduling the next instance of this action: %s"
+msgstr "Une défaillance est survenue lors de la planification de l'instance suivante de cette action : %s"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:148
+msgid "There was a failure fetching this action"
+msgstr "Il y a eu un échec lors de la récupération de l’action"
+
+#. translators: %s: exception message
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:146
+msgid "There was a failure fetching this action: %s"
+msgstr "Une défaillance est survenue lors de la récupération de cette action : %s"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:131
+msgid "action ignored"
+msgstr "action ignorée"
+
+#. translators: %s: context
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:129
+msgid "action ignored via %s"
+msgstr "action ignorée via %s"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:123
+msgid "action reset"
+msgstr "réinitialisation de l'action"
+
+#. translators: 1: error message 2: filename 3: line
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:118
+msgid "unexpected shutdown: PHP Fatal error %1$s in %2$s on line %3$s"
+msgstr "arrêt inattendu : erreur fatale PHP %1$s dans %2$s à la ligne %3$s"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:112
+msgid "action timed out after %s seconds"
+msgstr "délai de l'action dépassé après %s secondes"
+
+#. translators: %s: exception message
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:105
+msgid "action failed: %s"
+msgstr "échec de l'action : %s"
+
+#. translators: 1: context 2: exception message
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:102
+msgid "action failed via %1$s: %2$s"
+msgstr "échec de l'action via %1$s : %2$s"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:94
+msgid "action complete"
+msgstr "action terminée"
+
+#. translators: %s: context
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:92
+msgid "action complete via %s"
+msgstr "action terminée via %s"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:84
+msgid "action started"
+msgstr "action commencée"
+
+#. translators: %s: context
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:82
+msgid "action started via %s"
+msgstr "action lancée via %s"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:76
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBLogger.php:134
+msgid "action canceled"
+msgstr "action annulée"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:72
+msgid "action created"
+msgstr "action créée"
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Abstract_ListTable.php:672
+msgid "Search"
+msgstr "Recherche"
+
+#. translators: %s: search query
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Abstract_ListTable.php:567
+msgid "Search results for \"%s\""
+msgstr "Résultats de la recherche pour \"%s\""
+
+#: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Abstract_ListTable.php:467
+msgid "Filter"
+msgstr "Filtrer"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:149
+msgid "Activity log for the action."
+msgstr "Journal d'activité de l'action."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:148
+msgid "The date/time the action is/was scheduled to run."
+msgstr "Date/heure d'exécution programmée de l'action."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:148
+msgid "Scheduled"
+msgstr "Planifiée"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:147
+msgid "The action's schedule frequency."
+msgstr "Fréquence de planification de l'action."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:146
+msgid "Optional action group."
+msgstr "Groupe d'actions facultatives."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:145
+msgid "Optional data array passed to the action hook."
+msgstr "Ensemble de données facultatives transmises au crochet d'action."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:144
+msgid "Action statuses are Pending, Complete, Canceled, Failed"
+msgstr "Statuts des actions : En attente, Terminée, Annulée, Échec"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:143
+msgid "Name of the action hook that will be triggered."
+msgstr "Nom du crochet d'action qui sera déclenché."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:141
+msgid "Scheduled Action Columns"
+msgstr "Colonnes des actions planifiées"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:139
+msgid "Columns"
+msgstr "Colonnes"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:131
+msgid "Action Scheduler is a scalable, traceable job queue for background processing large sets of actions. Action Scheduler works by triggering an action hook to run at some time in the future. Scheduled actions can also be scheduled to run on a recurring schedule."
+msgstr "Le planificateur d'actions est une file d'attente de tâches évolutive et traçable dédié au traitement en arrière-plan d'importants ensembles d'actions. Le planificateur d'action fonctionne en déclenchant l'exécution d'un crochet d'action ultérieurement. Il est également possible d'exécuter les actions planifiées suivant une programmation récurrente."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:129
+msgid "About Action Scheduler %s"
+msgstr "À propos du planificateur d'actions %s"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_DataController.php:137
+msgid "Attempting to reduce used memory..."
+msgstr "Tentative de réduction de la mémoire utilisée…"
+
+#. translators: %d: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_DataController.php:133
+msgid "Stopped the insanity for %d second"
+msgid_plural "Stopped the insanity for %d seconds"
+msgstr[0] "Faites une pause pendant %d seconde"
+msgstr[1] "Faites une pause pendant %d secondes"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:609
+msgid "Search hook, args and claim ID"
+msgstr "Rechercher des crochets, des arguments et des ID de demande"
+
+#. translators: %s: date interval
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:461
+msgid " (%s)"
+msgstr " (%s)"
+
+#. translators: %s: date interval
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:458
+msgid " (%s ago)"
+msgstr " (il y a %s)"
+
+#. translators: 1: action HTML 2: action ID 3: error message
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:412
+msgid "Could not process change for action: \"%1$s\" (ID: %2$d). Error: %3$s"
+msgstr "La modification n'a pas pu être effectuée pour l'action : « %1$s » (ID : %2$d). Erreur : %3$s"
+
+#. translators: %s: action HTML
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:406
+msgid "Successfully processed change for action: %s"
+msgstr "Modification de l'action traitée avec succès : %s"
+
+#. translators: %s: action HTML
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:402
+msgid "Successfully canceled action: %s"
+msgstr "Action annulée avec succès : %s"
+
+#. translators: %s: action HTML
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:398
+msgid "Successfully executed action: %s"
+msgstr "Action exécutée avec succès : %s"
+
+#. translators: %d: seconds
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:377
+msgid "The next queue will begin processing in approximately %d seconds."
+msgstr "Le traitement de la file d'attente suivante commencera dans environ %d secondes."
+
+#. translators: %s: process URL
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:374
+msgid "A new queue has begun processing. <a href=\"%s\">View actions in-progress &raquo;</a>"
+msgstr "Le traitement d'une nouvelle file d'attente a commencé. <a href=\"%s\">Voir les actions en cours »</a>"
+
+#. translators: %s: amount of claims
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:357
+msgid "Maximum simultaneous queues already in progress (%s queue). No additional queues will begin processing until the current queues are complete."
+msgid_plural "Maximum simultaneous queues already in progress (%s queues). No additional queues will begin processing until the current queues are complete."
+msgstr[0] "Nombre maximal de files d'attente simultanées déjà en cours de traitement (%s file d'attente). Aucune file d'attente supplémentaire ne sera traitée tant que les files d'attente en cours ne seront pas terminées."
+msgstr[1] "Nombre maximal de files d'attente simultanées déjà en cours de traitement (%s files d'attente). Aucune file d'attente supplémentaire ne sera traitée tant que les files d'attente en cours ne seront pas terminées."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:341
+msgid "It appears one or more database tables were missing. Attempting to re-create the missing table(s)."
+msgstr "Il semble qu’une ou plusieurs tables de la base de données étaient manquantes. Tentative de recréation des tables manquantes."
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:243
+msgid "Non-repeating"
+msgstr "Pas de répétition"
+
+#. translators: %s: time interval
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:237
+msgid "Every %s"
+msgstr "Tous/Toutes les %s"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:201
+msgid "Now!"
+msgstr "Maintenant !"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:174
+msgid "%s second"
+msgid_plural "%s seconds"
+msgstr[0] "%s seconde"
+msgstr[1] "%s secondes"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:169
+msgid "%s minute"
+msgid_plural "%s minutes"
+msgstr[0] "%s minute"
+msgstr[1] "%s minutes"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:164
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] "%s heure"
+msgstr[1] "%s heures"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:159
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s jour"
+msgstr[1] "%s jours"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:154
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] "%s semaine"
+msgstr[1] "%s semaines"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:149
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] "%s mois"
+msgstr[1] "%s mois"
+
+#. translators: %s: amount of time
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:144
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s an"
+msgstr[1] "%s ans"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:134
+msgid "Cancel the action now to avoid it being run in future"
+msgstr "Annuler l'action maintenant pour éviter son exécution ultérieure"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:133
+msgid "Cancel"
+msgstr "Annuler"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:130
+msgid "Process the action now as if it were run as part of a queue"
+msgstr "Traiter l'action maintenant comme si elle était exécutée dans le cadre d'une file d'attente"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:129
+msgid "Run"
+msgstr "Exécuter"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:122
+msgid "Claim ID"
+msgstr "ID de demande"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:102
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:149
+msgid "Log"
+msgstr "Journal"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:101
+msgid "Scheduled Date"
+msgstr "Date planifiée"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:100
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:147
+msgid "Recurrence"
+msgstr "Récurrence"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:99
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:146
+msgid "Group"
+msgstr "Groupe"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:98
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:145
+msgid "Arguments"
+msgstr "Arguments"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:97
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:144
+msgid "Status"
+msgstr "État"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:96
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:143
+msgid "Hook"
+msgstr "Crochet"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:92
+msgid "Delete"
+msgstr "Supprimer"
+
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:89
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:60
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:75
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:76
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:19
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:30
+msgid "Scheduled Actions"
+msgstr "Actions planifiées"
+
+#. translators: %s: error message
+#: includes/libraries/action-scheduler/classes/migration/ActionScheduler_DBStoreMigrator.php:44
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:25
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:75
+msgid "Error saving action: %s"
+msgstr "Erreur lors de l'enregistrement de l'action : %s"
+
+#: includes/libraries/action-scheduler/classes/migration/Controller.php:142
+msgid "Action Scheduler migration in progress. The list of scheduled actions may be incomplete."
+msgstr "La migration du planificateur d'actions est en cours. La liste des actions planifiées peut ne pas être complète."
+
+#: includes/libraries/action-scheduler/classes/migration/Config.php:118
+msgid "Destination logger must be configured before running a migration"
+msgstr "Vous devez configurer l'enregistreur de destination avant de procéder à la migration"
+
+#: includes/libraries/action-scheduler/classes/migration/Config.php:96
+msgid "Destination store must be configured before running a migration"
+msgstr "Vous devez configurer la boutique de destination avant de procéder à la migration"
+
+#: includes/libraries/action-scheduler/classes/migration/Config.php:74
+msgid "Source logger must be configured before running a migration"
+msgstr "Vous devez configurer l'enregistreur de source avant de procéder à la migration"
+
+#: includes/libraries/action-scheduler/classes/migration/Config.php:52
+msgid "Source store must be configured before running a migration"
+msgstr "Vous devez configurer la boutique source avant de procéder à la migration"
+
+#: includes/libraries/action-scheduler/classes/migration/ActionMigrator.php:95
+msgid "Unable to remove source migrated action %s"
+msgstr "Impossible de supprimer la migration de l'action source %s"
+
+#. translators: 1: source action ID 2: source store class 3: destination action
+#. ID 4: destination store class
+#: includes/libraries/action-scheduler/classes/migration/Runner.php:107
+msgid "Migrated action with ID %1$d in %2$s to ID %3$d in %4$s"
+msgstr "Migration de l'action avec l'ID %1$d dans %2$s vers l'ID %3$d dans %4$s"
+
+#. translators: %d: amount of actions
+#: includes/libraries/action-scheduler/classes/migration/Runner.php:82
+msgid "Migrating %d action"
+msgid_plural "Migrating %d actions"
+msgstr[0] "Migration d'%d action"
+msgstr[1] "Migration de %d actions"
+
+#: includes/plugin/class-updater.php:100
+msgid "Sorry, unable to find or read changelog file."
+msgstr "Désolé, il est impossible de trouver ou de lire le journal des modifications."
+
+#: includes/plugin/class-updater.php:52
+msgid "See <a href=\"%s\">what's new</a>."
+msgstr "Voir <a href=\"%s\">les nouveautés</a>."
+
+#: includes/plugin/class-updater.php:49
+msgid "%1$s has been correctly updated from version %2$s to version %3$s."
+msgstr "%1$s a été correctement mis à jour de la version %2$s à la version %3$s."
+
+#: includes/plugin/class-updater.php:45
+msgid "%1$s has been correctly installed."
+msgstr "%1$s a été correctement installé."
+
+#. translators: %s can be "IPv4" or "IPv6"
+#: includes/features/class-schema.php:311
+#: includes/features/class-schema.php:331
+msgid "%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…"
+msgstr "Les données %s doivent être initialisées. L’initialisation commencera dans quelques minutes ; notez que cela peut prendre beaucoup de temps pour s’achever…"
+
+#. translators: %s can be "IPv4" or "IPv6"
+#: includes/features/class-ipdata.php:230
+msgid "Unable to acquire %s data files. Retry will be done next cycle."
+msgstr "Impossible de rapatrier les fichiers de données %s. Une nouvelle tentative se fera au cours du prochain cycle."
+
+#. translators: %s can be "IPv4" or "IPv6"
+#: includes/features/class-ipdata.php:224
+msgid "%s data files are corrupted or empty. Retry will be done next cycle."
+msgstr "Les fichiers de données %s sont corrompus ou vides. Une nouvelle tentative se fera au cours du prochain cycle."
+
+#. translators: %1$s can be "IPv4" or "IPv6"
+#: includes/features/class-ipdata.php:219
+msgid "%1$s update completed in %2$d seconds: %3$d IP ranges have been added, updated or deleted."
+msgstr "Initialisation %1$s achevée en %2$d secondes : %3$d plages IP ont été ajoutées, mises à jour ou supprimées."
+
+#. translators: %1$s can be "IPv4" or "IPv6"
+#: includes/features/class-ipdata.php:215
+msgid "%1$s initialization completed in %2$d seconds: %3$d IP ranges have been added."
+msgstr "Initialisation %1$s achevée en %2$d secondes : %3$d plages IP ont été ajoutées."
+
+#: includes/features/class-cssmodifier.php:64
+msgid "Countries: %s."
+msgstr "Pays : %s."
+
+#: includes/features/class-cssmodifier.php:58
+msgid "Reserved / unused: %s."
+msgstr "Réservé / inutilisé : %s."
+
+#: includes/features/class-cssmodifier.php:55
+msgid "Satellite: %s."
+msgstr "Satellite : %s."
+
+#: includes/features/class-cssmodifier.php:52
+msgid "Anonymous proxy: %s."
+msgstr "Proxy anonyme : %s."
+
+#: includes/features/class-cssmodifier.php:49
+msgid "Private network: %s."
+msgstr "Réseau privé : %s."
+
+#: includes/features/class-cssmodifier.php:46
+msgid "Loopback: %s."
+msgstr "Loopback : %s."
+
+#: includes/features/class-cssmodifier.php:43
+msgid "Unknown / undetected: %s."
+msgstr "Inconnu / non détecté : %s."
+
+#: public/class-ip-locator-public.php:223
+msgid "Malformed Shortcode"
+msgstr "Code court malformé"
+
+#: admin/partials/ip-locator-admin-settings-about.php:38
+msgid "Changelog"
+msgstr "Journal des modifications"
+
+#: admin/partials/ip-locator-admin-settings-about.php:35
+msgid "Disclaimer"
+msgstr "Avertissement"
+
+#: admin/partials/ip-locator-admin-settings-about.php:27
+msgid "All brands, icons and graphic illustrations are registered trademarks of their respective owners."
+msgstr "Toutes les marques, icônes et illustrations graphiques sont des marques déposées par leurs propriétaires respectifs."
+
+#: admin/partials/ip-locator-admin-settings-about.php:26
+msgid "%1$s is a free and open source plugin for WordPress. It integrates other free and open source works (as-is or modified) like: %2$s."
+msgstr "%1$s est une extension libre et open source pour WordPress. Elle intègre de nombreuses autres œuvres libres et open source (telles quelles ou modifiées) dont : %2$s."
+
+#: admin/partials/ip-locator-admin-settings-about.php:24
+msgid "This version of %s is a release candidate. Although ready for production, this version is not officially supported in production environments."
+msgstr "Cette version de %s est une « release candidate ». Bien que prête pour la production, il n’y a pas d’assistance fournie pour cette version dans des conditions de production."
+
+#: admin/partials/ip-locator-admin-settings-about.php:20
+msgid "This version of %s is not production-ready. It is a development preview. Use it at your own risk!"
+msgstr "Cette version de %s n’est pas destinée à être mise en production. Il s’agit d’une « development preview ». Utilisez-la à vos risques et périls !"
+
+#: admin/partials/ip-locator-admin-settings-options.php:33
+msgid "Reset to Defaults"
+msgstr "Rétablir les valeurs par défaut"
+
+#: admin/partials/ip-locator-admin-settings-data.php:55
+msgid "Current connexion"
+msgstr "Connexion actuelle"
+
+#: admin/partials/ip-locator-admin-settings-data.php:50
+msgid "Last operations transcript"
+msgstr "Transcription des dernières opérations"
+
+#: admin/partials/ip-locator-admin-settings-data.php:48
+msgid "Cloudflare IP Geolocation reception: "
+msgstr "Réception de géolocalisation IP Cloudflare : "
+
+#: admin/partials/ip-locator-admin-settings-data.php:47
+msgid "AWS CloudFront reception: "
+msgstr "Réception de géolocalisation IP AWS Cloudfront : "
+
+#: admin/partials/ip-locator-admin-settings-data.php:46
+#: admin/partials/ip-locator-admin-settings-data.php:47
+#: admin/partials/ip-locator-admin-settings-data.php:48
+msgid "inactive"
+msgstr "désactivé"
+
+#: admin/partials/ip-locator-admin-settings-data.php:46
+#: admin/partials/ip-locator-admin-settings-data.php:47
+#: admin/partials/ip-locator-admin-settings-data.php:48
+msgid "active"
+msgstr "activé"
+
+#: admin/partials/ip-locator-admin-settings-data.php:46
+msgid "Apache mod_geoip reception: "
+msgstr "Réception de géolocalisation Apache mod_geoip : "
+
+#: admin/partials/ip-locator-admin-settings-data.php:44
+msgid "%s fallback data: "
+msgstr "Données de secours %s : "
+
+#: admin/partials/ip-locator-admin-settings-data.php:35
+#: admin/partials/ip-locator-admin-settings-data.php:40
+msgid "Content"
+msgstr "Contenu"
+
+#: admin/partials/ip-locator-admin-settings-data.php:33
+#: admin/partials/ip-locator-admin-settings-data.php:38
+msgid "%s / donationware."
+msgstr "%s / donationware."
+
+#: admin/partials/ip-locator-admin-settings-data.php:33
+#: admin/partials/ip-locator-admin-settings-data.php:38
+msgid "%s main data: "
+msgstr "Données principales %s : "
+
+#: admin/partials/ip-locator-admin-settings-data.php:31
+msgid "IP detection"
+msgstr "Détection IP"
+
+#: admin/partials/ip-locator-admin-settings-data.php:19
+#: admin/partials/ip-locator-admin-settings-data.php:20
+msgid "%d IP ranges updated on %s."
+msgstr "%d plages d’IP %s mises à jour."
+
+#: admin/partials/ip-locator-admin-settings-main.php:69
+msgid "IP Data"
+msgstr "Données IP"
+
+#: admin/partials/ip-locator-admin-settings-main.php:56
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:127
+msgid "About"
+msgstr "À propos"
+
+#: admin/partials/ip-locator-admin-settings-main.php:43
+msgid "Options"
+msgstr "Options"
+
+#: admin/class-ip-locator-admin.php:364
+msgid "If checked, IP Locator will append to the body tag a CSS class describing the detected connexion (mainly countries)."
+msgstr "Si coché, IP Locator ajoutera une classe spécifique à la connexion détectée à la balise body (généralement le pays)."
+
+#: admin/class-ip-locator-admin.php:361
+msgid "Add country as CSS class"
+msgstr "Ajouter le pays comme classe CSS"
+
+#: admin/class-ip-locator-admin.php:356
+msgid "CSS"
+msgstr "CSS"
+
+#: admin/class-ip-locator-admin.php:346
+msgid "see details"
+msgstr "voir le détail"
+
+#: admin/class-ip-locator-admin.php:346
+msgid "If checked, IP Locator will render its own shortcodes when needed (%s)."
+msgstr "Si coché, IP Locator restituera ses propres codes courts si nécessaire (%s)."
+
+#: admin/class-ip-locator-admin.php:343
+msgid "Activate shortcodes rendering"
+msgstr "Activer le rendu des codes courts"
+
+#: admin/class-ip-locator-admin.php:338
+msgid "Shortcodes"
+msgstr "Codes courts"
+
+#: admin/class-ip-locator-admin.php:321
+msgid "Note: IP Locator respects DISABLE_NAG_NOTICES flag."
+msgstr "Note : IP Locator respecte l’indicateur DISABLE_NAG_NOTICES."
+
+#: admin/class-ip-locator-admin.php:321
+msgid "Allows IP Locator to display admin notices throughout the admin dashboard."
+msgstr "Autoriser IP Locator à afficher les avis d’administration dans le Tableau de bord."
+
+#: admin/class-ip-locator-admin.php:318
+msgid "Display"
+msgstr "Affichage"
+
+#: admin/class-ip-locator-admin.php:313
+msgid "Admin notices"
+msgstr "Avis d’administration"
+
+#: admin/class-ip-locator-admin.php:305
+msgid "If checked, IP Locator will use a public CDN (jsDelivr) to serve scripts and stylesheets."
+msgstr "Si coché, IP Locator utilisera un CDN public (jsDelivr) pour la distribution des scripts et des feuilles de style."
+
+#: admin/class-ip-locator-admin.php:302
+msgid "Use public CDN"
+msgstr "Utiliser un CDN public"
+
+#: admin/class-ip-locator-admin.php:297
+msgid "Resources"
+msgstr "Ressources"
+
+#: admin/class-ip-locator-admin.php:286
+msgid "Logging"
+msgstr "Journalisation"
+
+#: admin/class-ip-locator-admin.php:282
+msgid "Your site does not use any logging plugin. To log all events triggered in IP Locator, I recommend you to install the excellent (and free) %s. But it is not mandatory."
+msgstr "Votre site n’utilise aucune extension de journalisation. Pour journaliser tous les évènements déclenchés par IP Locator, je vous recommande d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
+
+#: admin/class-ip-locator-admin.php:279
+msgid "Your site is currently using %s."
+msgstr "Votre site utilise actuellement %s."
+
+#: admin/class-ip-locator-admin.php:271
+msgid "If checked, IP Locator will regularly update its IP database."
+msgstr "Si coché, IP Locator mettra régulièrement à jour sa base de données IP."
+
+#: admin/class-ip-locator-admin.php:268
+msgid "Auto-update"
+msgstr "Mise à jour automatique"
+
+#: admin/class-ip-locator-admin.php:263
+msgid "IP database"
+msgstr "Base de données IP"
+
+#: admin/class-ip-locator-admin.php:255
+msgid "Note: to use CloudFlare, AWS CloudFront or Apache mod_geoip geolocation, uncheck this."
+msgstr "Remarque : pour utiliser la géolocalisation CloudFlare, AWS CloudFront ou Apache mod_geoip, décochez ceci."
+
+#: admin/class-ip-locator-admin.php:255
+msgid "If checked, IP Locator will not try to verify country in the request header."
+msgstr "Si coché, IP Locator n’essaiera pas de vérifier le pays dans l’en-tête de la demande."
+
+#: admin/class-ip-locator-admin.php:252
+msgid "Ignore HTTP header"
+msgstr "Ignorer l’en-tête HTTP"
+
+#: admin/class-ip-locator-admin.php:247
+msgid "Detection"
+msgstr "Détection"
+
+#: admin/class-ip-locator-admin.php:230
+msgid "Plugin settings have not been reset to defaults. Please try again."
+msgstr "Les réglages n’ont pas été réinitialisés à leurs valeurs par défaut. Veuillez réessayer."
+
+#: admin/class-ip-locator-admin.php:225
+msgid "Plugin settings have been reset to defaults."
+msgstr "Le réglages ont été réinitialisées aux valeurs par défaut."
+
+#: admin/class-ip-locator-admin.php:208
+msgid "Plugin settings have not been saved. Please try again."
+msgstr "Les réglages n’ont pas été mis à jour. Veuillez réessayer."
+
+#: admin/class-ip-locator-admin.php:203
+msgid "Plugin settings have been saved."
+msgstr "Les réglages ont été mis à jour."
+
+#: admin/class-ip-locator-admin.php:152
+msgid "GitHub repository"
+msgstr "dépôt GitHub"
+
+#: admin/class-ip-locator-admin.php:151
+msgid "Support"
+msgstr "Assistance"
+
+#: admin/class-ip-locator-admin.php:137
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: admin/class-ip-locator-admin.php:136
+msgid "Settings"
+msgstr "Réglages"
+
+#: admin/class-ip-locator-admin.php:120
+msgid "Plugin options"
+msgstr "Options de l'extension"
+
+#: admin/class-ip-locator-admin.php:119
+msgid "Plugin features"
+msgstr "Fonctionnalités de l’extension"
+
+#. translators: as in the sentence "IP Locator Settings" or "WordPress
+#. Settings"
+#: admin/class-ip-locator-admin.php:88
+#: admin/partials/ip-locator-admin-settings-main.php:27
+#: perfopsone/class-adminmenus.php:70
+msgid "%s Settings"
+msgstr "Réglages %s"
+
+#. Author URI of the plugin
+msgid "https://pierre.lannoy.fr"
+msgstr "https://pierre.lannoy.fr"
+
+#. Author of the plugin
+msgid "Pierre Lannoy"
+msgstr "Pierre Lannoy"
+
+#. Description of the plugin
+msgid "Country and language IP-based detection."
+msgstr "Détection basée sur l’adresse IP des pays et des langues."
+
+#. Plugin URI of the plugin
+msgid "https://github.com/Pierre-Lannoy/wp-ip-locator"
+msgstr "https://github.com/Pierre-Lannoy/wp-ip-locator"
+
+#. Plugin Name of the plugin
+msgid "IP Locator"
+msgstr "IP Locator"
