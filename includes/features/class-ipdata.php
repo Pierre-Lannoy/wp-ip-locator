@@ -76,22 +76,33 @@ class IPData {
 	 */
 	private static function acquire( $url, $md5 ) {
 		global $wp_filesystem;
-		$result  = false;
-		$zipfile = '';
-		$md5file = '';
+		$result         = false;
+		$zipfile        = '';
+		$md5file        = '';
+		$download_error = false;
 		try {
 			$zipfile = download_url( $url );
-			Logger::debug( 'GZ file: ' . $zipfile );
+			if ( $zipfile instanceof \WP_Error ) {
+				throw new \Exception( (string) $zipfile->get_error_message(), (int) $zipfile->get_error_code() );
+			} else {
+				Logger::debug( 'GZ file: ' . $zipfile );
+			}
 		} catch ( \Throwable $e ) {
+			$download_error = true;
 			Logger::warning( sprintf( 'Unable to download IP data file: %s.', $e->getMessage() ), $e->getCode() );
 		}
 		try {
 			$md5file = download_url( $md5 );
-			Logger::debug( 'MD5 file: ' . $md5file );
+			if ( $md5file instanceof \WP_Error ) {
+				throw new \Exception( $md5file->get_error_message(), $md5file->get_error_code() );
+			} else {
+				Logger::debug( 'MD5 file: ' . $md5file );
+			}
 		} catch ( \Throwable $e ) {
+			$download_error = true;
 			Logger::warning( sprintf( 'Unable to download IP data signature: %s.', $e->getMessage() ), $e->getCode() );
 		}
-		if ( $wp_filesystem->exists( $zipfile ) && $wp_filesystem->exists( $md5file ) ) {
+		if ( ! $download_error && $wp_filesystem->exists( $zipfile ) && $wp_filesystem->exists( $md5file ) ) {
 			if ( $wp_filesystem->size( $zipfile ) !== $wp_filesystem->size( $md5file ) ) {
 				$unzipfile = get_temp_dir() . '/' . wp_unique_filename( get_temp_dir(), basename( $url ) . '.csv' );
 				if ( $wp_filesystem->exists( $unzipfile ) ) {
@@ -122,10 +133,10 @@ class IPData {
 		} else {
 			Logger::warning( 'Unable to acquire IP data files.', 404 );
 		}
-		if ( $wp_filesystem->exists( $zipfile ) ) {
+		if ( ! $download_error && $wp_filesystem->exists( $zipfile ) ) {
 			$wp_filesystem->delete( $zipfile );
 		}
-		if ( $wp_filesystem->exists( $md5file ) ) {
+		if ( ! $download_error && $wp_filesystem->exists( $md5file ) ) {
 			$wp_filesystem->delete( $md5file );
 		}
 		return $result;
