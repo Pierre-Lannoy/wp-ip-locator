@@ -357,20 +357,20 @@ class Schema {
 		global $wpdb;
 		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$ipv4;
-		$sql            .= " (`from` VARBINARY(4) NOT NULL DEFAULT INET6_ATON('0.0.0.0'),";
-		$sql            .= " `to` VARBINARY(4) NOT NULL DEFAULT INET6_ATON('0.0.0.0'),";
-		$sql            .= " `country` VARCHAR(2) DEFAULT NULL DEFAULT 'XX',";
-		$sql            .= " `flag` VARCHAR(1) DEFAULT NULL DEFAULT 'I',";
+		$sql            .= " (`from` VARBINARY(4) NOT NULL,";
+		$sql            .= " `to` VARBINARY(4) NOT NULL,";
+		$sql            .= " `country` VARCHAR(2) NOT NULL DEFAULT 'XX',";
+		$sql            .= " `flag` VARCHAR(1) NOT NULL DEFAULT 'I',";
 		$sql            .= " PRIMARY KEY (`from`,`to`)";
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
 		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$ipv6;
-		$sql            .= " (`from` VARBINARY(16) NOT NULL DEFAULT INET6_ATON('0000:0000:0000:0000:0000:0000:0000:0000'),";
-		$sql            .= " `to` VARBINARY(16) NOT NULL DEFAULT INET6_ATON('0000:0000:0000:0000:0000:0000:0000:0000'),";
-		$sql            .= " `country` VARCHAR(2) DEFAULT NULL DEFAULT 'XX',";
-		$sql            .= " `flag` VARCHAR(1) DEFAULT NULL DEFAULT 'I',";
+		$sql            .= " (`from` VARBINARY(16) NOT NULL,";
+		$sql            .= " `to` VARBINARY(16) NOT NULL,";
+		$sql            .= " `country` VARCHAR(2) NOT NULL DEFAULT 'XX',";
+		$sql            .= " `flag` VARCHAR(1) NOT NULL DEFAULT 'I',";
 		$sql            .= " PRIMARY KEY (`from`,`to`)";
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
