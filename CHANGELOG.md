@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Improves error handling when downloading IP data files.
 ### Fixed
-- With some versions of DB, tables can't be created.
+- With some old versions of DB servers, tables can't be created.
 - Some typos in the settings screen.
 
 ## [1.0.1] - 2020-04-02
