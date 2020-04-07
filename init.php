@@ -12,11 +12,9 @@ define( 'IPLOCATOR_PRODUCT_URL', 'https://github.com/Pierre-Lannoy/wp-ip-locator
 define( 'IPLOCATOR_PRODUCT_SHORTNAME', 'IP Locator' );
 define( 'IPLOCATOR_PRODUCT_ABBREVIATION', 'iplocator' );
 define( 'IPLOCATOR_SLUG', 'ip-locator' );
-define( 'IPLOCATOR_VERSION', '1.0.2-dev0' );
+define( 'IPLOCATOR_VERSION', '1.0.2' );
 define( 'IPLOCATOR_CODENAME', '"-"' );
 
-define( 'IPLOCATOR_INIT_TIMEOUT', 1 * HOUR_IN_SECONDS );
-define( 'IPLOCATOR_UPDATE_TIMEOUT', 1 * HOUR_IN_SECONDS );
 define( 'IPLOCATOR_UPDATE_CYCLE', 4 ); // Update cycle in days
 
 define( 'IPLOCATOR_CDN_AVAILABLE', true );

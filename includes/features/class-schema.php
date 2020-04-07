@@ -309,41 +309,15 @@ class Schema {
 		if ( $needed_v4 ) {
 			/* translators: %s can be "IPv4" or "IPv6" */
 			Infolog::add( sprintf( esc_html__( '%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…', 'ip-locator' ), 'IPv4' ) );
-			$semaphore = Cache::get( 'update/v4/initsemaphore' );
-			if ( ( 1 !== (int) $semaphore && 2 !== (int) $semaphore ) || false === $semaphore ) {
-				if ( -1 === (int) $semaphore || false === $semaphore ) {
-					Cache::set( 'update/v4/initsemaphore', 1, 'infinite' );
-					Logger::info( 'IPv4 data initialization is needed. This initialization will start in some minutes.' );
-				} else {
-					if ( time() - (int) $semaphore > IPLOCATOR_INIT_TIMEOUT ) {
-						Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
-						Logger::info( 'Semaphore for IPv4 data initialization has been reset.' );
-						Logger::warning( 'Incomplete IPv4 data initialization.' );
-					}
-				}
-			}
+			Logger::info( 'IPv4 data initialization is needed. This initialization will start in some minutes.' );
 		} else {
-			Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
 			Logger::info( 'No need to initialize IPv4 data.' );
 		}
 		if ( $needed_v6 ) {
 			/* translators: %s can be "IPv4" or "IPv6" */
 			Infolog::add( sprintf( esc_html__( '%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…', 'ip-locator' ), 'IPv6' ) );
-			$semaphore = Cache::get( 'update/v6/initsemaphore' );
-			if ( ( 1 !== (int) $semaphore && 2 !== (int) $semaphore ) || false === $semaphore ) {
-				if ( -1 === (int) $semaphore || false === $semaphore ) {
-					Cache::set( 'update/v6/initsemaphore', 1, 'infinite' );
-					Logger::info( 'IPv6 data initialization is needed. This initialization will start in some minutes.' );
-				} else {
-					if ( time() - (int) $semaphore > IPLOCATOR_INIT_TIMEOUT ) {
-						Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
-						Logger::info( 'Semaphore for IPv6 data initialization has been reset.' );
-						Logger::warning( 'Incomplete IPv6 data initialization.' );
-					}
-				}
-			}
+			Logger::info( 'IPv6 data initialization is needed. This initialization will start in some minutes.' );
 		} else {
-			Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
 			Logger::info( 'No need to initialize IPv6 data.' );
 		}
 	}

@@ -62,8 +62,7 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function install() {
-		Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
-		Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
+
 	}
 
 	/**
@@ -73,8 +72,6 @@ class Updater {
 	 * @since 1.0.0
 	 */
 	private function update( $from ) {
-		Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
-		Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
 		$schema = new Schema();
 		$schema->update();
 	}

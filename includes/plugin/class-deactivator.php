@@ -29,8 +29,7 @@ class Deactivator {
 	 * @since 1.0.0
 	 */
 	public static function deactivate() {
-		Cache::set( 'update/v4/initsemaphore', -1, 'infinite' );
-		Cache::set( 'update/v6/initsemaphore', -1, 'infinite' );
+
 	}
 
 }
