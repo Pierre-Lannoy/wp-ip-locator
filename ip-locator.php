@@ -10,7 +10,7 @@
  * Plugin Name:       IP Locator
  * Plugin URI:        https://github.com/Pierre-Lannoy/wp-ip-locator
  * Description:       Country and language IP-based detection.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Pierre Lannoy
