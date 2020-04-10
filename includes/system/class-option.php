@@ -125,8 +125,8 @@ class Option {
 			$default = self::$defaults[ $option ];
 		}
 		$val = get_option( IPLOCATOR_PRODUCT_ABBREVIATION . '_' . $option, $default );
-		if ( empty( $val ) && is_bool( $default ) ) {
-			return $default;
+		if ( is_bool( $default ) ) {
+			return (bool) $val;
 		}
 		return $val;
 	}
@@ -144,8 +144,8 @@ class Option {
 			$default = self::$defaults[ $option ];
 		}
 		$val = get_site_option( IPLOCATOR_PRODUCT_ABBREVIATION . '_' . $option, $default );
-		if ( empty( $val ) && is_bool( $default ) ) {
-			return $default;
+		if ( is_bool( $default ) ) {
+			return (bool) $val;
 		}
 		return $val;
 	}
@@ -197,9 +197,6 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function network_set( $option, $value ) {
-		if ( false === $value ) {
-			update_site_option( IPLOCATOR_PRODUCT_ABBREVIATION . '_' . $option, true );
-		}
 		return update_site_option( IPLOCATOR_PRODUCT_ABBREVIATION . '_' . $option, $value );
 	}
 
