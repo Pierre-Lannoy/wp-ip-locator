@@ -25,8 +25,6 @@
 		);
 		?>
 	" method="POST">
-	<?php do_settings_sections( 'iplocator_inbound_options_section' ); ?>
-	<?php do_settings_sections( 'iplocator_outbound_options_section' ); ?>
 	<?php do_settings_sections( 'iplocator_plugin_features_section' ); ?>
 	<?php do_settings_sections( 'iplocator_plugin_options_section' ); ?>
 	<?php wp_nonce_field( 'iplocator-plugin-options' ); ?>
