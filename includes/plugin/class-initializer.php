@@ -62,19 +62,28 @@ class Initializer {
 	public function action_schedule() {
 		add_action( 'ip-locator-update-v4', [ 'IPLocator\Plugin\Feature\IPData', 'update_v4' ], 10, 0 );
 		add_action( 'ip-locator-update-v6', [ 'IPLocator\Plugin\Feature\IPData', 'update_v6' ], 10, 0 );
-		if ( false === as_next_scheduled_action( 'ip-locator-update-v4' ) && (bool) Option::network_get( 'autoupdate' ) ) {
-			$recur = IPLOCATOR_UPDATE_CYCLE * DAY_IN_SECONDS + random_int( -12, 12 ) * HOUR_IN_SECONDS + random_int( 1, 59 ) * MINUTE_IN_SECONDS;
-			as_schedule_recurring_action( time() + 20, $recur, 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
-		}
-		if ( as_next_scheduled_action( 'ip-locator-update-v4' ) && ! (bool) Option::network_get( 'autoupdate' ) ) {
-			as_unschedule_all_actions( 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
-		}
-		if ( false === as_next_scheduled_action( 'ip-locator-update-v6' ) && (bool) Option::network_get( 'autoupdate' ) ) {
-			$recur = IPLOCATOR_UPDATE_CYCLE * DAY_IN_SECONDS + random_int( -12, 12 ) * HOUR_IN_SECONDS + random_int( 1, 59 ) * MINUTE_IN_SECONDS;
-			as_schedule_recurring_action( time() + 20, $recur, 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
-		}
-		if ( as_next_scheduled_action( 'ip-locator-update-v6' ) && ! (bool) Option::network_get( 'autoupdate' ) ) {
-			as_unschedule_all_actions( 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
+		if ( get_main_network_id() === get_current_blog_id() ) {
+			if ( false === as_next_scheduled_action( 'ip-locator-update-v4' ) && (bool) Option::network_get( 'autoupdate' ) ) {
+				$recur = IPLOCATOR_UPDATE_CYCLE * DAY_IN_SECONDS + random_int( -12, 12 ) * HOUR_IN_SECONDS + random_int( 1, 59 ) * MINUTE_IN_SECONDS;
+				as_schedule_recurring_action( time() + 20, $recur, 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
+			}
+			if ( as_next_scheduled_action( 'ip-locator-update-v4' ) && ! (bool) Option::network_get( 'autoupdate' ) ) {
+				as_unschedule_all_actions( 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
+			}
+			if ( false === as_next_scheduled_action( 'ip-locator-update-v6' ) && (bool) Option::network_get( 'autoupdate' ) ) {
+				$recur = IPLOCATOR_UPDATE_CYCLE * DAY_IN_SECONDS + random_int( -12, 12 ) * HOUR_IN_SECONDS + random_int( 1, 59 ) * MINUTE_IN_SECONDS;
+				as_schedule_recurring_action( time() + 20, $recur, 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
+			}
+			if ( as_next_scheduled_action( 'ip-locator-update-v6' ) && ! (bool) Option::network_get( 'autoupdate' ) ) {
+				as_unschedule_all_actions( 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
+			}
+		} else {
+			if ( as_next_scheduled_action( 'ip-locator-update-v4' ) ) {
+				as_unschedule_all_actions( 'ip-locator-update-v4', [], IPLOCATOR_SLUG );
+			}
+			if ( as_next_scheduled_action( 'ip-locator-update-v6' ) ) {
+				as_unschedule_all_actions( 'ip-locator-update-v6', [], IPLOCATOR_SLUG );
+			}
 		}
 	}
 
