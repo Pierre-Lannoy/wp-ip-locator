@@ -3,7 +3,7 @@ All notable changes to **IP Locator** is documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.0.5]
+## [1.0.5] - 2020-05-05
 ### Fixed
 - There's an error while activating the plugin when the server is Microsoft IIS with Windows 10.
 - With Microsoft Edge, some layouts may be ugly.
