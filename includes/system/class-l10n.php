@@ -13,7 +13,7 @@ namespace IPLocator\System;
 
 use WP_User;
 use IPLocator\System\I18n;
-use function Sodium\add;
+use IPLocator\System\Logger;
 
 /**
  * Define the localization functionality.
@@ -363,8 +363,18 @@ class L10n {
 		if ( I18n::is_extension_loaded() ) {
 			$subtags = \ResourceBundle::create( 'likelySubtags', 'ICUDATA', false );
 			$country = \Locale::canonicalize( 'und_' . $country );
-			$locale  = $subtags->get( $country ) ? $subtags->get( $country ) : $subtags->get( 'und' );
-			return \Locale::getPrimaryLanguage( $locale );
+			$locale  = $subtags->get( $country );
+			if ( $locale ) {
+				return \Locale::getPrimaryLanguage( $locale );
+			} else {
+				Logger::info( $subtags->getErrorMessage(), $subtags->getErrorCode() );
+				$locale = $subtags->get( 'und' );
+				if ( $locale ) {
+					return \Locale::getPrimaryLanguage( $locale );
+				} else {
+					Logger::warning( $subtags->getErrorMessage(), $subtags->getErrorCode() );
+				}
+			}
 		}
 		return '';
 	}
