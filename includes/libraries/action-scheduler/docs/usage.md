@@ -16,6 +16,7 @@ To schedule an action, call the [API function](/api/) for the desired schedule t
 The example code below shows everything needed to schedule a function to run at midnight, if it's not already scheduled:
 
 ```php
+<?php
 require_once( plugin_dir_path( __FILE__ ) . '/libraries/action-scheduler/action-scheduler.php' );
 
 /**
@@ -106,6 +107,7 @@ git subtree pull --prefix libraries/action-scheduler subtree-action-scheduler ma
 Regardless of how it is installed, to load Action Scheduler, you only need to include the `action-scheduler.php` file, e.g.
 
 ```php
+<?php
 <?php
 require_once( plugin_dir_path( __FILE__ ) . '/libraries/action-scheduler/action-scheduler.php' );
 ```

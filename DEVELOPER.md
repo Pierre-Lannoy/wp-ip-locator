@@ -26,6 +26,7 @@ This API is callable in procedural style or O-O style. It's up to you to choose 
 
 IP Locator API lets you set the IP you want to analyze by yourself. But, if you want IP Locator detect the IP of the current request, just set this IP as `null` in all API calls like that:
 ```php
+<?php
     // O-O Style
     // Echoes the detected IP.
     $country = new IPLocator\API\Country();
@@ -37,6 +38,7 @@ IP Locator API lets you set the IP you want to analyze by yourself. But, if you 
 ```
 As previously seen, you can "force" the IP to analyze:
 ```php
+<?php
     // O-O Style
     // Echoes the forced IP.
     $country = new IPLocator\API\Country( '192.18.19.20' );
@@ -50,6 +52,7 @@ As previously seen, you can "force" the IP to analyze:
 ### Country codes and names
 To get the [country code](/COUNTRYCODES.md) or name from the IP address it's, once again, very simple: 
 ```php
+<?php
     // O-O Style
     // Echoes the country code & name.
     $country = new IPLocator\API\Country();
@@ -67,6 +70,7 @@ Note `IPLocator\API\Country::name()` and `iplocator_get_country_name` can be cal
 
 Example:
 ```php
+<?php
     // O-O Style
     // Echoes the country french name.
     $country = new IPLocator\API\Country();
@@ -81,6 +85,7 @@ If no parameter is provided, the display language is set to the current viewer l
 ### Language codes and names
 To get the main country language code or name from the IP address just do it like that: 
 ```php
+<?php
     // O-O Style
     // Echoes the language code & name.
     $country = new IPLocator\API\Country();
@@ -98,6 +103,7 @@ Note `IPLocator\API\Lang::name()` and `iplocator_get_language_name` can be calle
 
 Example:
 ```php
+<?php
     // O-O Style
     // Echoes the language french name.
     $country = new IPLocator\API\Country();
@@ -112,6 +118,7 @@ If no parameter is provided, the display language is set to the current viewer l
 ### Emoji flags
 To get the country flag as emoji it's, again, very simple: 
 ```php
+<?php
     // O-O Style
     // Echoes the flag as emoji.
     $country = new IPLocator\API\Country();
@@ -125,6 +132,7 @@ To get the country flag as emoji it's, again, very simple:
 ### Vectorized flags
 To get the country as a full `img` HTML tag with a base 64 encoded inline SVG, you can use :
 ```php
+<?php
     // O-O Style
     // Echoes the flag as image tag.
     $country = new IPLocator\API\Country();
@@ -143,6 +151,7 @@ To control how the image is rendered, you can specify the following attributes o
 
 Example:
 ```php
+<?php
     // O-O Style
     // Echoes the flag as image tag, with specific attributes.
     $country = new IPLocator\API\Country();

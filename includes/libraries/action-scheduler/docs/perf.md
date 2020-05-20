@@ -25,6 +25,7 @@ If you know your host supports longer than this time limit for web requests, you
 For example, the following snippet will increase the time limit to 2 minutes (120 seconds):
 
 ```php
+<?php
 function eg_increase_time_limit( $time_limit ) {
 	return 120;
 }
@@ -46,6 +47,7 @@ This is because claiming a batch has some overhead, so the less often a batch ne
 For example, to increase the batch size to 100, we can use the following function:
 
 ```php
+<?php
 function eg_increase_action_scheduler_batch_size( $batch_size ) {
 	return 100;
 }
@@ -63,6 +65,7 @@ If this is the case, you can use the `'action_scheduler_queue_runner_concurrent_
 For example, to increase the allowed number of concurrent queues to 10, we can use the following code:
 
 ```php
+<?php
 function eg_increase_action_scheduler_concurrent_batches( $concurrent_batches ) {
 	return 10;
 }
@@ -84,6 +87,7 @@ That can be done by initiated additional secure requests to our server via loopb
 The code below demonstrates how to create 5 loopback requests each time a queue begins:
 
 ```php
+<?php
 /**
  * Trigger 5 additional loopback requests with unique URL params.
  */

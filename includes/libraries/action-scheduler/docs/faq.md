@@ -13,12 +13,14 @@ By default, Action Scheduler is initiated by WP-Cron (and the `'shutdown'` hook 
 For example, you can start a queue directly by calling:
 
 ```php
+<?php
 ActionScheduler::runner()->run();
 ```
 
 Or trigger the `'action_scheduler_run_queue'` hook and let Action Scheduler do it for you:
 
 ```php
+<?php
 do_action( 'action_scheduler_run_queue', $context_identifier );
 ```
 

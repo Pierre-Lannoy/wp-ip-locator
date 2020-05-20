@@ -33,6 +33,7 @@ Enqueue an action to run one time, as soon as possible.
 ### Usage
 
 ```php
+<?php
 as_enqueue_async_action( $hook, $args, $group )
 ````
 
@@ -56,6 +57,7 @@ Schedule an action to run one time at some defined point in the future.
 ### Usage
 
 ```php
+<?php
 as_schedule_single_action( $timestamp, $hook, $args, $group )
 ````
 
@@ -80,6 +82,7 @@ Schedule an action to run repeatedly with a specified interval in seconds.
 ### Usage
 
 ```php
+<?php
 as_schedule_recurring_action( $timestamp, $interval_in_seconds, $hook, $args, $group )
 ````
 
@@ -105,6 +108,7 @@ Schedule an action that recurs on a cron-like schedule.
 ### Usage
 
 ```php
+<?php
 as_schedule_cron_action( $timestamp, $schedule, $hook, $args, $group )
 ````
 
@@ -130,6 +134,7 @@ Cancel the next occurrence of a scheduled action.
 ### Usage
 
 ```php
+<?php
 as_unschedule_action( $hook, $args, $group )
 ````
 
@@ -152,6 +157,7 @@ Cancel all occurrences of a scheduled action.
 ### Usage
 
 ```php
+<?php
 as_unschedule_action( $hook, $args, $group )
 ````
 
@@ -175,6 +181,7 @@ Returns the next timestamp for a scheduled action.
 ### Usage
 
 ```php
+<?php
 as_next_scheduled_action( $hook, $args, $group )
 ````
 
@@ -198,6 +205,7 @@ Find scheduled actions.
 ### Usage
 
 ```php
+<?php
 as_get_scheduled_actions( $args, $return_format )
 ````
 
