@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased - will be 1.0.6]
 ### Changed
 - Detection of improper PHP intl module installation.
+- Full compatibility with PHP 7.4.
+- Automatic switching between memory and transient when a cache plugin is installed without a properly configured Redis / Memcached.
 ### Fixed
 - When used for the first time, settings checkboxes may remain checked after being unchecked.
 
