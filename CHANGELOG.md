@@ -3,7 +3,7 @@ All notable changes to **IP Locator** is documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 1.0.6]
+## [1.0.6] - 2020-06-29
 ### Changed
 - Detection of improper PHP intl module installation.
 - Full compatibility with PHP 7.4.
