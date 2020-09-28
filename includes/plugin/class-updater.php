@@ -9,7 +9,6 @@
 
 namespace IPLocator\Plugin;
 
-use Parsedown;
 use IPLocator\System\Nag;
 use IPLocator\System\Option;
 use IPLocator\System\Environment;
