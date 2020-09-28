@@ -54,6 +54,21 @@ $url        = esc_url(
 		);
 		?>
 		" class="nav-tab <?php echo 'about' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'About', 'ip-locator' ); ?></a>
+		<?php if ( class_exists( 'IPLocator\Plugin\Feature\Wpcli' ) ) { ?>
+            <a href="
+            <?php
+			echo esc_url(
+				add_query_arg(
+					array(
+						'page' => 'iplocator-settings',
+						'tab'  => 'wpcli',
+					),
+					admin_url( 'admin.php' )
+				)
+			);
+			?>
+            " class="nav-tab <?php echo 'wpcli' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;">WP-CLI</a>
+		<?php } ?>
         <a href="
 		<?php
 		echo esc_url(
@@ -74,6 +89,10 @@ $url        = esc_url(
 	<?php } ?>
 	<?php if ( 'about' === $active_tab ) { ?>
 		<?php include __DIR__ . '/ip-locator-admin-settings-about.php'; ?>
+	<?php } ?>
+	<?php if ( 'wpcli' === $active_tab ) { ?>
+		<?php wp_enqueue_style( IPLOCATOR_ASSETS_ID ); ?>
+		<?php echo do_shortcode( '[iplocator-wpcli]' ); ?>
 	<?php } ?>
 	<?php if ( 'data' === $active_tab ) { ?>
 		<?php include __DIR__ . '/ip-locator-admin-settings-data.php'; ?>
