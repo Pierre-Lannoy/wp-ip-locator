@@ -19,6 +19,7 @@ use IPLocator\Library\Libraries;
 use IPLocator\System\Nag;
 use IPLocator\Plugin\Feature\CSSModifier;
 use IPLocator\System\Option;
+use IPLocator\API\IPRoute;
 
 /**
  * The core plugin class.
@@ -90,6 +91,9 @@ class Core {
 		add_shortcode( 'iplocator-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'iplocator-libraries', [ $libraries, 'sc_get_list' ] );
 		CSSModifier::init();
+		// REST API
+		$routes = new IPRoute();
+		$this->loader->add_action( 'rest_api_init', $routes, 'register_routes' );
 	}
 
 	/**
