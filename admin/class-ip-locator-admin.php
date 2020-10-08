@@ -97,6 +97,20 @@ class IP_Locator_Admin {
 				'statistics'    => [ '\IPLocator\System\Statistics', 'sc_get_raw' ],
 			];
 		}
+		$perfops['tools'][] = [
+			'name'          => esc_html__( 'IPs', 'ip-locator' ),
+			'description'   => esc_html__( 'Test IPs to see location details.', 'ip-locator' ),
+			'icon_callback' => [ \IPLocator\Plugin\Core::class, 'get_base64_logo' ],
+			'slug'          => 'iplocator_tools',
+			'page_title'    => esc_html__( 'IP Test', 'ip-locator' ),
+			'menu_title'    => esc_html__( 'IPs', 'ip-locator' ),
+			'capability'    => 'manage_options',
+			'callback'      => [ $this, 'get_tools_page' ],
+			'position'      => 50,
+			'plugin'        => IPLOCATOR_SLUG,
+			'activated'     => true,
+			'remedy'        => '',
+		];
 		return $perfops;
 	}
 
@@ -183,6 +197,15 @@ class IP_Locator_Admin {
 			}
 		}
 		include IPLOCATOR_ADMIN_DIR . 'partials/ip-locator-admin-settings-main.php';
+	}
+
+	/**
+	 * Get the content of the tools page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_tools_page() {
+		include IPLOCATOR_ADMIN_DIR . 'partials/ip-locator-admin-tools.php';
 	}
 
 	/**

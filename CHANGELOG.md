@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 - Parsedown as integrated markdown parser.
+- The section "Current connexion" of the data tab, as it is now in tools.
 
 ## [1.0.6] - 2020-06-29
 

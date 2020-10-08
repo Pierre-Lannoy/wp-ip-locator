@@ -1,4 +1,94 @@
 jQuery(document).ready( function($) {
+	function testUA() {
+		$("#iplocator_test_ip_action").addClass('disabled');
+		$("#iplocator_test_ip_value").addClass('disabled');
+		$("#iplocator_test_ip_text").hide();
+		$("#iplocator_test_ip_describer").hide();
+		$("#iplocator_test_ip_wait").show();
+		root.innerHTML = '';
+		$.ajax(
+			{
+				type: 'GET',
+				url: describer.restUrl,
+				data: {ua: $("#iplocator_test_ip_value").val()},
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('X-WP-Nonce', describer.restNonce);
+				},
+				success: function (response) {
+					if (response) {
+						classId = response['class'].id;
+						className = response['class'].name;
+						if ('bot' === classId) {
+							elem = document.createElement('h3');
+							elem.innerHTML = response.bot.category;
+							root.appendChild(elem);
+							botImg = '<img style="padding-top: 1px;width:16px;float:left;padding-right:6px;" src="' + response.bot.icon + '" />';
+							if ('' !== response.bot.url) {
+								botName = '<a href="' + response.bot.url + '">' + response.bot.name + '</a>';
+							}
+							prodName = '';
+							if ('' !== response.bot.producer.name) {
+								if ('' !== response.bot.producer.url) {
+									prodName = ' (<a href="' + response.bot.producer.url + '">' + response.bot.producer.name + '</a>)';
+								} else {
+									prodName = ' (' + response.bot.producer.name + ')';
+								}
+							}
+							elem = document.createElement('p');
+							elem.innerHTML = botImg + botName + prodName;
+							root.appendChild(elem);
+						} else {
+							elem = document.createElement('h3');
+							if ('desktop' === classId) {
+								elem.innerHTML = className;
+							} else {
+								if ('other' !== response.device.id) {
+									elem.innerHTML = response.device.name;
+								} else {
+									elem.innerHTML = response.client.name;
+								}
+							}
+							root.appendChild(elem);
+							if ('library' !== response.client.id) {
+								brand = response.brand.name;
+								if ('' === brand) {
+									brand = describer.sGeneric;
+								}
+								elem = document.createElement('p');
+								elem.innerHTML = '<img style="padding-top: 1px;width:16px;float:left;padding-right:6px;" src="' + response.brand.icon + '" />' + brand + ' ' + response.brand.model;
+								root.appendChild(elem);
+							}
+							elem = document.createElement('p');
+							if ('browser' === response.client.id) {
+								elem.innerHTML = '<img style="padding-top: 1px;width:16px;float:left;padding-right:6px;" src="' + response.browser.icon + '" />' + response.browser.name + ' ' + response.browser.version;
+								root.appendChild(elem);
+							} else {
+								if ('UNK' !== response[response.client.id].name) {
+									elem.innerHTML = response[response.client.id].name + ' ' + response[response.client.id].version;
+									root.appendChild(elem);
+								}
+							}
+							if ('UNK' !== response.os.id) {
+								elem = document.createElement('p');
+								elem.innerHTML = '<img style="padding-top: 1px;width:16px;float:left;padding-right:6px;" src="' + response.os.icon + '" />' + response.os.name + ' ' + response.os.version + ' ' + response.os.platform;
+								root.appendChild(elem);
+							}
+						}
+					}
+				},
+				error: function (response) {
+					console.log(response);
+				},
+				complete: function (response) {
+					$("#iplocator_test_ip_action").removeClass('disabled');
+					$("#iplocator_test_ip_value").removeClass('disabled');
+					$("#iplocator_test_ip_wait").hide();
+					$("#iplocator_test_ip_describer").show();
+					$("#iplocator_test_ip_text").show();
+				}
+			}
+		);
+	}
 	$( ".iplocator-about-logo" ).css({opacity:1});
 	$( ".iplocator-select" ).each(
 		function() {
@@ -47,4 +137,7 @@ jQuery(document).ready( function($) {
 			$(location).attr("href", $( this ).data( "value" ));
 		}
 	);
+
+	const root = document.querySelector( '#iplocator_test_ip_describer' );
+	
 } );
