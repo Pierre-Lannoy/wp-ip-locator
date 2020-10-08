@@ -52,9 +52,4 @@ foreach ( Option::network_get( 'infolog' ) as $s ) {
 <?php echo $transcript; ?>
 </textarea>
 
-<h2><?php esc_html_e( 'Current connexion', 'ip-locator' ); ?></h2>
-<?php echo iplocator_get_flag_image( null, '','width:110px;float:left;margin-right:14px;' ); ?>
-<p><?php echo iplocator_get_ip() . ' / ' . iplocator_get_country_code() ; ?></p>
-<p><?php echo iplocator_get_country_name() . ' (' . iplocator_get_country_name( null, 'self' ) . ')' ; ?></p>
-<p><?php echo iplocator_get_language_name() . ' (' . iplocator_get_language_name( null, 'self' ) . ')' ; ?></p>
 
