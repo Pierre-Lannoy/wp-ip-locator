@@ -356,6 +356,38 @@ class IP_Locator_Admin {
 	public function plugin_features_section_callback() {
 		$form = new Form();
 		add_settings_field(
+			'iplocator_plugin_features_analytics',
+			esc_html__( 'Analytics', 'ip-locator' ),
+			[ $form, 'echo_field_checkbox' ],
+			'iplocator_plugin_features_section',
+			'iplocator_plugin_features_section',
+			[
+				'text'        => esc_html__( 'Activated', 'ip-locator' ),
+				'id'          => 'iplocator_plugin_features_analytics',
+				'checked'     => Option::network_get( 'analytics' ),
+				'description' => esc_html__( 'If checked, IP Locator will store statistics about detected countries and languages.', 'ip-locator' ),
+				'full_width'  => false,
+				'enabled'     => true,
+			]
+		);
+		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_analytics' );
+		add_settings_field(
+			'iplocator_plugin_features_history',
+			esc_html__( 'Historical data', 'ip-locator' ),
+			[ $form, 'echo_field_select' ],
+			'iplocator_plugin_features_section',
+			'iplocator_plugin_features_section',
+			[
+				'list'        => $this->get_retentions_array(),
+				'id'          => 'iplocator_plugin_features_history',
+				'value'       => Option::network_get( 'history' ),
+				'description' => esc_html__( 'Maximum age of data to keep for statistics.', 'ip-locator' ),
+				'full_width'  => false,
+				'enabled'     => true,
+			]
+		);
+		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_history' );
+		add_settings_field(
 			'iplocator_plugin_features_shortcode',
 			__( 'Shortcodes', 'ip-locator' ),
 			[ $form, 'echo_field_checkbox' ],
@@ -371,8 +403,6 @@ class IP_Locator_Admin {
 			]
 		);
 		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_shortcode' );
-
-
 		add_settings_field(
 			'iplocator_plugin_features_css',
 			__( 'CSS', 'ip-locator' ),
@@ -390,9 +420,25 @@ class IP_Locator_Admin {
 			]
 		);
 		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_css' );
+	}
 
-
-		
+	/**
+	 * Get the available history retentions.
+	 *
+	 * @return array An array containing the history modes.
+	 * @since  1.0.0
+	 */
+	protected function get_retentions_array() {
+		$result = [];
+		for ( $i = 1; $i < 7; $i++ ) {
+			// phpcs:ignore
+			$result[] = [ (int) ( 30 * $i ), esc_html( sprintf( _n( '%d month', '%d months', $i, 'ip-locator' ), $i ) ) ];
+		}
+		for ( $i = 1; $i < 7; $i++ ) {
+			// phpcs:ignore
+			$result[] = [ (int) ( 365 * $i ), esc_html( sprintf( _n( '%d year', '%d years', $i, 'ip-locator' ), $i ) ) ];
+		}
+		return $result;
 	}
 
 }

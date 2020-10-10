@@ -78,7 +78,9 @@ class Option {
 		self::$defaults['infolog']          = [];
 		self::$defaults['dbversion_v4']     = 0;
 		self::$defaults['dbversion_v6']     = 0;
-		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate' ];
+		self::$defaults['history']          = 30;
+		self::$defaults['analytics']        = true;
+		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate', 'history', 'analytics' ];
 	}
 
 	/**
@@ -238,6 +240,8 @@ class Option {
 		self::network_set( 'css', self::$defaults['css'] );
 		self::network_set( 'shortcode', self::$defaults['shortcode'] );
 		self::network_set( 'autoupdate', self::$defaults['autoupdate'] );
+		self::network_set( 'history', self::$defaults['history'] );
+		self::network_set( 'analytics', self::$defaults['analytics'] );
 	}
 
 	/**

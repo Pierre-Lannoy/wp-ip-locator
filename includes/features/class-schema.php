@@ -32,6 +32,14 @@ use IPLocator\System\Infolog;
 class Schema {
 
 	/**
+	 * Statistics table name.
+	 *
+	 * @since  2.0.0
+	 * @var    string    $statistics    The statistics table name.
+	 */
+	private static $statistics = IPLOCATOR_PRODUCT_ABBREVIATION . '_statistics';
+
+	/**
 	 * IPv4 table name.
 	 *
 	 * @since  1.0.0
@@ -346,6 +354,29 @@ class Schema {
 		$sql            .= " `country` VARCHAR(2) NOT NULL DEFAULT 'XX',";
 		$sql            .= " `flag` VARCHAR(1) NOT NULL DEFAULT 'I',";
 		$sql            .= " PRIMARY KEY (`from`,`to`)";
+		$sql            .= ") $charset_collate;";
+		// phpcs:ignore
+		$wpdb->query( $sql );
+
+
+		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics;
+		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
+		$sql            .= " `site` bigint(20) NOT NULL DEFAULT '0',";
+		$sql            .= " `country` varchar(2) DEFAULT NULL,";
+		$sql            .= " `id` varchar(40) NOT NULL DEFAULT '-',";
+		$sql            .= " `verb` enum('" . implode( "','", Http::$verbs ) . "') NOT NULL DEFAULT 'unknown',";
+		$sql            .= " `scheme` enum('" . implode( "','", Http::$schemes ) . "') NOT NULL DEFAULT 'unknown',";
+		$sql            .= " `authority` varchar(250) NOT NULL DEFAULT '-',";
+		$sql            .= " `endpoint` varchar(250) NOT NULL DEFAULT '-',";
+		$sql            .= " `code` smallint UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `latency_min` smallint UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `latency_avg` smallint UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `latency_max` smallint UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `kb_in` int(11) UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `kb_out` int(11) UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, context, id, verb, scheme, authority, endpoint, code)';
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
