@@ -19,6 +19,11 @@ use IPLocator\System\Logger;
 use IPLocator\System\Cache;
 use IPLocator\Plugin\Feature\IPData;
 use IPLocator\System\Infolog;
+use IPLocator\System\Timezone;
+use IPLocator\System\Blog;
+use IPLocator\API\Country;
+use IPLocator\System\Environment;
+use IPLocator\Plugin\Feature\ChannelTypes;
 
 /**
  * Define the schema functionality.
@@ -62,6 +67,111 @@ class Schema {
 	 */
 	public function __construct() {
 
+	}
+
+	/**
+	 * Initialize static properties and hooks.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function init() {
+		add_action( 'shutdown', [ 'IPLocator\Plugin\Feature\Schema', 'write' ], 90, 0 );
+	}
+
+	/**
+	 * Write all buffers to database.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function write() {
+		if ( Option::network_get( 'analytics' ) ) {
+			self::write_statistics();
+		}
+	}
+
+	/**
+	 * Write statistics.
+	 *
+	 * @since    1.0.0
+	 */
+	private static function write_statistics() {
+		$country             = new Country();
+		$record              = [];
+		$datetime            = new \DateTime( 'now', Timezone::network_get() );
+		$record['timestamp'] = $datetime->format( 'Y-m-d' );
+		$record['site']      = Blog::get_current_blog_id( 1 );
+		$record['channel']   = self::current_channel_tag();
+		$record['hit']       = 1;
+		$record['country']   = $country->code();
+		$record['language']  = $country->lang()->code();
+		$field_insert        = [];
+		$value_insert        = [];
+		$value_update        = [];
+		foreach ( $record as $k => $v ) {
+			$field_insert[] = '`' . $k . '`';
+			$value_insert[] = "'" . $v . "'";
+			if ( 'hit' === $k ) {
+				$value_update[] = '`hit`=hit + 1';
+			}
+		}
+		if ( count( $field_insert ) > 0 ) {
+			global $wpdb;
+			$sql  = 'INSERT INTO `' . $wpdb->base_prefix . self::$statistics . '` ';
+			$sql .= '(' . implode( ',', $field_insert ) . ') ';
+			$sql .= 'VALUES (' . implode( ',', $value_insert ) . ') ';
+			$sql .= 'ON DUPLICATE KEY UPDATE ' . implode( ',', $value_update ) . ';';
+			// phpcs:ignore
+			$wpdb->query( $sql );
+		}
+		self::purge();
+	}
+
+	/**
+	 * Get the current channel tag.
+	 *
+	 * @return  string The current channel tag.
+	 * @since 1.0.0
+	 */
+	private static function current_channel_tag() {
+		return strtolower( self::channel_tag( Environment::exec_mode() ) );
+	}
+
+	/**
+	 * Get the channel tag.
+	 *
+	 * @param   integer $id Optional. The channel id (execution mode).
+	 * @return  string The channel tag.
+	 * @since 1.0.0
+	 */
+	public static function channel_tag( $id = 0 ) {
+		if ( $id >= count( ChannelTypes::$channels ) ) {
+			$id = 0;
+		}
+		return ChannelTypes::$channels[ $id ];
+	}
+
+	/**
+	 * Purge old records.
+	 *
+	 * @since    1.0.0
+	 */
+	private static function purge() {
+		$days = (int) Option::network_get( 'history' );
+		if ( ! is_numeric( $days ) || 30 > $days ) {
+			$days = 30;
+			Option::network_set( 'history', $days );
+		}
+		$database = new Database();
+		$count    = $database->purge( self::$statistics, 'timestamp', 24 * $days );
+		if ( 0 === $count ) {
+			Logger::debug( 'No old records to delete.' );
+		} elseif ( 1 === $count ) {
+			Logger::debug( '1 old record deleted.' );
+			Cache::delete_global( 'data/oldestdate' );
+		} else {
+			Logger::debug( sprintf( '%1$s old records deleted.', $count ) );
+			Cache::delete_global( 'data/oldestdate' );
+		}
 	}
 
 	/**
@@ -243,12 +353,13 @@ class Schema {
 		global $wpdb;
 		try {
 			$this->create_tables();
+			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$statistics ) );
 			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv4 ) );
 			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv6 ) );
 			Logger::info( 'Schema installed.' );
 			$this->init_data();
 		} catch ( \Throwable $e ) {
-			Logger::alert( sprintf( 'Unable to create "%s" and/or "%s" table: %s', $wpdb->base_prefix . self::$ipv4, $wpdb->base_prefix . self::$ipv6, $e->getMessage() ), $e->getCode() );
+			Logger::alert( sprintf( 'Unable to create a table: %s', $e->getMessage() ), $e->getCode() );
 			Logger::alert( 'Schema not installed.', $e->getCode() );
 		}
 	}
@@ -259,6 +370,11 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public function finalize() {
+		global $wpdb;
+		$sql = 'DROP TABLE IF EXISTS ' . $wpdb->base_prefix . self::$statistics;
+		// phpcs:ignore
+		$wpdb->query( $sql );
+		Logger::debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$statistics ) );
 		global $wpdb;
 		$sql = 'DROP TABLE IF EXISTS ' . $wpdb->base_prefix . self::$ipv4;
 		// phpcs:ignore
@@ -285,7 +401,7 @@ class Schema {
 			Logger::info( 'Schema updated.' );
 			$this->init_data();
 		} catch ( \Throwable $e ) {
-			Logger::alert( sprintf( 'Unable to update "%s" and/or "%s" table: %s', $wpdb->base_prefix . self::$ipv4, $wpdb->base_prefix . self::$ipv6, $e->getMessage() ), $e->getCode() );
+			Logger::alert( sprintf( 'Unable to update a table: %s', $e->getMessage() ), $e->getCode() );
 		}
 	}
 
@@ -357,28 +473,19 @@ class Schema {
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
-
-
 		$charset_collate = 'DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics;
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` bigint(20) NOT NULL DEFAULT '0',";
-		$sql            .= " `country` varchar(2) DEFAULT NULL,";
-		$sql            .= " `id` varchar(40) NOT NULL DEFAULT '-',";
-		$sql            .= " `verb` enum('" . implode( "','", Http::$verbs ) . "') NOT NULL DEFAULT 'unknown',";
-		$sql            .= " `scheme` enum('" . implode( "','", Http::$schemes ) . "') NOT NULL DEFAULT 'unknown',";
-		$sql            .= " `authority` varchar(250) NOT NULL DEFAULT '-',";
-		$sql            .= " `endpoint` varchar(250) NOT NULL DEFAULT '-',";
-		$sql            .= " `code` smallint UNSIGNED NOT NULL DEFAULT '0',";
+		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `latency_min` smallint UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `latency_avg` smallint UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `latency_max` smallint UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `kb_in` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= " `kb_out` int(11) UNSIGNED NOT NULL DEFAULT '0',";
-		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, context, id, verb, scheme, authority, endpoint, code)';
+		$sql            .= " `country` varchar(2) DEFAULT '00',";
+		$sql            .= " `language` varchar(2) DEFAULT 'en',";
+		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, country)';
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
 	}
 }
+
+Schema::init();
