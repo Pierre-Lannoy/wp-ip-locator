@@ -10,6 +10,7 @@
  */
 
 use IPLocator\System\IP;
+use IPLocator\System\L10n;
 
 wp_localize_script(
 	IPLOCATOR_ASSETS_ID,
@@ -17,6 +18,7 @@ wp_localize_script(
 	[
 		'restUrl'   => esc_url_raw( rest_url() . 'ip-locator/v1/describe' ),
 		'restNonce' => wp_create_nonce( 'wp_rest' ),
+        'locale'    => L10n::get_display_locale(),
 	]
 );
 

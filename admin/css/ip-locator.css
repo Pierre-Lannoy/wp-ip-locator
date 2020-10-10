@@ -32,6 +32,41 @@
     transition: opacity 1.4s ease-in;
 }
 
+#iplocator_test_ip_flag{
+    width:120px;
+    float:left;
+    padding-right:16px;
+}
+
+#iplocator_test_ip_maintext {
+    display: inline-grid;
+}
+
+#iplocator_test_ip_country{
+    font-size: xx-large;
+    white-space: nowrap;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+#iplocator_test_ip_language{
+    font-size: x-large;
+    white-space: nowrap;
+    line-height: 1.8em;
+    width: 100%;
+    text-align: center;
+}
+
+#iplocator_test_ip_language em{
+    font-family: dashicons,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+#iplocator_test_ip_language:before {
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+
 .iplocator_test_ip_container {
     padding: 8px;
 }
@@ -42,7 +77,7 @@
 }
 
 #iplocator_test_ip_describer {
-    padding: 2px 20px 2px 20px;
+    padding: 20px 20px 16px 20px;
     background-color: #FFF;
     width: max-content;
     margin-top: 40px;
@@ -58,7 +93,6 @@
 #iplocator_test_ip_value {
     width: 78%;
     margin: 8px;
-
 }
 
 @media only screen and (max-width: 780px) {
