@@ -12,6 +12,7 @@
 namespace IPLocator\API;
 
 use IPLocator\System\Logger;
+use IPLocator\System\IP;
 
 /**
  * Define the item operations functionality.
@@ -30,17 +31,17 @@ class IPRoute extends \WP_REST_Controller {
 	 * @since  2.0.0
 	 */
 	public function register_routes() {
-		$this->register_route_livelog();
+		$this->register_route_describe();
 	}
 
 	/**
-	 * Register the routes for livelog.
+	 * Register the routes for description.
 	 *
 	 * @since  2.0.0
 	 */
-	public function register_route_livelog() {
+	public function register_route_describe() {
 		register_rest_route(
-			PODD_REST_NAMESPACE,
+			IPLOCATOR_REST_NAMESPACE,
 			'describe',
 			[
 				[
@@ -55,25 +56,31 @@ class IPRoute extends \WP_REST_Controller {
 	}
 
 	/**
-	 * Get the query params for livelog.
+	 * Get the query params for description.
 	 *
 	 * @return array    The schema fragment.
 	 * @since  2.0.0
 	 */
 	public function arg_schema_describe() {
 		return [
-			'ua' => [
-				'description'       => 'The User-Agent from which to extract informations.',
+			'ip'     => [
+				'description'       => 'The IP from which to extract informations.',
 				'type'              => 'string',
 				'required'          => true,
-				'default'           => '-',
+				'sanitize_callback' => [ $this, 'sanitize_ip' ],
+			],
+			'locale' => [
+				'description'       => 'The locale in which displaying informations.',
+				'type'              => 'string',
+				'required'          => false,
+				'default'           => 'en_US',
 				'sanitize_callback' => 'sanitize_text_field',
 			],
 		];
 	}
 
 	/**
-	 * Check if a given request has access to get livelogs
+	 * Check if a given request has access to get description
 	 *
 	 * @param \WP_REST_Request $request Full data about the request.
 	 * @return \WP_Error|bool
@@ -87,6 +94,23 @@ class IPRoute extends \WP_REST_Controller {
 	}
 
 	/**
+	 * Sanitization callback for ip.
+	 *
+	 * @param   mixed             $value      Value of the arg.
+	 * @param   \WP_REST_Request  $request    Current request object.
+	 * @param   string            $param      Name of the arg.
+	 * @return  string  The ip sanitized.
+	 * @since  2.0.0
+	 */
+	public function sanitize_ip( $value, $request = null, $param = null ) {
+		$result = '127.0.0.1';
+		if ( filter_var( $value, FILTER_VALIDATE_IP ) ) {
+			$result = (string) IP::expand( $value );
+		}
+		return $result;
+	}
+
+	/**
 	 * Get a collection of items
 	 *
 	 * @param \WP_REST_Request $request Full data about the request.
@@ -94,12 +118,21 @@ class IPRoute extends \WP_REST_Controller {
 	 */
 	public function get_describe( $request ) {
 		try {
-			//$device = Detector::new( $request['ua'] );
+			$result                      = [];
+			$result['ip']                = $request['ip'];
+			$result['country']['code']   = iplocator_get_country_code( $request['ip'] );
+			$result['country']['name']   = iplocator_get_country_name( $request['ip'], $request['locale'] );
+			$result['language']['code']  = iplocator_get_language_code( $request['ip'] );
+			$result['language']['name']  = iplocator_get_language_name( $request['ip'], $request['locale'] );
+			$result['flag']['square']    = iplocator_get_flag_svg( $request['ip'], true );
+			$result['flag']['rectangle'] = iplocator_get_flag_svg( $request['ip'] );
+			$result['flag']['emoji']     = iplocator_get_flag_emoji( $request['ip'] );
+
 		} catch ( \Throwable $t ) {
-			Logger::error( sprintf( 'Unable to analyze user-agent "%s".', $request['ua'] ), 500 );
+			Logger::error( sprintf( 'Unable to analyze IP "%s".', $request['ip'] ), 500 );
 			return new \WP_Error( 'rest_internal_server_error', 'Unable to analyze this User-Agent.', [ 'status' => 500 ] );
 		}
-		return new \WP_REST_Response( $device->get_as_full_array(), 200 );
+		return new \WP_REST_Response( $result, 200 );
 	}
 
 }

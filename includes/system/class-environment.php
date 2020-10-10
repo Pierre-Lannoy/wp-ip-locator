@@ -53,6 +53,7 @@ class Environment {
 		define( 'IPLOCATOR_PLUGIN_SIGNATURE', IPLOCATOR_PRODUCT_NAME . ' v' . IPLOCATOR_VERSION );
 		define( 'IPLOCATOR_PLUGIN_AGENT', IPLOCATOR_PRODUCT_NAME . ' (' . self::wordpress_version_id() . '; ' . self::plugin_version_id() . '; +' . IPLOCATOR_PRODUCT_URL . ')' );
 		define( 'IPLOCATOR_ASSETS_ID', IPLOCATOR_PRODUCT_ABBREVIATION . '-assets' );
+		define( 'IPLOCATOR_REST_NAMESPACE', IPLOCATOR_SLUG . '/v' . IPLOCATOR_API_VERSION );
 	}
 
 	/**

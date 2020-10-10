@@ -10,12 +10,15 @@ jQuery(document).ready( function($) {
 			{
 				type: 'GET',
 				url: describer.restUrl,
-				data: {ua: $("#iplocator_test_ip_value").val()},
+				data: {ip: $("#iplocator_test_ip_value").val()},
 				beforeSend: function (xhr) {
 					xhr.setRequestHeader('X-WP-Nonce', describer.restNonce);
 				},
 				success: function (response) {
 					if (response) {
+
+
+
 						classId = response['class'].id;
 						className = response['class'].name;
 						if ('bot' === classId) {
@@ -73,6 +76,8 @@ jQuery(document).ready( function($) {
 								elem.innerHTML = '<img style="padding-top: 1px;width:16px;float:left;padding-right:6px;" src="' + response.os.icon + '" />' + response.os.name + ' ' + response.os.version + ' ' + response.os.platform;
 								root.appendChild(elem);
 							}
+
+
 						}
 					}
 				},

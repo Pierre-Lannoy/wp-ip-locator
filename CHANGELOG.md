@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - New Site Health "info" section about shared memory.
+- [API] New `/wp-json/ip-locator/v1/describe` endpoint to analyze an IP. Available to all authenticated users.
 - Compatibility with WordPress 5.5.
 
 ### Changed
