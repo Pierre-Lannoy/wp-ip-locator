@@ -532,11 +532,11 @@ class Wpcli {
 add_shortcode( 'iplocator-wpcli', [ 'IPLocator\Plugin\Feature\Wpcli', 'sc_get_helpfile' ] );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
-	\WP_CLI::add_command( 'device status', [ Wpcli::class, 'status' ] );
+	/*\WP_CLI::add_command( 'device status', [ Wpcli::class, 'status' ] );
 	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
 	\WP_CLI::add_command( 'device exitcode', [ Wpcli::class, 'exitcode' ] );
 	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
 	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );
-	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );
+	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );*/
 
 }

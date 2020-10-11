@@ -24,6 +24,7 @@ use IPLocator\System\Blog;
 use IPLocator\API\Country;
 use IPLocator\System\Environment;
 use IPLocator\Plugin\Feature\ChannelTypes;
+use IPLocator\System\UserAgent;
 
 /**
  * Define the schema functionality.
@@ -95,12 +96,18 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	private static function write_statistics() {
+		$ua     = UserAgent::get();
+		$client = $ua->client_type;
+		if ( '' === $client || 'cli' === self::current_channel_tag() || $ua->class_is_bot ) {
+			$client = 'other';
+		}
 		$country             = new Country();
 		$record              = [];
 		$datetime            = new \DateTime( 'now', Timezone::network_get() );
 		$record['timestamp'] = $datetime->format( 'Y-m-d' );
 		$record['site']      = Blog::get_current_blog_id( 1 );
 		$record['channel']   = self::current_channel_tag();
+		$record['client']    = $client;
 		$record['hit']       = 1;
 		$record['country']   = $country->code();
 		$record['language']  = $country->lang()->code();
@@ -478,10 +485,11 @@ class Schema {
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` bigint(20) NOT NULL DEFAULT '0',";
 		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
+		$sql            .= " `client` enum('browser','feed-reader','library','media-player','mobile-app','pim','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
 		$sql            .= " `country` varchar(2) DEFAULT '00',";
 		$sql            .= " `language` varchar(2) DEFAULT 'en',";
-		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, country)';
+		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, channel, client, country)';
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
