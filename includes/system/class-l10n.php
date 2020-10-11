@@ -360,7 +360,7 @@ class L10n {
 	 * @since  1.0.0
 	 */
 	public static function get_main_lang_code( $country ) {
-		if ( I18n::is_extension_loaded() ) {
+		if ( I18n::is_extension_loaded() && '[' !== substr( self::$countries[ $country ], 0, 1 ) ) {
 			$subtags = \ResourceBundle::create( 'likelySubtags', 'ICUDATA', false );
 			$country = \Locale::canonicalize( 'und_' . $country );
 			$locale  = $subtags->get( $country );
