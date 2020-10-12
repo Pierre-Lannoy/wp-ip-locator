@@ -114,6 +114,7 @@ class Core {
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'add_row_meta', 10, 2 );
 		$this->loader->add_action( 'admin_notices', $nag, 'display' );
 		$this->loader->add_action( 'wp_ajax_hide_iplocator_nag', $nag, 'hide_callback' );
+		$this->loader->add_action( 'wp_ajax_iplocator_get_stats', 'IPLocator\Plugin\Feature\AnalyticsFactory', 'get_stats_callback' );
 	}
 
 	/**
