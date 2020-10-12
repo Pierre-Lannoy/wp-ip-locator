@@ -494,6 +494,185 @@ class Schema {
 		// phpcs:ignore
 		$wpdb->query( $sql );
 	}
+
+	/**
+	 * Get "where" clause of a query.
+	 *
+	 * @param array $filters Optional. An array of filters.
+	 * @return string The "where" clause.
+	 * @since 1.0.0
+	 */
+	private static function get_where_clause( $filters = [] ) {
+		$result = '';
+		if ( 0 < count( $filters ) ) {
+			$w = [];
+			foreach ( $filters as $key => $filter ) {
+				if ( is_array( $filter ) ) {
+					$w[] = '`' . $key . '` IN (' . implode( ',', $filter ) . ')';
+				} else {
+					$w[] = '`' . $key . '`="' . $filter . '"';
+				}
+			}
+			$result = 'WHERE (' . implode( ' AND ', $w ) . ')';
+		}
+		return $result;
+	}
+
+	/**
+	 * Get the oldest date.
+	 *
+	 * @return  string   The oldest timestamp in the statistics table.
+	 * @since    1.0.0
+	 */
+	public static function get_oldest_date() {
+		$result = Cache::get_global( 'data/oldestdate' );
+		if ( $result ) {
+			return $result;
+		}
+		global $wpdb;
+		$sql = 'SELECT * FROM ' . $wpdb->base_prefix . self::$statistics . ' ORDER BY `timestamp` ASC LIMIT 1';
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) && 0 < count( $result ) && array_key_exists( 'timestamp', $result[0] ) ) {
+			Cache::set_global( 'data/oldestdate', $result[0]['timestamp'], 'infinite' );
+			return $result[0]['timestamp'];
+		}
+		return '';
+	}
+
+	/**
+	 * Get the standard KPIs.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   string  $group       Optional. The group of the query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @return  array   The grouped KPIs.
+	 * @since    1.0.0
+	 */
+	public static function get_grouped_kpi( $filter, $group = '', $cache = true ) {
+		// phpcs:ignore
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group );
+		if ( $cache ) {
+			$result = Cache::get_global( $id );
+			if ( $result ) {
+				return $result;
+			}
+		}
+		if ( '' !== $group ) {
+			$group = ' GROUP BY ' . $group;
+		}
+		global $wpdb;
+		$sql = 'SELECT sum(hit) as sum_hit, class FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $group;
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) ) {
+			if ( $cache ) {
+				Cache::set_global( $id, $result, 'infinite' );
+			}
+			return $result;
+		}
+		return [];
+	}
+
+	/**
+	 * Get the standard KPIs.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   array   $distinct    Optional. The distinct fields to query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @return  array   The distinct KPIs.
+	 * @since    1.0.0
+	 */
+	public static function get_distinct_kpi( $filter, $distinct = [], $cache = true ) {
+		// phpcs:ignore
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . serialize( $distinct ) );
+		if ( $cache ) {
+			$result = Cache::get_global( $id );
+			if ( $result ) {
+				return $result;
+			}
+		}
+		if ( 0 < count( $distinct ) ) {
+			$select = ' DISTINCT ' . implode( ', ', $distinct );
+		} else {
+			$select = '*';
+		}
+		global $wpdb;
+		$sql = 'SELECT ' . $select . ' FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')';
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) ) {
+			if ( $cache ) {
+				Cache::set_global( $id, $result, 'infinite' );
+			}
+			return $result;
+		}
+		return [];
+	}
+
+	/**
+	 * Get a time series.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   boolean $cache       Has the query to be cached.
+	 * @param   string  $extra_field Optional. The extra field to filter.
+	 * @param   array   $extras      Optional. The extra values to match.
+	 * @param   boolean $not         Optional. Exclude extra filter.
+	 * @param   integer $limit       Optional. The number of results to return.
+	 * @return  array   The time series.
+	 * @since    1.0.0
+	 */
+	public static function get_time_series( $filter, $cache = true, $extra_field = '', $extras = [], $not = false, $limit = 0 ) {
+		$data   = self::get_grouped_list( $filter, 'timestamp', $cache, $extra_field, $extras, $not, 'ORDER BY timestamp ASC', $limit );
+		$result = [];
+		foreach ( $data as $datum ) {
+			$result[ $datum['timestamp'] ] = $datum;
+		}
+		return $result;
+	}
+
+	/**
+	 * Get the a grouped list.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   string  $group       Optional. The group of the query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @param   string  $extra_field Optional. The extra field to filter.
+	 * @param   array   $extras      Optional. The extra values to match.
+	 * @param   boolean $not         Optional. Exclude extra filter.
+	 * @param   string  $order       Optional. The sort order of results.
+	 * @param   integer $limit       Optional. The number of results to return.
+	 * @return  array   The grouped list.
+	 * @since    1.0.0
+	 */
+	public static function get_grouped_list( $filter, $group = '', $cache = true, $extra_field = '', $extras = [], $not = false, $order = '', $limit = 0 ) {
+		// phpcs:ignore
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group . $extra_field . serialize( $extras ) . ( $not ? 'no' : 'yes') . $order . (string) $limit);
+		if ( $cache ) {
+			$result = Cache::get_global( $id );
+			if ( $result ) {
+				return $result;
+			}
+		}
+		if ( '' !== $group ) {
+			$group = ' GROUP BY ' . $group;
+		}
+		$where_extra = '';
+		if ( 0 < count( $extras ) && '' !== $extra_field ) {
+			$where_extra = ' AND ' . $extra_field . ( $not ? ' NOT' : '' ) . " IN ( '" . implode( "', '", $extras ) . "' )";
+		}
+		global $wpdb;
+		$sql = 'SELECT `timestamp`, sum(hit) as sum_hit, site, channel, class, device, client, brand_id, brand, model, client_id, name, client_version, engine, os_id, os, os_version, url FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) ) {
+			if ( $cache ) {
+				Cache::set_global( $id, $result, 'infinite' );
+			}
+			return $result;
+		}
+		return [];
+	}
 }
 
 Schema::init();
