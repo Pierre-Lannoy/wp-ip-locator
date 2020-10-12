@@ -80,7 +80,7 @@ class Libraries {
 			'license' => 'mit',
 			'langs'   => 'en',
 		];
-		self::$psr4_libraries['markdown'] = [
+		self::$psr4_libraries['markdown']    = [
 			'name'    => 'Markdown Parser',
 			'prefix'  => 'cebe\markdownparser',
 			'base'    => IPLOCATOR_VENDOR_DIR . 'markdown/',
@@ -91,7 +91,7 @@ class Libraries {
 			'license' => 'mit',
 			'langs'   => 'en',
 		];
-		self::$mono_libraries             = [];
+		self::$mono_libraries                = [];
 	}
 
 	/**
@@ -183,6 +183,36 @@ class Libraries {
 		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Automattic' );
 		$item['url']     = 'https://actionscheduler.org';
 		$item['license'] = $this->license_name( 'gpl3' );
+		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
+		$list[]          = $item;
+		$item            = [];
+		$item['name']    = 'Date Range Picker';
+		$item['version'] = '3.0.5';
+		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Dan Grossman' );
+		$item['url']     = 'https://github.com/dangrossman/daterangepicker';
+		$item['license'] = $this->license_name( 'mit' );
+		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
+		$list[]          = $item;
+		$item            = [];
+		$item['name']    = 'Moment';
+		$item['version'] = '2.24.0';
+		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Tim Wood' );
+		$item['url']     = 'https://github.com/moment/moment';
+		$item['license'] = $this->license_name( 'mit' );
+		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
+		$list[]          = $item;
+		$item['name']    = 'SVG-Loaders';
+		$item['version'] = '1.0.2';
+		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Sam Herbert' );
+		$item['url']     = 'https://github.com/SamHerbert/SVG-Loaders';
+		$item['license'] = $this->license_name( 'mit' );
+		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
+		$list[]          = $item;
+		$item['name']    = 'Chartist-JS';
+		$item['version'] = '0.11.4';
+		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Gion Kunz' );
+		$item['url']     = 'https://github.com/gionkunz/chartist-js';
+		$item['license'] = $this->license_name( 'mit' );
 		$item['langs']   = L10n::get_language_markup( [ 'en' ] );
 		$list[]          = $item;
 		usort( $list, function ( $a, $b ) { return strcmp( strtolower( $a['name'] ), strtolower( $b['name'] ) );} );
