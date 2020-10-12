@@ -139,6 +139,25 @@
     padding-left: 36px;
 }
 
+@media (min-width: 783px) {
+    .widefat.fixed.scripts .column-hit{
+        width: 10%;
+    }
+
+    .widefat.fixed.scripts .column-memory{
+        width: 15%;
+    }
+
+    .widefat.fixed.scripts .column-timestamp,
+    .widefat.fixed.scripts .column-used{
+        width: 20%;
+    }
+
+    .widefat.fixed.scripts .column-script{
+        width: 50%;
+    }
+}
+
 .iplocator-row {
     margin-bottom: 10px;
     width: 100%;
@@ -156,7 +175,45 @@
     box-shadow: var(--main-box-shadow);
 }
 
-.iplocator-box-40-60-line {
+.iplocator-box-50-50-line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 8px;
+    margin-bottom: -8px;
+}
+
+.iplocator-50-module-left {
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: var(--main-bg-color);
+    border-radius: 2px;
+    box-shadow: var(--main-box-shadow);
+    margin-left: -8px;
+    margin-top: -8px;
+    margin-right: 10px;
+    padding: 8px;
+    height:290px;
+    width: 47.5%;
+}
+
+.iplocator-50-module-right {
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: var(--main-bg-color);
+    border-radius: 2px;
+    box-shadow: var(--main-box-shadow);
+    margin-left: 0px;
+    margin-top: -8px;
+    margin-right: -8px;
+    padding: 8px;
+    height:290px;
+    width: 47.5%;
+}
+
+.iplocator-box-60-40-line {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -176,7 +233,6 @@
     margin-top: -8px;
     margin-right: 10px;
     padding: 8px;
-    height:290px;
     width: 38%;
 }
 
@@ -189,6 +245,7 @@
     margin-right: -8px;
     margin-top: -8px;
     padding: 8px;
+    height:290px;
     width: 58%;
 }
 
@@ -198,7 +255,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
-    padding: 8px;
+    padding: 8px 8px 0 8px;
 }
 
 .iplocator-33-module {
@@ -220,6 +277,54 @@
     flex-grow: 1;
     margin-left: 0px;
     margin-right: 0px;
+}
+
+.iplocator-33-right-module {
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: -8px;
+}
+
+.iplocator-box-25-25-25-25-line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 8px;
+}
+
+.iplocator-25-module {
+    background-color: var(--main-bg-color);
+    border-radius: 2px;
+    box-shadow: var(--main-box-shadow);
+    margin-top: -8px;
+    padding: 8px;
+    width: 22.5%;
+}
+
+.iplocator-25-left-module {
+    flex-grow: 1;
+    margin-left: -8px;
+    margin-right: 10px;
+}
+
+.iplocator-25-center-left-module {
+    flex-grow: 1;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.iplocator-25-center-right-module {
+    flex-grow: 1;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.iplocator-25-right-module {
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: -8px;
 }
 
 .iplocator-multichart-handler {
@@ -244,12 +349,6 @@
     visibility:visible;
     opacity:1;
     transition:visibility 0.6s linear,opacity 0.6s linear;
-}
-
-.iplocator-33-right-module {
-    flex-grow: 1;
-    margin-left: 10px;
-    margin-right: -8px;
 }
 
 .iplocator-module-title-bar {
@@ -295,7 +394,6 @@
 
 .iplocator-chart-button.active {
     cursor: default;
-
 }
 
 .iplocator-chart-button.active img{
@@ -334,7 +432,7 @@
     font-size: var(--subtitle-font-size);
     font-weight: var(--subtitle-font-weight);
     color: var(--aux-font-color);
-    vertical-align: text-bottom;
+    vertical-align: middle;
 }
 
 .iplocator-site {
@@ -490,6 +588,15 @@
     color: var(--aux-font-color);
 }
 
+.iplocator-list-text {
+    vertical-align: baseline;
+}
+
+.iplocator-list-text a {
+    text-decoration: none;
+    color: var(--main-font-color);
+}
+
 .iplocator-bar-graph {
     display: inline-block;
     width: 87%;
@@ -515,6 +622,12 @@
 
 .ct-labels foreignObject:first-child {
     display: none;
+}
+
+#iplocator-chart-memory .ct-labels foreignObject:first-child,
+#iplocator-chart-buf .ct-labels foreignObject:first-child,
+#iplocator-chart-key .ct-labels foreignObject:first-child{
+    display: block !important;
 }
 
 .ct-labels .ct-horizontal {
@@ -577,10 +690,32 @@
     margin-left: 10%;
 }
 
-.iplocator-pie-graph-handler {
+.iplocator-pie-graph-handler-120 {
     width: 120px;
     height: 120px;
     float:right;
+}
+
+.iplocator-pie-graph-handler-100 {
+    width: 100px;
+    height: 100px;
+    float:right;
+}
+
+.iplocator-pie-graph-nodata-handler-120 {
+    width: 100%;
+    height: 120px;
+    text-align:center;
+    color: #73879C;
+    font-style: italic;
+}
+
+.iplocator-pie-graph-nodata-handler-100 {
+    width: 100%;
+    height: 100px;
+    text-align:center;
+    color: #73879C;
+    font-style: italic;
 }
 
 .iplocator-pie-legend-item {
@@ -698,10 +833,15 @@ button.btn {
 }
 
 @media only screen and (max-width: 1100px) {
-    .iplocator-40-module {
+    .iplocator-50-module-left {
         margin-right: -8px;
         margin-bottom: 10px;
         width: 100%;
+        height: auto;
+    }
+    .iplocator-50-module-right {
+        margin-left: -8px;
+        margin-top: 0px;
         height: auto;
     }
     .iplocator-33-module {
@@ -710,18 +850,72 @@ button.btn {
         margin-top: -8px;
         width: 100%;
     }
-    .iplocator-33-center-module,
     .iplocator-33-right-module {
         margin-left: -8px;
+        margin-bottom: 0;
     }
-    .iplocator-60-module {
+    .iplocator-33-center-module {
         margin-left: -8px;
-        margin-top: 0px;
-        width: 100%;
-        height: auto;
     }
     .last-row {
         margin-top: -26px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .iplocator-25-left-module {
+        margin-left: -8px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        width: 47.5%;
+    }
+    .iplocator-25-center-left-module {
+        margin-left: 0px;
+        margin-right: -8px;
+        margin-bottom: 10px;
+        width: 47.5%;
+    }
+    .iplocator-25-center-right-module {
+        margin-left: -8px;
+        margin-right: 10px;
+        margin-top: 0px;
+        width: 47.5%;
+    }
+    .iplocator-25-right-module {
+        margin-left: 0px;
+        margin-right: -8px;
+        margin-top: 0px;
+        width: 47.5%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .iplocator-25-left-module {
+        margin-left: -8px;
+        margin-right: -8px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .iplocator-25-center-left-module {
+        margin-left: -8px;
+        margin-right: -8px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .iplocator-25-center-right-module {
+        margin-left: -8px;
+        margin-right: -8px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .iplocator-25-right-module {
+        margin-left: -8px;
+        margin-right: -8px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 100%;
     }
 }
 
@@ -852,36 +1046,4 @@ button.btn {
 .iplocator-option.selection {
     background-color: var(--header-action-font-color);
     color: var(--main-bg-color);
-}
-
-.iplocator-http {
-    border-radius: 4px;
-    font-size: 10px;
-    padding: 2px 5px 3px 6px;
-    font-weight: 600;
-    color: #FFFFFF;
-}
-
-.iplocator-http-0xx {
-    background-color: #000000;
-}
-
-.iplocator-http-1xx {
-    background-color: #00008B;
-}
-
-.iplocator-http-2xx {
-    background-color: #0000DD;
-}
-
-.iplocator-http-3xx {
-    background-color: #AA22AA;
-}
-
-.iplocator-http-4xx {
-    background-color: #FF7A00;
-}
-
-.iplocator-http-5xx {
-    background-color: #FF3300;
 }
