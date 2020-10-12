@@ -58,7 +58,10 @@ class IP_Locator_Admin {
 	 */
 	public function enqueue_styles() {
 		$this->assets->register_style( IPLOCATOR_ASSETS_ID, IPLOCATOR_ADMIN_URL, 'css/ip-locator.min.css' );
-
+		$this->assets->register_style( 'iplocator-daterangepicker', IPLOCATOR_ADMIN_URL, 'css/daterangepicker.min.css' );
+		$this->assets->register_style( 'iplocator-tooltip', IPLOCATOR_ADMIN_URL, 'css/tooltip.min.css' );
+		$this->assets->register_style( 'iplocator-chartist', IPLOCATOR_ADMIN_URL, 'css/chartist.min.css' );
+		$this->assets->register_style( 'iplocator-chartist-tooltip', IPLOCATOR_ADMIN_URL, 'css/chartist-plugin-tooltip.min.css' );
 	}
 
 	/**
@@ -68,6 +71,10 @@ class IP_Locator_Admin {
 	 */
 	public function enqueue_scripts() {
 		$this->assets->register_script( IPLOCATOR_ASSETS_ID, IPLOCATOR_ADMIN_URL, 'js/ip-locator.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'iplocator-moment-with-locale', IPLOCATOR_ADMIN_URL, 'js/moment-with-locales.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'iplocator-daterangepicker', IPLOCATOR_ADMIN_URL, 'js/daterangepicker.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'iplocator-chartist', IPLOCATOR_ADMIN_URL, 'js/chartist.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'iplocator-chartist-tooltip', IPLOCATOR_ADMIN_URL, 'js/chartist-plugin-tooltip.min.js', [ 'iplocator-chartist' ] );
 	}
 
 	/**

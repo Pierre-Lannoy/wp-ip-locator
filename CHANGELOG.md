@@ -20,8 +20,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The integrated markdown parser is now [Markdown](https://github.com/cebe/markdown) from Carsten Brandt.
 
 ### Fixed
+- The remote IP can be wrongly detected when behind some types of reverse-proxies.
 - When trying to detect local network IPs, an (innocuous) error `Cannot load resource element und_xx: U_MISSING_RESOURCE_ERROR` may be shown in logs.
 - With Firefox, some links are unclickable in the Control Center (thanks to [Emil1](https://wordpress.org/support/users/milouze/)).
+- Some internal logs are wrongly classified as 'INFO' when it should be 'DEBUG'.
 
 ### Removed
 - Parsedown as integrated markdown parser.

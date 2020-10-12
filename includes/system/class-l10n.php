@@ -367,16 +367,16 @@ class L10n {
 			if ( $locale ) {
 				return \Locale::getPrimaryLanguage( $locale );
 			} else {
-				Logger::info( $subtags->getErrorMessage(), $subtags->getErrorCode() );
+				Logger::debug( $subtags->getErrorMessage(), $subtags->getErrorCode() );
 				$locale = $subtags->get( 'und' );
 				if ( $locale ) {
 					return \Locale::getPrimaryLanguage( $locale );
 				} else {
-					Logger::warning( $subtags->getErrorMessage(), $subtags->getErrorCode() );
+					Logger::info( $subtags->getErrorMessage(), $subtags->getErrorCode() );
 				}
 			}
 		}
-		return '';
+		return 'en';
 	}
 
 	/**
