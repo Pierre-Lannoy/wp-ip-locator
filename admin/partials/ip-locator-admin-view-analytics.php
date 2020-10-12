@@ -15,25 +15,40 @@ wp_enqueue_script( 'iplocator-moment-with-locale' );
 wp_enqueue_script( 'iplocator-daterangepicker' );
 wp_enqueue_script( 'iplocator-chartist' );
 wp_enqueue_script( 'iplocator-chartist-tooltip' );
+wp_enqueue_script( 'iplocator-jvectormap' );
+wp_enqueue_script( 'iplocator-jvectormap-world' );
 wp_enqueue_script( IPLOCATOR_ASSETS_ID );
 wp_enqueue_style( IPLOCATOR_ASSETS_ID );
 wp_enqueue_style( 'iplocator-daterangepicker' );
 wp_enqueue_style( 'iplocator-tooltip' );
 wp_enqueue_style( 'iplocator-chartist' );
 wp_enqueue_style( 'iplocator-chartist-tooltip' );
+wp_enqueue_style( 'iplocator-jvectormap' );
 
 
 ?>
 
 <div class="wrap">
     <div class="podd-dashboard">
-        <div class="podd-row">
+        <div class="iplocator-row">
 			<?php echo $analytics->get_title_bar() ?>
         </div>
-        <div class="podd-row">
+        <div class="iplocator-row">
 			<?php echo $analytics->get_kpi_bar() ?>
         </div>
-		<?php if ( 'summary' === $analytics->type ) { ?>
+        <div class="iplocator-row">
+            <div class="iplocator-box iplocator-box-60-40-line">
+	            <?php echo $analytics->get_map_box(); ?>
+			    <?php echo $analytics->get_language_box(); ?>
+            </div>
+        </div>
+
+
+
+
+
+
+		<?php /*if ( 'summary' === $analytics->type ) { ?>
             <div class="podd-row">
                 <div class="podd-box podd-box-50-50-line">
 					<?php echo $analytics->get_top_browser_box() ?>
@@ -93,6 +108,6 @@ wp_enqueue_style( 'iplocator-chartist-tooltip' );
             <div class="podd-row last-row">
 				<?php echo $analytics->get_sites_list() ?>
             </div>
-		<?php } ?>
+		<?php } */?>
     </div>
 </div>

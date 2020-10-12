@@ -62,6 +62,7 @@ class IP_Locator_Admin {
 		$this->assets->register_style( 'iplocator-tooltip', IPLOCATOR_ADMIN_URL, 'css/tooltip.min.css' );
 		$this->assets->register_style( 'iplocator-chartist', IPLOCATOR_ADMIN_URL, 'css/chartist.min.css' );
 		$this->assets->register_style( 'iplocator-chartist-tooltip', IPLOCATOR_ADMIN_URL, 'css/chartist-plugin-tooltip.min.css' );
+		$this->assets->register_style( 'iplocator-jvectormap', IPLOCATOR_ADMIN_URL, 'css/jquery-jvectormap-2.0.3.min.css' );
 	}
 
 	/**
@@ -75,6 +76,8 @@ class IP_Locator_Admin {
 		$this->assets->register_script( 'iplocator-daterangepicker', IPLOCATOR_ADMIN_URL, 'js/daterangepicker.min.js', [ 'jquery' ] );
 		$this->assets->register_script( 'iplocator-chartist', IPLOCATOR_ADMIN_URL, 'js/chartist.min.js', [ 'jquery' ] );
 		$this->assets->register_script( 'iplocator-chartist-tooltip', IPLOCATOR_ADMIN_URL, 'js/chartist-plugin-tooltip.min.js', [ 'iplocator-chartist' ] );
+		$this->assets->register_script( 'iplocator-jvectormap', IPLOCATOR_ADMIN_URL, 'js/jquery-jvectormap-2.0.3.min.js', [ 'jquery' ] );
+		$this->assets->register_script( 'iplocator-jvectormap-world', IPLOCATOR_ADMIN_URL, 'js/jquery-jvectormap-world-mill.min.js', [ 'jquery' ] );
 	}
 
 	/**
@@ -102,6 +105,21 @@ class IP_Locator_Admin {
 				'activated'     => true,
 				'remedy'        => '',
 				'statistics'    => [ '\IPLocator\System\Statistics', 'sc_get_raw' ],
+			];
+			$perfops['analytics'][] = [
+				'name'          => esc_html__( 'Locations', 'ip-locator' ),
+				/* translators: as in the sentence "Find out the countries and languages of visitors accessing your network." or "Find out the countries and languages of visitors accessing your website." */
+				'description'   => sprintf( esc_html__( 'Find out the countries and languages of visitors accessing your %s.', 'ip-locator' ), Environment::is_wordpress_multisite() ? esc_html__( 'network', 'ip-locator' ) : esc_html__( 'website', 'ip-locator' ) ),
+				'icon_callback' => [ \IPLocator\Plugin\Core::class, 'get_base64_logo' ],
+				'slug'          => 'iplocator-viewer',
+				'page_title'    => esc_html__( 'IP Locator Analytics', 'ip-locator' ),
+				'menu_title'    => esc_html__( 'Locations', 'ip-locator' ),
+				'capability'    => 'manage_options',
+				'callback'      => [ $this, 'get_viewer_page' ],
+				'position'      => 50,
+				'plugin'        => IPLOCATOR_SLUG,
+				'activated'     => true,
+				'remedy'        => '',
 			];
 		}
 		$perfops['tools'][] = [
@@ -213,6 +231,16 @@ class IP_Locator_Admin {
 	 */
 	public function get_tools_page() {
 		include IPLOCATOR_ADMIN_DIR . 'partials/ip-locator-admin-tools.php';
+	}
+
+	/**
+	 * Get the content of the viewer page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_viewer_page() {
+		$analytics = AnalyticsFactory::get_analytics();
+		include IPLOCATOR_ADMIN_DIR . 'partials/ip-locator-admin-view-analytics.php';
 	}
 
 	/**

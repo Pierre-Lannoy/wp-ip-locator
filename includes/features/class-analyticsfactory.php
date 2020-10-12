@@ -57,27 +57,7 @@ class AnalyticsFactory {
 	 */
 	public static function get_analytics( $reload = false ) {
 		$timezone = Timezone::network_get();
-		// Analytics type.
-		if ( ! ( $type = filter_input( INPUT_GET, 'type' ) ) ) {
-			$type = filter_input( INPUT_POST, 'type' );
-		}
-		if ( empty( $type ) || ! in_array( $type, self::$allowed_types ) ) {
-			$type = 'summary';
-		}
 		// Filters.
-		if ( ! ( $id = filter_input( INPUT_GET, 'id' ) ) ) {
-			$id = filter_input( INPUT_POST, 'id' );
-		}
-		if ( empty( $id ) ) {
-			$id = '';
-		}
-		if ( ! ( $extended = filter_input( INPUT_GET, 'extended' ) ) ) {
-			$extended = filter_input( INPUT_POST, 'extended' );
-		}
-		if ( empty( $extended ) ) {
-			$extended = '-';
-		}
-		$extended = str_replace( '\'\'', '"', rawurldecode( $extended ) );
 		if ( ! ( $site = filter_input( INPUT_GET, 'site' ) ) ) {
 			$site = filter_input( INPUT_POST, 'site' );
 		}
@@ -106,7 +86,7 @@ class AnalyticsFactory {
 			$start = $edatetime->format( 'Y-m-d' );
 			$end   = $sdatetime->format( 'Y-m-d' );
 		}
-		return new Analytics( $type, $id, $site, $start, $end, $extended, $reload );
+		return new Analytics( $site, $start, $end, $reload );
 	}
 
 }

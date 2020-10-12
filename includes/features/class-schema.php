@@ -111,9 +111,20 @@ class Schema {
 		$record['hit']       = 1;
 		$record['country']   = $country->code();
 		$record['language']  = $country->lang()->code();
-		$field_insert        = [];
-		$value_insert        = [];
-		$value_update        = [];
+		$name                = $country->name();
+		if ( 'A0' === $record['country'] ) {
+			$class = 'private';
+		} elseif ( '[satellite]' === $name ) {
+			$class = 'satellite';
+		} elseif ( '[' === substr( $name, 0, 1 ) ) {
+			$class = 'other';
+		} else {
+			$class = 'public';
+		}
+		$record['class'] = $class;
+		$field_insert    = [];
+		$value_insert    = [];
+		$value_update    = [];
 		foreach ( $record as $k => $v ) {
 			$field_insert[] = '`' . $k . '`';
 			$value_insert[] = "'" . $v . "'";
@@ -484,12 +495,13 @@ class Schema {
 		$sql             = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->base_prefix . self::$statistics;
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` bigint(20) NOT NULL DEFAULT '0',";
+		$sql            .= " `class` enum('public','private','satellite','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
 		$sql            .= " `client` enum('browser','feed-reader','library','media-player','mobile-app','pim','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
 		$sql            .= " `country` varchar(2) DEFAULT '00',";
 		$sql            .= " `language` varchar(2) DEFAULT 'en',";
-		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, channel, client, country)';
+		$sql            .= ' UNIQUE KEY u_stat (timestamp, site, class, channel, client, country)';
 		$sql            .= ") $charset_collate;";
 		// phpcs:ignore
 		$wpdb->query( $sql );
@@ -662,7 +674,7 @@ class Schema {
 			$where_extra = ' AND ' . $extra_field . ( $not ? ' NOT' : '' ) . " IN ( '" . implode( "', '", $extras ) . "' )";
 		}
 		global $wpdb;
-		$sql = 'SELECT `timestamp`, sum(hit) as sum_hit, site, channel, class, device, client, brand_id, brand, model, client_id, name, client_version, engine, os_id, os, os_version, url FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
+		$sql = 'SELECT `timestamp`, sum(hit) as sum_hit, site, class, channel, client, country, `language` FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
 		if ( is_array( $result ) ) {

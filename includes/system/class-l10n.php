@@ -407,6 +407,26 @@ class L10n {
 	}
 
 	/**
+	 * Returns an appropriately localized display name for a lang.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string    $lang       The locale.
+	 * @param string    $locale     Optional. The locale string.
+	 * @return string Display name of the region for the current locale.
+	 */
+	public static function get_lang_name( $lang, $locale = null ) {
+		if ( ! isset( $locale ) ) {
+			$locale = self::get_display_locale();
+		}
+		$result = '[unknown]';
+		if ( I18n::is_extension_loaded() ) {
+			$result = \Locale::getDisplayLanguage( $lang, $locale );
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the proper user locale.
 	 *
 	 * @param  int|WP_User $user_id User's ID or a WP_User object. Defaults to current user.
