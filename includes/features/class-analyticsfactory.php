@@ -29,14 +29,6 @@ use IPLocator\System\Timezone;
 class AnalyticsFactory {
 
 	/**
-	 * Allowed types.
-	 *
-	 * @since  1.0.0
-	 * @var    array    $allowed_types    Maintain the allowed types.
-	 */
-	private static $allowed_types = [ 'browser', 'browsers', 'bot', 'bots', 'device', 'devices', 'os', 'oses', 'classes', 'types', 'clients', 'libraries', 'applications', 'feeds', 'medias' ];
-
-	/**
 	 * Ajax callback.
 	 *
 	 * @since    1.0.0

@@ -32,8 +32,8 @@ use UDD\Parser\Client\Browser;
 use UDD\Parser\OperatingSystem;
 use UDD\Parser\Device\DeviceParserAbstract;
 use Feather;
-use Flagiconcss;
 use Morpheus;
+use IPLocator\API\Flag;
 
 
 /**
@@ -125,7 +125,7 @@ class Analytics {
 	 * @since  1.0.0
 	 * @var    array    $colors    The colors array.
 	 */
-	private $colors = [ '#73879C', '#3398DB', '#9B59B6', '#b2c326', '#BDC3C6' ];
+	private $colors = [ '#73879C', '#3398DB', '#9B59B6', '#B2C326', '#FFA5A5', '#A5F8D3', '#FEE440', '#BDC3C6' ];
 
 	/**
 	 * Initialize the class and set its properties.
@@ -154,6 +154,7 @@ class Analytics {
 		$this->end            = $end;
 		$this->human_filter[] = "class <> 'other'";
 		$this->human_filter[] = "class <> 'cron'";
+		$this->human_filter[] = "class <> 'cli'";
 		if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
 			$this->human_filter[] = "client <> 'other'";
 		}
@@ -193,41 +194,9 @@ class Analytics {
 				return $this->query_map();
 			case 'languages':
 				return $this->query_pie( $query, (int) $queried );
-
-
-
-			case 'top-browsers':
-				return $this->query_top( 'browsers', (int) $queried );
-			case 'top-bots':
-				return $this->query_top( 'bots', (int) $queried );
-			case 'top-devices':
-				return $this->query_top( 'devices', (int) $queried );
-			case 'top-oses':
-				return $this->query_top( 'oses', (int) $queried );
-			case 'top-versions':
-				return $this->query_top( 'versions', (int) $queried );
-			case 'classes':
-			case 'types':
-			case 'clients':
-			case 'libraries':
-			case 'applications':
-			case 'feeds':
-			case 'medias':
-				return $this->query_pie( $query, (int) $queried );
-			case 'classes-list':
-			case 'types-list':
-			case 'clients-list':
-			case 'libraries-list':
-			case 'applications-list':
-			case 'feeds-list':
-			case 'medias-list':
-			case 'sites':
+			case 'channel-list':
+			case 'client-list':
 				return $this->query_list( $query );
-			case 'browsers-list':
-			case 'bots-list':
-			case 'devices-list':
-			case 'oses-list':
-				return $this->query_extended_list( $query );
 			case 'main-chart':
 				return $this->query_chart();
 		}
@@ -246,7 +215,7 @@ class Analytics {
 		$uuid = UUID::generate_unique_id( 5 );
 		switch ( $type ) {
 			case 'languages':
-				$data     = Schema::get_grouped_list( $this->filter, 'language', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+				$data     = Schema::get_grouped_list( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), 'language', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
 				$selector = 'language';
 				$names    = [];
 				$size     = 220;
@@ -344,207 +313,27 @@ class Analytics {
 	/**
 	 * Query statistics table.
 	 *
-	 * @param   string  $type    The type of top.
-	 * @param   integer $limit  The number to display.
-	 * @return array  The result of the query, ready to encode.
-	 * @since    1.0.0
-	 */
-	private function query_top( $type, $limit ) {
-		switch ( $type ) {
-			case 'browsers':
-				$data = Schema::get_grouped_list( $this->filter, 'client_id', ! $this->is_today, 'client', [ 'browser' ], false, 'ORDER BY sum_hit DESC' );
-				break;
-			case 'bots':
-				$data = Schema::get_grouped_list( $this->filter, 'name', ! $this->is_today, 'class', [ 'bot' ], false, 'ORDER BY sum_hit DESC' );
-				break;
-			case 'devices':
-				$data = Schema::get_grouped_list( $this->filter, 'brand, model', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
-				break;
-			case 'oses':
-				$data = Schema::get_grouped_list( $this->filter, 'os', ! $this->is_today, 'class', [ 'desktop', 'mobile' ], false, 'ORDER BY sum_hit DESC' );
-				break;
-			case 'versions':
-				switch ( $this->type ) {
-					case 'browser':
-						$data = Schema::get_grouped_list( $this->filter, 'client_version', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
-						break;
-				}
-				switch ( $this->type ) {
-					case 'os':
-						$data = Schema::get_grouped_list( $this->filter, 'os_version', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
-						break;
-				}
-				break;
-			default:
-				$data = [];
-				break;
-		}
-		$total = 0;
-		$other = 0;
-		foreach ( $data as $key => $row ) {
-			$total = $total + $row['sum_hit'];
-			if ( $limit <= $key ) {
-				$other = $other + $row['sum_hit'];
-			}
-		}
-		$result = '';
-		$cpt    = 0;
-		while ( $cpt < $limit && array_key_exists( $cpt, $data ) ) {
-			if ( 0 < $total ) {
-				$percent = round( 100 * $data[ $cpt ]['sum_hit'] / $total, 1 );
-			} else {
-				$percent = 100;
-			}
-			if ( 0.5 > $percent ) {
-				$percent = 0.5;
-			}
-			switch ( $type ) {
-				case 'browsers':
-					$text = $data[ $cpt ]['name'];
-					$icon = Morpheus\Icons::get_browser_base64( $data[ $cpt ]['client_id'] );
-					$url  = $this->get_url(
-						[],
-						[
-							'type' => 'browser',
-							'id'   => $data[ $cpt ]['client_id'],
-						]
-					);
-					break;
-				case 'bots':
-					$text = $data[ $cpt ]['name'];
-					$icon = Favicon::get_base64( $data[ $cpt ]['url'] );
-					$url  = $this->get_url(
-						[],
-						[
-							'type' => 'bot',
-							'id'   => $data[ $cpt ]['name'],
-						]
-					);
-					break;
-				case 'devices':
-					$text = ( isset( $data[ $cpt ]['brand'] ) && '-' !== $data[ $cpt ]['brand'] ? $data[ $cpt ]['brand'] : esc_html__( 'Generic', 'ip-locator' ) ) . ( isset( $data[ $cpt ]['model'] ) && '-' !== $data[ $cpt ]['model'] ? ' ' . $data[ $cpt ]['model'] : '' );
-					$icon = Morpheus\Icons::get_brand_base64( $data[ $cpt ]['brand'] );
-					$url  = $this->get_url(
-						[],
-						[
-							'type'     => 'device',
-							'id'       => $data[ $cpt ]['brand_id'],
-							'extended' => $data[ $cpt ]['model'],
-						]
-					);
-					break;
-				case 'oses':
-					switch ( $this->type ) {
-						case 'device':
-							$text = $data[ $cpt ]['os'] . ' ' . $data[ $cpt ]['os_version'];
-							$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
-							$url  = '';
-							break;
-						default:
-							$text = $data[ $cpt ]['os'];
-							$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
-							$url  = $this->get_url(
-								[],
-								[
-									'type' => 'os',
-									'id'   => $data[ $cpt ]['os_id'],
-								]
-							);
-							break;
-					}
-					break;
-				case 'versions':
-					switch ( $this->type ) {
-						case 'browser':
-							$text = $data[ $cpt ]['name'] . ' ' . $data[ $cpt ]['client_version'];
-							$icon = Morpheus\Icons::get_browser_base64( $data[ $cpt ]['client_id'] );
-							$url  = '';
-							break;
-						case 'os':
-							$text = $data[ $cpt ]['os'] . ' ' . $data[ $cpt ]['os_version'];
-							$icon = Morpheus\Icons::get_os_base64( $data[ $cpt ]['os_id'] );
-							$url  = '';
-							break;
-					}
-					break;
-			}
-			if ( '' !== $url ) {
-				$url = '<a href="' . $url . '">' . $text . '</a>';
-			} else {
-				$url = $text;
-			}
-			$result .= '<div class="iplocator-top-line">';
-			$result .= '<div class="iplocator-top-line-title">';
-			$result .= '<img style="width:16px;vertical-align:bottom;" src="' . $icon . '" />&nbsp;&nbsp;<span class="iplocator-top-line-title-text">' . $url . '</span>';
-			$result .= '</div>';
-			$result .= '<div class="iplocator-top-line-content">';
-			$result .= '<div class="iplocator-bar-graph"><div class="iplocator-bar-graph-value" style="width:' . $percent . '%"></div></div>';
-			$result .= '<div class="iplocator-bar-detail">' . Conversion::number_shorten( $data[ $cpt ]['sum_hit'], 2, false, '&nbsp;' ) . '</div>';
-			$result .= '</div>';
-			$result .= '</div>';
-			++$cpt;
-		}
-		if ( 0 < $total ) {
-			$percent = round( 100 * $other / $total, 1 );
-		} else {
-			$percent = 100;
-		}
-		$result .= '<div class="iplocator-top-line iplocator-minor-data">';
-		$result .= '<div class="iplocator-top-line-title">';
-		$result .= '<span class="iplocator-top-line-title-text">' . esc_html__( 'Other', 'ip-locator' ) . '</span>';
-		$result .= '</div>';
-		$result .= '<div class="iplocator-top-line-content">';
-		$result .= '<div class="iplocator-bar-graph"><div class="iplocator-bar-graph-value" style="width:' . $percent . '%"></div></div>';
-		$result .= '<div class="iplocator-bar-detail">' . Conversion::number_shorten( $other, 2, false, '&nbsp;' ) . '</div>';
-		$result .= '</div>';
-		$result .= '</div>';
-		return [ 'iplocator-top-' . $type => $result ];
-	}
-
-	/**
-	 * Query statistics table.
-	 *
 	 * @param   string $type    The type of list.
 	 * @return array  The result of the query, ready to encode.
 	 * @since    1.0.0
 	 */
 	private function query_list( $type ) {
 		switch ( $type ) {
-			case 'classes-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'class, channel', ! $this->is_today, '', [], false, 'ORDER BY class DESC' );
-				$selector = 'class';
+			case 'channel-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'country, channel', ! $this->is_today, '', [], false, 'ORDER BY country DESC' );
+				$selector = 'country';
+				$field    = 'channel';
+				$columns  = [ 'wfront', 'wback', 'api', 'cron' ];
 				break;
-			case 'types-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'device, channel', ! $this->is_today, '', [], false, 'ORDER BY device DESC' );
-				$selector = 'device';
-				break;
-			case 'clients-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'client, channel', ! $this->is_today, '', [], false, 'ORDER BY client DESC' );
-				$selector = 'client';
-				break;
-			case 'libraries-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'library' ], false, 'ORDER BY name DESC' );
-				$selector = 'name';
-				break;
-			case 'applications-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'mobile-app' ], false, 'ORDER BY name DESC' );
-				$selector = 'name';
-				break;
-			case 'feeds-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'feed-reader' ], false, 'ORDER BY name DESC' );
-				$selector = 'name';
-				break;
-			case 'medias-list':
-				$data     = Schema::get_grouped_list( $this->filter, 'name, channel', ! $this->is_today, 'client', [ 'media-player' ], false, 'ORDER BY name DESC' );
-				$selector = 'name';
-				break;
-			case 'sites':
-				$data     = Schema::get_grouped_list( $this->filter, 'site, channel', ! $this->is_today, '', [], false, 'ORDER BY site DESC' );
-				$selector = 'site';
+			case 'client-list':
+				$data     = Schema::get_grouped_list( $this->filter, 'country, client', ! $this->is_today, '', [], false, 'ORDER BY country DESC' );
+				$selector = 'country';
+				$field    = 'client';
+				$columns  = [ 'browser', 'mobile-app', 'library', 'media-player' ];
 				break;
 		}
 		if ( 0 < count( $data ) ) {
-			$columns = [ 'wfront', 'wback', 'api', 'cron' ];
+
 			$d       = [];
 			$current = '';
 			$total   = 0;
@@ -558,8 +347,8 @@ class Analytics {
 					$d[ $current ]['total'] = 0;
 					$d[ $current ]['perct'] = 0.0;
 				}
-				if ( in_array( $row['channel'], $columns, true ) ) {
-					$d[ $current ][ $row['channel'] ] = $row['sum_hit'];
+				if ( in_array( $row[ $field ], $columns, true ) ) {
+					$d[ $current ][ $row[ $field ] ] = $row['sum_hit'];
 				} else {
 					$d[ $current ]['other'] += $row['sum_hit'];
 				}
@@ -571,21 +360,25 @@ class Analytics {
 			$result .= '<tr>';
 			$result .= '<th>&nbsp;</th>';
 			foreach ( $columns as $column ) {
-				$result .= '<th>' . ChannelTypes::$channel_names[ strtoupper( $column ) ] . '</th>';
+				if ( 'channel-list' === $type ) {
+					$result .= '<th>' . ChannelTypes::$channel_names[ strtoupper( $column ) ] . '</th>';
+				}
+				if ( 'client-list' === $type ) {
+					if ( class_exists( 'PODeviceDetector\Plugin\Feature\ClientTypes' ) ) {
+						$result .= '<th>' . \PODeviceDetector\Plugin\Feature\ClientTypes::$client_names[ $column ] . '</th>';
+					} else {
+						$result .= '<th>' . $column . '</th>';
+					}
+				}
 			}
 			$result .= '<th>' . __( 'Other', 'ip-locator' ) . '</th>';
 			$result .= '<th>' . __( 'TOTAL', 'ip-locator' ) . '</th>';
 			$result .= '</tr>';
 			foreach ( $d as $name => $item ) {
 				$row_str = '<tr>';
-				if ( 'classes-list' === $type ) {
-					$name = ClassTypes::$class_names[ $name ];
-				}
-				if ( 'types-list' === $type ) {
-					$name = DeviceTypes::$device_names[ $name ];
-				}
-				if ( 'clients-list' === $type ) {
-					$name = ClientTypes::$client_names[ $name ];
+				if ( 'channel-list' === $type || 'client-list' === $type ) {
+					$f    = new Flag( $name );
+					$name = $f->image( '', 'width:14px;padding-left:4px;padding-right:4px;vertical-align:baseline;' ) . '&nbsp;' . L10n::get_country_name( $name );
 				}
 				$row_str .= '<td data-th="name">' . $name . '</td>';
 				foreach ( $columns as $column ) {
@@ -719,7 +512,7 @@ class Analytics {
 	 */
 	private function query_map() {
 		$uuid   = UUID::generate_unique_id( 5 );
-		$data   = Schema::get_grouped_list( array_merge( $this->filter, [ "class='public'"] ), 'country', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
+		$data   = Schema::get_grouped_list( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), 'country', ! $this->is_today, '', [], false, 'ORDER BY sum_hit DESC' );
 		$series = [];
 		foreach ( $data as $datum ) {
 			if ( array_key_exists( 'country', $datum ) && ! empty( $datum['country'] ) ) {
@@ -939,13 +732,13 @@ class Analytics {
 			case 'private':
 			case 'satellite':
 			case 'detection':
-				$data  = Schema::get_grouped_kpi( $this->filter, 'country', ! $this->is_today );
-				$pdata = Schema::get_grouped_kpi( $this->previous, 'country' );
+				$data  = Schema::get_grouped_kpi( $this->filter, 'class', ! $this->is_today );
+				$pdata = Schema::get_grouped_kpi( $this->previous, 'class' );
 				break;
 			case 'country':
 			case 'language':
-				$data  = Schema::get_distinct_kpi( array_merge( $this->filter, $this->human_filter ), [ $queried ], ! $this->is_today );
-				$pdata = Schema::get_distinct_kpi( array_merge( $this->previous, $this->human_filter ), [ $queried ] );
+				$data  = Schema::get_distinct_kpi( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), [ $queried ], ! $this->is_today );
+				$pdata = Schema::get_distinct_kpi( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), [ $queried ] );
 				break;
 		}
 		if ( 'country' === $queried || 'language' === $queried ) {
@@ -1155,14 +948,95 @@ class Analytics {
 	}
 
 	/**
+	 * Get the main chart.
+	 *
+	 * @return string  The main chart ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_main_chart() {
+		if ( 1 < $this->duration ) {
+			$help_user     = esc_html__( 'Users variation.', 'ip-locator' );
+			$help_session  = esc_html__( 'Sessions variation.', 'ip-locator' );
+			$help_turnover = esc_html__( 'Moves distribution.', 'ip-locator' );
+			$help_log      = esc_html__( 'Login / logout breakdown.', 'ip-locator' );
+			$help_password = esc_html__( 'Password resets.', 'ip-locator' );
+			$detail        = '<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-user" data-position="left" data-tooltip="' . $help_user . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'users', 'none', '#73879C' ) . '" /></span>';
+			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-turnover" data-position="left" data-tooltip="' . $help_turnover . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'refresh-cw', 'none', '#73879C' ) . '" /></span>';
+			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-session" data-position="left" data-tooltip="' . $help_session . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'activity', 'none', '#73879C' ) . '" /></span>';
+			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-log" data-position="left" data-tooltip="' . $help_log . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'move', 'none', '#73879C' ) . '" /></span>';
+			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-password" data-position="left" data-tooltip="' . $help_password . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'key', 'none', '#73879C' ) . '" /></span>';
+			$result        = '<div class="iplocator-row">';
+			$result       .= '<div class="iplocator-box iplocator-box-full-line">';
+			$result       .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Metrics Variations', 'ip-locator' ) . '<span class="iplocator-module-more">' . $detail . '</span></span></div>';
+			$result       .= '<div class="iplocator-module-content" id="iplocator-main-chart">' . $this->get_graph_placeholder( 274 ) . '</div>';
+			$result       .= '</div>';
+			$result       .= '</div>';
+			$result       .= $this->get_refresh_script(
+				[
+					'query'   => 'main-chart',
+					'queried' => 0,
+				]
+			);
+			return $result;
+		} else {
+			return '';
+		}
+	}
+
+	/**
+	 * Get the channels list.
+	 *
+	 * @return string  The table ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_channel_list() {
+		$result  = '<div class="iplocator-box iplocator-box-full-line">';
+		$result .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Channels Breakdown', 'ip-locator' ) . '</span></div>';
+		$result .= '<div class="iplocator-module-content" id="iplocator-channel-list">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'channel-list',
+				'queried' => 0,
+			]
+		);
+		return $result;
+	}
+
+	/**
+	 * Get the clients list.
+	 *
+	 * @return string  The table ready to print.
+	 * @since    1.0.0
+	 */
+	public function get_client_list() {
+		$result  = '<div class="iplocator-box iplocator-box-full-line">';
+		$result .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Clients Breakdown', 'ip-locator' ) . '</span></div>';
+		$result .= '<div class="iplocator-module-content" id="iplocator-client-list">' . $this->get_graph_placeholder( 200 ) . '</div>';
+		$result .= '</div>';
+		$result .= $this->get_refresh_script(
+			[
+				'query'   => 'client-list',
+				'queried' => 0,
+			]
+		);
+		return $result;
+	}
+
+	/**
 	 * Get the map box.
 	 *
 	 * @return string  The box ready to print.
 	 * @since    1.0.0
 	 */
 	public function get_map_box() {
+		if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
+			$title = esc_html__( 'Countries', 'iplocator' ) . ' ' . esc_html__( '(real humans from public IPs only)', 'iplocator' );
+		} else {
+			$title = esc_html__( 'Countries', 'iplocator' ) . ' ' . esc_html__( '(public IPs only)', 'iplocator' );
+		}
 		$result  = '<div class="iplocator-60-module">';
-		$result .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Countries', 'iplocator' ) . '</span></div>';
+		$result .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . $title . '</span></div>';
 		$result .= '<div class="iplocator-module-content" id="iplocator-map">' . $this->get_graph_placeholder( 310 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
@@ -1181,14 +1055,19 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	public function get_language_box() {
+		if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
+			$title = esc_html__( 'Languages', 'iplocator' ) . ' ' . esc_html__( '(real humans from public IPs only)', 'iplocator' );
+		} else {
+			$title = esc_html__( 'Languages', 'iplocator' ) . ' ' . esc_html__( '(public IPs only)', 'iplocator' );
+		}
 		$result  = '<div class="iplocator-40-module">';
-		$result .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Top Languages', 'ip-locator' ) . '</span></div>';
+		$result .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . $title . '</span></div>';
 		$result .= '<div class="iplocator-module-content" id="iplocator-languages">' . $this->get_graph_placeholder( 310 ) . '</div>';
 		$result .= '</div>';
 		$result .= $this->get_refresh_script(
 			[
 				'query'   => 'languages',
-				'queried' => 5,
+				'queried' => 7,
 			]
 		);
 		return $result;
@@ -1206,12 +1085,20 @@ class Analytics {
 			case 'country':
 				$icon  = Feather\Icons::get_base64( 'flag', 'none', '#73879C' );
 				$title = esc_html_x( 'Countries', 'Noun - Countries.', 'ip-locator' );
-				$help  = esc_html__( 'Accessing countries - real humans only (browsers or apps).', 'ip-locator' );
+				if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
+					$help = esc_html__( 'Accessing countries - real humans from public IPs only (browsers or apps).', 'ip-locator' );
+				} else {
+					$help = esc_html__( 'Accessing countries - public IPs only.', 'ip-locator' );
+				}
 				break;
 			case 'language':
 				$icon  = Feather\Icons::get_base64( 'award', 'none', '#73879C' );
 				$title = esc_html_x( 'Languages', 'Noun - Languages.', 'ip-locator' );
-				$help  = esc_html__( 'Main languages of accessing countries - real humans only (browsers or apps).', 'ip-locator' );
+				if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
+					$help = esc_html__( 'Main languages of accessing countries - real humans from public IPs only (browsers or apps).', 'ip-locator' );
+				} else {
+					$help = esc_html__( 'Main languages of accessing countries - public IPs only.', 'ip-locator' );
+				}
 				break;
 			case 'public':
 				$icon  = Feather\Icons::get_base64( 'globe', 'none', '#73879C' );
@@ -1332,8 +1219,8 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	private function get_url( $exclude = [], $replace = [], $escape = true ) {
-		$params         = [];
-		$params['site'] = $this->site;
+		$params          = [];
+		$params['site']  = $this->site;
 		$params['start'] = $this->start;
 		$params['end']   = $this->end;
 		foreach ( $exclude as $arg ) {
