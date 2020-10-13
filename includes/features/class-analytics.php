@@ -153,6 +153,7 @@ class Analytics {
 		$this->start          = $start;
 		$this->end            = $end;
 		$this->human_filter[] = "class <> 'other'";
+		$this->human_filter[] = "class <> 'cron'";
 		if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
 			$this->human_filter[] = "client <> 'other'";
 		}

@@ -349,6 +349,24 @@ class IP_Locator_Admin {
 			]
 		);
 		register_setting( 'iplocator_plugin_options_section', 'iplocator_plugin_options_logger' );
+		if ( class_exists( 'PODeviceDetector\API\Device' ) ) {
+			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'thumbs-up', 'none', '#00C800' ) . '" />&nbsp;';
+			$help .= sprintf( esc_html__('Your site is currently using %s.', 'ip-locator' ), '<em>Device Detector v' . PODD_VERSION .'</em>' );
+		} else {
+			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'alert-triangle', 'none', '#FF8C00' ) . '" />&nbsp;';
+			$help .= sprintf( esc_html__('Your site does not use any device detection mechanism. To precisely detect "real humans" countries and languages, I recommend you to install the excellent (and free) %s. But it is not mandatory.', 'ip-locator' ), '<a href="https://wordpress.org/plugins/device-detector/">Device Detector</a>' );
+		}
+		add_settings_field(
+			'iplocator_plugin_options_podd',
+			__( 'Device Detection', 'ip-locator' ),
+			[ $form, 'echo_field_simple_text' ],
+			'iplocator_plugin_options_section',
+			'iplocator_plugin_options_section',
+			[
+				'text' => $help
+			]
+		);
+		register_setting( 'iplocator_plugin_options_section', 'iplocator_plugin_options_podd' );
 		add_settings_field(
 			'iplocator_plugin_options_usecdn',
 			__( 'Resources', 'ip-locator' ),
