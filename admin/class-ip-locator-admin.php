@@ -118,15 +118,15 @@ class IP_Locator_Admin {
 				'callback'      => [ $this, 'get_viewer_page' ],
 				'position'      => 50,
 				'plugin'        => IPLOCATOR_SLUG,
-				'activated'     => true,
-				'remedy'        => '',
+				'activated'     => Option::network_get( 'analytics' ),
+				'remedy'        => esc_url( admin_url( 'admin.php?page=iplocator-settings' ) ),
 			];
 		}
 		$perfops['tools'][] = [
 			'name'          => esc_html__( 'IPs', 'ip-locator' ),
 			'description'   => esc_html__( 'Test IPs to see location details.', 'ip-locator' ),
 			'icon_callback' => [ \IPLocator\Plugin\Core::class, 'get_base64_logo' ],
-			'slug'          => 'iplocator_tools',
+			'slug'          => 'iplocator-tools',
 			'page_title'    => esc_html__( 'IP Test', 'ip-locator' ),
 			'menu_title'    => esc_html__( 'IPs', 'ip-locator' ),
 			'capability'    => 'manage_options',

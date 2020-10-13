@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improved changelog readability.
 - The integrated markdown parser is now [Markdown](https://github.com/cebe/markdown) from Carsten Brandt.
 - A warning is now displayed in the settings page when no device detection mechanism is found.
+- The analytics dashboard now displays a warning if analytics features are not activated.
 
 ### Fixed
 - The remote IP can be wrongly detected when behind some types of reverse-proxies.
