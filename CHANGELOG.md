@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - New Site Health "info" section about shared memory.
 - [API] New `/wp-json/ip-locator/v1/describe` endpoint to analyze an IP. Available to all authenticated users.
 - Compatibility with WordPress 5.5.
+- [MultiSite] New menu to get Locations right from "my sites" or network admin page.
 
 ### Changed
 - The positions of PerfOps menus are pushed lower to avoid collision with other plugins (thanks to [Loïc Antignac](https://github.com/webaxones)).
@@ -20,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - The integrated markdown parser is now [Markdown](https://github.com/cebe/markdown) from Carsten Brandt.
 - A warning is now displayed in the settings page when no device detection mechanism is found.
 - The analytics dashboard now displays a warning if analytics features are not activated.
+- Prepares PerfOps menus to future 5.6 version of WordPress.
 
 ### Fixed
 - The remote IP can be wrongly detected when behind some types of reverse-proxies.
