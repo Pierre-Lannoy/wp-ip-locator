@@ -496,7 +496,7 @@ class Schema {
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` bigint(20) NOT NULL DEFAULT '0',";
 		$sql            .= " `class` enum('public','private','satellite','other') NOT NULL DEFAULT 'other',";
-		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'unknown',";
+		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'other',";
 		$sql            .= " `client` enum('browser','feed-reader','library','media-player','mobile-app','pim','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
 		$sql            .= " `country` varchar(2) DEFAULT '00',";
