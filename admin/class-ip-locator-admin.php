@@ -160,6 +160,38 @@ class IP_Locator_Admin {
 	}
 
 	/**
+	 * Get actions links for myblogs_blog_actions hook.
+	 *
+	 * @param string $actions   The HTML site link markup.
+	 * @param object $user_blog An object containing the site data.
+	 * @return string   The action string.
+	 * @since 2.0.0
+	 */
+	public function blog_action( $actions, $user_blog ) {
+		if ( ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) && Option::network_get( 'analytics' ) ) {
+			$actions .= " | <a href='" . esc_url( admin_url( 'admin.php?page=iplocator-viewer&site=' . $user_blog->userblog_id ) ) . "'>" . __( 'Locations', 'ip-locator' ) . '</a>';
+		}
+		return $actions;
+	}
+
+	/**
+	 * Get actions for manage_sites_action_links hook.
+	 *
+	 * @param string[] $actions  An array of action links to be displayed.
+	 * @param int      $blog_id  The site ID.
+	 * @param string   $blogname Site path, formatted depending on whether it is a sub-domain
+	 *                           or subdirectory multisite installation.
+	 * @return array   The actions.
+	 * @since 2.0.0
+	 */
+	public function site_action( $actions, $blog_id, $blogname ) {
+		if ( ( Role::SUPER_ADMIN === Role::admin_type() || Role::LOCAL_ADMIN === Role::admin_type() ) && Option::network_get( 'analytics' ) ) {
+			$actions['devices'] = "<a href='" . esc_url( admin_url( 'admin.php?page=iplocator-viewer&site=' . $blog_id ) ) . "' rel='bookmark'>" . __( 'Locations', 'ip-locator' ) . '</a>';
+		}
+		return $actions;
+	}
+
+	/**
 	 * Add links in the "Actions" column on the plugins view page.
 	 *
 	 * @param string[] $actions     An array of plugin action links. By default this can include 'activate',
@@ -173,6 +205,10 @@ class IP_Locator_Admin {
 	 */
 	public function add_actions_links( $actions, $plugin_file, $plugin_data, $context ) {
 		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=iplocator-settings' ) ), esc_html__( 'Settings', 'ip-locator' ) );
+		$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=iplocator-tools' ) ), esc_html__( 'Tools', 'ip-locator' ) );
+		if ( Option::network_get( 'analytics' ) ) {
+			$actions[] = sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=iplocator-viewer' ) ), esc_html__( 'Statistics', 'ip-locator' ) );
+		}
 		return $actions;
 	}
 
