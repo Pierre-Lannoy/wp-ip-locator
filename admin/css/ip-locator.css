@@ -1077,3 +1077,33 @@ button.btn {
     background-color: var(--header-action-font-color);
     color: var(--main-bg-color);
 }
+
+.iplocator-multichart-handler {
+    display: block;
+    height: 300px;
+}
+
+.iplocator-multichart-item,
+.iplocator-multichart-large-item,
+.iplocator-multichart-small-item{
+    position: absolute;
+    height: 200px;
+    visibility:hidden;
+    opacity:0;
+    width: 94%;
+    left: 2.4%;
+}
+
+.iplocator-multichart-item svg,
+.iplocator-multichart-large-item svg,
+.iplocator-multichart-small-item svg{
+    overflow: visible;
+}
+
+.iplocator-multichart-item.active,
+.iplocator-multichart-large-item.active,
+.iplocator-multichart-small-item.active{
+    visibility:visible;
+    opacity:1;
+    transition:visibility 0.6s linear,opacity 0.6s linear;
+}
