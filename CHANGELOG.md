@@ -1,5 +1,5 @@
 # Changelog
-All notable changes to **IP Locator** is documented in this *changelog*.
+All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [API] New `/wp-json/ip-locator/v1/describe` endpoint to analyze an IP. Available to all authenticated users.
 - Compatibility with WordPress 5.5.
 - [MultiSite] New menu to get Locations right from "my sites" or network admin page.
+- Support for data feeds - reserved for future use.
 
 ### Changed
 - The positions of PerfOps menus are pushed lower to avoid collision with other plugins (thanks to [Loïc Antignac](https://github.com/webaxones)).
@@ -31,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - When trying to detect local network IPs, an (innocuous) error `Cannot load resource element und_xx: U_MISSING_RESOURCE_ERROR` may be shown in logs.
 - With Firefox, some links are unclickable in the Control Center (thanks to [Emil1](https://wordpress.org/support/users/milouze/)).
 - Some internal logs are wrongly classified as 'INFO' when it should be 'DEBUG'.
+- Some typos in `CHANGELOG.md`.
 
 ### Removed
 - Parsedown as integrated markdown parser.
