@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - The positions of PerfOps menus are pushed lower to avoid collision with other plugins (thanks to [Loïc Antignac](https://github.com/webaxones)).
+- [MultiSite] Improved default site detection.
 - Improved layout for language indicator.
 - Admin notices are now set to "don't display" by default.
 - Improved IP detection  (thanks to [Ludovic Riaudel](https://github.com/lriaudel)).

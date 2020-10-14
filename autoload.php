@@ -20,6 +20,8 @@ spl_autoload_register(
 				$filepath = IPLOCATOR_INCLUDES_DIR . 'system/';
 			} elseif ( strpos( $class, 'IPLocator\Plugin\Feature\\' ) === 0 ) {
 				$filepath = IPLOCATOR_INCLUDES_DIR . 'features/';
+			} elseif ( strpos( $class, 'IPLocator\Plugin\Integration\\' ) === 0 ) {
+				$filepath = IPLOCATOR_INCLUDES_DIR . 'integrations/';
 			} elseif ( strpos( $class, 'IPLocator\Plugin\\' ) === 0 ) {
 				$filepath = IPLOCATOR_INCLUDES_DIR . 'plugin/';
 			} elseif ( strpos( $class, 'IPLocator\Library\\' ) === 0 ) {
