@@ -411,58 +411,185 @@ class Analytics {
 	 * @since    1.0.0
 	 */
 	private function query_chart() {
-		$uuid       = UUID::generate_unique_id( 5 );
-		$data_total = Schema::get_time_series( $this->filter, ! $this->is_today );
-		$call_max   = 0;
-		$hits       = [];
-		$start      = '';
-		if ( 0 < count( $data_total ) ) {
-			foreach ( $data_total as $timestamp => $row ) {
-				if ( '' === $start ) {
-					$start = $timestamp;
+		$uuid             = UUID::generate_unique_id( 5 );
+		$query            = Schema::get_time_series( $this->filter, ! $this->is_today, '', [], false );
+		$item             = [];
+		$item['country']  = [ 'u_ham', 'u_spam' ];
+		$item['language'] = [ 'u_active', 'expired', 'forced', 'idle' ];
+		$item['access']   = [ 'registration', 'delete' ];
+		$item['log']      = [ 'logout', 'login_success', 'login_fail', 'login_block' ];
+		$data             = [];
+		$series           = [];
+		$labels           = [];
+		$boundaries       = [];
+		$json             = [];
+		foreach ( $item as $selector => $array ) {
+			$boundaries[ $selector ] = [
+				'max'    => 0,
+				'factor' => 1,
+				'order'  => $item[ $selector ],
+			];
+		}
+		// Data normalization.
+		if ( 0 !== count( $query ) ) {
+			foreach ( $query as  $row ) {
+				$datetime = new \DateTime( $row['timestamp'], new \DateTimeZone( 'UTC' ) );
+				$datetime->setTimezone( $this->timezone );
+				$record = [];
+				foreach ( $row as $k => $v ) {
+					if ( 0 === strpos( $k, 'u_' ) ) {
+						if ( 0 < $row['cnt'] ) {
+							$record[ $k ] = (int) round( $v / $row['cnt'], 0 );
+						} else {
+							$record[ $k ] = 0;
+						}
+					} elseif ( 'cnt' !== $k && 'timestamp' !== $k ) {
+						$record[ $k ] = (int) $v;
+					}
 				}
-				$ts  = 'new Date(' . (string) strtotime( $timestamp ) . '000)';
-				$val = $row['sum_hit'];
-				if ( $val > $call_max ) {
-					$call_max = $val;
-				}
-				$hits[] = [
-					'x' => $ts,
-					'y' => $val,
-				];
+				$data[ strtotime( $datetime->format( 'Y-m-d' ) . ' 12:00:00' ) ] = $record;
 			}
-			$before = [
-				'x' => 'new Date(' . (string) ( strtotime( $start ) - 86400 ) . '000)',
+			// Boundaries computation.
+			foreach ( $data as $datum ) {
+				foreach ( array_merge( $item['user'], $item['session'], $item['turnover'], $item['log'], $item['password'] ) as $field ) {
+					foreach ( $item as $selector => $array ) {
+						if ( in_array( $field, $array, true ) ) {
+							if ( $boundaries[ $selector ]['max'] < $datum[ $field ] ) {
+								$boundaries[ $selector ]['max'] = $datum[ $field ];
+								if ( 1100 < $datum[ $field ] ) {
+									$boundaries[ $selector ]['factor'] = 1000;
+								}
+								if ( 1100000 < $datum[ $field ] ) {
+									$boundaries[ $selector ]['factor'] = 1000000;
+								}
+								$boundaries[ $selector ]['order'] = array_diff( $boundaries[ $selector ]['order'], [ $field ] );
+								array_unshift( $boundaries[ $selector ]['order'], $field );
+							}
+							continue 2;
+						}
+					}
+				}
+			}
+			// Series computation.
+			foreach ( $data as $timestamp => $datum ) {
+				// Series.
+				$ts = 'new Date(' . (string) $timestamp . '000)';
+				foreach ( array_merge( $item['user'], $item['session'], $item['turnover'], $item['log'], $item['password'] ) as $key ) {
+					foreach ( $item as $selector => $array ) {
+						if ( in_array( $key, $array, true ) ) {
+							$series[ $key ][] = [
+								'x' => $ts,
+								'y' => round( $datum[ $key ] / $boundaries[ $selector ]['factor'], ( 1 === $boundaries[ $selector ]['factor'] ? 0 : 2 ) ),
+							];
+							continue 2;
+						}
+					}
+				}
+				// Labels.
+				$labels[] = 'moment(' . $timestamp . '000).format("ll")';
+			}
+
+
+
+
+
+
+			
+			// Result encoding.
+			$shift    = 86400;
+			$datetime = new \DateTime( $this->start . ' 00:00:00', $this->timezone );
+			$offset   = $this->timezone->getOffset( $datetime );
+			$datetime = $datetime->getTimestamp() + $offset;
+			array_unshift( $labels, 'moment(' . (string) ( $datetime - $shift ) . '000).format("ll")' );
+			$before   = [
+				'x' => 'new Date(' . (string) ( $datetime - $shift ) . '000)',
 				'y' => 'null',
 			];
-			$after  = [
-				'x' => 'new Date(' . (string) ( strtotime( $timestamp ) + 86400 ) . '000)',
+			$datetime = new \DateTime( $this->end . ' 23:59:59', $this->timezone );
+			$offset   = $this->timezone->getOffset( $datetime );
+			$datetime = $datetime->getTimestamp() + $offset;
+			$after    = [
+				'x' => 'new Date(' . (string) ( $datetime + $shift ) . '000)',
 				'y' => 'null',
 			];
-			// Hits.
-			$short       = Conversion::number_shorten( $call_max, 2, true );
-			$call_max    = 0.5 + floor( $call_max / $short['divisor'] );
-			$call_abbr   = $short['abbreviation'];
-			$series_hits = [];
-			foreach ( $hits as $item ) {
-				$item['y']     = $item['y'] / $short['divisor'];
-				$series_hits[] = $item;
+			foreach ( array_merge( $item['user'], $item['session'], $item['turnover'], $item['log'], $item['password'] ) as $key ) {
+				array_unshift( $series[ $key ], $before );
+				$series[ $key ][] = $after;
 			}
-			array_unshift( $series_hits, $before );
-			$series_hits[] = $after;
-			$json_call     = wp_json_encode(
-				[
-					'series' => [
+			// Users.
+			foreach ( $item as $selector => $array ) {
+				$serie = [];
+				foreach ( $boundaries[ $selector ]['order'] as $field ) {
+					switch ( $field ) {
+						case 'u_ham':
+							if ( Environment::is_wordpress_multisite() ) {
+								$name = esc_html__( 'Legit Users', 'sessions' );
+							} else {
+								$name = esc_html__( 'Users', 'sessions' );
+							}
+							break;
+						case 'u_spam':
+							$name = esc_html__( 'Spam Users', 'sessions' );
+							break;
+						case 'u_active':
+							$name = esc_html__( 'Active Sessions', 'sessions' );
+							break;
+						case 'forced':
+							$name = esc_html__( 'Overridden Sessions', 'sessions' );
+							break;
+						case 'expired':
+							$name = esc_html__( 'Expired Sessions', 'sessions' );
+							break;
+						case 'idle':
+							$name = esc_html__( 'Idle Sessions', 'sessions' );
+							break;
+						case 'registration':
+							$name = esc_html__( 'Created Accounts', 'sessions' );
+							break;
+						case 'delete':
+							$name = esc_html__( 'Deleted Accounts', 'sessions' );
+							break;
+						case 'logout':
+							$name = esc_html__( 'Logouts', 'sessions' );
+							break;
+						case 'login_success':
+							$name = esc_html__( 'Successful Logins', 'sessions' );
+							break;
+						case 'login_fail':
+							$name = esc_html__( 'Failed Logins', 'sessions' );
+							break;
+						case 'login_block':
+							$name = esc_html__( 'Blocked Logins', 'sessions' );
+							break;
+						case 'reset':
+							$name = esc_html__( 'Password Resets', 'sessions' );
+							break;
+						default:
+							$name = esc_html__( 'Unknown', 'sessions' );
+					}
+					$serie[] = [
+						'name' => $name,
+						'data' => $series[ $field ],
+					];
+				}
+				if ( 'turnover' === $selector || 'log' === $selector ) {
+					$json[ $selector ] = wp_json_encode(
 						[
-							'name' => esc_html__( 'Hits', 'ip-locator' ),
-							'data' => $series_hits,
-						],
-					],
-				]
-			);
-			$json_call     = str_replace( '"x":"new', '"x":new', $json_call );
-			$json_call     = str_replace( ')","y"', '),"y"', $json_call );
-			$json_call     = str_replace( '"null"', 'null', $json_call );
+							'labels' => $labels,
+							'series' => $serie,
+						]
+					);
+				} else {
+					$json[ $selector ] = wp_json_encode( [ 'series' => $serie ] );
+				}
+				$json[ $selector ] = str_replace( '"x":"new', '"x":new', $json[ $selector ] );
+				$json[ $selector ] = str_replace( ')","y"', '),"y"', $json[ $selector ] );
+				$json[ $selector ] = str_replace( '"null"', 'null', $json[ $selector ] );
+				$json[ $selector ] = str_replace( '"labels":["moment', '"labels":[moment', $json[ $selector ] );
+				$json[ $selector ] = str_replace( '","moment', ',moment', $json[ $selector ] );
+				$json[ $selector ] = str_replace( '"],"series":', '],"series":', $json[ $selector ] );
+				$json[ $selector ] = str_replace( '\\"', '"', $json[ $selector ] );
+			}
 
 			// Rendering.
 			if ( 4 < $this->duration ) {
@@ -475,29 +602,101 @@ class Analytics {
 				$divisor = $this->duration + 1;
 			}
 			$result  = '<div class="iplocator-multichart-handler">';
-			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-calls">';
+			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-country">';
 			$result .= '</div>';
 			$result .= '<script>';
 			$result .= 'jQuery(function ($) {';
-			$result .= ' var call_data' . $uuid . ' = ' . $json_call . ';';
-			$result .= ' var call_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
-			$result .= ' var call_option' . $uuid . ' = {';
+			$result .= ' var country_data' . $uuid . ' = ' . $json['country'] . ';';
+			$result .= ' var country_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
+			$result .= ' var country_option' . $uuid . ' = {';
 			$result .= '  height: 300,';
 			$result .= '  fullWidth: true,';
 			$result .= '  showArea: true,';
 			$result .= '  showLine: true,';
 			$result .= '  showPoint: false,';
-			$result .= '  plugins: [call_tooltip' . $uuid . '],';
-			$result .= '  axisX: {scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
-			$result .= '  axisY: {type: Chartist.AutoScaleAxis, low: 0, high: ' . $call_max . ', labelInterpolationFnc: function (value) {return value.toString() + " ' . $call_abbr . '";}},';
+			$result .= '  plugins: [country_tooltip' . $uuid . '],';
+			$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
+			$result .= '  axisY: {type: Chartist.AutoScaleAxis, labelInterpolationFnc: function (value) {return value.toString() + " ' . Conversion::number_shorten( $boundaries['country']['factor'], 0, true )['abbreviation'] . '";}},';
 			$result .= ' };';
-			$result .= ' new Chartist.Line("#iplocator-chart-calls", call_data' . $uuid . ', call_option' . $uuid . ');';
+			$result .= ' new Chartist.Line("#iplocator-chart-country", country_data' . $uuid . ', country_option' . $uuid . ');';
 			$result .= '});';
 			$result .= '</script>';
+
+			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-language">';
 			$result .= '</div>';
+			$result .= '<script>';
+			$result .= 'jQuery(function ($) {';
+			$result .= ' var language_data' . $uuid . ' = ' . $json['language'] . ';';
+			$result .= ' var language_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
+			$result .= ' var language_option' . $uuid . ' = {';
+			$result .= '  height: 300,';
+			$result .= '  fullWidth: true,';
+			$result .= '  showArea: true,';
+			$result .= '  showLine: true,';
+			$result .= '  showPoint: false,';
+			$result .= '  plugins: [language_tooltip' . $uuid . '],';
+			$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
+			$result .= '  axisY: {type: Chartist.AutoScaleAxis, labelInterpolationFnc: function (value) {return value.toString() + " ' . Conversion::number_shorten( $boundaries['language']['factor'], 0, true )['abbreviation'] . '";}},';
+			$result .= ' };';
+			$result .= ' new Chartist.Line("#iplocator-chart-language", language_data' . $uuid . ', language_option' . $uuid . ');';
+			$result .= '});';
+			$result .= '</script>';
+
+			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-access">';
+			$result .= '</div>';
+			$result .= '<script>';
+			$result .= 'jQuery(function ($) {';
+			$result .= ' var access_data' . $uuid . ' = ' . $json['access'] . ';';
+			$result .= ' var access_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
+			$result .= ' var access_option' . $uuid . ' = {';
+			$result .= '  height: 300,';
+			$result .= '  fullWidth: true,';
+			$result .= '  showArea: true,';
+			$result .= '  showLine: true,';
+			$result .= '  showPoint: false,';
+			$result .= '  plugins: [access_tooltip' . $uuid . '],';
+			$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("YYYY-MM-DD");}},';
+			$result .= '  axisY: {type: Chartist.AutoScaleAxis, labelInterpolationFnc: function (value) {return value.toString() + " ' . Conversion::number_shorten( $boundaries['access']['factor'], 0, true )['abbreviation'] . '";}},';
+			$result .= ' };';
+			$result .= ' new Chartist.Line("#iplocator-chart-access", access_data' . $uuid . ', access_option' . $uuid . ');';
+			$result .= '});';
+			$result .= '</script>';
+
+			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-detection">';
+			$result .= '</div>';
+			$result .= '<script>';
+			$result .= 'jQuery(function ($) {';
+			$result .= ' var detection_data' . $uuid . ' = '; //. $json_availability . ';';
+			$result .= ' var detection_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
+			$result .= ' var detection_option' . $uuid . ' = {';
+			$result .= '  height: 300,';
+			$result .= '  fullWidth: true,';
+			$result .= '  showArea: true,';
+			$result .= '  showLine: true,';
+			$result .= '  showPoint: false,';
+			$result .= '  plugins: [detection_tooltip' . $uuid . '],';
+			if ( 1 < $this->duration ) {
+				$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("ll");}},';
+			} else {
+				$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:8, labelInterpolationFnc: function (value) {var shift=0;if(moment(value).isDST()){shift=3600000};return moment(value-shift).format("HH:00");}},';
+			}
+			$result .= '  axisY: {type: Chartist.AutoScaleAxis, labelInterpolationFnc: function (value) {return value.toString() + " %";}},';
+			$result .= ' };';
+			$result .= ' new Chartist.Line("#iplocator-chart-detection", detection_data' . $uuid . ', detection_option' . $uuid . ');';
+			$result .= '});';
+			$result .= '</script>';
 		} else {
 			$result  = '<div class="iplocator-multichart-handler">';
-			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-calls">';
+			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-country">';
+			$result .= $this->get_graph_placeholder_nodata( 274 );
+			$result .= '</div>';
+			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-language">';
+			$result .= $this->get_graph_placeholder_nodata( 274 );
+			$result .= '</div>';
+			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-access">';
+			$result .= $this->get_graph_placeholder_nodata( 274 );
+			$result .= '</div>';
+			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-detection">';
 			$result .= $this->get_graph_placeholder_nodata( 274 );
 			$result .= '</div>';
 		}
@@ -738,7 +937,7 @@ class Analytics {
 			case 'country':
 			case 'language':
 				$data  = Schema::get_distinct_kpi( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), [ $queried ], ! $this->is_today );
-				$pdata = Schema::get_distinct_kpi( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), [ $queried ] );
+				$pdata = Schema::get_distinct_kpi( array_merge( $this->previous, [ "class='public'"], $this->human_filter ), [ $queried ] );
 				break;
 		}
 		if ( 'country' === $queried || 'language' === $queried ) {
@@ -955,23 +1154,21 @@ class Analytics {
 	 */
 	public function get_main_chart() {
 		if ( 1 < $this->duration ) {
-			$help_user     = esc_html__( 'Users variation.', 'ip-locator' );
-			$help_session  = esc_html__( 'Sessions variation.', 'ip-locator' );
-			$help_turnover = esc_html__( 'Moves distribution.', 'ip-locator' );
-			$help_log      = esc_html__( 'Login / logout breakdown.', 'ip-locator' );
-			$help_password = esc_html__( 'Password resets.', 'ip-locator' );
-			$detail        = '<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-user" data-position="left" data-tooltip="' . $help_user . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'users', 'none', '#73879C' ) . '" /></span>';
-			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-turnover" data-position="left" data-tooltip="' . $help_turnover . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'refresh-cw', 'none', '#73879C' ) . '" /></span>';
-			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-session" data-position="left" data-tooltip="' . $help_session . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'activity', 'none', '#73879C' ) . '" /></span>';
-			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-log" data-position="left" data-tooltip="' . $help_log . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'move', 'none', '#73879C' ) . '" /></span>';
-			$detail       .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-password" data-position="left" data-tooltip="' . $help_password . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'key', 'none', '#73879C' ) . '" /></span>';
-			$result        = '<div class="iplocator-row">';
-			$result       .= '<div class="iplocator-box iplocator-box-full-line">';
-			$result       .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Metrics Variations', 'ip-locator' ) . '<span class="iplocator-module-more">' . $detail . '</span></span></div>';
-			$result       .= '<div class="iplocator-module-content" id="iplocator-main-chart">' . $this->get_graph_placeholder( 274 ) . '</div>';
-			$result       .= '</div>';
-			$result       .= '</div>';
-			$result       .= $this->get_refresh_script(
+			$help_country   = esc_html__( 'Countries variation.', 'ip-locator' );
+			$help_language  = esc_html__( 'Languages variation.', 'ip-locator' );
+			$help_access    = esc_html__( 'Access breakdown.', 'ip-locator' );
+			$help_detection = esc_html__( 'Detection variation.', 'ip-locator' );
+			$detail         = '<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-country" data-position="left" data-tooltip="' . $help_country . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'flag', 'none', '#73879C' ) . '" /></span>';
+			$detail        .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-language" data-position="left" data-tooltip="' . $help_language . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'award', 'none', '#73879C' ) . '" /></span>';
+			$detail        .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-access" data-position="left" data-tooltip="' . $help_access . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'crosshair', 'none', '#73879C' ) . '" /></span>';
+			$detail        .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-detection" data-position="left" data-tooltip="' . $help_detection . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'activity', 'none', '#73879C' ) . '" /></span>';
+			$result         = '<div class="iplocator-row">';
+			$result        .= '<div class="iplocator-box iplocator-box-full-line">';
+			$result        .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Metrics Variations', 'ip-locator' ) . '<span class="iplocator-module-more">' . $detail . '</span></span></div>';
+			$result        .= '<div class="iplocator-module-content" id="iplocator-main-chart">' . $this->get_graph_placeholder( 274 ) . '</div>';
+			$result        .= '</div>';
+			$result        .= '</div>';
+			$result        .= $this->get_refresh_script(
 				[
 					'query'   => 'main-chart',
 					'queried' => 0,
@@ -1116,7 +1313,7 @@ class Analytics {
 				$help  = esc_html__( 'Ratio of hits done from satellite IPs.', 'ip-locator' );
 				break;
 			case 'detection':
-				$icon  = Feather\Icons::get_base64( 'crosshair', 'none', '#73879C' );
+				$icon  = Feather\Icons::get_base64( 'activity', 'none', '#73879C' );
 				$title = esc_html_x( 'Detection', 'Noun - Percentage of detected IPs.', 'ip-locator' );
 				$help  = esc_html__( 'Ratio of detected IPs (eliminates reserved, unknown and behing anonymous proxies IPs).', 'ip-locator' );
 				break;

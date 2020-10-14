@@ -34,7 +34,7 @@ jQuery(document).ready( function($) {
 			}
 		);
 	}
-	$( ".iplocator-about-logo" ).css({opacity:1});
+	$( ".iplocator-about-detectiono" ).css({opacity:1});
 	$( ".iplocator-select" ).each(
 		function() {
 			var chevron  = 'data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9IiM3Mzg3OUMiCiAgc3Ryb2tlLXdpZHRoPSIyIgogIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICBzdHJva2UtbGluZWpvaW49InJvdW5kIgo+CiAgPHBvbHlsaW5lIHBvaW50cz0iNiA5IDEyIDE1IDE4IDkiIC8+Cjwvc3ZnPgo=';
@@ -86,6 +86,59 @@ jQuery(document).ready( function($) {
 		"click",
 		function() {
 			testIP();
+		}
+	);
+
+	$( "#iplocator-chart-button-country" ).on(
+		"click",
+		function() {
+			$( "#iplocator-chart-country" ).addClass( "active" );
+			$( "#iplocator-chart-language" ).removeClass( "active" );
+			$( "#iplocator-chart-access" ).removeClass( "active" );
+			$( "#iplocator-chart-detection" ).removeClass( "active" );
+			$( "#iplocator-chart-button-country" ).addClass( "active" );
+			$( "#iplocator-chart-button-language" ).removeClass( "active" );
+			$( "#iplocator-chart-button-access" ).removeClass( "active" );
+			$( "#iplocator-chart-button-detection" ).removeClass( "active" );
+		}
+	);
+	$( "#iplocator-chart-button-language" ).on(
+		"click",
+		function() {
+			$( "#iplocator-chart-country" ).removeClass( "active" );
+			$( "#iplocator-chart-language" ).addClass( "active" );
+			$( "#iplocator-chart-access" ).removeClass( "active" );
+			$( "#iplocator-chart-detection" ).removeClass( "active" );
+			$( "#iplocator-chart-button-country" ).removeClass( "active" );
+			$( "#iplocator-chart-button-language" ).addClass( "active" );
+			$( "#iplocator-chart-button-access" ).removeClass( "active" );
+			$( "#iplocator-chart-button-detection" ).removeClass( "active" );
+		}
+	);
+	$( "#iplocator-chart-button-access" ).on(
+		"click",
+		function() {
+			$( "#iplocator-chart-country" ).removeClass( "active" );
+			$( "#iplocator-chart-language" ).removeClass( "active" );
+			$( "#iplocator-chart-access" ).addClass( "active" );
+			$( "#iplocator-chart-detection" ).removeClass( "active" );
+			$( "#iplocator-chart-button-country" ).removeClass( "active" );
+			$( "#iplocator-chart-button-language" ).removeClass( "active" );
+			$( "#iplocator-chart-button-access" ).addClass( "active" );
+			$( "#iplocator-chart-button-detection" ).removeClass( "active" );
+		}
+	);
+	$( "#iplocator-chart-button-detection" ).on(
+		"click",
+		function() {
+			$( "#iplocator-chart-country" ).removeClass( "active" );
+			$( "#iplocator-chart-language" ).removeClass( "active" );
+			$( "#iplocator-chart-access" ).removeClass( "active" );
+			$( "#iplocator-chart-detection" ).addClass( "active" );
+			$( "#iplocator-chart-button-country" ).removeClass( "active" );
+			$( "#iplocator-chart-button-language" ).removeClass( "active" );
+			$( "#iplocator-chart-button-access" ).removeClass( "active" );
+			$( "#iplocator-chart-button-detection" ).addClass( "active" );
 		}
 	);
 
