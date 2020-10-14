@@ -739,7 +739,6 @@ class Schema {
 		}
 		global $wpdb;
 		$sql = 'SELECT `timestamp`, count(distinct country) as cnt_country, count(distinct language) as cnt_language FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
-		Logger::critical(esc_textarea( $sql));
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
 		if ( is_array( $result ) ) {

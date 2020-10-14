@@ -95,11 +95,9 @@ jQuery(document).ready( function($) {
 			$( "#iplocator-chart-country" ).addClass( "active" );
 			$( "#iplocator-chart-language" ).removeClass( "active" );
 			$( "#iplocator-chart-access" ).removeClass( "active" );
-			$( "#iplocator-chart-detection" ).removeClass( "active" );
 			$( "#iplocator-chart-button-country" ).addClass( "active" );
 			$( "#iplocator-chart-button-language" ).removeClass( "active" );
 			$( "#iplocator-chart-button-access" ).removeClass( "active" );
-			$( "#iplocator-chart-button-detection" ).removeClass( "active" );
 		}
 	);
 	$( "#iplocator-chart-button-language" ).on(
@@ -108,11 +106,9 @@ jQuery(document).ready( function($) {
 			$( "#iplocator-chart-country" ).removeClass( "active" );
 			$( "#iplocator-chart-language" ).addClass( "active" );
 			$( "#iplocator-chart-access" ).removeClass( "active" );
-			$( "#iplocator-chart-detection" ).removeClass( "active" );
 			$( "#iplocator-chart-button-country" ).removeClass( "active" );
 			$( "#iplocator-chart-button-language" ).addClass( "active" );
 			$( "#iplocator-chart-button-access" ).removeClass( "active" );
-			$( "#iplocator-chart-button-detection" ).removeClass( "active" );
 		}
 	);
 	$( "#iplocator-chart-button-access" ).on(
@@ -121,24 +117,9 @@ jQuery(document).ready( function($) {
 			$( "#iplocator-chart-country" ).removeClass( "active" );
 			$( "#iplocator-chart-language" ).removeClass( "active" );
 			$( "#iplocator-chart-access" ).addClass( "active" );
-			$( "#iplocator-chart-detection" ).removeClass( "active" );
 			$( "#iplocator-chart-button-country" ).removeClass( "active" );
 			$( "#iplocator-chart-button-language" ).removeClass( "active" );
 			$( "#iplocator-chart-button-access" ).addClass( "active" );
-			$( "#iplocator-chart-button-detection" ).removeClass( "active" );
-		}
-	);
-	$( "#iplocator-chart-button-detection" ).on(
-		"click",
-		function() {
-			$( "#iplocator-chart-country" ).removeClass( "active" );
-			$( "#iplocator-chart-language" ).removeClass( "active" );
-			$( "#iplocator-chart-access" ).removeClass( "active" );
-			$( "#iplocator-chart-detection" ).addClass( "active" );
-			$( "#iplocator-chart-button-country" ).removeClass( "active" );
-			$( "#iplocator-chart-button-language" ).removeClass( "active" );
-			$( "#iplocator-chart-button-access" ).removeClass( "active" );
-			$( "#iplocator-chart-button-detection" ).addClass( "active" );
 		}
 	);
 

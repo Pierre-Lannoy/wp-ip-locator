@@ -412,17 +412,45 @@ class Analytics {
 	 */
 	private function query_chart() {
 		$uuid             = UUID::generate_unique_id( 5 );
-		$query            = Schema::get_time_series( $this->filter, ! $this->is_today, '', [], false );
+		$query            = [];
 		$item             = [];
-		$item['country']  = [ 'u_ham', 'u_spam' ];
-		$item['language'] = [ 'u_active', 'expired', 'forced', 'idle' ];
-		$item['access']   = [ 'registration', 'delete' ];
-		$item['log']      = [ 'logout', 'login_success', 'login_fail', 'login_block' ];
-		$data             = [];
-		$series           = [];
-		$labels           = [];
-		$boundaries       = [];
-		$json             = [];
+		$item['country']  = [ 'country' ];
+		$item['language'] = [ 'language' ];
+		$item['access']   = [ 'public', 'private', 'satellite', 'other' ];
+		foreach ( Schema::get_counted_time_series( array_merge( $this->filter, [ "class='public'"], $this->human_filter ), ! $this->is_today, '', [], false ) as $row ) {
+			$i                        = [];
+			$i['timestamp']           = $row['timestamp'];
+			$i['country']             = $row['cnt_country'];
+			$i['language']            = $row['cnt_language'];
+			$i['public']              = 0;
+			$i['private']             = 0;
+			$i['satellite']           = 0;
+			$i['other']               = 0;
+			$query[ $i['timestamp'] ] = $i;
+		}
+		foreach ( $item['access'] as $key ) {
+			foreach ( Schema::get_time_series( array_merge( $this->filter, [ "class='" . $key . "'"] ), ! $this->is_today, '', [], false ) as $row ) {
+				$i              = [];
+				$i['timestamp'] = $row['timestamp'];
+				$i['country']   = 0;
+				$i['language']  = 0;
+				$i['public']    = 0;
+				$i['private']   = 0;
+				$i['satellite'] = 0;
+				$i['other']     = 0;
+				$i[ $key ]      = $row['sum_hit'];
+				if ( array_key_exists( $i['timestamp'], $query ) ) {
+					$query[ $i['timestamp'] ][ $key ] = $row['sum_hit'];
+				} else {
+					$query[ $i['timestamp'] ] = $i;
+				}
+			}
+		}
+		$data       = [];
+		$series     = [];
+		$labels     = [];
+		$boundaries = [];
+		$json       = [];
 		foreach ( $item as $selector => $array ) {
 			$boundaries[ $selector ] = [
 				'max'    => 0,
@@ -437,13 +465,7 @@ class Analytics {
 				$datetime->setTimezone( $this->timezone );
 				$record = [];
 				foreach ( $row as $k => $v ) {
-					if ( 0 === strpos( $k, 'u_' ) ) {
-						if ( 0 < $row['cnt'] ) {
-							$record[ $k ] = (int) round( $v / $row['cnt'], 0 );
-						} else {
-							$record[ $k ] = 0;
-						}
-					} elseif ( 'cnt' !== $k && 'timestamp' !== $k ) {
+					if ( 'timestamp' !== $k ) {
 						$record[ $k ] = (int) $v;
 					}
 				}
@@ -451,7 +473,7 @@ class Analytics {
 			}
 			// Boundaries computation.
 			foreach ( $data as $datum ) {
-				foreach ( array_merge( $item['user'], $item['session'], $item['turnover'], $item['log'], $item['password'] ) as $field ) {
+				foreach ( array_merge( $item['country'], $item['language'], $item['access'] ) as $field ) {
 					foreach ( $item as $selector => $array ) {
 						if ( in_array( $field, $array, true ) ) {
 							if ( $boundaries[ $selector ]['max'] < $datum[ $field ] ) {
@@ -474,7 +496,7 @@ class Analytics {
 			foreach ( $data as $timestamp => $datum ) {
 				// Series.
 				$ts = 'new Date(' . (string) $timestamp . '000)';
-				foreach ( array_merge( $item['user'], $item['session'], $item['turnover'], $item['log'], $item['password'] ) as $key ) {
+				foreach ( array_merge( $item['country'], $item['language'], $item['access'] ) as $key ) {
 					foreach ( $item as $selector => $array ) {
 						if ( in_array( $key, $array, true ) ) {
 							$series[ $key ][] = [
@@ -488,13 +510,6 @@ class Analytics {
 				// Labels.
 				$labels[] = 'moment(' . $timestamp . '000).format("ll")';
 			}
-
-
-
-
-
-
-			
 			// Result encoding.
 			$shift    = 86400;
 			$datetime = new \DateTime( $this->start . ' 00:00:00', $this->timezone );
@@ -512,7 +527,7 @@ class Analytics {
 				'x' => 'new Date(' . (string) ( $datetime + $shift ) . '000)',
 				'y' => 'null',
 			];
-			foreach ( array_merge( $item['user'], $item['session'], $item['turnover'], $item['log'], $item['password'] ) as $key ) {
+			foreach ( array_merge( $item['country'], $item['language'], $item['access'] ) as $key ) {
 				array_unshift( $series[ $key ], $before );
 				$series[ $key ][] = $after;
 			}
@@ -521,51 +536,26 @@ class Analytics {
 				$serie = [];
 				foreach ( $boundaries[ $selector ]['order'] as $field ) {
 					switch ( $field ) {
-						case 'u_ham':
-							if ( Environment::is_wordpress_multisite() ) {
-								$name = esc_html__( 'Legit Users', 'sessions' );
-							} else {
-								$name = esc_html__( 'Users', 'sessions' );
-							}
+						case 'country':
+							$name = esc_html__( 'Countries', 'ip-locator' );
 							break;
-						case 'u_spam':
-							$name = esc_html__( 'Spam Users', 'sessions' );
+						case 'language':
+							$name = esc_html__( 'Languages', 'ip-locator' );
 							break;
-						case 'u_active':
-							$name = esc_html__( 'Active Sessions', 'sessions' );
+						case 'public':
+							$name = esc_html__( 'Public', 'ip-locator' );
 							break;
-						case 'forced':
-							$name = esc_html__( 'Overridden Sessions', 'sessions' );
+						case 'private':
+							$name = esc_html__( 'Local', 'ip-locator' );
 							break;
-						case 'expired':
-							$name = esc_html__( 'Expired Sessions', 'sessions' );
+						case 'other':
+							$name = esc_html__( 'Other', 'ip-locator' );
 							break;
-						case 'idle':
-							$name = esc_html__( 'Idle Sessions', 'sessions' );
-							break;
-						case 'registration':
-							$name = esc_html__( 'Created Accounts', 'sessions' );
-							break;
-						case 'delete':
-							$name = esc_html__( 'Deleted Accounts', 'sessions' );
-							break;
-						case 'logout':
-							$name = esc_html__( 'Logouts', 'sessions' );
-							break;
-						case 'login_success':
-							$name = esc_html__( 'Successful Logins', 'sessions' );
-							break;
-						case 'login_fail':
-							$name = esc_html__( 'Failed Logins', 'sessions' );
-							break;
-						case 'login_block':
-							$name = esc_html__( 'Blocked Logins', 'sessions' );
-							break;
-						case 'reset':
-							$name = esc_html__( 'Password Resets', 'sessions' );
+						case 'satellite':
+							$name = esc_html__( 'Satellite', 'ip-locator' );
 							break;
 						default:
-							$name = esc_html__( 'Unknown', 'sessions' );
+							$name = esc_html__( 'Unknown', 'ip-locator' );
 					}
 					$serie[] = [
 						'name' => $name,
@@ -621,8 +611,7 @@ class Analytics {
 			$result .= ' new Chartist.Line("#iplocator-chart-country", country_data' . $uuid . ', country_option' . $uuid . ');';
 			$result .= '});';
 			$result .= '</script>';
-
-			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-language">';
+			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-language">';
 			$result .= '</div>';
 			$result .= '<script>';
 			$result .= 'jQuery(function ($) {';
@@ -641,8 +630,7 @@ class Analytics {
 			$result .= ' new Chartist.Line("#iplocator-chart-language", language_data' . $uuid . ', language_option' . $uuid . ');';
 			$result .= '});';
 			$result .= '</script>';
-
-			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-access">';
+			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-access">';
 			$result .= '</div>';
 			$result .= '<script>';
 			$result .= 'jQuery(function ($) {';
@@ -661,30 +649,6 @@ class Analytics {
 			$result .= ' new Chartist.Line("#iplocator-chart-access", access_data' . $uuid . ', access_option' . $uuid . ');';
 			$result .= '});';
 			$result .= '</script>';
-
-			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-detection">';
-			$result .= '</div>';
-			$result .= '<script>';
-			$result .= 'jQuery(function ($) {';
-			$result .= ' var detection_data' . $uuid . ' = '; //. $json_availability . ';';
-			$result .= ' var detection_tooltip' . $uuid . ' = Chartist.plugins.tooltip({percentage: false, appendToBody: true});';
-			$result .= ' var detection_option' . $uuid . ' = {';
-			$result .= '  height: 300,';
-			$result .= '  fullWidth: true,';
-			$result .= '  showArea: true,';
-			$result .= '  showLine: true,';
-			$result .= '  showPoint: false,';
-			$result .= '  plugins: [detection_tooltip' . $uuid . '],';
-			if ( 1 < $this->duration ) {
-				$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:' . $divisor . ', labelInterpolationFnc: function (value) {return moment(value).format("ll");}},';
-			} else {
-				$result .= '  axisX: {labelOffset: {x: 3,y: 0},scaleMinSpace: 100, type: Chartist.FixedScaleAxis, divisor:8, labelInterpolationFnc: function (value) {var shift=0;if(moment(value).isDST()){shift=3600000};return moment(value-shift).format("HH:00");}},';
-			}
-			$result .= '  axisY: {type: Chartist.AutoScaleAxis, labelInterpolationFnc: function (value) {return value.toString() + " %";}},';
-			$result .= ' };';
-			$result .= ' new Chartist.Line("#iplocator-chart-detection", detection_data' . $uuid . ', detection_option' . $uuid . ');';
-			$result .= '});';
-			$result .= '</script>';
 		} else {
 			$result  = '<div class="iplocator-multichart-handler">';
 			$result .= '<div class="iplocator-multichart-item active" id="iplocator-chart-country">';
@@ -694,9 +658,6 @@ class Analytics {
 			$result .= $this->get_graph_placeholder_nodata( 274 );
 			$result .= '</div>';
 			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-access">';
-			$result .= $this->get_graph_placeholder_nodata( 274 );
-			$result .= '</div>';
-			$result .= '<div class="iplocator-multichart-item" id="iplocator-chart-detection">';
 			$result .= $this->get_graph_placeholder_nodata( 274 );
 			$result .= '</div>';
 		}
@@ -1157,11 +1118,9 @@ class Analytics {
 			$help_country   = esc_html__( 'Countries variation.', 'ip-locator' );
 			$help_language  = esc_html__( 'Languages variation.', 'ip-locator' );
 			$help_access    = esc_html__( 'Access breakdown.', 'ip-locator' );
-			$help_detection = esc_html__( 'Detection variation.', 'ip-locator' );
 			$detail         = '<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-country" data-position="left" data-tooltip="' . $help_country . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'flag', 'none', '#73879C' ) . '" /></span>';
 			$detail        .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-language" data-position="left" data-tooltip="' . $help_language . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'award', 'none', '#73879C' ) . '" /></span>';
 			$detail        .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-access" data-position="left" data-tooltip="' . $help_access . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'crosshair', 'none', '#73879C' ) . '" /></span>';
-			$detail        .= '&nbsp;&nbsp;&nbsp;<span class="iplocator-chart-button not-ready left" id="iplocator-chart-button-detection" data-position="left" data-tooltip="' . $help_detection . '"><img style="width:12px;vertical-align:baseline;" src="' . Feather\Icons::get_base64( 'activity', 'none', '#73879C' ) . '" /></span>';
 			$result         = '<div class="iplocator-row">';
 			$result        .= '<div class="iplocator-box iplocator-box-full-line">';
 			$result        .= '<div class="iplocator-module-title-bar"><span class="iplocator-module-title">' . esc_html__( 'Metrics Variations', 'ip-locator' ) . '<span class="iplocator-module-more">' . $detail . '</span></span></div>';
@@ -1398,7 +1357,7 @@ class Analytics {
 		$result .= ' $.each(val, function(index, value) {$("#" + index).html(value);});';
 		if ( array_key_exists( 'query', $args ) && 'main-chart' === $args['query'] ) {
 			$result .= '$(".iplocator-chart-button").removeClass("not-ready");';
-			$result .= '$("#iplocator-chart-button-calls").addClass("active");';
+			$result .= '$("#iplocator-chart-button-country").addClass("active");';
 		}
 		$result .= ' });';
 		$result .= '});';
