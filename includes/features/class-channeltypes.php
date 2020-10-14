@@ -28,7 +28,7 @@ class ChannelTypes {
 	 * @since  1.0.0
 	 * @var    array    $channels    Maintains the channels definitions.
 	 */
-	public static $channels = [ 'UNKNOWN', 'CLI', 'CRON', 'AJAX', 'XMLRPC', 'API', 'FEED', 'WBACK', 'WFRONT' ];
+	public static $channels = [ 'OTHER', 'CLI', 'CRON', 'AJAX', 'XMLRPC', 'API', 'FEED', 'WBACK', 'WFRONT' ];
 
 	/**
 	 * The list of available channels names.
@@ -44,7 +44,7 @@ class ChannelTypes {
 	 * @since    1.0.0
 	 */
 	public static function init() {
-		self::$channel_names['UNKNOWN'] = esc_html__( 'Unknown', 'ip-locator' );
+		self::$channel_names['OTHER']   = esc_html__( 'Unknown', 'ip-locator' );
 		self::$channel_names['CLI']     = esc_html__( 'Command Line Interface', 'ip-locator' );
 		self::$channel_names['CRON']    = esc_html__( 'Cron Job', 'ip-locator' );
 		self::$channel_names['AJAX']    = esc_html__( 'Ajax Request', 'ip-locator' );

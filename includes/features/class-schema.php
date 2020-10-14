@@ -98,7 +98,7 @@ class Schema {
 	private static function write_statistics() {
 		$ua     = UserAgent::get();
 		$client = $ua->client_type;
-		if ( '' === $client || 'cli' === self::current_channel_tag() || $ua->class_is_bot ) {
+		if ( ! $client || '' === $client || 'cli' === self::current_channel_tag() || $ua->class_is_bot ) {
 			$client = 'other';
 		}
 		$country             = new Country();
@@ -496,7 +496,7 @@ class Schema {
 		$sql            .= " (`timestamp` date NOT NULL DEFAULT '0000-00-00',";
 		$sql            .= " `site` bigint(20) NOT NULL DEFAULT '0',";
 		$sql            .= " `class` enum('public','private','satellite','other') NOT NULL DEFAULT 'other',";
-		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','unknown') NOT NULL DEFAULT 'other',";
+		$sql            .= " `channel` enum('cli','cron','ajax','xmlrpc','api','feed','wback','wfront','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `client` enum('browser','feed-reader','library','media-player','mobile-app','pim','other') NOT NULL DEFAULT 'other',";
 		$sql            .= " `hit` int(11) UNSIGNED NOT NULL DEFAULT '0',";
 		$sql            .= " `country` varchar(2) DEFAULT '00',";
@@ -644,6 +644,27 @@ class Schema {
 	}
 
 	/**
+	 * Get a counted time series.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   boolean $cache       Has the query to be cached.
+	 * @param   string  $extra_field Optional. The extra field to filter.
+	 * @param   array   $extras      Optional. The extra values to match.
+	 * @param   boolean $not         Optional. Exclude extra filter.
+	 * @param   integer $limit       Optional. The number of results to return.
+	 * @return  array   The time series.
+	 * @since    1.0.0
+	 */
+	public static function get_counted_time_series( $filter, $cache = true, $extra_field = '', $extras = [], $not = false, $limit = 0 ) {
+		$data   = self::get_counted_list( $filter, 'timestamp', $cache, $extra_field, $extras, $not, 'ORDER BY timestamp ASC', $limit );
+		$result = [];
+		foreach ( $data as $datum ) {
+			$result[ $datum['timestamp'] ] = $datum;
+		}
+		return $result;
+	}
+
+	/**
 	 * Get the a grouped list.
 	 *
 	 * @param   array   $filter      The filter of the query.
@@ -675,6 +696,50 @@ class Schema {
 		}
 		global $wpdb;
 		$sql = 'SELECT `timestamp`, sum(hit) as sum_hit, site, class, channel, client, country, `language` FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
+		// phpcs:ignore
+		$result = $wpdb->get_results( $sql, ARRAY_A );
+		if ( is_array( $result ) ) {
+			if ( $cache ) {
+				Cache::set_global( $id, $result, 'infinite' );
+			}
+			return $result;
+		}
+		return [];
+	}
+
+	/**
+	 * Get the a counted list.
+	 *
+	 * @param   array   $filter      The filter of the query.
+	 * @param   string  $group       Optional. The group of the query.
+	 * @param   boolean $cache       Optional. Has the query to be cached.
+	 * @param   string  $extra_field Optional. The extra field to filter.
+	 * @param   array   $extras      Optional. The extra values to match.
+	 * @param   boolean $not         Optional. Exclude extra filter.
+	 * @param   string  $order       Optional. The sort order of results.
+	 * @param   integer $limit       Optional. The number of results to return.
+	 * @return  array   The grouped list.
+	 * @since    1.0.0
+	 */
+	public static function get_counted_list( $filter, $group = '', $cache = true, $extra_field = '', $extras = [], $not = false, $order = '', $limit = 0 ) {
+		// phpcs:ignore
+		$id = Cache::id( __FUNCTION__ . serialize( $filter ) . $group . $extra_field . serialize( $extras ) . ( $not ? 'no' : 'yes') . $order . (string) $limit);
+		if ( $cache ) {
+			$result = Cache::get_global( $id );
+			if ( $result ) {
+				return $result;
+			}
+		}
+		if ( '' !== $group ) {
+			$group = ' GROUP BY ' . $group;
+		}
+		$where_extra = '';
+		if ( 0 < count( $extras ) && '' !== $extra_field ) {
+			$where_extra = ' AND ' . $extra_field . ( $not ? ' NOT' : '' ) . " IN ( '" . implode( "', '", $extras ) . "' )";
+		}
+		global $wpdb;
+		$sql = 'SELECT `timestamp`, count(distinct country) as cnt_country, count(distinct language) as cnt_language FROM ' . $wpdb->base_prefix . self::$statistics . ' WHERE (' . implode( ' AND ', $filter ) . ')' . $where_extra . ' ' . $group . ' ' . $order . ( $limit > 0 ? ' LIMIT ' . $limit : '') .';';
+		Logger::critical(esc_textarea( $sql));
 		// phpcs:ignore
 		$result = $wpdb->get_results( $sql, ARRAY_A );
 		if ( is_array( $result ) ) {
