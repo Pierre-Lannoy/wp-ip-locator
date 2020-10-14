@@ -13,8 +13,7 @@ namespace IPLocator\Plugin\Feature;
 
 use IPLocator\System\Environment;
 use IPLocator\System\Option;
-use IPLocator\System\Markdown;
-use UDD\DeviceDetector;
+use IPLocator\System\Markdown;use IPLocator\Plugin\Feature\Analytics;
 use Spyc;
 
 /**
@@ -534,9 +533,10 @@ add_shortcode( 'iplocator-wpcli', [ 'IPLocator\Plugin\Feature\Wpcli', 'sc_get_he
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	/*\WP_CLI::add_command( 'device status', [ Wpcli::class, 'status' ] );
 	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
-	\WP_CLI::add_command( 'device exitcode', [ Wpcli::class, 'exitcode' ] );
+
 	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
-	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );
-	\WP_CLI::add_command( 'device analytics', [ Wpcli::class, 'analytics' ] );*/
+	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );*/
+	\WP_CLI::add_command( 'location exitcode', [ Wpcli::class, 'exitcode' ] );
+	\WP_CLI::add_command( 'location analytics', [ Wpcli::class, 'analytics' ] );
 
 }

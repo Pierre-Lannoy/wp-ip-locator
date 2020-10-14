@@ -737,15 +737,15 @@ class Analytics {
 		}
 		$result['data'] = [];
 		$kpi            = new static( $args['site_id'], date( 'Y-m-d' ), date( 'Y-m-d' ), false );
-		foreach ( [ 'hit', 'mobile', 'desktop', 'bot', 'client', 'engine' ] as $query ) {
+		foreach ( [ 'country', 'language', 'public', 'private', 'satellite', 'detection' ] as $query ) {
 			$data = $kpi->query_kpi( $query, false );
 			switch ( $query ) {
 				case 'country':
-					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 1, true );
+					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 0, true );
 					$result['data'][$query] = [
 						'name'        => esc_html_x( 'Countries', 'Noun - Countries.', 'ip-locator' ),
 						'short'       => esc_html_x( 'Cntr', 'Noun - Short (max 4 char) - Countries.', 'ip-locator' ),
-						'description' => esc_html__( 'Accessing countries - real humans only (browsers or apps).', 'ip-locator' ),
+						'description' => esc_html__( 'Accessing countries.', 'ip-locator' ),
 						'dimension'   => 'none',
 						'ratio'       => null,
 						'variation'   => [
@@ -760,11 +760,11 @@ class Analytics {
 					];
 					break;
 				case 'language':
-					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 1, true );
+					$val                    = Conversion::number_shorten( $data['kpi-main-' . $query ], 0, true );
 					$result['data'][$query] = [
 						'name'        => esc_html_x( 'Languages', 'Noun - Languages.', 'ip-locator' ),
-					'short'       => esc_html_x( 'Lang', 'Noun - Short (max 4 char) - Countries.', 'ip-locator' ),
-						'description' => esc_html__( 'Main languages of accessing countries - real humans only (browsers or apps).', 'ip-locator' ),
+					    'short'       => esc_html_x( 'Lang', 'Noun - Short (max 4 char) - Countries.', 'ip-locator' ),
+						'description' => esc_html__( 'Main languages of accessing countries.', 'ip-locator' ),
 						'dimension'   => 'none',
 						'ratio'       => null,
 						'variation'   => [
@@ -779,11 +779,11 @@ class Analytics {
 					];
 					break;
 				case 'public':
-					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 1, true );
 					$result['data'][$query] = [
-						'name'        => esc_html_x( 'Public', 'Noun - Percentage of hits from public IPs.', 'ip-locator' ),
-						'short'       => esc_html_x( 'Pub.', 'Noun - Short (max 4 char) - Percentage of hits from public IPs.', 'ip-locator' ),
-						'description' => esc_html__( 'Ratio of hits done from public IPs.', 'ip-locator' ),
+						'name'        => esc_html_x( 'Public', 'Noun - Hits from public IPs.', 'ip-locator' ),
+						'short'       => esc_html_x( 'Pub.', 'Noun - Short (max 4 char) - Hits from public IPs.', 'ip-locator' ),
+						'description' => esc_html__( 'Hits from public IPs.', 'ip-locator' ),
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
@@ -793,7 +793,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -802,11 +802,11 @@ class Analytics {
 					];
 					break;
 				case 'private':
-					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 1, true );
 					$result['data'][$query] = [
-						'name'        => esc_html_x( 'Local', 'Noun - Percentage of hits from private IPs.', 'ip-locator' ),
-						'short'       => esc_html_x( 'Loc.', 'Noun - Short (max 4 char) - Percentage of hits from private IPs.', 'ip-locator' ),
-						'description' => esc_html__( 'Ratio of hits done from private IPs.', 'ip-locator' ),
+						'name'        => esc_html_x( 'Local', 'Noun - Hits from private IPs.', 'ip-locator' ),
+						'short'       => esc_html_x( 'Loc.', 'Noun - Short (max 4 char) - Hits from private IPs.', 'ip-locator' ),
+						'description' => esc_html__( 'Hits from private IPs.', 'ip-locator' ),
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
@@ -816,7 +816,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -825,11 +825,11 @@ class Analytics {
 					];
 					break;
 				case 'satellite':
-					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 1, true );
 					$result['data'][$query] = [
-						'name'        => esc_html_x( 'Satellite', 'Noun - Percentage of hits from satellite IPs.', 'ip-locator' ),
-						'short'       => esc_html_x( 'Sat.', 'Noun - Short (max 4 char) - Percentage of hits from satellite IPs.', 'ip-locator' ),
-						'description' => esc_html__( 'Ratio of hits done from satellite IPs.', 'ip-locator' ),
+						'name'        => esc_html_x( 'Satellite', 'Noun - Hits from satellite IPs.', 'ip-locator' ),
+						'short'       => esc_html_x( 'Sat.', 'Noun - Short (max 4 char) - Hits from satellite IPs.', 'ip-locator' ),
+						'description' => esc_html__( 'Hits from satellite IPs.', 'ip-locator' ),
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
@@ -839,7 +839,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -848,11 +848,11 @@ class Analytics {
 					];
 					break;
 				case 'detection':
-					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 0, true );
+					$val                    = Conversion::number_shorten( $data['kpi-bottom-' . $query], 1, true );
 					$result['data'][$query] = [
-						'name'        => esc_html_x( 'Detection', 'Noun - Percentage of detected IPs.', 'ip-locator' ),
-						'short'       => esc_html_x( 'Dtc.', 'Noun - Short (max 4 char) - Percentage of detected IPs.', 'ip-locator' ),
-						'description' => esc_html__( 'Ratio of detected IPs (eliminates reserved, unknown and behing anonymous proxies IPs).', 'ip-locator' ),
+						'name'        => esc_html_x( 'Detection', 'Noun - Hits from detected IPs.', 'ip-locator' ),
+						'short'       => esc_html_x( 'Dtc.', 'Noun - Short (max 4 char) - Hits from detected IPs.', 'ip-locator' ),
+						'description' => esc_html__( 'Hits from detected IPs.', 'ip-locator' ),
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
@@ -862,7 +862,7 @@ class Analytics {
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
 							'percent'  => round( $data['kpi-index-' . $query], 2 ),
-							'permille' => round( $data['kpi-index--' . $query] * 10, 2 ),
+							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
 							'raw'   => $data['kpi-bottom-' . $query],
@@ -906,7 +906,7 @@ class Analytics {
 			$previous                         = (int) count( $pdata );
 			$result[ 'kpi-main-' . $queried ] = (int) round( $current, 0 );
 			if ( ! $chart ) {
-				if ( 0.0 !== $current && 0.0 !== $previous ) {
+				if ( 0 !== $current && 0 !== $previous ) {
 					$result[ 'kpi-index-' . $queried ] = round( 100 * ( $current - $previous ) / $previous, 4 );
 				} else {
 					$result[ 'kpi-index-' . $queried ] = null;
