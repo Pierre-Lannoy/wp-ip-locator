@@ -123,12 +123,12 @@ class IP_Locator_Admin {
 			];
 		}
 		$perfops['tools'][] = [
-			'name'          => esc_html__( 'IPs', 'ip-locator' ),
+			'name'          => esc_html__( 'Locations', 'ip-locator' ),
 			'description'   => esc_html__( 'Test IPs to see location details.', 'ip-locator' ),
 			'icon_callback' => [ \IPLocator\Plugin\Core::class, 'get_base64_logo' ],
 			'slug'          => 'iplocator-tools',
-			'page_title'    => esc_html__( 'IP Test', 'ip-locator' ),
-			'menu_title'    => esc_html__( 'IPs', 'ip-locator' ),
+			'page_title'    => esc_html__( 'Locations', 'ip-locator' ),
+			'menu_title'    => esc_html__( 'Locations', 'ip-locator' ),
 			'capability'    => 'manage_options',
 			'callback'      => [ $this, 'get_tools_page' ],
 			'position'      => 50,
