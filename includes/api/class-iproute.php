@@ -118,16 +118,7 @@ class IPRoute extends \WP_REST_Controller {
 	 */
 	public function get_describe( $request ) {
 		try {
-			$result                      = [];
-			$result['ip']                = $request['ip'];
-			$result['country']['code']   = iplocator_get_country_code( $request['ip'] );
-			$result['country']['name']   = iplocator_get_country_name( $request['ip'], $request['locale'] );
-			$result['language']['code']  = iplocator_get_language_code( $request['ip'] );
-			$result['language']['name']  = iplocator_get_language_name( $request['ip'], $request['locale'] );
-			$result['flag']['square']    = iplocator_get_flag_svg( $request['ip'], true );
-			$result['flag']['rectangle'] = iplocator_get_flag_svg( $request['ip'] );
-			$result['flag']['emoji']     = iplocator_get_flag_emoji( $request['ip'] );
-
+			$result = iplocator_describe( $request['ip'], $request['locale'] );
 		} catch ( \Throwable $t ) {
 			Logger::error( sprintf( 'Unable to analyze IP "%s".', $request['ip'] ), 500 );
 			return new \WP_Error( 'rest_internal_server_error', 'Unable to analyze this User-Agent.', [ 'status' => 500 ] );

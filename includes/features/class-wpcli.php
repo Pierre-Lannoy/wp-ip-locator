@@ -13,7 +13,10 @@ namespace IPLocator\Plugin\Feature;
 
 use IPLocator\System\Environment;
 use IPLocator\System\Option;
-use IPLocator\System\Markdown;use IPLocator\Plugin\Feature\Analytics;
+use IPLocator\System\Markdown;
+use IPLocator\Plugin\Feature\Analytics;
+use IPLocator\Plugin\Feature\Schema;
+use IPLocator\System\Timezone;
 use Spyc;
 
 /**
@@ -183,7 +186,10 @@ class Wpcli {
 	 *
 	 */
 	public static function status( $args, $assoc_args ) {
-		\WP_CLI::line( sprintf( '%s is running with UDD engine v%s.', Environment::plugin_version_text(), DeviceDetector::VERSION ) );
+		\WP_CLI::line( sprintf( '%s is running.', Environment::plugin_version_text() ) );
+		$schema = new Schema();
+		\WP_CLI::line( 'IPv4 database: ' . sprintf( '%d IP ranges updated on %s.', $schema->count_ranges( 'v4' ), wp_date( get_option( 'date_format' ), Option::network_get( 'dbversion_v4' ), Timezone::network_get() ) ) );
+		\WP_CLI::line( 'IPv6 database: ' . sprintf( '%d IP ranges updated on %s.', $schema->count_ranges( 'v6' ), wp_date( get_option( 'date_format' ), Option::network_get( 'dbversion_v6' ), Timezone::network_get() ) ) );
 		if ( Option::network_get( 'analytics' ) ) {
 			\WP_CLI::line( 'Analytics: enabled.' );
 		} else {
@@ -193,6 +199,11 @@ class Wpcli {
 			\WP_CLI::line( 'Logging support: yes (DecaLog v' . DECALOG_VERSION . ').');
 		} else {
 			\WP_CLI::line( 'Logging support: no.' );
+		}
+		if ( defined( 'PODD_VERSION' ) ) {
+			\WP_CLI::line( 'Device detection support: yes (Device Detector v' . PODD_VERSION . ').');
+		} else {
+			\WP_CLI::line( 'Device detection support: no.' );
 		}
 	}
 
@@ -531,11 +542,17 @@ class Wpcli {
 add_shortcode( 'iplocator-wpcli', [ 'IPLocator\Plugin\Feature\Wpcli', 'sc_get_helpfile' ] );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
-	/*\WP_CLI::add_command( 'device status', [ Wpcli::class, 'status' ] );
+	/*
 	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
 
-	\WP_CLI::add_command( 'device describe', [ Wpcli::class, 'describe' ] );
+
 	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );*/
+
+
+	\WP_CLI::add_command( 'location status', [ Wpcli::class, 'status' ] );
+	\WP_CLI::add_command( 'location describe', [ Wpcli::class, 'describe' ] );
+
+
 	\WP_CLI::add_command( 'location exitcode', [ Wpcli::class, 'exitcode' ] );
 	\WP_CLI::add_command( 'location analytics', [ Wpcli::class, 'analytics' ] );
 

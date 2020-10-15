@@ -138,3 +138,28 @@ if ( ! function_exists( 'iplocator_get_flag_image' ) ) {
 	}
 }
 
+if ( ! function_exists( 'iplocator_describe' ) ) {
+	/**
+	 * Get the image flag.
+	 *
+	 * @param   string    $ip         Optional. The ip to detect from.
+	 *                                If not specified, get the ip of the current request.
+	 * @param   string    $locale     Optional. The locale.
+	 * @return  array                 The main informations about the IP.
+	 * @since 2.0.0
+	 */
+	function iplocator_describe( $ip = null, $locale = null ) {
+		$country                     = new Country( $ip );
+		$result                      = [];
+		$result['ip']                = $ip;
+		$result['country']['code']   = $country->code();
+		$result['country']['name']   = $country->name( $locale );
+		$result['language']['code']  = $country->lang()->code();
+		$result['language']['name']  = $country->lang()->name( $locale );
+		$result['flag']['square']    = $country->flag()->svg( true );
+		$result['flag']['rectangle'] = $country->flag()->svg();
+		$result['flag']['emoji']     = $country->flag()->emoji();
+		return $result;
+	}
+}
+
