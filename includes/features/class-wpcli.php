@@ -41,7 +41,6 @@ class Wpcli {
 		1   => 'unrecognized setting.',
 		2   => 'unrecognized action.',
 		3   => 'analytics are disabled.',
-		4   => 'unknown item.',
 		255 => 'unknown error.',
 	];
 
