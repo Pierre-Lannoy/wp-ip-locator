@@ -25,6 +25,16 @@ It can detect and render the country, the main language and the country flag of 
 
 For full details, you can browse [the shortcodes list](https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/SHORTCODES.md) or [the API description](https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/DEVELOPER.md) (for developers).
 
+**IP Locator** can be used too to report the following main items and characteristics:
+
+* KPIs: number of detected countries and languages, accesses breakdown and detection ratio;
+* countries for real humans with public IPs;
+* languages for real humans with public IPs;
+* metrics variations;
+* metrics distributions;
+* full list of countries per channel;
+* full list of countries per client (requires the free [Device Detector](https://wordpress.org/plugins/device-detector/) plugin).
+
 Technically, **IP Locator**:
 
 * works on dedicated or shared servers;
