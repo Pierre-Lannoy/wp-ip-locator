@@ -1,8 +1,8 @@
 <?php
 /**
- * WP-CLI for Device Detector.
+ * WP-CLI for IP Locator.
  *
- * Adds WP-CLI commands to Device Detector
+ * Adds WP-CLI commands to IP Locator
  *
  * @package Features
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
@@ -20,7 +20,7 @@ use IPLocator\System\Timezone;
 use Spyc;
 
 /**
- * WP-CLI for Device Detector.
+ * WP-CLI for IP Locator.
  *
  * Defines methods and properties for WP-CLI commands.
  *
@@ -175,14 +175,14 @@ class Wpcli {
 	}
 
 	/**
-	 * Get Device Detector details and operation modes.
+	 * Get IP Locator details and operation modes.
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp device status
+	 * wp location status
 	 *
 	 *
-	 *     === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
+	 *     === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md ===
 	 *
 	 */
 	public static function status( $args, $assoc_args ) {
@@ -201,14 +201,14 @@ class Wpcli {
 			\WP_CLI::line( 'Logging support: no.' );
 		}
 		if ( defined( 'PODD_VERSION' ) ) {
-			\WP_CLI::line( 'Device detection support: yes (Device Detector v' . PODD_VERSION . ').');
+			\WP_CLI::line( 'Location detection support: yes (IP Locator v' . PODD_VERSION . ').');
 		} else {
-			\WP_CLI::line( 'Device detection support: no.' );
+			\WP_CLI::line( 'Location detection support: no.' );
 		}
 	}
 
 	/**
-	 * Modify Device Detector main settings.
+	 * Modify IP Locator main settings.
 	 *
 	 * ## OPTIONS
 	 *
@@ -222,14 +222,14 @@ class Wpcli {
 	 * : Answer yes to the confirmation message, if any.
 	 *
 	 * [--stdout]
-	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by Device Detector.
+	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by IP Locator.
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp device settings disable analytics --yes
+	 * wp location settings disable analytics --yes
 	 *
 	 *
-	 *     === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
+	 *     === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md ===
 	 *
 	 */
 	public static function settings( $args, $assoc_args ) {
@@ -264,10 +264,10 @@ class Wpcli {
 	}
 
 	/**
-	 * Get devices details for a specific User-Agent.
+	 * Get location details for a specific IP address.
 	 *
-	 * <ua>
-	 * : The user-agent.
+	 * <ip>
+	 * : The IP address to describe.
 	 *
 	 * [--format=<format>]
 	 * : Set the output format. Note if json or yaml is chosen: full metadata is outputted too.
@@ -281,127 +281,55 @@ class Wpcli {
 	 * ---
 	 *
 	 * [--stdout]
-	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by Device Detector.
+	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by IP Locator.
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp device describe 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko)'
+	 * wp location describe 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko)'
 	 *
 	 *
-	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
+	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md ===
 	 *
 	 */
 	public static function describe( $args, $assoc_args ) {
-		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
-		$ua     = isset( $args[0] ) ? (string) $args[0] : '';
-		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
-		$device = Device::get( $ua );
+		$stdout   = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
+		$ip       = isset( $args[0] ) ? (string) $args[0] : '';
+		$format   = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
+		$location = iplocator_describe( $ip );
 		if ( 'yaml' === $format ) {
-			$details = Spyc::YAMLDump( $device->get_as_full_array(), true, true, true );
+			$details = Spyc::YAMLDump( $location, true, true, true );
 			self::line( $details, $details, $stdout );
 		} elseif ( 'json' === $format ) {
-			$details = wp_json_encode( $device->get_as_full_array() );
+			$details = wp_json_encode( $location );
 			self::line( $details, $details, $stdout );
 		} else {
-			$details = $device->get_as_array();
+			$details = [];
 			if ( 'table' === $format ) {
-				$result = [];
-				foreach ( $details as $key => $d ) {
-					$item          = [];
-					$item['key']   = $key;
-					$item['value'] = $d;
-					$result[]      = $item;
-				}
-				$detail  = [ 'key', 'value' ];
-				$details = $result;
+				$details[] = [ 'key' => 'ip', 'value' => $location['ip'] ];
+				$details[] = [ 'key' => 'country_code', 'value' => $location['country']['code'] ];
+				$details[] = [ 'key' => 'country_name', 'value' => $location['country']['name'] ];
+				$details[] = [ 'key' => 'language_code', 'value' => $location['language']['code'] ];
+				$details[] = [ 'key' => 'language_name', 'value' => $location['language']['name'] ];
+				$details[] = [ 'key' => 'flag_emoji', 'value' => $location['flag']['emoji'] ];
+				$detail    = [ 'key', 'value' ];
 			} elseif ( 'csv' === $format ) {
-				$result   = [];
-				$result[] = $details;
-				$detail   = array_keys( $details );
-				$details  = $result;
+				$details['ip']            = $location['ip'];
+				$details['country_code']  = $location['country']['code'];
+				$details['country_name']  = $location['country']['name'];
+				$details['language_code'] = $location['language']['code'];
+				$details['language_name'] = $location['language']['name'];
+				$details['flag_emoji']    = $location['flag']['emoji'];
+				$result                   = [];
+				$result[]                 = $details;
+				$detail                   = array_keys( $details );
+				$details                  = $result;
 			}
 			\WP_CLI\Utils\format_items( $assoc_args['format'], $details, $detail );
 		}
 	}
 
 	/**
-	 * Get detection engine details.
-	 *
-	 * ## OPTIONS
-	 *
-	 * <version|info|class|device|client|os|browser|engine|library|player|app|pim|reader|brand|bot>
-	 * : The item to get information about.
-	 *
-	 * [--format=<format>]
-	 * : Set the output format. Note if json or yaml is chosen: full metadata is outputted too.
-	 * ---
-	 * default: table
-	 * options:
-	 *  - table
-	 *  - json
-	 *  - yaml
-	 *  - count
-	 *  - ids
-	 * ---
-	 *
-	 * [--stdout]
-	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by Device Detector.
-	 *
-	 * ## EXAMPLES
-	 *
-	 * wp device db list browser
-	 *
-	 *
-	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
-	 *
-	 */
-	public static function engine( $args, $assoc_args ) {
-		$stdout = \WP_CLI\Utils\get_flag_value( $assoc_args, 'stdout', false );
-		$format = \WP_CLI\Utils\get_flag_value( $assoc_args, 'format', 'table' );
-		$item   = isset( $args[0] ) ? (string) $args[0] : '';
-		if ( in_array( $item, [ 'version', 'info', 'class', 'device', 'client', 'os', 'browser', 'engine', 'library', 'player', 'app', 'pim', 'reader', 'brand', 'bot' ], true ) ) {
-			switch ( $item ) {
-				case 'info':
-					$line = 'UDD - Universal Device Detector - is a free OSS from Matomo. https://matomo.org';
-					self::line( $line, $line, $stdout );
-					break;
-				case 'version':
-					$version = sprintf( 'UDD engine v%s', DeviceDetector::VERSION );
-					self::line( $version, $version, $stdout );
-					break;
-				default:
-					$detail = Detector::get_identifier_array( $item );
-					if ( 'yaml' === $format ) {
-						$details = Spyc::YAMLDump( $detail, true, true, true );
-						self::line( $details, $details, $stdout );
-					} elseif ( 'json' === $format ) {
-						$details = wp_json_encode( $detail );
-						self::line( $details, $details, $stdout );
-					} else {
-						$details = [];
-						foreach ( $detail as $d ) {
-							$a = [];
-							if ( 'ids' === $format ) {
-								$a[ $item ] = '"' . $d . '"';
-							} else {
-								$a[ $item ] = $d;
-							}
-							$details[] = $a;
-						}
-						if ( 'ids' === $format ) {
-							self::write_ids( $details, $item );
-						} else {
-							\WP_CLI\Utils\format_items( $assoc_args['format'], $details, [ $item ] );
-						}
-					}
-			}
-		} else {
-			self::error( 4, $stdout );
-		}
-	}
-
-	/**
-	 * Get devices analytics for today.
+	 * Get locations analytics for today.
 	 *
 	 * ## OPTIONS
 	 *
@@ -424,14 +352,14 @@ class Wpcli {
 	 * ---
 	 *
 	 * [--stdout]
-	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by Device Detector.
+	 * : Use clean STDOUT output to use results in scripts. Unnecessary when piping commands because piping is detected by IP Locator.
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp device analytics
+	 * wp location analytics
 	 *
 	 *
-	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
+	 *    === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md ===
 	 *
 	 */
 	public static function analytics( $args, $assoc_args ) {
@@ -498,11 +426,11 @@ class Wpcli {
 	 * ## EXAMPLES
 	 *
 	 * Lists available exit codes:
-	 * + wp device exitcode list
-	 * + wp device exitcode list --format=json
+	 * + wp location exitcode list
+	 * + wp location exitcode list --format=json
 	 *
 	 *
-	 *   === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-device-detector/blob/master/WP-CLI.md ===
+	 *   === For other examples and recipes, visit https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md ===
 	 *
 	 */
 	public static function exitcode( $args, $assoc_args ) {
@@ -542,17 +470,10 @@ class Wpcli {
 add_shortcode( 'iplocator-wpcli', [ 'IPLocator\Plugin\Feature\Wpcli', 'sc_get_helpfile' ] );
 
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
-	/*
-	\WP_CLI::add_command( 'device settings', [ Wpcli::class, 'settings' ] );
 
-
-	\WP_CLI::add_command( 'device engine', [ Wpcli::class, 'engine' ] );*/
-
-
+	\WP_CLI::add_command( 'location settings', [ Wpcli::class, 'settings' ] );
 	\WP_CLI::add_command( 'location status', [ Wpcli::class, 'status' ] );
 	\WP_CLI::add_command( 'location describe', [ Wpcli::class, 'describe' ] );
-
-
 	\WP_CLI::add_command( 'location exitcode', [ Wpcli::class, 'exitcode' ] );
 	\WP_CLI::add_command( 'location analytics', [ Wpcli::class, 'analytics' ] );
 

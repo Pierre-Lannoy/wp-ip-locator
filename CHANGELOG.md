@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - Full analytics dashboard with detailed accesses, countries and languages (see "Locations" in PerfOps Analytics menu).
 - New tool (in PerfOps Tools menu) to analyze an IP address.
+- [WP-CLI] New command to get a location detail: see `wp help location describe` for details.
+- [WP-CLI] New command to toggle on/off main settings: see `wp help location settings` for details.
 - [WP-CLI] New command to display IP Locator status: see `wp help location status` for details.
 - [WP-CLI] New command to display locations statistics: see `wp help location analytics` for details.
 - New Site Health "info" section about shared memory.
