@@ -5,21 +5,35 @@ Before starting to explain how to use IP Locator from a developer point of view,
 Now, what's the menu today?
 
 1. [What is IP Locator?](#what-is-ip-locator)
-2. [IP Locator API](#ip-locator-api)
+2. [IP Locator REST API](#ip-locator-rest-api)
+3. [IP Locator PHP API](#ip-locator-php-api)
     - [IP and IP detection](#ip-and-ip-detection)
     - [Country codes and names](#country-codes-and-names)
     - [Language codes and names](#language-codes-and-names)
     - [Emoji flags](#emoji-flags)
     - [Vectorized flags](#vectorized-flags)
-3. [Contribution Guidelines](/CONTRIBUTING.md)
-4. [Code of Conduct](/CODE_OF_CONDUCT.md)
+4. [Contribution Guidelines](/CONTRIBUTING.md)
+5. [Code of Conduct](/CODE_OF_CONDUCT.md)
 
 ## What is IP Locator?
 IP Locator is mainly a tool to analyze remote IP from which a WordPress site is accessed. It has the same pros and cons as all other tools using remote IPs: it is operational for every web server, there's no need of javascript from the client-side, but think about it as something "fakable" or "maskable". It can not be seen as something 100% reliable.
 
 IP Locator, once activated, is ready to be queried via some simple API calls. When you use this API, you don't have to worry about detection and cache management. You can call this API as many times as you want without any performance impact and you can do it as soon as the `init` hook is executed.
 
-## IP Locator API
+## IP Locator REST API
+IP Locator has a single endpoint which accepts `GET` requests from all authenticated users: `/wp-json/ip-locator/v1/describe`.
+
+This endpoint accepts 2 parameters:
+* `ip` - mandatory: to specify the IP address (IPv4 or IPv6) to analyze.
+* `locale` - optional: to specify the locale (like `"en"` or `"fr_CA"`) in which render the result.
+
+### Example
+```console
+pierre@dev:~$ curl --location --request GET '.../wp-json/ip-locator/v1/describe?ip=8.8.4.4&locale=fr_FR' --header '...'
+{"ip":"8.8.4.4","country":{"code":"US","name":"\u00c9tats-Unis"},"language":{"code":"en","name":"anglais"},"flag":{"square":"data:image\/svg+xml;base64,PHN2Zy...z4K","rectangle":"data:image\/svg+xml;base64,PHN2Zy...z4K","emoji":"\ud83c\uddfa\ud83c\uddf8"}}
+```
+
+## IP Locator PHP API
 This API is callable in procedural style or O-O style. It's up to you to choose your prefered way to use it. There's no feature or performance difference between these two styles. 
 
 ### IP and IP detection
