@@ -43,6 +43,17 @@ Technically, __IP Locator__:
 
 (2): [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use it in IP Locator.
 
+## WP-CLI
+
+__IP Locator__ supports an extensive set of WP-CLI commands to:
+
+* get location detail: see `wp help location describe` for details;
+* display IP Locator status: see `wp help location status` for details;
+* toggle on/off main settings: see `wp help location settings` for details;
+* display location and languages statistics: see `wp help location analytics` for details.
+
+For a full help on WP-CLI commands in Device Detector, please [read this guide](WP-CLI.md).
+
 ## Installation
 
 ### WordPress method (recommended)

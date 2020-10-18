@@ -53,6 +53,15 @@ Technically, **IP Locator**:
 > **IP Locator uses IP data from [WebNet77 / Software77](http://software77.net/geo-ip/) which is [donationware](http://software77.net/geo-ip/?license). If you find this data useful, consider making a donation - even a small one - to help keep it free.**
 > **IP Locator accesses this service on a regular basis (if the option is checked) to maintain an up-to-date version of the data. By using IP Locator, you agree with the [Software77 license](http://software77.net/geo-ip/?license)**
 
+**IP Locator** supports an extensive set of WP-CLI commands to:
+
+* get location detail: see `wp help location describe` for details;
+* display IP Locator status: see `wp help location status` for details;
+* toggle on/off main settings: see `wp help location settings` for details;
+* display location and languages statistics: see `wp help location analytics` for details.
+
+For a full help on WP-CLI commands in IP Locator, please [read this guide](https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md).
+
 **IP Locator**  is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
 = Developers =
