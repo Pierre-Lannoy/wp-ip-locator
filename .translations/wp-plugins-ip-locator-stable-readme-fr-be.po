@@ -1,14 +1,14 @@
-# Translation of Plugins - IP Locator - Stable Readme (latest release) in French (France)
+# Translation of Plugins - IP Locator - Stable Readme (latest release) in French (Belgium)
 # This file is distributed under the same license as the Plugins - IP Locator - Stable Readme (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-04 12:49+0200\n"
+"PO-Revision-Date: 2020-10-18 20:24+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 2.2.4\n"
-"Language: fr\n"
+"X-Generator: Poedit 2.4.1\n"
+"Language: fr_BE\n"
 "Project-Id-Version: Plugins - IP Locator - Stable Readme (latest release)\n"
 "POT-Creation-Date: \n"
 "Last-Translator: \n"
@@ -21,6 +21,58 @@ msgstr "Détection pour WordPress, basée sur l’adresse IP, des pays et des la
 #. Plugin name.
 msgid "IP Locator"
 msgstr "IP Locator"
+
+#. Found in description paragraph.
+msgid "<strong>IP Locator</strong> can be used too to report the following main items and characteristics:"
+msgstr "<strong>IP Locator</strong> peut également être utilisé pour générer des rapports sur les principaux éléments et caractéristiques suivants :"
+
+#. Found in description list item.
+msgid "full list of countries per client (requires the free <a href=\"https://wordpress.org/plugins/device-detector/\">Device Detector</a> plugin)."
+msgstr "liste complète des pays par client (nécessite l’extension gratuite <a href=\"https://wordpress.org/plugins/device-detector/\">Device Detector</a>)."
+
+#. Found in description list item.
+msgid "full list of countries per channel;"
+msgstr "liste complète des pays par canal ;"
+
+#. Found in description list item.
+msgid "metrics distributions;"
+msgstr "distributions des métriques ;"
+
+#. Found in description list item.
+msgid "metrics variations;"
+msgstr "variations des métriques ;"
+
+#. Found in description list item.
+msgid "languages for real humans with public IPs;"
+msgstr "langues pour les humains réels depuis des IPs publiques ;"
+
+#. Found in description list item.
+msgid "countries for real humans with public IPs;"
+msgstr "pays d’accès par des humains réels depuis des IPs publiques ;"
+
+#. Found in description list item.
+msgid "KPIs: number of detected countries and languages, accesses breakdown and detection ratio;"
+msgstr "KPIs : nombre de pays et de langues détectés, répartition des accès et ratio de détection ;"
+
+#. Screenshot description.
+msgid "Main Analytics Dashboard"
+msgstr "Tableau de bord principal"
+
+#. Found in description paragraph.
+msgid "This plugin may handle personally identifiable information (PII). If the GDPR or CCPA or similar regulation applies to your case, you must adapt your processes (consent management, security measure, treatment register, etc.)."
+msgstr "Cette extension peut traiter des données à caractère personnel (DCP). Si le RGPD ou le CCPA ou un règlement similaire s’applique à votre cas, vous devez adapter vos processus (gestion du consentement, mesure de sécurité, registre des traitements, etc.)."
+
+#. Found in description paragraph.
+msgid "This plugin doesn't set any cookie in the user's browser."
+msgstr "Cette extension ne dépose pas de cookie dans le navigateur de l’utilisateur."
+
+#. Found in description paragraph.
+msgid "This plugin, as any piece of software, is neither compliant nor non-compliant with privacy laws and regulations. It is your responsibility to use it - by activating the corresponding options or services - with respect for the personal data of your users and applicable laws."
+msgstr "Cette extension, comme tout autre logiciel, n’est ni conforme ni non conforme aux lois et règlements sur la protection de la vie privée. Il est de votre responsabilité de l’utiliser - en activant les options ou services correspondants - dans le respect des données personnelles de vos utilisateurs et des lois applicables."
+
+#. Found in description header.
+msgid "Privacy"
+msgstr "Confidentialité"
 
 #. Found in faq paragraph.
 msgid "You can report bugs and suggest ideas via the <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/issues\">GitHub issue tracker</a> of the plugin."
@@ -196,7 +248,7 @@ msgstr "fonctionne aussi bien sur des serveurs dédiés que mutualisés ;"
 
 #. Found in description list item.
 msgid "a full-featured API for plugins / themes developers."
-msgstr "une API complète pour les développeurs de plugins ou thèmes."
+msgstr "une API complète pour les développeurs d’extensions ou thèmes."
 
 #. Found in description list item.
 msgid "an automatic system to be always up to date (no API key, no IP data files to manually import);"
@@ -204,7 +256,7 @@ msgstr "un système automatique pour utiliser des données toujours à jour (pas
 
 #. Found in description list item.
 msgid "a CSS modifier to add a country-specific class to the <code>body</code> tag of your site;"
-msgstr "un modificateur CSS pour ajouter une classe spécifique au pays détecté au <code>body tag</code> de votre site ;"
+msgstr "un modificateur CSS pour ajouter une classe spécifique au pays détecté à la balise <code>body</code> de votre site ;"
 
 #. Found in description list item.
 msgid "a shortcode to conditionally hide or show strings or other shortcodes;"

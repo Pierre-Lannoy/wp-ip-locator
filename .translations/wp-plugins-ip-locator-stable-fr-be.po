@@ -1,14 +1,14 @@
-# Translation of Plugins - IP Locator - Stable (latest release) in French (France)
+# Translation of Plugins - IP Locator - Stable (latest release) in French (Belgium)
 # This file is distributed under the same license as the Plugins - IP Locator - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-18 20:07+0200\n"
+"PO-Revision-Date: 2020-10-18 20:17+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Poedit 2.4.1\n"
-"Language: fr\n"
+"Language: fr_BE\n"
 "Project-Id-Version: Plugins - IP Locator - Stable (latest release)\n"
 "POT-Creation-Date: \n"
 "Last-Translator: \n"
@@ -44,7 +44,7 @@ msgstr "Activé"
 
 #: admin/class-ip-locator-admin.php:449
 msgid "Analytics"
-msgstr "Statistiques"
+msgstr "Analyse de données"
 
 #: admin/class-ip-locator-admin.php:397
 msgid "Device Detection"
@@ -165,7 +165,7 @@ msgstr "Ratio d’IPS détectés (débarrassées des IPs réservées, inconnues 
 #: includes/features/class-analytics.php:1282
 msgctxt "Noun - Percentage of detected IPs."
 msgid "Detection"
-msgstr "Détection"
+msgstr "Detection"
 
 #: includes/features/class-analytics.php:1278
 msgid "Ratio of hits done from satellite IPs."
@@ -595,7 +595,7 @@ msgstr "affichage"
 
 #: includes/system/class-environment.php:220
 msgid "log"
-msgstr "journal"
+msgstr "Registre"
 
 #: includes/system/class-conversion.php:88
 msgctxt "Abbreviation - Stands for \"exabytes\"."
@@ -785,7 +785,7 @@ msgstr "Votre site utilise des Transients stockés en base de données."
 #: includes/system/class-sitehealth.php:306
 #: includes/system/class-sitehealth.php:318
 msgid "Performance"
-msgstr "Performance"
+msgstr "Performances"
 
 #: includes/system/class-sitehealth.php:183
 msgid "You should use object caching"
@@ -865,7 +865,7 @@ msgstr "Statut d’action inconnu détecté."
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:268
 msgid "Invalid value for select or count parameter. Cannot query actions."
-msgstr "Valeur du paramètre select ou count non valide. Impossible d’interroger les actions."
+msgstr "Valeur du réglage select ou count non valide. Impossible d’interroger les actions."
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:67
 msgid "Database error."
@@ -878,17 +878,17 @@ msgstr "La prise en charge par %s de chaînes d’une longueur supérieure à ce
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:838
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:740
 msgid "Invalid action ID. No status found."
-msgstr "ID d’action non valide. Aucun état trouvé."
+msgstr "ID d&rsquo;action non valide. Aucun état trouvé."
 
 #. translators: %s: action ID
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:716
 msgid "Unable to mark failure on action %s. Database error."
-msgstr "Impossible de marquer l’échec de l’action %s. Erreur de la base de données."
+msgstr "Impossible de marquer l&rsquo;échec de l&rsquo;action %s. Erreur de la base de données."
 
 #. translators: %s: action ID
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:704
 msgid "Unable to unlock claim on action %s. Database error."
-msgstr "Impossible de déverrouiller la demande d’action %s. Erreur de la base de données."
+msgstr "Impossible de déverrouiller la demande d&rsquo;action %s. Erreur de la base de données."
 
 #. translators: %s: claim ID
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:689
@@ -899,7 +899,7 @@ msgstr "Impossible de déverrouiller la demande %s. Erreur de la base de donnée
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:661
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:627
 msgid "The group \"%s\" does not exist."
-msgstr "Le groupe « %s » n’existe pas."
+msgstr "Le groupe «&nbsp;%s&nbsp;» n&rsquo;existe pas."
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBStore.php:675
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:607
@@ -921,15 +921,15 @@ msgstr "Action %s non identifiée"
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:283
 msgid "Invalid schedule. Cannot save action."
-msgstr "Planification non valide. Impossible d’enregistrer l’action."
+msgstr "Planification non valide. Impossible d&rsquo;enregistrer l&rsquo;action."
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:62
 msgid "Unable to save action."
-msgstr "Impossible d’enregistrer l’action."
+msgstr "Impossible d&rsquo;enregistrer l&rsquo;action."
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_TaxonomyRegistrar.php:14
 msgid "Action Group"
-msgstr "Groupe d’action"
+msgstr "Groupe d&rsquo;action"
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:42
 msgid "No actions found in trash"
@@ -946,7 +946,7 @@ msgstr "Rechercher des actions planifiées"
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:38
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:39
 msgid "View Action"
-msgstr "Voir l’action"
+msgstr "Voir l&rsquo;action"
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:37
 msgid "New Scheduled Action"
@@ -954,7 +954,7 @@ msgstr "Nouvelle action planifiée"
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:36
 msgid "Edit Scheduled Action"
-msgstr "Modifier l’action planifiée"
+msgstr "Modifier l&rsquo;action planifiée"
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:35
 msgid "Edit"
@@ -997,8 +997,8 @@ msgstr "En cours"
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostStatusRegistrar.php:38
 msgid "Failed <span class=\"count\">(%s)</span>"
 msgid_plural "Failed <span class=\"count\">(%s)</span>"
-msgstr[0] "Echouée <span class=\"count\">(%s)</span>"
-msgstr[1] "Echouées <span class=\"count\">(%s)</span>"
+msgstr[0] "Échoué <span class=\"count\">(%s)</span>"
+msgstr[1] "Échoués <span class=\"count\">(%s)</span>"
 
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostStatusRegistrar.php:36
 msgctxt "post"
@@ -1012,7 +1012,7 @@ msgstr "Action non valide - il doit s’agit d’une action récurrente."
 #. translators: 1: action ID 2: exception message
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:170
 msgid "Error processing action %1$s: %2$s"
-msgstr "Erreur lors de l’enregistrement de l’action %1$s : %2$s"
+msgstr "Erreur lors de l&rsquo;enregistrement de l&rsquo;action %1$s&nbsp;: %2$s"
 
 #. translators: 1: action ID 2: hook name
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:155
@@ -1022,7 +1022,7 @@ msgstr "Action de traitement %1$s terminée avec le crochet Web : %2$s"
 #. translators: %s refers to the action ID
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:138
 msgid "Started processing action %s"
-msgstr "Traitement de l’action %s commencé"
+msgstr "Traitement de l&rsquo;action %s commencé"
 
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:113
 msgid "The claim has been lost. Aborting current batch."
@@ -1032,8 +1032,8 @@ msgstr "La demande a été perdue. Abandon du lot actuel."
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:93
 msgid "Running %d action"
 msgid_plural "Running %d actions"
-msgstr[0] "%d action en cours d’exécution"
-msgstr[1] "%d actions en cours d’exécution"
+msgstr[0] "%d action en cours d&rsquo;exécution"
+msgstr[1] "%d actions en cours d&rsquo;exécution"
 
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:61
 msgid "There are too many concurrent batches."
@@ -1041,7 +1041,7 @@ msgstr "Nombre de lots concurrents trop élevé."
 
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_QueueRunner.php:59
 msgid "There are too many concurrent batches, but the run is forced to continue."
-msgstr "Nombre de lots concurrents trop élevé, mais l’exécution doit continuer."
+msgstr "Nombre de lots concurrents trop élevé, mais l&rsquo;exécution doit continuer."
 
 #. translators: %d refers to the total number of taskes completed
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:153
@@ -1053,7 +1053,7 @@ msgstr[1] "%d tâches planifiées terminées."
 #. translators: %s refers to the exception error message
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:136
 msgid "There was an error running the action scheduler: %s"
-msgstr "Une erreur est survenue lors de l’exécution du planificateur d’actions : %s"
+msgstr "Une erreur est survenue lors de l&rsquo;exécution du planificateur d&rsquo;actions&nbsp;: %s"
 
 #. translators: %d refers to the total number of batches executed
 #: includes/libraries/action-scheduler/classes/WP_CLI/ActionScheduler_WPCLI_Scheduler_command.php:117
@@ -1078,7 +1078,7 @@ msgstr "La classe %s peut uniquement être exécutée avec WP CLI."
 #. translators: 1: next cleanup message 2: github issue URL
 #: includes/libraries/action-scheduler/classes/ActionScheduler_WPCommentCleaner.php:108
 msgid "Action Scheduler has migrated data to custom tables; however, orphaned log entries exist in the WordPress Comments table. %1$s <a href=\"%2$s\">Learn more &raquo;</a>"
-msgstr "Le planificateur d’actions a migré les données dans des tableaux personnalisés. Il existe toutefois des entrées de journal orphelines dans le tableau de commentaires WordPress. %1$s <a href=\"%2$s\">En savoir plus »</a>"
+msgstr "Le planificateur d’actions a migré les données dans des tableaux personnalisés. Il existe toutefois des entrées d’enregistrement orphelines dans le tableau de commentaires WordPress. %1$s <a href=\"%2$s\">En savoir plus »</a>"
 
 #. translators: %s: date interval
 #: includes/libraries/action-scheduler/classes/ActionScheduler_WPCommentCleaner.php:103
@@ -1095,7 +1095,7 @@ msgstr "Date planifiée la plus ancienne"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:110
 msgid "Count"
-msgstr "Décompte"
+msgstr "Nombre"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_wcSystemStatus.php:108
 msgid "Action Status"
@@ -1131,7 +1131,7 @@ msgstr "En attente"
 
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:301
 msgid "Complete"
-msgstr "Terminé"
+msgstr "Terminer"
 
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Store.php:227
 msgid "ActionScheduler_Action::$args too long. To ensure the args column can be indexed, action args should not be more than %d characters when encoded as JSON."
@@ -1162,7 +1162,7 @@ msgstr "action ignorée via %s"
 
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:123
 msgid "action reset"
-msgstr "réinitialisation de l’action"
+msgstr "réinitialisation de l&rsquo;action"
 
 #. translators: 1: error message 2: filename 3: line
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:118
@@ -1172,12 +1172,12 @@ msgstr "arrêt inattendu : erreur fatale PHP %1$s dans %2$s à la ligne %3$s"
 #. translators: %s: amount of time
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:112
 msgid "action timed out after %s seconds"
-msgstr "délai de l’action dépassé après %s secondes"
+msgstr "délai de l&rsquo;action dépassé après %s secondes"
 
 #. translators: %s: exception message
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:105
 msgid "action failed: %s"
-msgstr "échec de l’action : %s"
+msgstr "échec de l&rsquo;action&nbsp;: %s"
 
 #. translators: 1: context 2: exception message
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:102
@@ -1226,7 +1226,7 @@ msgstr "Filtrer"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:149
 msgid "Activity log for the action."
-msgstr "Journal d’activité de l’action."
+msgstr "Registre d’activité de l’action."
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:148
 msgid "The date/time the action is/was scheduled to run."
@@ -1234,7 +1234,7 @@ msgstr "Date/heure d’exécution programmée de l’action."
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:148
 msgid "Scheduled"
-msgstr "Planifiée"
+msgstr "Planifié"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:147
 msgid "The action's schedule frequency."
@@ -1295,7 +1295,7 @@ msgstr " (%s)"
 #. translators: %s: date interval
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:458
 msgid " (%s ago)"
-msgstr " (il y a %s)"
+msgstr " (Il y a %s)"
 
 #. translators: 1: action HTML 2: action ID 3: error message
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:412
@@ -1305,17 +1305,17 @@ msgstr "La modification n’a pas pu être effectuée pour l’action : « %1$
 #. translators: %s: action HTML
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:406
 msgid "Successfully processed change for action: %s"
-msgstr "Modification de l’action traitée avec succès : %s"
+msgstr "Modification de l&rsquo;action traitée avec succès&nbsp;: %s"
 
 #. translators: %s: action HTML
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:402
 msgid "Successfully canceled action: %s"
-msgstr "Action annulée avec succès : %s"
+msgstr "Action annulée avec succès&nbsp;: %s"
 
 #. translators: %s: action HTML
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:398
 msgid "Successfully executed action: %s"
-msgstr "Action exécutée avec succès : %s"
+msgstr "Action exécutée avec succès&nbsp;: %s"
 
 #. translators: %d: seconds
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:377
@@ -1336,7 +1336,7 @@ msgstr[1] "Nombre maximal de files d’attente simultanées déjà en cours de t
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:341
 msgid "It appears one or more database tables were missing. Attempting to re-create the missing table(s)."
-msgstr "Il semble qu’une ou plusieurs tables de la base de données étaient manquantes. Tentative de recréation des tables manquantes."
+msgstr "Il semblerait qu’une ou plusieurs tables de la base de données sont manquantes. Tentative de re-créer les table(s) manquante(s)."
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:243
 msgid "Non-repeating"
@@ -1376,8 +1376,8 @@ msgstr[1] "%s heures"
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:159
 msgid "%s day"
 msgid_plural "%s days"
-msgstr[0] "%s jour"
-msgstr[1] "%s jours"
+msgstr[0] "%s jour"
+msgstr[1] "%s jours"
 
 #. translators: %s: amount of time
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:154
@@ -1397,12 +1397,12 @@ msgstr[1] "%s mois"
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:144
 msgid "%s year"
 msgid_plural "%s years"
-msgstr[0] "%s an"
-msgstr[1] "%s ans"
+msgstr[0] "%s année"
+msgstr[1] "%s années"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:134
 msgid "Cancel the action now to avoid it being run in future"
-msgstr "Annuler l’action maintenant pour éviter son exécution ultérieure"
+msgstr "Annuler l&rsquo;action maintenant pour éviter son exécution ultérieure"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:133
 #: includes/features/class-analytics.php:1431
@@ -1411,7 +1411,7 @@ msgstr "Annuler"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:130
 msgid "Process the action now as if it were run as part of a queue"
-msgstr "Traiter l’action maintenant comme si elle était exécutée dans le cadre d’une file d’attente"
+msgstr "Traiter l&rsquo;action maintenant comme si elle était exécutée dans le cadre d&rsquo;une file d&rsquo;attente"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:129
 msgid "Run"
@@ -1424,7 +1424,7 @@ msgstr "ID de demande"
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:149
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:102
 msgid "Log"
-msgstr "Journal"
+msgstr "Registre"
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:101
 msgid "Scheduled Date"
@@ -1473,7 +1473,7 @@ msgstr "Actions planifiées"
 #: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore.php:25
 #: includes/libraries/action-scheduler/classes/migration/ActionScheduler_DBStoreMigrator.php:44
 msgid "Error saving action: %s"
-msgstr "Erreur lors de l’enregistrement de l’action : %s"
+msgstr "Erreur lors de l&rsquo;enregistrement de l&rsquo;action&nbsp;: %s"
 
 #: includes/libraries/action-scheduler/classes/migration/Controller.php:142
 msgid "Action Scheduler migration in progress. The list of scheduled actions may be incomplete."
@@ -1584,7 +1584,7 @@ msgstr "Code court malformé"
 
 #: admin/partials/ip-locator-admin-settings-about.php:38
 msgid "Changelog"
-msgstr "Journal des modifications"
+msgstr "Historique des modifications"
 
 #: admin/partials/ip-locator-admin-settings-about.php:35
 msgid "Disclaimer"
@@ -1737,11 +1737,11 @@ msgstr "Ressources"
 
 #: admin/class-ip-locator-admin.php:379
 msgid "Logging"
-msgstr "Journalisation"
+msgstr "Enregistrement"
 
 #: admin/class-ip-locator-admin.php:375
 msgid "Your site does not use any logging plugin. To log all events triggered in IP Locator, I recommend you to install the excellent (and free) %s. But it is not mandatory."
-msgstr "Votre site n’utilise aucune extension de journalisation. Pour journaliser tous les évènements déclenchés par IP Locator, je vous recommande d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
+msgstr "Votre site n’utilise aucune extension d’enregistrement. Pour enregistrer tous les évènements déclenchés par IP Locator, je vous recommande d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
 
 #: admin/class-ip-locator-admin.php:372 admin/class-ip-locator-admin.php:390
 msgid "Your site is currently using %s."
