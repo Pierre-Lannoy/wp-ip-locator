@@ -3,6 +3,11 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unrelease - will be 2.0.1]
+
+### Changed
+- Improvement in the way roles are detected.
+
 ## [2.0.0] - 2020-10-15
 
 ### Added
@@ -19,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Support for data feeds - reserved for future use.
 
 ### Changed
+- Improvement in the way roles are detected.
 - The positions of PerfOps menus are pushed lower to avoid collision with other plugins (thanks to [Loïc Antignac](https://github.com/webaxones)).
 - [MultiSite] Improved default site detection.
 - Improved layout for language indicator.
