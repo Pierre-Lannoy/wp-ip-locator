@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: IP Locator\n"
-"POT-Creation-Date: 2020-04-02 09:22+0200\n"
+"POT-Creation-Date: 2020-11-05 18:14+0100\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: ip-locator.php\n"
@@ -22,157 +22,237 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. translators: as in the sentence "IP Locator Settings" or "WordPress Settings"
-#: admin/class-ip-locator-admin.php:88
+#: admin/class-ip-locator-admin.php:98
 #: admin/partials/ip-locator-admin-settings-main.php:27 perfopsone/class-adminmenus.php:70
 #, php-format
 msgid "%s Settings"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:119
+#: admin/class-ip-locator-admin.php:110 admin/class-ip-locator-admin.php:116
+#: admin/class-ip-locator-admin.php:126 admin/class-ip-locator-admin.php:130
+#: admin/class-ip-locator-admin.php:131 admin/class-ip-locator-admin.php:172
+#: admin/class-ip-locator-admin.php:189
+msgid "Locations"
+msgstr ""
+
+#. translators: as in the sentence "Find out the countries and languages of visitors accessing your network." or "Find out the countries and languages of visitors accessing your website."
+#: admin/class-ip-locator-admin.php:112
+#, php-format
+msgid "Find out the countries and languages of visitors accessing your %s."
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:112
+msgid "network"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:112
+msgid "website"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:115
+msgid "IP Locator Analytics"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:127
+msgid "Test IPs to see location details."
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:158
 msgid "Plugin features"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:120
+#: admin/class-ip-locator-admin.php:159
 msgid "Plugin options"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:136
+#: admin/class-ip-locator-admin.php:207
 msgid "Settings"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:137
+#: admin/class-ip-locator-admin.php:208
+msgid "Tools"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:210
 msgid "Statistics"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:151
+#: admin/class-ip-locator-admin.php:225
 msgid "Support"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:152
+#: admin/class-ip-locator-admin.php:226
 msgid "GitHub repository"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:203
+#: admin/class-ip-locator-admin.php:296
 msgid "Plugin settings have been saved."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:208
+#: admin/class-ip-locator-admin.php:301
 msgid "Plugin settings have not been saved. Please try again."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:225
+#: admin/class-ip-locator-admin.php:318
 msgid "Plugin settings have been reset to defaults."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:230
+#: admin/class-ip-locator-admin.php:323
 msgid "Plugin settings have not been reset to defaults. Please try again."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:247
+#: admin/class-ip-locator-admin.php:340
 msgid "Detection"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:252
+#: admin/class-ip-locator-admin.php:345
 msgid "Ignore HTTP header"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:255
+#: admin/class-ip-locator-admin.php:348
 msgid "If checked, IP Locator will not try to verify country in the request header."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:255
+#: admin/class-ip-locator-admin.php:348
 msgid ""
 "Note: to use CloudFlare, AWS CloudFront or Apache mod_geoip geolocation, uncheck this."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:263
+#: admin/class-ip-locator-admin.php:356
 msgid "IP database"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:268
+#: admin/class-ip-locator-admin.php:361
 msgid "Auto-update"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:271
+#: admin/class-ip-locator-admin.php:364
 msgid "If checked, IP Locator will regularly update its IP database."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:279
+#: admin/class-ip-locator-admin.php:372 admin/class-ip-locator-admin.php:390
 #, php-format
 msgid "Your site is currently using %s."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:282
+#: admin/class-ip-locator-admin.php:375
 #, php-format
 msgid ""
 "Your site does not use any logging plugin. To log all events triggered in IP Locator, I "
 "recommend you to install the excellent (and free) %s. But it is not mandatory."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:286
+#: admin/class-ip-locator-admin.php:379
 msgid "Logging"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:297
+#: admin/class-ip-locator-admin.php:393
+#, php-format
+msgid ""
+"Your site does not use any device detection mechanism. To precisely detect \"real humans"
+"\" countries and languages, I recommend you to install the excellent (and free) %s. But "
+"it is not mandatory."
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:397
+msgid "Device Detection"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:408
 msgid "Resources"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:302
+#: admin/class-ip-locator-admin.php:413
 msgid "Use public CDN"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:305
+#: admin/class-ip-locator-admin.php:416
 msgid ""
 "If checked, IP Locator will use a public CDN (jsDelivr) to serve scripts and "
 "stylesheets."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:313
+#: admin/class-ip-locator-admin.php:424
 msgid "Admin notices"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:318
+#: admin/class-ip-locator-admin.php:429
 msgid "Display"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:321
+#: admin/class-ip-locator-admin.php:432
 msgid "Allows IP Locator to display admin notices throughout the admin dashboard."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:321
+#: admin/class-ip-locator-admin.php:432
 msgid "Note: IP Locator respects DISABLE_NAG_NOTICES flag."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:338
+#: admin/class-ip-locator-admin.php:449
+msgid "Analytics"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:454
+msgid "Activated"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:457
+msgid ""
+"If checked, IP Locator will store statistics about detected countries and languages."
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:465
+msgid "Historical data"
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:473
+msgid "Maximum age of data to keep for statistics."
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:481
 msgid "Shortcodes"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:343
+#: admin/class-ip-locator-admin.php:486
 msgid "Activate shortcodes rendering"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:346
+#: admin/class-ip-locator-admin.php:489
 #, php-format
 msgid "If checked, IP Locator will render its own shortcodes when needed (%s)."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:346
+#: admin/class-ip-locator-admin.php:489
 msgid "see details"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:356
+#: admin/class-ip-locator-admin.php:497
 msgid "CSS"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:361
+#: admin/class-ip-locator-admin.php:502
 msgid "Add country as CSS class"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:364
+#: admin/class-ip-locator-admin.php:505
 msgid ""
 "If checked, IP Locator will append to the body tag a CSS class describing the detected "
 "connexion (mainly countries)."
 msgstr ""
+
+#: admin/class-ip-locator-admin.php:524
+#, php-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-ip-locator-admin.php:528
+#, php-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
 
 #: admin/partials/ip-locator-admin-settings-about.php:20
 #, php-format
@@ -269,10 +349,6 @@ msgstr ""
 msgid "Last operations transcript"
 msgstr ""
 
-#: admin/partials/ip-locator-admin-settings-data.php:55
-msgid "Current connexion"
-msgstr ""
-
 #: admin/partials/ip-locator-admin-settings-main.php:43
 msgid "Options"
 msgstr ""
@@ -282,12 +358,358 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: admin/partials/ip-locator-admin-settings-main.php:69
+#: admin/partials/ip-locator-admin-settings-main.php:84
 msgid "IP Data"
 msgstr ""
 
-#: admin/partials/ip-locator-admin-settings-options.php:33
+#: admin/partials/ip-locator-admin-settings-options.php:31
 msgid "Reset to Defaults"
+msgstr ""
+
+#: admin/partials/ip-locator-admin-tools.php:33
+msgid "IP Test"
+msgstr ""
+
+#: admin/partials/ip-locator-admin-tools.php:36
+msgid "Test Now"
+msgstr ""
+
+#: includes/features/class-analytics.php:270 includes/features/class-analytics.php:272
+#: includes/features/class-analytics.php:374 includes/features/class-analytics.php:552
+msgid "Other"
+msgstr ""
+
+#: includes/features/class-analytics.php:304 includes/features/class-analytics.php:399
+#: includes/features/class-analytics.php:1320
+msgid "No Data"
+msgstr ""
+
+#: includes/features/class-analytics.php:375
+msgid "TOTAL"
+msgstr ""
+
+#: includes/features/class-analytics.php:540 includes/features/class-analytics.php:1196
+#: includes/features/class-analytics.php:1198
+msgid "Countries"
+msgstr ""
+
+#: includes/features/class-analytics.php:543 includes/features/class-analytics.php:1221
+#: includes/features/class-analytics.php:1223
+msgid "Languages"
+msgstr ""
+
+#: includes/features/class-analytics.php:546
+msgid "Public"
+msgstr ""
+
+#: includes/features/class-analytics.php:549
+msgid "Local"
+msgstr ""
+
+#: includes/features/class-analytics.php:555
+msgid "Satellite"
+msgstr ""
+
+#: includes/features/class-analytics.php:558 includes/features/class-channeltypes.php:47
+msgid "Unknown"
+msgstr ""
+
+#: includes/features/class-analytics.php:705
+msgid "hits"
+msgstr ""
+
+#: includes/features/class-analytics.php:752 includes/features/class-analytics.php:1249
+msgctxt "Noun - Countries."
+msgid "Countries"
+msgstr ""
+
+#: includes/features/class-analytics.php:753
+msgctxt "Noun - Short (max 4 char) - Countries."
+msgid "Cntr"
+msgstr ""
+
+#: includes/features/class-analytics.php:754
+msgid "Accessing countries."
+msgstr ""
+
+#: includes/features/class-analytics.php:771 includes/features/class-analytics.php:1258
+msgctxt "Noun - Languages."
+msgid "Languages"
+msgstr ""
+
+#: includes/features/class-analytics.php:772
+msgctxt "Noun - Short (max 4 char) - Countries."
+msgid "Lang"
+msgstr ""
+
+#: includes/features/class-analytics.php:773
+msgid "Main languages of accessing countries."
+msgstr ""
+
+#: includes/features/class-analytics.php:790
+msgctxt "Noun - Hits from public IPs."
+msgid "Public"
+msgstr ""
+
+#: includes/features/class-analytics.php:791
+msgctxt "Noun - Short (max 4 char) - Hits from public IPs."
+msgid "Pub."
+msgstr ""
+
+#: includes/features/class-analytics.php:792
+msgid "Hits from public IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:813
+msgctxt "Noun - Hits from private IPs."
+msgid "Local"
+msgstr ""
+
+#: includes/features/class-analytics.php:814
+msgctxt "Noun - Short (max 4 char) - Hits from private IPs."
+msgid "Loc."
+msgstr ""
+
+#: includes/features/class-analytics.php:815
+msgid "Hits from private IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:836
+msgctxt "Noun - Hits from satellite IPs."
+msgid "Satellite"
+msgstr ""
+
+#: includes/features/class-analytics.php:837
+msgctxt "Noun - Short (max 4 char) - Hits from satellite IPs."
+msgid "Sat."
+msgstr ""
+
+#: includes/features/class-analytics.php:838
+msgid "Hits from satellite IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:859
+msgctxt "Noun - Hits from detected IPs."
+msgid "Detection"
+msgstr ""
+
+#: includes/features/class-analytics.php:860
+msgctxt "Noun - Short (max 4 char) - Hits from detected IPs."
+msgid "Dtc."
+msgstr ""
+
+#: includes/features/class-analytics.php:861
+msgid "Hits from detected IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:1005
+#, php-format
+msgid "%s hits"
+msgstr ""
+
+#: includes/features/class-analytics.php:1021
+msgid "All Sites"
+msgstr ""
+
+#: includes/features/class-analytics.php:1025 includes/features/class-analytics.php:1027
+#, php-format
+msgid "Site ID %s"
+msgstr ""
+
+#: includes/features/class-analytics.php:1042
+msgid "Main Summary"
+msgstr ""
+
+#: includes/features/class-analytics.php:1060
+msgid "All Classes"
+msgstr ""
+
+#: includes/features/class-analytics.php:1063
+msgid "All Device Types"
+msgstr ""
+
+#: includes/features/class-analytics.php:1066
+msgid "All Client Types"
+msgstr ""
+
+#: includes/features/class-analytics.php:1069
+msgid "All Libraries"
+msgstr ""
+
+#: includes/features/class-analytics.php:1072
+msgid "All Mobile Applications"
+msgstr ""
+
+#: includes/features/class-analytics.php:1075
+msgid "All Feed Readers"
+msgstr ""
+
+#: includes/features/class-analytics.php:1078
+msgid "All Media Players"
+msgstr ""
+
+#: includes/features/class-analytics.php:1081
+msgid "All Browsers"
+msgstr ""
+
+#: includes/features/class-analytics.php:1084
+msgid "All Bots"
+msgstr ""
+
+#: includes/features/class-analytics.php:1087
+msgid "All Devices"
+msgstr ""
+
+#: includes/features/class-analytics.php:1090
+msgid "All Operating Systems"
+msgstr ""
+
+#: includes/features/class-analytics.php:1124
+msgid "Countries variation."
+msgstr ""
+
+#: includes/features/class-analytics.php:1125
+msgid "Languages variation."
+msgstr ""
+
+#: includes/features/class-analytics.php:1126
+msgid "Access breakdown."
+msgstr ""
+
+#: includes/features/class-analytics.php:1132
+msgid "Metrics Variations"
+msgstr ""
+
+#: includes/features/class-analytics.php:1156
+msgid "Channels Breakdown"
+msgstr ""
+
+#: includes/features/class-analytics.php:1176
+msgid "Clients Breakdown"
+msgstr ""
+
+#: includes/features/class-analytics.php:1196 includes/features/class-analytics.php:1221
+msgid "(real humans from public IPs only)"
+msgstr ""
+
+#: includes/features/class-analytics.php:1198 includes/features/class-analytics.php:1223
+msgid "(public IPs only)"
+msgstr ""
+
+#: includes/features/class-analytics.php:1251
+msgid "Accessing countries - real humans from public IPs only (browsers or apps)."
+msgstr ""
+
+#: includes/features/class-analytics.php:1253
+msgid "Accessing countries - public IPs only."
+msgstr ""
+
+#: includes/features/class-analytics.php:1260
+msgid ""
+"Main languages of accessing countries - real humans from public IPs only (browsers or "
+"apps)."
+msgstr ""
+
+#: includes/features/class-analytics.php:1262
+msgid "Main languages of accessing countries - public IPs only."
+msgstr ""
+
+#: includes/features/class-analytics.php:1267
+msgctxt "Noun - Percentage of hits from public IPs."
+msgid "Public"
+msgstr ""
+
+#: includes/features/class-analytics.php:1268
+msgid "Ratio of hits done from public IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:1272
+msgctxt "Noun - Percentage of hits from private IPs."
+msgid "Local"
+msgstr ""
+
+#: includes/features/class-analytics.php:1273
+msgid "Ratio of hits done from private IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:1277
+msgctxt "Noun - Percentage of hits from satellite IPs."
+msgid "Satellite"
+msgstr ""
+
+#: includes/features/class-analytics.php:1278
+msgid "Ratio of hits done from satellite IPs."
+msgstr ""
+
+#: includes/features/class-analytics.php:1282
+msgctxt "Noun - Percentage of detected IPs."
+msgid "Detection"
+msgstr ""
+
+#: includes/features/class-analytics.php:1283
+msgid ""
+"Ratio of detected IPs (eliminates reserved, unknown and behing anonymous proxies IPs)."
+msgstr ""
+
+#: includes/features/class-analytics.php:1431
+msgid "Custom Range"
+msgstr ""
+
+#: includes/features/class-analytics.php:1431
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:133
+msgid "Cancel"
+msgstr ""
+
+#: includes/features/class-analytics.php:1431
+msgid "Apply"
+msgstr ""
+
+#: includes/features/class-analytics.php:1433
+msgid "Today"
+msgstr ""
+
+#: includes/features/class-analytics.php:1434
+msgid "Yesterday"
+msgstr ""
+
+#: includes/features/class-analytics.php:1435
+msgid "This Month"
+msgstr ""
+
+#: includes/features/class-analytics.php:1436
+msgid "Last Month"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:48
+msgid "Command Line Interface"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:49
+msgid "Cron Job"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:50
+msgid "Ajax Request"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:51
+msgid "XML-RPC Request"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:52
+msgid "Rest API Request"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:53
+msgid "Atom/RDF/RSS Feed"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:54
+msgid "Site Backend"
+msgstr ""
+
+#: includes/features/class-channeltypes.php:55
+msgid "Site Frontend"
 msgstr ""
 
 #: includes/features/class-cssmodifier.php:43
@@ -326,13 +748,13 @@ msgid "Countries: %s."
 msgstr ""
 
 #. translators: %1$s can be "IPv4" or "IPv6"
-#: includes/features/class-ipdata.php:215
+#: includes/features/class-ipdata.php:226
 #, php-format
 msgid "%1$s initialization completed in %2$d seconds: %3$d IP ranges have been added."
 msgstr ""
 
 #. translators: %1$s can be "IPv4" or "IPv6"
-#: includes/features/class-ipdata.php:219
+#: includes/features/class-ipdata.php:230
 #, php-format
 msgid ""
 "%1$s update completed in %2$d seconds: %3$d IP ranges have been added, updated or "
@@ -340,23 +762,46 @@ msgid ""
 msgstr ""
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-ipdata.php:224
+#: includes/features/class-ipdata.php:235
 #, php-format
 msgid "%s data files are corrupted or empty. Retry will be done next cycle."
 msgstr ""
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-ipdata.php:230
+#: includes/features/class-ipdata.php:241
 #, php-format
 msgid "Unable to acquire %s data files. Retry will be done next cycle."
 msgstr ""
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-schema.php:311 includes/features/class-schema.php:331
+#: includes/features/class-schema.php:453 includes/features/class-schema.php:460
 #, php-format
 msgid ""
 "%s data need to be initialized. Initialization will start in some minutes; note it "
 "could take many time to complete…"
+msgstr ""
+
+#: includes/integrations/class-databeam.php:49
+msgid "KPIs"
+msgstr ""
+
+#: includes/integrations/class-databeam.php:50
+msgid ""
+"Allows to integrate, as a DataBeam source, all KPIs related to location and languages "
+"ip-based detection."
+msgstr ""
+
+#: includes/integrations/class-databeam.php:51
+msgid "Just add this and use it as source in your favorite visualizers and publishers."
+msgstr ""
+
+#: includes/integrations/class-databeam.php:52
+msgid ""
+"In multisite environments, this source is available for the whole network or per site."
+msgstr ""
+
+#: includes/integrations/class-databeam.php:80
+msgid "Site scope"
 msgstr ""
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ActionFactory.php:161
@@ -498,10 +943,6 @@ msgstr ""
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:130
 msgid "Process the action now as if it were run as part of a queue"
-msgstr ""
-
-#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:133
-msgid "Cancel"
 msgstr ""
 
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:134
@@ -1096,7 +1537,10 @@ msgid "Migrated action with ID %1$d in %2$s to ID %3$d in %4$s"
 msgstr ""
 
 #: includes/libraries/class-libraries.php:67 includes/libraries/class-libraries.php:78
-#: includes/libraries/class-libraries.php:90 includes/libraries/class-libraries.php:183
+#: includes/libraries/class-libraries.php:89 includes/libraries/class-libraries.php:183
+#: includes/libraries/class-libraries.php:191 includes/libraries/class-libraries.php:199
+#: includes/libraries/class-libraries.php:206 includes/libraries/class-libraries.php:213
+#: includes/libraries/class-libraries.php:220
 #, php-format
 msgid "%s & contributors"
 msgstr ""
@@ -1122,7 +1566,7 @@ msgid "unknown license"
 msgstr ""
 
 #. translators: as in the sentence "Product W version X by author Y (license Z)"
-#: includes/libraries/class-libraries.php:193
+#: includes/libraries/class-libraries.php:230
 #, php-format
 msgid "<a href=\"%1$s\">%2$s %3$s</a>%4$s by %5$s (%6$s)"
 msgstr ""
@@ -1140,10 +1584,6 @@ msgstr ""
 #: includes/plugin/class-updater.php:52
 #, php-format
 msgid "See <a href=\"%s\">what's new</a>."
-msgstr ""
-
-#: includes/plugin/class-updater.php:100
-msgid "Sorry, unable to find or read changelog file."
 msgstr ""
 
 #: includes/system/class-conversion.php:46
@@ -1258,115 +1698,143 @@ msgid_plural "hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/system/class-environment.php:244
+#: includes/system/class-environment.php:220
 msgid "log"
 msgstr ""
 
-#: includes/system/class-environment.php:249
+#: includes/system/class-environment.php:225
 msgid "display"
 msgstr ""
 
-#: includes/system/class-environment.php:255
+#: includes/system/class-environment.php:231
 msgid "Debug enabled"
 msgstr ""
 
-#: includes/system/class-environment.php:255
+#: includes/system/class-environment.php:231
 msgid "Debug disabled"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:122
+#: includes/system/class-markdown.php:46
+msgid "Sorry, unable to find or read the specified file."
+msgstr ""
+
+#: includes/system/class-sitehealth.php:123
 msgid "Object cache"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:130
+#: includes/system/class-sitehealth.php:131
 msgid "OPcache settings and status"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:147
+#: includes/system/class-sitehealth.php:148
 msgid "Plugin diagnostic information"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:164
+#: includes/system/class-sitehealth.php:165
 msgid "Object Cache Test"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:182
+#: includes/system/class-sitehealth.php:183
 msgid "You should use object caching"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:185 includes/system/class-sitehealth.php:197
-#: includes/system/class-sitehealth.php:209 includes/system/class-sitehealth.php:251
-#: includes/system/class-sitehealth.php:263
+#: includes/system/class-sitehealth.php:186 includes/system/class-sitehealth.php:198
+#: includes/system/class-sitehealth.php:210 includes/system/class-sitehealth.php:252
+#: includes/system/class-sitehealth.php:264 includes/system/class-sitehealth.php:306
+#: includes/system/class-sitehealth.php:318
 msgid "Performance"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:188
+#: includes/system/class-sitehealth.php:189
 msgid "Your site uses database transient."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:188 includes/system/class-sitehealth.php:200
+#: includes/system/class-sitehealth.php:189 includes/system/class-sitehealth.php:201
 msgid ""
 "You should consider using a dedicated object caching mechanism, like Memcached or "
 "Redis, to improve your site's speed."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:194
+#: includes/system/class-sitehealth.php:195
 msgid "You should improve object caching"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:200
+#: includes/system/class-sitehealth.php:201
 msgid "Your site uses APCu, but only a few plugins know how to take advantage of it."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:206
+#: includes/system/class-sitehealth.php:207
 msgid "Your site uses object caching"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:212
+#: includes/system/class-sitehealth.php:213
 msgid "Your site uses a dedicated object caching mechanism. That's great."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:231
+#: includes/system/class-sitehealth.php:232
 msgid "OPcache Test"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:248
+#: includes/system/class-sitehealth.php:249
 msgid "Your site uses OPcache"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:254
+#: includes/system/class-sitehealth.php:255
 msgid "Your site uses OPcache to improve PHP performance. That's great."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:260
+#: includes/system/class-sitehealth.php:261
 msgid "You should use OPcache"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:266
+#: includes/system/class-sitehealth.php:267
 msgid "You should consider using OPcache. It would improve PHP performance of your site."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:285
+#: includes/system/class-sitehealth.php:286
+msgid "Shared Memory Test"
+msgstr ""
+
+#: includes/system/class-sitehealth.php:303
+msgid "Your site can use shared memory"
+msgstr ""
+
+#: includes/system/class-sitehealth.php:309
+msgid ""
+"Your site can use shared memory to allow inter-process communication. That's great."
+msgstr ""
+
+#: includes/system/class-sitehealth.php:315
+msgid "You should allow inter-process communication"
+msgstr ""
+
+#: includes/system/class-sitehealth.php:321
+msgid ""
+"You should consider using shared memory (PHP shmop) to allow inter-process "
+"communication."
+msgstr ""
+
+#: includes/system/class-sitehealth.php:340
 msgid "I18n Extension Test"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:302
+#: includes/system/class-sitehealth.php:357
 msgid "Your site uses Intl extension"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:305 includes/system/class-sitehealth.php:317
+#: includes/system/class-sitehealth.php:360 includes/system/class-sitehealth.php:372
 msgid "Internationalization"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:308
+#: includes/system/class-sitehealth.php:363
 msgid "Your site uses PHP Intl extension to improve localization features. That's great."
 msgstr ""
 
-#: includes/system/class-sitehealth.php:314
+#: includes/system/class-sitehealth.php:369
 msgid "You should use Intl extension"
 msgstr ""
 
-#: includes/system/class-sitehealth.php:320
+#: includes/system/class-sitehealth.php:375
 msgid ""
 "You should consider using PHP Intl extension. It would improve localization features on "
 "your site."
@@ -1412,59 +1880,68 @@ msgstr ""
 msgid "Control Center"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:108
+#: perfopsone/class-adminmenus.php:74 perfopsone/class-adminmenus.php:75
+msgid "Available Consoles"
+msgstr ""
+
+#: perfopsone/class-adminmenus.php:74
+#, php-format
+msgid "%s Consoles"
+msgstr ""
+
+#: perfopsone/class-adminmenus.php:112
 msgid "This analytics feature is currently disabled. Click here to activate it."
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:203
+#: perfopsone/class-adminmenus.php:230
 #, php-format
 msgid "Need to be updated to %s."
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:209 perfopsone/class-adminmenus.php:216
+#: perfopsone/class-adminmenus.php:236 perfopsone/class-adminmenus.php:243
 msgid "OK"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:211 perfopsone/class-adminmenus.php:218
+#: perfopsone/class-adminmenus.php:238 perfopsone/class-adminmenus.php:245
 msgid "need update"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:228
+#: perfopsone/class-adminmenus.php:255
 #, php-format
 msgid "%s+ installs."
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:233
+#: perfopsone/class-adminmenus.php:260
 #, php-format
 msgid "%s downloads."
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:238
+#: perfopsone/class-adminmenus.php:265
 #, php-format
 msgid "%s reviews."
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:241
+#: perfopsone/class-adminmenus.php:268
 msgid "No review yet."
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:367
+#: perfopsone/class-adminmenus.php:394
 msgid "settings"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:368
+#: perfopsone/class-adminmenus.php:395
 msgid "about"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:369
+#: perfopsone/class-adminmenus.php:396
 msgid "support"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:370
+#: perfopsone/class-adminmenus.php:397
 msgid "contribution"
 msgstr ""
 
-#: perfopsone/class-adminmenus.php:379
+#: perfopsone/class-adminmenus.php:406
 #, php-format
 msgid "Requires at least PHP %1$s%2$s and WordPress %3$s%4$s."
 msgstr ""
