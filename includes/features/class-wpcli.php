@@ -200,9 +200,9 @@ class Wpcli {
 			\WP_CLI::line( 'Logging support: no.' );
 		}
 		if ( defined( 'PODD_VERSION' ) ) {
-			\WP_CLI::line( 'Location detection support: yes (IP Locator v' . PODD_VERSION . ').');
+			\WP_CLI::line( 'Device detection support: yes (Device Detector v' . PODD_VERSION . ').');
 		} else {
-			\WP_CLI::line( 'Location detection support: no.' );
+			\WP_CLI::line( 'Device detection support: no.' );
 		}
 	}
 
