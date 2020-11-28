@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - IP Locator - Stable Readme (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-18 20:24+0200\n"
+"PO-Revision-Date: 2020-11-28 15:12+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,6 +21,30 @@ msgstr "Détection pour WordPress, basée sur l’adresse IP, des pays et des la
 #. Plugin name.
 msgid "IP Locator"
 msgstr "IP Locator"
+
+#. Found in description paragraph.
+msgid "For a full help on WP-CLI commands in IP Locator, please <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md\">read this guide</a>."
+msgstr "Pour obtenir une aide complète sur les commandes WP-CLI dans IP Locator, veuillez <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md\">lire ce guide</a>."
+
+#. Found in description paragraph.
+msgid "<strong>IP Locator</strong> supports an extensive set of WP-CLI commands to:"
+msgstr "<strong>IP Locator</strong> prend en charge un vaste ensemble de commandes WP-CLI pour :"
+
+#. Found in description list item.
+msgid "display location and languages statistics: see <code>wp help location analytics</code> for details."
+msgstr "afficher les statistiques sur les emplacements et les langues : voir <code>wp help location analytics</code> pour plus de détails."
+
+#. Found in description list item.
+msgid "toggle on/off main settings: see <code>wp help location settings</code> for details;"
+msgstr "activer ou désactiver les réglages principaux - voir <code>wp help location settings</code> pour plus de détails ;"
+
+#. Found in description list item.
+msgid "display IP Locator status: see <code>wp help location status</code> for details;"
+msgstr "afficher l’état de IP Locator : voir <code>wp help location status</code> pour plus de détails ;"
+
+#. Found in description list item.
+msgid "get location detail: see <code>wp help location describe</code> for details;"
+msgstr "obtenir des informations relatives à un emplacement : voir <code>wp help location describe</code> pour plus de détails ;"
 
 #. Found in description paragraph.
 msgid "<strong>IP Locator</strong> can be used too to report the following main items and characteristics:"
