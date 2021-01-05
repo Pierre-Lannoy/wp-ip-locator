@@ -233,15 +233,11 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function reset_to_defaults() {
-		self::network_set( 'use_cdn', self::$defaults['use_cdn'] );
-		self::network_set( 'script_in_footer', self::$defaults['script_in_footer'] );
-		self::network_set( 'display_nag', self::$defaults['display_nag'] );
-		self::network_set( 'override', self::$defaults['override'] );
-		self::network_set( 'css', self::$defaults['css'] );
-		self::network_set( 'shortcode', self::$defaults['shortcode'] );
-		self::network_set( 'autoupdate', self::$defaults['autoupdate'] );
-		self::network_set( 'history', self::$defaults['history'] );
-		self::network_set( 'analytics', self::$defaults['analytics'] );
+		foreach ( self::$network as $key ) {
+			if ( 'version' !== $key ) {
+				self::network_set( $key, self::$defaults[ $key ] );
+			}
+		}
 	}
 
 	/**
