@@ -22,8 +22,6 @@ use Spyc;
 /**
  * Manages IP Locator, get details on IPs and get analytics about locations from which your site is accessed.
  *
- * Defines methods and properties for WP-CLI commands.
- *
  * @package Features
  * @author  Pierre Lannoy <https://pierre.lannoy.fr/>.
  * @since   2.0.0
