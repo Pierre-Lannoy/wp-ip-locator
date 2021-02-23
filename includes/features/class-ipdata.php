@@ -50,15 +50,15 @@ class IPData {
 		try {
 			$buffer_size = 1024 * 16; // read 16kb at a time
 			// phpcs:ignore
-			$out_file = fopen( $target, 'wb' );
-			$in_file  = gzopen( $source, 'rb' );
-			while ( ! gzeof( $in_file ) ) {
+			$out_file = \fopen( $target, 'wb' );
+			$in_file  = \gzopen( $source, 'rb' );
+			while ( ! \gzeof( $in_file ) ) {
 				// phpcs:ignore
-				fwrite( $out_file, gzread( $in_file, $buffer_size ) );
+				\fwrite( $out_file, \gzread( $in_file, $buffer_size ) );
 			}
 			// phpcs:ignore
-			fclose( $out_file );
-			gzclose( $in_file );
+			\fclose( $out_file );
+			\gzclose( $in_file );
 			$result = true;
 		} catch ( \Throwable $e ) {
 			Logger::warning( sprintf( 'Unable to decompress IP data file: %s.', $e->getMessage() ), $e->getCode() );
