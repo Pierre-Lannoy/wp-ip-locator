@@ -351,21 +351,39 @@ class IP_Locator_Admin {
 			]
 		);
 		register_setting( 'iplocator_plugin_options_section', 'iplocator_plugin_options_override' );
-		add_settings_field(
-			'iplocator_plugin_options_autoupdate',
-			__( 'IP database', 'ip-locator' ),
-			[ $form, 'echo_field_checkbox' ],
-			'iplocator_plugin_options_section',
-			'iplocator_plugin_options_section',
-			[
-				'text'        => esc_html__( 'Auto-update', 'ip-locator' ),
-				'id'          => 'iplocator_plugin_options_autoupdate',
-				'checked'     => Option::network_get( 'autoupdate' ),
-				'description' => esc_html__( 'If checked, IP Locator will regularly update its IP database.', 'ip-locator' ),
-				'full_width'  => false,
-				'enabled'     => true,
-			]
-		);
+		if ( ! function_exists( 'gzopen' ) || ! function_exists( 'gzeof' ) || ! function_exists( 'gzclose' ) ) {
+			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'alert-triangle', 'none', '#FF8C00' ) . '" />&nbsp;';
+			$help .= esc_html__('Zlib is not supported on your site. It is not possible to automatically update IP database.', 'ip-locator' );
+			Option::network_set( 'autoupdate', false );
+			add_settings_field(
+				'iplocator_plugin_options_zlib',
+				__( 'IP database', 'ip-locator' ),
+				[ $form, 'echo_field_simple_text' ],
+				'iplocator_plugin_options_section',
+				'iplocator_plugin_options_section',
+				[
+					'text' => $help
+				]
+			);
+			register_setting( 'iplocator_plugin_options_section', 'iplocator_plugin_options_zlib' );
+		} else {
+			add_settings_field(
+				'iplocator_plugin_options_autoupdate',
+				__( 'IP database', 'ip-locator' ),
+				[ $form, 'echo_field_checkbox' ],
+				'iplocator_plugin_options_section',
+				'iplocator_plugin_options_section',
+				[
+					'text'        => esc_html__( 'Auto-update', 'ip-locator' ),
+					'id'          => 'iplocator_plugin_options_autoupdate',
+					'checked'     => Option::network_get( 'autoupdate' ),
+					'description' => esc_html__( 'If checked, IP Locator will regularly update its IP database.', 'ip-locator' ),
+					'full_width'  => false,
+					'enabled'     => true,
+				]
+			);
+		}
+		
 		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_autoupdate' );
 		if ( defined( 'DECALOG_VERSION' ) ) {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'thumbs-up', 'none', '#00C800' ) . '" />&nbsp;';
