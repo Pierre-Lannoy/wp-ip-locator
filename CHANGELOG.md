@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 - The settings screen now displays a warning if IP data auto-updates is not supported.
 
+### Changed
+- Improved internal IP detection: support for cloud load balancers.
+
 ## [2.2.0] - 2021-02-24
 
 ### Added
