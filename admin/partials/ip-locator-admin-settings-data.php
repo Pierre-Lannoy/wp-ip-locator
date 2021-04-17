@@ -46,6 +46,7 @@ foreach ( Option::network_get( 'infolog' ) as $s ) {
 <p><?php echo esc_html__( 'Apache mod_geoip reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_apache_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
 <p><?php echo esc_html__( 'AWS CloudFront reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_cloudfront_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
 <p><?php echo esc_html__( 'Cloudflare IP Geolocation reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_cloudflare_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
+<p><?php echo esc_html__( 'Google Cloud-LB reception: ', 'ip-locator' ); ?><strong><?php echo Hosting::is_googlelb_geoip_enabled() ? esc_html__( 'active', 'ip-locator' ) : esc_html__( 'inactive', 'ip-locator' ); ?></strong></p>
 
 <h2><?php esc_html_e( 'Last operations transcript', 'ip-locator' ); ?></h2>
 <textarea style="width:100%;resize:none;white-space: pre;overflow-wrap:normal;overflow-x:scroll;line-height:1.6em;font-size:smaller;font-family:'Courier New', Courier, monospace" rows="10" readonly>

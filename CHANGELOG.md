@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - The settings screen now displays a warning if IP data auto-updates is not supported.
+- Now supports Google Cloud-LB country detection.
 
 ### Changed
 - Improved internal IP detection: support for cloud load balancers.

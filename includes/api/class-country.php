@@ -243,6 +243,12 @@ class Country {
 			if ( Hosting::is_apache_geoip_enabled() ) {
 				$cc = filter_input( INPUT_SERVER, 'GEOIP_COUNTRY_CODE' );
 			}
+			if ( Hosting::is_googlelb_geoip_enabled() ) {
+				$cc = filter_input( INPUT_SERVER, 'X-Client-Geo-Location' );
+				if ( strpos( $cc, ',' ) ) {
+					$cc = explode( ',', $cc )[0];
+				}
+			}
 			$cc = strtoupper( $cc );
 			if ( 2 === strlen( $cc ) ) {
 				$this->cc = $cc;
