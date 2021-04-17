@@ -48,6 +48,16 @@ class Hosting {
 	}
 
 	/**
+	 * Check if Google LB Geoip is enabled.
+	 *
+	 * @return bool    True if Google Geoip is enabled.
+	 * @since  2.3.0
+	 */
+	public static function is_googlelb_geoip_enabled() {
+		return array_key_exists( 'X-Client-Geo-Location', $_SERVER );
+	}
+
+	/**
 	 * Check if Apache Geoip is enabled.
 	 *
 	 * @return bool    True if Cloudfront Geoip is enabled.
