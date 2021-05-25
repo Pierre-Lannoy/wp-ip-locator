@@ -20,6 +20,7 @@ use IPLocator\System\Nag;
 use IPLocator\Plugin\Feature\CSSModifier;
 use IPLocator\System\Option;
 use IPLocator\API\IPRoute;
+use IPLocator\Plugin\Feature\Schema;
 
 /**
  * The core plugin class.
@@ -56,6 +57,7 @@ class Core {
 		$this->define_global_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_metrics();
 	}
 
 
@@ -125,6 +127,19 @@ class Core {
 			add_shortcode( 'iplocator-lang', [ $plugin_public, 'sc_get_lang' ] );
 			add_shortcode( 'iplocator-if', [ $plugin_public, 'sc_if' ] );
 		}
+	}
+
+	/**
+	 * Register all metrics of the plugin.
+	 *
+	 * @since  3.0.0
+	 * @access private
+	 */
+	private function define_metrics() {
+		$schema  = new Schema();
+		$metrics = \DecaLog\Engine::metricsLogger( IPLOCATOR_SLUG );
+		$metrics->createProdGauge( 'ipv4_range', $schema->count_ranges( 'v4', false ), 'Number of known IPv4 ranges - [count]' );
+		$metrics->createProdGauge( 'ipv6_range', $schema->count_ranges( 'v6', false ), 'Number of known IPv6 ranges - [count]' );
 	}
 
 	/**

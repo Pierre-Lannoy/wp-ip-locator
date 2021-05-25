@@ -228,10 +228,18 @@ class Schema {
 	 * Get ranges count.
 	 *
 	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
+	 * @param boolean   $force      Optional. Forces value refreshing.
 	 * @return  integer The number of ranges.
 	 * @since 1.0.0
 	 */
-	public function count_ranges( $version ) {
+	public function count_ranges( $version, $force = true ) {
+		$cache_id = $version . '_count_range';
+		if ( ! $force ) {
+			$result = Cache::get_global( $cache_id );
+			if ( isset( $result ) && is_numeric( $result ) ) {
+				return (int) $result;
+			}
+		}
 		global $wpdb;
 		switch ( $version ) {
 			case 'v4':
@@ -252,6 +260,7 @@ class Schema {
 				$result = $cnt[0]['CNT'];
 			}
 		}
+		Cache::set_global( $cache_id, $result, 'statistics' );
 		return $result;
 	}
 
