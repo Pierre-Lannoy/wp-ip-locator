@@ -193,8 +193,8 @@ class IPData {
 							$tmp = explode( ',', rtrim( $datum ) );
 							if ( 3 === count( $tmp ) ) {
 								if ( 'v4' === $version ) {
-									$from = IP::normalize_v4( $tmp[0] );
-									$to   = IP::normalize_v4( $tmp[1] );
+									$from = IP::expand_v4( $tmp[0] );
+									$to   = IP::expand_v4( $tmp[1] );
 								} else {
 									$from = IP::expand_v6( $tmp[0] );
 									$to   = IP::expand_v6( $tmp[1] );
