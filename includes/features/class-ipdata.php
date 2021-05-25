@@ -36,7 +36,10 @@ class IPData {
 	 * @since  1.0.0
 	 * @var    integer    $batchsizes    Maintain the insert batch sizes.
 	 */
-	private static $batchsizes = [ 'v4' => 300, 'v6' => 200 ];
+	private static $batchsizes = [
+		'v4' => 300,
+		'v6' => 200,
+	];
 
 	/**
 	 * Decompress a gz file. We can't do that with WP_Filesystem() and unzip_file().
