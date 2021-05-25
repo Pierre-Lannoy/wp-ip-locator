@@ -228,7 +228,7 @@ class Schema {
 	 * Get ranges count.
 	 *
 	 * @param string    $version    The IP version. Must be 'v4' or 'v6'.
-	 * @param boolean   $force      Optional. Forces value refreshing.
+	 * @param boolean   $force      Optional. Forces value refreshing. Default: true.
 	 * @return  integer The number of ranges.
 	 * @since 1.0.0
 	 */
