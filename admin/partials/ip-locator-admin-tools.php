@@ -16,7 +16,7 @@ wp_localize_script(
 	IPLOCATOR_ASSETS_ID,
 	'describer',
 	[
-		'restUrl'   => esc_url_raw( rest_url() . 'ip-locator/v1/describe' ),
+		'restUrl'   => esc_url_raw( rest_url() . 'ip-locator/v' . IPLOCATOR_API_VERSION . '/describe' ),
 		'restNonce' => wp_create_nonce( 'wp_rest' ),
         'locale'    => L10n::get_display_locale(),
 	]
