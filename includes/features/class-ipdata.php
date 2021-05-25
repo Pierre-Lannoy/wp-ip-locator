@@ -164,7 +164,7 @@ class IPData {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Wrong import mode.', [ 'code' => 500 ] );
 			return;
 		}
-		$spanroot = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'IP' . $version . ' data update' );
+		$spanroot = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'IP' . $version . ' data ' . $mode );
 		global $wp_filesystem;
 		if ( is_null( $wp_filesystem ) ) {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
@@ -175,7 +175,7 @@ class IPData {
 		$file = self::acquire( 'https://assets.perfops.one/geoip/iplocator_' . $version . '_db.csv.gz', 'https://assets.perfops.one/geoip/iplocator_' . $version . '_db.csv.sig' );
 		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->end_span( $span );
 		if ( false !== $file && $wp_filesystem->exists( $file ) ) {
-			$span  = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'Database update', $spanroot );
+			$span  = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'Database ' . $mode, $spanroot );
 			$data  = $wp_filesystem->get_contents_array( $file );
 			$cpt   = 0;
 			$ins   = [];
