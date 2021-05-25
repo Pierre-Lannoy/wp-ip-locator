@@ -345,7 +345,7 @@ class IP_Locator_Admin {
 				'text'        => esc_html__( 'Ignore HTTP header', 'ip-locator' ),
 				'id'          => 'iplocator_plugin_options_override',
 				'checked'     => Option::network_get( 'override' ),
-				'description' => esc_html__( 'If checked, IP Locator will not try to verify country in the request header.', 'ip-locator' ) . '<br/>' . esc_html__( 'Note: to use CloudFlare, AWS CloudFront or Apache mod_geoip geolocation, uncheck this.', 'ip-locator' ),
+				'description' => esc_html__( 'If checked, IP Locator will not try to verify country in the request header.', 'ip-locator' ) . '<br/>' . esc_html__( 'Note: to use CloudFlare, AWS CloudFront, Google Cloud-LB or Apache mod_geoip geolocation, uncheck this.', 'ip-locator' ),
 				'full_width'  => false,
 				'enabled'     => true,
 			]
