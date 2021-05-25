@@ -3,12 +3,13 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 3.0.0]
+## [3.0.0] - 2021-05-25
 
 ### Added
 - Compatibility with WordPress 5.8.
 - The settings screen now displays a warning if IP data auto-updates is not supported.
 - IP locator now supports Google Cloud-LB country detection.
+- Compatibility with future DecaLog SDK.
 - [BC] The version of IP Locator API is now `v3`.
 
 ### Changed
@@ -18,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Improved data signature verification.
 
 ### Fixed
-- The error message when it's not possible to download data signature is wrong.
+- Erroneous message when it's not possible to download data signature.
 
 ## [2.2.0] - 2021-02-24
 
