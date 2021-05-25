@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: IP Locator\n"
-"POT-Creation-Date: 2021-02-24 00:00+0100\n"
+"POT-Creation-Date: 2021-05-25 18:21+0200\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -119,34 +119,40 @@ msgid ""
 msgstr ""
 
 #: admin/class-ip-locator-admin.php:356
+msgid ""
+"Zlib is not supported on your site. It is not possible to automatically update IP "
+"database."
+msgstr ""
+
+#: admin/class-ip-locator-admin.php:360 admin/class-ip-locator-admin.php:372
 msgid "IP database"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:361
+#: admin/class-ip-locator-admin.php:377
 msgid "Auto-update"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:364
+#: admin/class-ip-locator-admin.php:380
 msgid "If checked, IP Locator will regularly update its IP database."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:372 admin/class-ip-locator-admin.php:390
+#: admin/class-ip-locator-admin.php:390 admin/class-ip-locator-admin.php:408
 #, php-format
 msgid "Your site is currently using %s."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:375
+#: admin/class-ip-locator-admin.php:393
 #, php-format
 msgid ""
 "Your site does not use any logging plugin. To log all events triggered in IP Locator, I "
 "recommend you to install the excellent (and free) %s. But it is not mandatory."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:379
+#: admin/class-ip-locator-admin.php:397
 msgid "Logging"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:393
+#: admin/class-ip-locator-admin.php:411
 #, php-format
 msgid ""
 "Your site does not use any device detection mechanism. To precisely detect \"real humans"
@@ -154,100 +160,100 @@ msgid ""
 "it is not mandatory."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:397
+#: admin/class-ip-locator-admin.php:415
 msgid "Device Detection"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:408
+#: admin/class-ip-locator-admin.php:426
 msgid "Resources"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:413
+#: admin/class-ip-locator-admin.php:431
 msgid "Use public CDN"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:416
+#: admin/class-ip-locator-admin.php:434
 msgid ""
 "If checked, IP Locator will use a public CDN (jsDelivr) to serve scripts and "
 "stylesheets."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:424
+#: admin/class-ip-locator-admin.php:442
 msgid "Admin notices"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:429
+#: admin/class-ip-locator-admin.php:447
 msgid "Display"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:432
+#: admin/class-ip-locator-admin.php:450
 msgid "Allows IP Locator to display admin notices throughout the admin dashboard."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:432
+#: admin/class-ip-locator-admin.php:450
 msgid "Note: IP Locator respects DISABLE_NAG_NOTICES flag."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:449
+#: admin/class-ip-locator-admin.php:467
 msgid "Analytics"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:454
+#: admin/class-ip-locator-admin.php:472
 msgid "Activated"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:457
+#: admin/class-ip-locator-admin.php:475
 msgid ""
 "If checked, IP Locator will store statistics about detected countries and languages."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:465
+#: admin/class-ip-locator-admin.php:483
 msgid "Historical data"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:473
+#: admin/class-ip-locator-admin.php:491
 msgid "Maximum age of data to keep for statistics."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:481
+#: admin/class-ip-locator-admin.php:499
 msgid "Shortcodes"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:486
+#: admin/class-ip-locator-admin.php:504
 msgid "Activate shortcodes rendering"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:489
+#: admin/class-ip-locator-admin.php:507
 #, php-format
 msgid "If checked, IP Locator will render its own shortcodes when needed (%s)."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:489
+#: admin/class-ip-locator-admin.php:507
 msgid "see details"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:497
+#: admin/class-ip-locator-admin.php:515
 msgid "CSS"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:502
+#: admin/class-ip-locator-admin.php:520
 msgid "Add country as CSS class"
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:505
+#: admin/class-ip-locator-admin.php:523
 msgid ""
 "If checked, IP Locator will append to the body tag a CSS class describing the detected "
 "connexion (mainly countries)."
 msgstr ""
 
-#: admin/class-ip-locator-admin.php:524
+#: admin/class-ip-locator-admin.php:542
 #, php-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/class-ip-locator-admin.php:528
+#: admin/class-ip-locator-admin.php:546
 #, php-format
 msgid "%d year"
 msgid_plural "%d years"
@@ -308,7 +314,7 @@ msgstr ""
 #: admin/partials/ip-locator-admin-settings-data.php:33
 #: admin/partials/ip-locator-admin-settings-data.php:38
 #, php-format
-msgid "%s / donationware."
+msgid "%s / CC0."
 msgstr ""
 
 #: admin/partials/ip-locator-admin-settings-data.php:35
@@ -328,12 +334,14 @@ msgstr ""
 #: admin/partials/ip-locator-admin-settings-data.php:46
 #: admin/partials/ip-locator-admin-settings-data.php:47
 #: admin/partials/ip-locator-admin-settings-data.php:48
+#: admin/partials/ip-locator-admin-settings-data.php:49
 msgid "active"
 msgstr ""
 
 #: admin/partials/ip-locator-admin-settings-data.php:46
 #: admin/partials/ip-locator-admin-settings-data.php:47
 #: admin/partials/ip-locator-admin-settings-data.php:48
+#: admin/partials/ip-locator-admin-settings-data.php:49
 msgid "inactive"
 msgstr ""
 
@@ -345,7 +353,11 @@ msgstr ""
 msgid "Cloudflare IP Geolocation reception: "
 msgstr ""
 
-#: admin/partials/ip-locator-admin-settings-data.php:50
+#: admin/partials/ip-locator-admin-settings-data.php:49
+msgid "Google Cloud-LB reception: "
+msgstr ""
+
+#: admin/partials/ip-locator-admin-settings-data.php:51
 msgid "Last operations transcript"
 msgstr ""
 
@@ -372,6 +384,14 @@ msgstr ""
 
 #: admin/partials/ip-locator-admin-tools.php:36
 msgid "Test Now"
+msgstr ""
+
+#: functions.php:27
+msgid "Invalid URL Provided."
+msgstr ""
+
+#: functions.php:34
+msgid "Could not create Temporary file."
 msgstr ""
 
 #: includes/features/class-analytics.php:270 includes/features/class-analytics.php:272
@@ -768,13 +788,13 @@ msgid "%s data files are corrupted or empty. Retry will be done next cycle."
 msgstr ""
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-ipdata.php:241
+#: includes/features/class-ipdata.php:242
 #, php-format
 msgid "Unable to acquire %s data files. Retry will be done next cycle."
 msgstr ""
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-schema.php:453 includes/features/class-schema.php:460
+#: includes/features/class-schema.php:462 includes/features/class-schema.php:469
 #, php-format
 msgid ""
 "%s data need to be initialized. Initialization will start in some minutes; note it "
@@ -1537,36 +1557,36 @@ msgid "Migrated action with ID %1$d in %2$s to ID %3$d in %4$s"
 msgstr ""
 
 #: includes/libraries/class-libraries.php:67 includes/libraries/class-libraries.php:78
-#: includes/libraries/class-libraries.php:89 includes/libraries/class-libraries.php:183
-#: includes/libraries/class-libraries.php:191 includes/libraries/class-libraries.php:199
-#: includes/libraries/class-libraries.php:206 includes/libraries/class-libraries.php:213
-#: includes/libraries/class-libraries.php:220
+#: includes/libraries/class-libraries.php:89 includes/libraries/class-libraries.php:223
+#: includes/libraries/class-libraries.php:231 includes/libraries/class-libraries.php:239
+#: includes/libraries/class-libraries.php:246 includes/libraries/class-libraries.php:253
+#: includes/libraries/class-libraries.php:260
 #, php-format
 msgid "%s & contributors"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:127
+#: includes/libraries/class-libraries.php:167
 msgid "MIT license"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:130
+#: includes/libraries/class-libraries.php:170
 msgid "Apache license, version 2.0"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:133
+#: includes/libraries/class-libraries.php:173
 msgid "GPL-2.0 license"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:136
+#: includes/libraries/class-libraries.php:176
 msgid "GPL-3.0 license"
 msgstr ""
 
-#: includes/libraries/class-libraries.php:139
+#: includes/libraries/class-libraries.php:179
 msgid "unknown license"
 msgstr ""
 
 #. translators: as in the sentence "Product W version X by author Y (license Z)"
-#: includes/libraries/class-libraries.php:230
+#: includes/libraries/class-libraries.php:275
 #, php-format
 msgid "<a href=\"%1$s\">%2$s %3$s</a>%4$s by %5$s (%6$s)"
 msgstr ""
