@@ -3,7 +3,7 @@ Contributors: PierreLannoy
 Tags: country, flag, geolocation, language
 Requires at least: 5.2
 Requires PHP: 7.2
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 2.2.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -50,8 +50,8 @@ Technically, **IP Locator**:
 
 (2): [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use it in IP Locator.
 
-> **IP Locator uses IP data from [WebNet77 / Software77](http://software77.net/geo-ip/) which is [donationware](http://software77.net/geo-ip/?license). If you find this data useful, consider making a donation - even a small one - to help keep it free.**
-> **IP Locator accesses this service on a regular basis (if the option is checked) to maintain an up-to-date version of the data. By using IP Locator, you agree with the [Software77 license](http://software77.net/geo-ip/?license)**
+> **IP Locator uses IP data I curate myself and I publish via my own servers exclusively for IP Locator. Data is CC0 licensed.**
+> **IP Locator accesses this service on a regular basis (if the option is checked) to maintain an up-to-date version of the data.**
 
 **IP Locator** supports an extensive set of WP-CLI commands to:
 

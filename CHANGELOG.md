@@ -3,14 +3,22 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased - will be 3.0.0]
 
 ### Added
+- Compatibility with WordPress 5.8.
 - The settings screen now displays a warning if IP data auto-updates is not supported.
 - IP locator now supports Google Cloud-LB country detection.
+- [BC] The version of IP Locator API is now `v3`.
 
 ### Changed
+- As the IP Database provider (WebNet77/Software77) has shutdown, there's a new data provider - more accurate and more durable: me!
 - Improved internal IP detection: support for cloud load balancers.
+- Improved IP data download process.
+- Improved data signature verification.
+
+### Fixed
+- The error message when it's not possible to download data signature is wrong.
 
 ## [2.2.0] - 2021-02-24
 

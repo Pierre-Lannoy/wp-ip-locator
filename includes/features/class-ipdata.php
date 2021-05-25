@@ -112,7 +112,12 @@ class IPData {
 				try {
 					if ( self::ungzip_file( $zipfile, $unzipfile ) ) {
 						Logger::debug( 'CSV file: ' . $unzipfile );
-						$md5 = $wp_filesystem->get_contents( $md5file );
+						$m = explode( ' ', (string) $wp_filesystem->get_contents( $md5file ) );
+						if ( 0 < count( $m ) ) {
+							$md5 = (string) $m[0];
+						} else {
+							$md5 = '';
+						}
 						$ver = verify_file_md5( $unzipfile, $md5 );
 						if ( true === $ver ) {
 							Logger::debug( 'IP data file signature verified.' );
@@ -165,13 +170,7 @@ class IPData {
 			WP_Filesystem();
 		}
 		Cache::set( 'update/' . $version . '/' . $mode . 'semaphore', time(), 'infinite' );
-		if ( 'v4' === $version ) {
-			$file  = self::acquire( 'https://assets.perfops.one/geoip/iplocator_v4_db.tar.gz', 'https://assets.perfops.one/geoip/iplocator_v4_db.sig' );
-			$check = 4;
-		} else {
-			$file  = self::acquire( 'https://assets.perfops.one/geoip/iplocator_v6_db.tar.gz', 'https://assets.perfops.one/geoip/iplocator_v4_db.sig' );
-			$check = 1;
-		}
+		$file = self::acquire( 'https://assets.perfops.one/geoip/iplocator_' . $version . '_db.csv.gz', 'https://assets.perfops.one/geoip/iplocator_' . $version . '_db.csv.sig' );
 		if ( false !== $file && $wp_filesystem->exists( $file ) ) {
 			$data  = $wp_filesystem->get_contents_array( $file );
 			$cpt   = 0;
@@ -184,24 +183,17 @@ class IPData {
 					if ( is_string( $datum ) && 0 < strlen( $datum ) ) {
 						$first = substr( $datum, 0, 1 );
 						if ( '#' !== $first && '\n' !== $first ) {
-							$tmp  = explode( ',', rtrim( $datum ) );
-							$from = '';
-							$to   = '';
-							$cc   = '';
-							if ( $check < count( $tmp ) ) {
+							$tmp = explode( ',', rtrim( $datum ) );
+							if ( 3 === count( $tmp ) ) {
 								if ( 'v4' === $version ) {
 									$from = IP::normalize_v4( $tmp[0] );
 									$to   = IP::normalize_v4( $tmp[1] );
-									$cc   = substr( strtoupper( str_replace( '"', '', $tmp[4] ) ), 0, 2 );
 								} else {
-									$range = explode( '-', str_replace( $clean, '', $tmp[0] ) );
-									if ( 2 === count( $range ) ) {
-										$from = IP::expand_v6( $range[0] );
-										$to   = IP::expand_v6( $range[1] );
-										$cc   = substr( strtoupper( str_replace( $clean, '', $tmp[1] ) ), 0, 2 );
-									}
+									$from = IP::expand_v6( $tmp[0] );
+									$to   = IP::expand_v6( $tmp[1] );
 								}
-								if ( '' !== $from && '' !== $to && '' !== $cc ) {
+								$cc = strtoupper( $tmp[2] );
+								if ( '' !== $from && '' !== $to && '' !== $cc && 2 === strlen( $cc ) ) {
 									if ( count( $ins ) < self::$batchsizes[ $version ] ) {
 										$ins[] = $db->get_for_multiple_range( $from, $to, $cc );
 										++$cpt;
