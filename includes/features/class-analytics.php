@@ -19,7 +19,7 @@ use IPLocator\System\Conversion;
 use IPLocator\System\Environment;
 use IPLocator\System\IP;
 use IPLocator\System\Role;
-use IPLocator\System\Logger;
+
 use IPLocator\System\L10n;
 use IPLocator\System\Http;
 use IPLocator\System\Favicon;

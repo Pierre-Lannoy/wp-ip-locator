@@ -13,7 +13,7 @@ namespace IPLocator\System;
 
 use WP_User;
 use IPLocator\System\I18n;
-use IPLocator\System\Logger;
+
 
 /**
  * Define the localization functionality.
@@ -367,12 +367,12 @@ class L10n {
 			if ( $locale ) {
 				return \Locale::getPrimaryLanguage( $locale );
 			} else {
-				Logger::debug( $subtags->getErrorMessage(), $subtags->getErrorCode() );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( $subtags->getErrorMessage(), [ 'code' => $subtags->getErrorCode() ] );
 				$locale = $subtags->get( 'und' );
 				if ( $locale ) {
 					return \Locale::getPrimaryLanguage( $locale );
 				} else {
-					Logger::info( $subtags->getErrorMessage(), $subtags->getErrorCode() );
+					\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( $subtags->getErrorMessage(), [ 'code' => $subtags->getErrorCode() ] );
 				}
 			}
 		}

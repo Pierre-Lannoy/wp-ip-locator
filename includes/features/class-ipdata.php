@@ -12,7 +12,7 @@
 namespace IPLocator\Plugin\Feature;
 
 use IPLocator\System\Cache;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Option;
 use IPLocator\System\Infolog;
 use IPLocator\Plugin\Feature\Schema;
@@ -62,7 +62,7 @@ class IPData {
 			\gzclose( $in_file );
 			$result = true;
 		} catch ( \Throwable $e ) {
-			Logger::warning( sprintf( 'Unable to decompress IP data file: %s.', $e->getMessage() ), $e->getCode() );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( sprintf( 'Unable to decompress IP data file: %s.', $e->getMessage() ), [ 'code' => $e->getCode() ] );
 		}
 
 		return $result;
@@ -86,22 +86,22 @@ class IPData {
 			if ( $zipfile instanceof \WP_Error ) {
 				throw new \Exception( (string) $zipfile->get_error_message(), (int) $zipfile->get_error_code() );
 			} else {
-				Logger::debug( 'GZ file: ' . $zipfile );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'GZ file: ' . $zipfile );
 			}
 		} catch ( \Throwable $e ) {
 			$download_error = true;
-			Logger::warning( sprintf( 'Unable to download IP data file: %s.', $e->getMessage() ), $e->getCode() );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( sprintf( 'Unable to download IP data file: %s.', $e->getMessage() ), [ 'code' => $e->getCode() ] );
 		}
 		try {
 			$md5file = iplocator_download_url( $md5, 1000, false, Http::user_agent() );
 			if ( $md5file instanceof \WP_Error ) {
 				throw new \Exception( (string) $md5file->get_error_message(), (int) $md5file->get_error_code() );
 			} else {
-				Logger::debug( 'MD5 file: ' . $md5file );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'MD5 file: ' . $md5file );
 			}
 		} catch ( \Throwable $e ) {
 			$download_error = true;
-			Logger::warning( sprintf( 'Unable to download IP data signature: %s.', $e->getMessage() ), $e->getCode() );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( sprintf( 'Unable to download IP data signature: %s.', $e->getMessage() ), [ 'code' => $e->getCode() ] );
 		}
 		if ( ! $download_error && $wp_filesystem->exists( $zipfile ) && $wp_filesystem->exists( $md5file ) ) {
 			if ( $wp_filesystem->size( $zipfile ) !== $wp_filesystem->size( $md5file ) ) {
@@ -111,7 +111,7 @@ class IPData {
 				}
 				try {
 					if ( self::ungzip_file( $zipfile, $unzipfile ) ) {
-						Logger::debug( 'CSV file: ' . $unzipfile );
+						\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'CSV file: ' . $unzipfile );
 						$m = explode( ' ', (string) $wp_filesystem->get_contents( $md5file ) );
 						if ( 0 < count( $m ) ) {
 							$md5 = (string) $m[0];
@@ -120,24 +120,24 @@ class IPData {
 						}
 						$ver = verify_file_md5( $unzipfile, $md5 );
 						if ( true === $ver ) {
-							Logger::debug( 'IP data file signature verified.' );
+							\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'IP data file signature verified.' );
 							$result = $unzipfile;
 						} else {
 							if ( is_wp_error( $ver ) ) {
-								Logger::warning( 'Unable to verify the IP data file signature: ' . $ver->get_error_message(), $ver->get_error_code() );
+								\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Unable to verify the IP data file signature: ' . $ver->get_error_message(), [ 'code' => $ver->get_error_code() ] );
 							} else {
-								Logger::warning( 'Unable to verify the IP data file signature.' );
+								\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Unable to verify the IP data file signature.' );
 							}
 						}
 					}
 				} catch ( \Throwable $e ) {
-					Logger::warning( sprintf( 'Unable to decompress IP data file: %s.', $e->getMessage() ), $e->getCode() );
+					\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( sprintf( 'Unable to decompress IP data file: %s.', $e->getMessage() ), [ 'code' => $e->getCode() ] );
 				}
 			} else {
-				Logger::warning( 'Unable to download IP data file: quota exceeded.', 429 );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Unable to download IP data file: quota exceeded.', [ 'code' => 429 ] );
 			}
 		} else {
-			Logger::warning( 'Unable to acquire IP data files.', 404 );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Unable to acquire IP data files.', [ 'code' => 404 ] );
 		}
 		if ( ! $download_error && $wp_filesystem->exists( $zipfile ) ) {
 			$wp_filesystem->delete( $zipfile );
@@ -157,11 +157,11 @@ class IPData {
 	 */
 	private static function import_data( $version, $mode ) {
 		if ( 'v4' !== $version && 'v6' !== $version ) {
-			Logger::error( 'Wrong IP version.', 500 );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Wrong IP version.', [ 'code' => 500 ] );
 			return;
 		}
 		if ( 'init' !== $mode && 'update' !== $mode ) {
-			Logger::error( 'Wrong import mode.', 500 );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Wrong import mode.', [ 'code' => 500 ] );
 			return;
 		}
 		global $wp_filesystem;
@@ -214,22 +214,22 @@ class IPData {
 				Option::network_set( 'dbversion_' . $version, time() );
 				$time = time() - (int) Cache::get( 'update/' . $version . '/' . $mode . 'semaphore' );
 				if ( 'init' === $mode ) {
-					Logger::info( sprintf( 'IP' . $version . ' initialization completed in %d seconds: %d IP ranges have been added.', $time, $cpt ) );
+					\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( sprintf( 'IP' . $version . ' initialization completed in %d seconds: %d IP ranges have been added.', $time, $cpt ) );
 					/* translators: %1$s can be "IPv4" or "IPv6" */
 					Infolog::add( sprintf( esc_html__( '%1$s initialization completed in %2$d seconds: %3$d IP ranges have been added.', 'ip-locator' ), 'IP' . $version, $time, $cpt ) );
 				} else {
-					Logger::info( sprintf( 'IP' . $version . ' update completed in %d seconds: %d IP ranges have been added, updated or deleted.', $time, $cpt ) );
+					\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( sprintf( 'IP' . $version . ' update completed in %d seconds: %d IP ranges have been added, updated or deleted.', $time, $cpt ) );
 					/* translators: %1$s can be "IPv4" or "IPv6" */
 					Infolog::add( sprintf( esc_html__( '%1$s update completed in %2$d seconds: %3$d IP ranges have been added, updated or deleted.', 'ip-locator' ), 'IP' . $version, $time, $cpt ) );
 				}
 			} else {
-				Logger::error( 'IP' . $version . ' data files are corrupted or empty.', 404 );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'IP' . $version . ' data files are corrupted or empty.', [ 'code' => 404 ] );
 				/* translators: %s can be "IPv4" or "IPv6" */
 				Infolog::add( sprintf( esc_html__( '%s data files are corrupted or empty. Retry will be done next cycle.', 'ip-locator' ), 'IP' . $version ) );
 			}
 			$wp_filesystem->delete( $file );
 		} else {
-			Logger::error( 'Unable to acquire IP' . $version . ' data files.', 404 );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Unable to acquire IP' . $version . ' data files.', [ 'code' => 404 ] );
 			/* translators: %s can be "IPv4" or "IPv6" */
 			Infolog::add( sprintf( esc_html__( 'Unable to acquire %s data files. Retry will be done next cycle.', 'ip-locator' ), 'IP' . $version ) );
 		}

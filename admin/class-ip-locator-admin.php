@@ -12,7 +12,7 @@ namespace IPLocator\Plugin;
 use IPLocator\Plugin\Feature\Analytics;
 use IPLocator\Plugin\Feature\AnalyticsFactory;
 use IPLocator\System\Assets;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Role;
 use IPLocator\System\Option;
 use IPLocator\System\Form;
@@ -296,12 +296,12 @@ class IP_Locator_Admin {
 				$message = esc_html__( 'Plugin settings have been saved.', 'ip-locator' );
 				$code    = 0;
 				add_settings_error( 'iplocator_no_error', $code, $message, 'updated' );
-				Logger::info( 'Plugin settings updated.', $code );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'Plugin settings updated.', [ 'code' => $code ] );
 			} else {
 				$message = esc_html__( 'Plugin settings have not been saved. Please try again.', 'ip-locator' );
 				$code    = 2;
 				add_settings_error( 'iplocator_nonce_error', $code, $message, 'error' );
-				Logger::warning( 'Plugin settings not updated.', $code );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Plugin settings not updated.', [ 'code' => $code ] );
 			}
 		}
 	}
@@ -318,12 +318,12 @@ class IP_Locator_Admin {
 				$message = esc_html__( 'Plugin settings have been reset to defaults.', 'ip-locator' );
 				$code    = 0;
 				add_settings_error( 'iplocator_no_error', $code, $message, 'updated' );
-				Logger::info( 'Plugin settings reset to defaults.', $code );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'Plugin settings reset to defaults.', [ 'code' => $code ] );
 			} else {
 				$message = esc_html__( 'Plugin settings have not been reset to defaults. Please try again.', 'ip-locator' );
 				$code    = 2;
 				add_settings_error( 'iplocator_nonce_error', $code, $message, 'error' );
-				Logger::warning( 'Plugin settings not reset to defaults.', $code );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Plugin settings not reset to defaults.', [ 'code' => $code ] );
 			}
 		}
 	}

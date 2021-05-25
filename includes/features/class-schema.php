@@ -15,7 +15,7 @@ use IPLocator\System\APCu;
 
 use IPLocator\System\Option;
 use IPLocator\System\Database;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Cache;
 use IPLocator\Plugin\Feature\IPData;
 use IPLocator\System\Infolog;
@@ -182,12 +182,12 @@ class Schema {
 		$database = new Database();
 		$count    = $database->purge( self::$statistics, 'timestamp', 24 * $days );
 		if ( 0 === $count ) {
-			Logger::debug( 'No old records to delete.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'No old records to delete.' );
 		} elseif ( 1 === $count ) {
-			Logger::debug( '1 old record deleted.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( '1 old record deleted.' );
 			Cache::delete_global( 'data/oldestdate' );
 		} else {
-			Logger::debug( sprintf( '%1$s old records deleted.', $count ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( '%1$s old records deleted.', [ 'code' => $count ] ) );
 			Cache::delete_global( 'data/oldestdate' );
 		}
 	}
@@ -371,14 +371,14 @@ class Schema {
 		global $wpdb;
 		try {
 			$this->create_tables();
-			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$statistics ) );
-			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv4 ) );
-			Logger::debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv6 ) );
-			Logger::info( 'Schema installed.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$statistics ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv4 ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv6 ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'Schema installed.' );
 			$this->init_data();
 		} catch ( \Throwable $e ) {
-			Logger::alert( sprintf( 'Unable to create a table: %s', $e->getMessage() ), $e->getCode() );
-			Logger::alert( 'Schema not installed.', $e->getCode() );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->alert( sprintf( 'Unable to create a table: %s', $e->getMessage() ), [ 'code' => $e->getCode() ] );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->alert( 'Schema not installed.', [ 'code' => $e->getCode() ] );
 		}
 	}
 
@@ -392,17 +392,17 @@ class Schema {
 		$sql = 'DROP TABLE IF EXISTS ' . $wpdb->base_prefix . self::$statistics;
 		// phpcs:ignore
 		$wpdb->query( $sql );
-		Logger::debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$statistics ) );
+		\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$statistics ) );
 		global $wpdb;
 		$sql = 'DROP TABLE IF EXISTS ' . $wpdb->base_prefix . self::$ipv4;
 		// phpcs:ignore
 		$wpdb->query( $sql );
-		Logger::debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$ipv4 ) );
+		\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$ipv4 ) );
 		$sql = 'DROP TABLE IF EXISTS ' . $wpdb->base_prefix . self::$ipv6;
 		// phpcs:ignore
 		$wpdb->query( $sql );
-		Logger::debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$ipv6 ) );
-		Logger::debug( 'Schema destroyed.' );
+		\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" removed.', $wpdb->base_prefix . self::$ipv6 ) );
+		\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'Schema destroyed.' );
 	}
 
 	/**
@@ -414,12 +414,12 @@ class Schema {
 		global $wpdb;
 		try {
 			$this->create_tables();
-			Logger::debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$ipv4 ) );
-			Logger::debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$ipv6 ) );
-			Logger::info( 'Schema updated.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$ipv4 ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" updated.', $wpdb->base_prefix . self::$ipv6 ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'Schema updated.' );
 			$this->init_data();
 		} catch ( \Throwable $e ) {
-			Logger::alert( sprintf( 'Unable to update a table: %s', $e->getMessage() ), $e->getCode() );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->alert( sprintf( 'Unable to update a table: %s', $e->getMessage() ), [ 'code' => $e->getCode() ] );
 		}
 	}
 
@@ -451,16 +451,16 @@ class Schema {
 		if ( $needed_v4 ) {
 			/* translators: %s can be "IPv4" or "IPv6" */
 			Infolog::add( sprintf( esc_html__( '%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…', 'ip-locator' ), 'IPv4' ) );
-			Logger::info( 'IPv4 data initialization is needed. This initialization will start in some minutes.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'IPv4 data initialization is needed. This initialization will start in some minutes.' );
 		} else {
-			Logger::info( 'No need to initialize IPv4 data.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'No need to initialize IPv4 data.' );
 		}
 		if ( $needed_v6 ) {
 			/* translators: %s can be "IPv4" or "IPv6" */
 			Infolog::add( sprintf( esc_html__( '%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…', 'ip-locator' ), 'IPv6' ) );
-			Logger::info( 'IPv6 data initialization is needed. This initialization will start in some minutes.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'IPv6 data initialization is needed. This initialization will start in some minutes.' );
 		} else {
-			Logger::info( 'No need to initialize IPv6 data.' );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'No need to initialize IPv6 data.' );
 		}
 	}
 

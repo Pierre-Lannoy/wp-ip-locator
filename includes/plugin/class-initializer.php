@@ -10,7 +10,7 @@
 namespace IPLocator\Plugin;
 
 use IPLocator\System\Cache;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Option;
 
 /**

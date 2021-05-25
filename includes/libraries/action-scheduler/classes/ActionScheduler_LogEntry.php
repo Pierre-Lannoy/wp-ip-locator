@@ -31,7 +31,7 @@ class ActionScheduler_LogEntry {
 	public function __construct( $action_id, $message, $date = null ) {
 
 		/*
-		 * ActionScheduler_wpCommentLogger::get_entry() previously passed a 3rd param of $comment->comment_type
+		 * ActionScheduler_wpComment\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->get_entry() previously passed a 3rd param of $comment->comment_type
 		 * to ActionScheduler_LogEntry::__construct(), goodness knows why, and the Follow-up Emails plugin
 		 * hard-codes loading its own version of ActionScheduler_wpCommentLogger with that out-dated method,
 		 * goodness knows why, so we need to guard against that here instead of using a DateTime type declaration

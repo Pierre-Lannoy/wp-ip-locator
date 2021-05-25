@@ -11,7 +11,7 @@ namespace IPLocator\Plugin;
 
 use IPLocator\System\Assets;
 use IPLocator\API\Country;
-use IPLocator\System\Logger;
+
 
 /**
  * The class responsible for the public-facing functionality of the plugin.

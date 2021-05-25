@@ -14,7 +14,7 @@ namespace IPLocator\Plugin\Feature;
 use IPLocator\Plugin\Feature\Analytics;
 use IPLocator\System\Blog;
 use IPLocator\System\Date;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Timezone;
 
 /**

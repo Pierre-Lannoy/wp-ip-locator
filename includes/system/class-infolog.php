@@ -11,7 +11,7 @@
 
 namespace IPLocator\System;
 
-use IPLocator\System\Logger;
+
 use IPLocator\System\Option;
 
 /**

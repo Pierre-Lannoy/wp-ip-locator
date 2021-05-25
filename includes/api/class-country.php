@@ -10,7 +10,7 @@
 namespace IPLocator\API;
 
 use IPLocator\System\Environment;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Option;
 use IPLocator\System\Hosting;
 use IPLocator\System\IP;

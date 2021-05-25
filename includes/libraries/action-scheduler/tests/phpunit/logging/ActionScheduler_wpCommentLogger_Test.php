@@ -215,4 +215,4 @@ class ActionScheduler_wpCommentLogger_Test extends ActionScheduler_UnitTestCase 
 		return $this->use_comment_logger;
 	}
 }
- 
+

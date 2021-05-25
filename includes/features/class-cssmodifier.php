@@ -12,7 +12,7 @@
 namespace IPLocator\Plugin\Feature;
 
 use IPLocator\System\Option;
-use IPLocator\System\Logger;
+
 use IPLocator\System\L10n;
 
 /**
@@ -97,9 +97,9 @@ class CSSModifier {
 	public static function init() {
 		if ( Option::network_get( 'css' ) ) {
 			add_filter( 'body_class', [ 'IPLocator\Plugin\Feature\CSSModifier', 'body_class' ] );
-			Logger::debug( 'Filter hooked: body_class.');
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'Filter hooked: body_class.');
 			add_filter( 'admin_body_class', [ 'IPLocator\Plugin\Feature\CSSModifier', 'admin_body_class' ] );
-			Logger::debug( 'Filter hooked: admin_body_class.');
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( 'Filter hooked: admin_body_class.');
 		}
 	}
 

@@ -11,7 +11,7 @@
 
 namespace IPLocator\API;
 
-use IPLocator\System\Logger;
+
 use IPLocator\System\IP;
 
 /**
@@ -87,7 +87,7 @@ class IPRoute extends \WP_REST_Controller {
 	 */
 	public function get_describe_permissions_check( $request ) {
 		if ( ! is_user_logged_in() ) {
-			Logger::warning( 'Unauthenticated API call.', 401 );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->warning( 'Unauthenticated API call.', [ 'code' => 401 ] );
 			return new \WP_Error( 'rest_not_logged_in', 'You must be logged in to access live logs.', [ 'status' => 401 ] );
 		}
 		return true;
@@ -120,7 +120,7 @@ class IPRoute extends \WP_REST_Controller {
 		try {
 			$result = iplocator_describe( $request['ip'], $request['locale'] );
 		} catch ( \Throwable $t ) {
-			Logger::error( sprintf( 'Unable to analyze IP "%s".', $request['ip'] ), 500 );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( sprintf( 'Unable to analyze IP "%s".', $request['ip'] ), [ 'code' => 500 ] );
 			return new \WP_Error( 'rest_internal_server_error', 'Unable to analyze this User-Agent.', [ 'status' => 500 ] );
 		}
 		return new \WP_REST_Response( $result, 200 );

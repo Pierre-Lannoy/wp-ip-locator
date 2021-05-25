@@ -12,7 +12,7 @@ namespace IPLocator\Plugin;
 use IPLocator\System\Nag;
 use IPLocator\System\Option;
 use IPLocator\System\Environment;
-use IPLocator\System\Logger;
+
 use IPLocator\System\Role;
 use Exception;
 use IPLocator\Plugin\Feature\Schema;
@@ -47,7 +47,7 @@ class Updater {
 				$this->update( $old );
 				// phpcs:ignore
 				$message  = sprintf( esc_html__( '%1$s has been correctly updated from version %2$s to version %3$s.', 'ip-locator' ), IPLOCATOR_PRODUCT_NAME, $old, IPLOCATOR_VERSION );
-				Logger::notice( $message );
+				\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->notice( $message );
 				// phpcs:ignore
 				$message .= ' ' . sprintf( __( 'See <a href="%s">what\'s new</a>.', 'ip-locator' ), admin_url( 'admin.php?page=iplocator-settings&tab=about' ) );
 			}
