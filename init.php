@@ -17,6 +17,6 @@ define( 'IPLOCATOR_VERSION', '3.0.0-dev1' );
 define( 'IPLOCATOR_API_VERSION', '3' );
 define( 'IPLOCATOR_CODENAME', '"-"' );
 
-define( 'IPLOCATOR_UPDATE_CYCLE', 4 ); // Update cycle in days
+define( 'IPLOCATOR_UPDATE_CYCLE', 3 ); // Update cycle in days
 
 define( 'IPLOCATOR_CDN_AVAILABLE', true );
