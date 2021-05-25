@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: IP Locator\n"
-"POT-Creation-Date: 2021-05-25 18:21+0200\n"
+"POT-Creation-Date: 2021-05-25 18:56+0200\n"
 "PO-Revision-Date: 2019-07-08 14:07+0200\n"
 "Last-Translator: Pierre Lannoy <pierre@lannoy.fr>\n"
 "Language-Team: Pierre Lannoy <pierre@lannoy.fr>\n"
@@ -115,7 +115,8 @@ msgstr ""
 
 #: admin/class-ip-locator-admin.php:348
 msgid ""
-"Note: to use CloudFlare, AWS CloudFront or Apache mod_geoip geolocation, uncheck this."
+"Note: to use CloudFlare, AWS CloudFront, Google Cloud-LB or Apache mod_geoip "
+"geolocation, uncheck this."
 msgstr ""
 
 #: admin/class-ip-locator-admin.php:356
