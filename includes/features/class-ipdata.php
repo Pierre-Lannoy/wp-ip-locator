@@ -17,6 +17,7 @@ use IPLocator\System\Option;
 use IPLocator\System\Infolog;
 use IPLocator\Plugin\Feature\Schema;
 use IPLocator\System\IP;
+use IPLocator\System\Http;
 
 /**
  * Define the ip data functionality.
@@ -81,7 +82,7 @@ class IPData {
 		$md5file        = '';
 		$download_error = false;
 		try {
-			$zipfile = download_url( $url );
+			$zipfile = iplocator_download_url( $url, 1000, false, Http::user_agent() );
 			if ( $zipfile instanceof \WP_Error ) {
 				throw new \Exception( (string) $zipfile->get_error_message(), (int) $zipfile->get_error_code() );
 			} else {
@@ -92,9 +93,9 @@ class IPData {
 			Logger::warning( sprintf( 'Unable to download IP data file: %s.', $e->getMessage() ), $e->getCode() );
 		}
 		try {
-			$md5file = download_url( $md5 );
+			$md5file = iplocator_download_url( $md5, 1000, false, Http::user_agent() );
 			if ( $md5file instanceof \WP_Error ) {
-				throw new \Exception( $md5file->get_error_message(), $md5file->get_error_code() );
+				throw new \Exception( (string) $md5file->get_error_message(), (int) $md5file->get_error_code() );
 			} else {
 				Logger::debug( 'MD5 file: ' . $md5file );
 			}
@@ -165,10 +166,10 @@ class IPData {
 		}
 		Cache::set( 'update/' . $version . '/' . $mode . 'semaphore', time(), 'infinite' );
 		if ( 'v4' === $version ) {
-			$file  = self::acquire( 'https://software77.net/geo-ip/?DL=1', 'https://software77.net/geo-ip/?DL=3' );
+			$file  = self::acquire( 'https://assets.perfops.one/geoip/iplocator_v4_db.tar.gz', 'https://assets.perfops.one/geoip/iplocator_v4_db.sig' );
 			$check = 4;
 		} else {
-			$file  = self::acquire( 'https://software77.net/geo-ip/?DL=7', 'https://software77.net/geo-ip/?DL=8' );
+			$file  = self::acquire( 'https://assets.perfops.one/geoip/iplocator_v6_db.tar.gz', 'https://assets.perfops.one/geoip/iplocator_v4_db.sig' );
 			$check = 1;
 		}
 		if ( false !== $file && $wp_filesystem->exists( $file ) ) {
