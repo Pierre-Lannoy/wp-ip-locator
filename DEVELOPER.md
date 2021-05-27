@@ -21,7 +21,7 @@ IP Locator is mainly a tool to analyze remote IP from which a WordPress site is 
 IP Locator, once activated, is ready to be queried via some simple API calls. When you use this API, you don't have to worry about detection and cache management. You can call this API as many times as you want without any performance impact and you can do it as soon as the `init` hook is executed.
 
 ## IP Locator REST API
-IP Locator has a single endpoint which accepts `GET` requests from all authenticated users: `/wp-json/ip-locator/v1/describe`.
+IP Locator has a single endpoint which accepts `GET` requests from all authenticated users: `/wp-json/ip-locator/v3/describe`.
 
 This endpoint accepts 2 parameters:
 * `ip` - mandatory: to specify the IP address (IPv4 or IPv6) to analyze.
@@ -29,7 +29,7 @@ This endpoint accepts 2 parameters:
 
 ### Example
 ```console
-pierre@dev:~$ curl --location --request GET '.../wp-json/ip-locator/v1/describe?ip=8.8.4.4&locale=fr_FR' --header '...'
+pierre@dev:~$ curl --location --request GET '.../wp-json/ip-locator/v3/describe?ip=8.8.4.4&locale=fr_FR' --header '...'
 {"ip":"8.8.4.4","country":{"code":"US","name":"\u00c9tats-Unis"},"language":{"code":"en","name":"anglais"},"flag":{"square":"data:image\/svg+xml;base64,PHN2Zy...z4K","rectangle":"data:image\/svg+xml;base64,PHN2Zy...z4K","emoji":"\ud83c\uddfa\ud83c\uddf8"}}
 ```
 
