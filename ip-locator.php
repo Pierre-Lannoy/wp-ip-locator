@@ -75,7 +75,7 @@ function iplocator_uninstall() {
  * @since 1.0.0
  */
 function iplocator_run() {
-	\DecaLog\Engine::initPlugin( IPLOCATOR_SLUG, IPLOCATOR_PRODUCT_NAME, IPLOCATOR_VERSION );
+	\DecaLog\Engine::initPlugin( IPLOCATOR_SLUG, IPLOCATOR_PRODUCT_NAME, IPLOCATOR_VERSION, \IPLocator\Plugin\Core::get_base64_logo() );
 	\IPLocator\System\Cache::init();
 	$plugin = new IPLocator\Plugin\Core();
 	$plugin->run();
