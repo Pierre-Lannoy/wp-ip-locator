@@ -80,7 +80,8 @@ class Option {
 		self::$defaults['dbversion_v6']     = 0;
 		self::$defaults['history']          = 30;
 		self::$defaults['analytics']        = true;
-		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate', 'history', 'analytics' ];
+		self::$defaults['metrics']          = true;
+		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate', 'history', 'analytics', 'metrics' ];
 	}
 
 	/**

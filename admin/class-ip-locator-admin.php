@@ -289,6 +289,9 @@ class IP_Locator_Admin {
 			if ( array_key_exists( '_wpnonce', $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'iplocator-plugin-options' ) ) {
 				Option::network_set( 'use_cdn', array_key_exists( 'iplocator_plugin_options_usecdn', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_usecdn' ) : false );
 				Option::network_set( 'display_nag', array_key_exists( 'iplocator_plugin_options_nag', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_nag' ) : false );
+				Option::network_set( 'analytics', array_key_exists( 'iplocator_plugin_features_analytics', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_analytics' ) : false );
+				Option::network_set( 'metrics', array_key_exists( 'iplocator_plugin_features_metrics', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_metrics' ) : false );
+				Option::network_set( 'history', array_key_exists( 'iplocator_plugin_features_history', $_POST ) ? (string) filter_input( INPUT_POST, 'iplocator_plugin_features_history', FILTER_SANITIZE_NUMBER_INT ) : Option::network_get( 'history' ) );
 				Option::network_set( 'autoupdate', array_key_exists( 'iplocator_plugin_options_autoupdate', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_autoupdate' ) : false );
 				Option::network_set( 'override', array_key_exists( 'iplocator_plugin_options_override', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_options_override' ) : false );
 				Option::network_set( 'shortcode', array_key_exists( 'iplocator_plugin_features_shortcode', $_POST ) ? (bool) filter_input( INPUT_POST, 'iplocator_plugin_features_shortcode' ) : false );
@@ -494,6 +497,22 @@ class IP_Locator_Admin {
 			]
 		);
 		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_history' );
+		add_settings_field(
+			'iplocator_plugin_features_metrics',
+			esc_html__( 'Metrics', 'ip-locator' ),
+			[ $form, 'echo_field_checkbox' ],
+			'iplocator_plugin_features_section',
+			'iplocator_plugin_features_section',
+			[
+				'text'        => esc_html__( 'Activated', 'ip-locator' ),
+				'id'          => 'iplocator_plugin_features_metrics',
+				'checked'     => \DecaLog\Engine::isDecalogActivated() ? Option::network_get( 'metrics' ) : false,
+				'description' => esc_html__( 'If checked, IP Locator will collate and publish IP database metrics.', 'ip-locator' ) . ( \DecaLog\Engine::isDecalogActivated() ? '' : '<br/>' . esc_html__( 'Note: for this to work, you must install DecaLog.', 'ip-locator' ) ),
+				'full_width'  => false,
+				'enabled'     => \DecaLog\Engine::isDecalogActivated(),
+			]
+		);
+		register_setting( 'iplocator_plugin_features_section', 'iplocator_plugin_features_metrics' );
 		add_settings_field(
 			'iplocator_plugin_features_shortcode',
 			__( 'Shortcodes', 'ip-locator' ),
