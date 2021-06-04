@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased - will be 3.0.1] - xxxx-xx-xx
 
 ### Changed
+- Updated DecaLog SDK.
 - Updated developer's documentation.
 
 ## [3.0.0] - 2021-05-25
