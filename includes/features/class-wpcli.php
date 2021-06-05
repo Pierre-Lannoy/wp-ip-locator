@@ -212,7 +212,7 @@ class Wpcli {
 	 * <enable|disable>
 	 * : The action to take.
 	 *
-	 * <analytics>
+	 * <analytics|metrics>
 	 * : The setting to change.
 	 *
 	 * [--yes]
@@ -240,6 +240,10 @@ class Wpcli {
 						Option::network_set( 'analytics', true );
 						$this->success( 'analytics are now activated.', '', $stdout );
 						break;
+					case 'metrics':
+						Option::network_set( 'metrics', true );
+						$this->success( 'metrics collation is now activated.', '', $stdout );
+						break;
 					default:
 						$this->error( 1, $stdout );
 				}
@@ -250,6 +254,11 @@ class Wpcli {
 						\WP_CLI::confirm( 'Are you sure you want to deactivate analytics?', $assoc_args );
 						Option::network_set( 'analytics', false );
 						$this->success( 'analytics are now deactivated.', '', $stdout );
+						break;
+					case 'metrics':
+						\WP_CLI::confirm( 'Are you sure you want to deactivate metrics collation?', $assoc_args );
+						Option::network_set( 'metrics', false );
+						$this->success( 'metrics collation is now deactivated.', '', $stdout );
 						break;
 					default:
 						$this->error( 1, $stdout );

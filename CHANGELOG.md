@@ -3,10 +3,11 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 3.1.0] - xxxx-xx-xx
+## [Unreleased - will be 3.1.0] - 2021-06-xx
 
 ### Added
 - Traces now include metrics collation span.
+- New option, available via settings page and wp-cli, to disable/enable metrics collation.
 
 ### Changed
 - Updated DecaLog SDK.
