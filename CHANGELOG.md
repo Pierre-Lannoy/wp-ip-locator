@@ -3,7 +3,7 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased - will be 3.1.0] - 2021-06-xx
+## [3.1.0] - 2021-06-xx
 
 ### Added
 - Traces now include metrics collation span.
@@ -12,9 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Updated DecaLog SDK.
 - Updated developer's documentation.
+- [WP-CLI] `device status` command now displays DecaLog SDK version too.
 
 ### Fixed
-- Analytics and historical data options may be not saved.
+- Analytics and historical data options are not saved, nor applied.
 
 ## [3.0.0] - 2021-05-25
 

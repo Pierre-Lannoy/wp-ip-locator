@@ -60,13 +60,14 @@ To get detailed status and operation mode, use the `wp location status` command.
 
 ## Managing main settings
 
-To toggle on/off main settings, use `wp location settings <enable|disable> <analytics>`.
+To toggle on/off main settings, use `wp location settings <enable|disable> <analytics|metrics>`.
 
 If you try to disable a setting, wp-cli will ask you to confirm. To force answer to yes without prompting, just use `--yes`.
 
 ### Available settings
 
 - `analytics`: analytics feature
+- `metrics`: metrics collation feature
 
 ### Example
 
