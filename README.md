@@ -6,7 +6,7 @@
 
 __IP Locator__ is a country and language detection tool for WordPress. It is fast, reliable and plug & play.
 
-See [WordPress directory page](https://wordpress.org/plugins/ip-locator/).
+See [WordPress directory page](https://wordpress.org/plugins/ip-locator/) or [official website](https://perfops.one/ip-locator).
 
 __IP Locator__ can detect and render the country, the main language and the country flag of each visitor of your site. It provides:
 
@@ -53,6 +53,8 @@ __IP Locator__ supports an extensive set of WP-CLI commands to:
 * display location and languages statistics: see `wp help location analytics` for details.
 
 For a full help on WP-CLI commands in Device Detector, please [read this guide](WP-CLI.md).
+
+> __IP Locator__ is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
 
 ## Installation
 

@@ -60,7 +60,9 @@ Technically, **IP Locator**:
 * toggle on/off main settings: see `wp help location settings` for details;
 * display location and languages statistics: see `wp help location analytics` for details.
 
-For a full help on WP-CLI commands in IP Locator, please [read this guide](https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md).
+For a full help on WP-CLI commands in IP Locator, please [read this guide](https://perfops.one/ip-locator-wpcli).
+
+> **IP Locator** is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
 
 **IP Locator**  is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
 
@@ -130,7 +132,7 @@ You can report bugs and suggest ideas via the [GitHub issue tracker](https://git
 
 == Changelog ==
 
-Please, see [full changelog](https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/CHANGELOG.md) on GitHub.
+Please, see [full changelog](https://perfops.one/ip-locator-changelog).
 
 == Upgrade Notice ==
 
