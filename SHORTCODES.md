@@ -1,5 +1,5 @@
 # IP Locator shortcodes
-With the current IP Locator version, you can output the following items via shortcodes:
+With IP Locator, you can output the following items via shortcodes:
 
 1. [IP address](#ip-address)
 2. [Country code](#country-code)
@@ -15,7 +15,7 @@ To render the IP address detected by IP Locator, use the following shortcode:
 ```
 
 ## Country code
-To render the [country code](/COUNTRYCODES.md) detected by IP Locator, use the following shortcode:
+To render the country code detected by IP Locator, use the following shortcode:
 ```
   [iplocator-code]
 ```
@@ -55,7 +55,7 @@ IP Locator tries, for each detected country, to "infer" its main language. It is
 ```
   [iplocator-lang language=""]
 ```
-The `language`[[1](#notes)] parameter can be omitted. If so, the language name will be outputted in the visitor language. Otherwise you can specify the following values:
+The `language` parameter can be omitted. If so, the language name will be outputted in the visitor language. Otherwise you can specify the following values:
 - `self`: renders the language name in its own language;
 - a locale id (like `en` or `fr_CA`): renders the language name in the specified language.
 

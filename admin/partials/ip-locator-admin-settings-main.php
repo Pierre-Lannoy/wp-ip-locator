@@ -82,6 +82,19 @@ $url        = esc_url(
 		);
 		?>
 		" class="nav-tab <?php echo 'data' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'IP Data', 'ip-locator' ); ?></a>
+        <a href="
+		<?php
+		echo esc_url(
+			add_query_arg(
+				array(
+					'page' => 'iplocator-settings',
+					'tab'  => 'shortcode',
+				),
+				admin_url( 'admin.php' )
+			)
+		);
+		?>
+		" class="nav-tab <?php echo 'shortcode' === $active_tab ? 'nav-tab-active' : ''; ?>" style="float:right;"><?php esc_html_e( 'Shortcodes', 'ip-locator' ); ?></a>
 	</h2>
     
 	<?php if ( 'misc' === $active_tab ) { ?>
@@ -93,6 +106,10 @@ $url        = esc_url(
 	<?php if ( 'wpcli' === $active_tab ) { ?>
 		<?php wp_enqueue_style( IPLOCATOR_ASSETS_ID ); ?>
 		<?php echo do_shortcode( '[iplocator-wpcli]' ); ?>
+	<?php } ?>
+	<?php if ( 'shortcode' === $active_tab ) { ?>
+		<?php wp_enqueue_style( IPLOCATOR_ASSETS_ID ); ?>
+		<?php echo do_shortcode( '[iplocator-shortcodes]' ); ?>
 	<?php } ?>
 	<?php if ( 'data' === $active_tab ) { ?>
 		<?php include __DIR__ . '/ip-locator-admin-settings-data.php'; ?>

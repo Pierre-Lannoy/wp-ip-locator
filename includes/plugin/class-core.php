@@ -17,6 +17,7 @@ use IPLocator\System\Loader;
 use IPLocator\System\I18n;
 use IPLocator\System\Assets;
 use IPLocator\Library\Libraries;
+use IPLocator\System\Markdown;
 use IPLocator\System\Nag;
 use IPLocator\Plugin\Feature\CSSModifier;
 use IPLocator\System\Option;
@@ -82,6 +83,7 @@ class Core {
 		$this->loader->add_action( 'wp_head', $assets, 'prefetch' );
 		add_shortcode( 'iplocator-changelog', [ $updater, 'sc_get_changelog' ] );
 		add_shortcode( 'iplocator-libraries', [ $libraries, 'sc_get_list' ] );
+		add_shortcode( 'iplocator-shortcodes', [ $this, 'sc_get_shortcodes' ] );
 		CSSModifier::init();
 		// REST API
 		$routes = new IPRoute();
@@ -145,6 +147,19 @@ class Core {
 		$metrics->createProdGauge( 'ipv4_range', $schema->count_ranges( 'v4', false ), 'Number of known IPv4 ranges - [count]' );
 		$metrics->createProdGauge( 'ipv6_range', $schema->count_ranges( 'v6', false ), 'Number of known IPv6 ranges - [count]' );
 		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->end_span( $span );
+	}
+
+	/**
+	 * Get the WP-CLI help file.
+	 *
+	 * @param   array $attributes  'style' => 'markdown', 'html'.
+	 *                             'mode'  => 'raw', 'clean'.
+	 * @return  string  The output of the shortcode, ready to print.
+	 * @since 1.0.0
+	 */
+	public function sc_get_shortcodes( $attributes ) {
+		$md = new Markdown();
+		return $md->get_shortcode( 'SHORTCODES.md', $attributes );
 	}
 
 	/**
