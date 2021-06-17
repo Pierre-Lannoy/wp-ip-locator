@@ -7,6 +7,7 @@ With IP Locator, you can output the following items via shortcodes:
 4. [Country flag](#country-flag)
 5. [Language name](#language-name)
 6. [Conditional shortcode](#conditional-shortcode)
+6. [Notes](#notes)
 
 ## IP address
 To render the IP address detected by IP Locator, use the following shortcode:
