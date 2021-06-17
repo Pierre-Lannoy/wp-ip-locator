@@ -84,6 +84,6 @@ Examples
 - `[iplocator-if country="A0" do="hide"] Hello, stranger! [/iplocator-if]` outputs the string "Hello, stranger!" for everyone who are not on the local network, 
 
 #### Notes
-__[1] Language:__ [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use names translation. If this extension is not installed, output of country name and language name will always be in english.
+__Language:__ [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use names translation. If this extension is not installed, output of country name and language name will always be in english.
 
 > If you think this documentation is incomplete, not clear, etc. Do not hesitate to open an issue and/or make a pull request.
