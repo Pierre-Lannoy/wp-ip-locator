@@ -72,7 +72,7 @@ You can choose to show or hide something, regarding the detected country and/or 
 ```
 Where `do` can be `"show"` (to display "A string or a shortcode") or `"hide"` (to not display "A string or a shortcode").
 
-The operators `country`, `not-country`, `lang` and `not-lang` may contain one or more parameters (comma separated) and are cumulative (ie. you can use several of them). You can use any lang identifier or [country code](/COUNTRYCODES.md).
+The operators `country`, `not-country`, `lang` and `not-lang` may contain one or more parameters (comma separated) and are cumulative (ie. you can use several of them). You can use any lang identifier or country code.
 
 Note shortcodes can be nested only if they have not the same name (that's a WordPress limitation).
 
