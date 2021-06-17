@@ -25,7 +25,7 @@ To render the country name detected by IP Locator, use the following shortcode:
 ```
   [iplocator-country language=""]
 ```
-The `language`[[1](#notes)] parameter can be omitted. If so, the country name will be outputted in the visitor language. Otherwise you can specify the following values:
+The `language` parameter can be omitted. If so, the country name will be outputted in the visitor language. Otherwise you can specify the following values:
 - `self`: renders the country name in the main language of the country;
 - a locale id (like `en` or `fr_CA`): renders the country name in the specified language.
 
