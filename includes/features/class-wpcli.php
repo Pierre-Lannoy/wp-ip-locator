@@ -56,7 +56,7 @@ class Wpcli {
 			if ( '' === $field ) {
 				$result .= $key;
 			} else {
-				$result .= $id[$field];
+				$result .= $id[ $field ];
 			}
 			if ( $id !== $last ) {
 				$result .= ' ';
@@ -198,12 +198,12 @@ class Wpcli {
 			\WP_CLI::line( 'Metrics collation: disabled.' );
 		}
 		if ( \DecaLog\Engine::isDecalogActivated() ) {
-			\WP_CLI::line( 'Logging support: ' . \DecaLog\Engine::getVersionString() . '.');
+			\WP_CLI::line( 'Logging support: ' . \DecaLog\Engine::getVersionString() . '.' );
 		} else {
 			\WP_CLI::line( 'Logging support: no.' );
 		}
 		if ( defined( 'PODD_VERSION' ) ) {
-			\WP_CLI::line( 'Device detection support: yes (Device Detector v' . PODD_VERSION . ').');
+			\WP_CLI::line( 'Device detection support: yes (Device Detector v' . PODD_VERSION . ').' );
 		} else {
 			\WP_CLI::line( 'Device detection support: no.' );
 		}
@@ -316,12 +316,30 @@ class Wpcli {
 		} else {
 			$details = [];
 			if ( 'table' === $format ) {
-				$details[] = [ 'key' => 'ip', 'value' => $location['ip'] ];
-				$details[] = [ 'key' => 'country_code', 'value' => $location['country']['code'] ];
-				$details[] = [ 'key' => 'country_name', 'value' => $location['country']['name'] ];
-				$details[] = [ 'key' => 'language_code', 'value' => $location['language']['code'] ];
-				$details[] = [ 'key' => 'language_name', 'value' => $location['language']['name'] ];
-				$details[] = [ 'key' => 'flag_emoji', 'value' => $location['flag']['emoji'] ];
+				$details[] = [
+					'key'   => 'ip',
+					'value' => $location['ip'],
+				];
+				$details[] = [
+					'key'   => 'country_code',
+					'value' => $location['country']['code'],
+				];
+				$details[] = [
+					'key'   => 'country_name',
+					'value' => $location['country']['name'],
+				];
+				$details[] = [
+					'key'   => 'language_code',
+					'value' => $location['language']['code'],
+				];
+				$details[] = [
+					'key'   => 'language_name',
+					'value' => $location['language']['name'],
+				];
+				$details[] = [
+					'key'   => 'flag_emoji',
+					'value' => $location['flag']['emoji'],
+				];
 				$detail    = [ 'key', 'value' ];
 			} elseif ( 'csv' === $format ) {
 				$details['ip']            = $location['ip'];
@@ -450,7 +468,10 @@ class Wpcli {
 		$action = isset( $args[0] ) ? $args[0] : 'list';
 		$codes  = [];
 		foreach ( $this->exit_codes as $key => $msg ) {
-			$codes[ $key ] = [ 'code' => $key, 'meaning' => ucfirst( $msg ) ];
+			$codes[ $key ] = [
+				'code'    => $key,
+				'meaning' => ucfirst( $msg ),
+			];
 		}
 		switch ( $action ) {
 			case 'list':
@@ -473,7 +494,7 @@ class Wpcli {
 	 */
 	public static function sc_get_helpfile( $attributes ) {
 		$md = new Markdown();
-		return $md->get_shortcode(  'WP-CLI.md', $attributes  );
+		return $md->get_shortcode( 'WP-CLI.md', $attributes );
 	}
 
 }
