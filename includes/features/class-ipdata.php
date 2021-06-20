@@ -167,7 +167,7 @@ class IPData {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Wrong import mode.', [ 'code' => 500 ] );
 			return;
 		}
-		$spanroot = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'IP' . $version . ' data ' . $mode );
+		$spanroot = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'IP' . $version . ' data ' . $mode, DECALOG_SPAN_MAIN_RUN );
 		global $wp_filesystem;
 		if ( is_null( $wp_filesystem ) ) {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
