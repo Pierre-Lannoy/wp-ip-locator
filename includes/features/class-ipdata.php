@@ -167,18 +167,18 @@ class IPData {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Wrong import mode.', [ 'code' => 500 ] );
 			return;
 		}
-		$spanroot = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'IP' . $version . ' data ' . $mode, DECALOG_SPAN_MAIN_RUN );
+		$spanroot = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->startSpan( 'IP' . $version . ' data ' . $mode, DECALOG_SPAN_MAIN_RUN );
 		global $wp_filesystem;
 		if ( is_null( $wp_filesystem ) ) {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 			WP_Filesystem();
 		}
 		Cache::set( 'update/' . $version . '/' . $mode . 'semaphore', time(), 'infinite' );
-		$span = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'File download', $spanroot );
+		$span = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->startSpan( 'File download', $spanroot );
 		$file = self::acquire( 'https://assets.perfops.one/geoip/iplocator_' . $version . '_db.csv.gz', 'https://assets.perfops.one/geoip/iplocator_' . $version . '_db.csv.sig' );
-		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->end_span( $span );
+		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->endSpan( $span );
 		if ( false !== $file && $wp_filesystem->exists( $file ) ) {
-			$span  = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'Database ' . $mode, $spanroot );
+			$span  = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->startSpan( 'Database ' . $mode, $spanroot );
 			$data  = $wp_filesystem->get_contents_array( $file );
 			$cpt   = 0;
 			$ins   = [];
@@ -235,14 +235,14 @@ class IPData {
 				Infolog::add( sprintf( esc_html__( '%s data files are corrupted or empty. Retry will be done next cycle.', 'ip-locator' ), 'IP' . $version ) );
 			}
 			$wp_filesystem->delete( $file );
-			\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->end_span( $span );
+			\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->endSpan( $span );
 		} else {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->error( 'Unable to acquire IP' . $version . ' data files.', [ 'code' => 404 ] );
 			/* translators: %s can be "IPv4" or "IPv6" */
 			Infolog::add( sprintf( esc_html__( 'Unable to acquire %s data files. Retry will be done next cycle.', 'ip-locator' ), 'IP' . $version ) );
 		}
 		Cache::set( 'update/' . $version . '/' . $mode . 'semaphore', -1, 'infinite' );
-		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->end_span( $spanroot );
+		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->endSpan( $spanroot );
 	}
 
 	/**
