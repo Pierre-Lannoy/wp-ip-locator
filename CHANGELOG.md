@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [3.1.1] - 2021-06-22
 
 ### Fixed
-- wp.org distribute a Release Candidate, not the 3.0.0 version.
+- wp.org distribute a Release Candidate, not the 3.1.0 version.
 
 ## [3.1.0] - 2021-06-22
 
@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Updated DecaLog SDK.
 - Updated developer's documentation.
-- [WP-CLI] `device status` command now displays DecaLog SDK version too.
+- [WP-CLI] `location status` command now displays DecaLog SDK version too.
 
 ### Fixed
 - Analytics and historical data options are not saved, nor applied.
