@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Plugins - IP Locator - Stable Readme (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-07 14:32+0100\n"
+"PO-Revision-Date: 2021-06-24 14:32+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 "Language: fr\n"
 "Project-Id-Version: Plugins - IP Locator - Stable Readme (latest release)\n"
 "POT-Creation-Date: \n"
@@ -23,8 +23,20 @@ msgid "IP Locator"
 msgstr "IP Locator"
 
 #. Found in description paragraph.
-msgid "For a full help on WP-CLI commands in IP Locator, please <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md\">read this guide</a>."
-msgstr "Pour obtenir une aide complète sur les commandes WP-CLI dans IP Locator, veuillez <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/WP-CLI.md\">lire ce guide</a>."
+msgid "<strong>IP Locator</strong> is part of <a href=\"https://perfops.one/\">PerfOps One</a>, a suite of free and open source WordPress plugins dedicated to observability and operations performance."
+msgstr "<strong>IP Locator</strong> fait partie de <a href=\"https://perfops.one/\">PerfOps One</a>, une suite d’extensions WordPress gratuites et open source dédiées à l’observabilité et aux performances des opérations."
+
+#. Found in description paragraph.
+msgid "For a full help on WP-CLI commands in IP Locator, please <a href=\"https://perfops.one/ip-locator-wpcli\">read this guide</a>."
+msgstr "Pour obtenir une aide complète sur les commandes WP-CLI pour IP Locator, veuillez lire <a href=\"https://perfops.one/ip-locator-wpcli\">ce guide</a>."
+
+#. Found in description paragraph.
+msgid ""
+"<strong>IP Locator uses IP data I curate myself and I publish via my own servers exclusively for IP Locator. Data is CC0 licensed.</strong>\n"
+"  <strong>IP Locator accesses this service on a regular basis (if the option is checked) to maintain an up-to-date version of the data.</strong>"
+msgstr ""
+"<strong>IP Locator utilise des données IP que je collecte moi-même et que je publie via mes propres serveurs exclusivement pour IP Locator. Les données sont sous licence CC0.</strong>\n"
+" <strong>IP Locator accède régulièrement à ce service (si l’option est cochée) pour maintenir une version à jour des données.</strong>"
 
 #. Found in description paragraph.
 msgid "<strong>IP Locator</strong> supports an extensive set of WP-CLI commands to:"
@@ -207,14 +219,6 @@ msgid "<strong>IP Locator</strong>  is a free and open source plugin for WordPre
 msgstr "<strong>IP Locator</strong> est une extensions libre et open source pour WordPress. Elle intègre de nombreuses autres œuvres libres et open source (telles quelles ou modifiées). Consultez l’onglet « à propos » dans l’extension pour obtenir des détails."
 
 #. Found in description paragraph.
-msgid ""
-"<strong>IP Locator uses IP data from <a href=\"http://software77.net/geo-ip/\">WebNet77 / Software77</a> which is <a href=\"http://software77.net/geo-ip/?license\">donationware</a>. If you find this data useful, consider making a donation - even a small one - to help keep it free.</strong>\n"
-"  <strong>IP Locator accesses this service on a regular basis (if the option is checked) to maintain an up-to-date version of the data. By using IP Locator, you agree with the <a href=\"http://software77.net/geo-ip/?license\">Software77 license</a></strong>"
-msgstr ""
-"<strong>IP Locator utilise les données IP de <a href=\"http://software77.net/geo-ip/\">WebNet77 / Software77</a> qui est <a href=\"http://software77.net/geo-ip/?license\">donationware</a>. Si vous trouvez ces données utiles, pensez à faire un don - même modeste - pour aider à les garder gratuites.</strong>\n"
-"  <strong>IP Locator accède régulièrement à ce service (si l’option est cochée) pour maintenir une version actualisée des données. En utilisant IP Locator, vous acceptez la licence <a href=\"http://software77.net/geo-ip/?license\">Software77 </a></strong>"
-
-#. Found in description paragraph.
 msgid "(2): <a href=\"https://www.php.net/manual/en/intro.intl.php\">PHP Intl extension</a> needs to be activated on your server if you want to use it in IP Locator."
 msgstr "(2) : l’<a href=\"https://www.php.net/manual/en/intro.intl.php\">extension PHP Intl</a> doit être activée sur votre serveur si vous souhaitez l’utiliser dans IP Locator."
 
@@ -307,5 +311,5 @@ msgid "Developers"
 msgstr "Développeurs"
 
 #. Found in changelog paragraph.
-msgid "Please, see <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/CHANGELOG.md\">full changelog</a> on GitHub."
-msgstr "Merci de consulter le <a href=\"https://github.com/Pierre-Lannoy/wp-ip-locator/blob/master/CHANGELOG.md\">journal des modifications</a> sur GitHub."
+msgid "Please, see <a href=\"https://perfops.one/ip-locator-changelog\">full changelog</a>."
+msgstr "Merci de consulter le <a href=\"https://perfops.one/ip-locator-changelog\">journal des modifications</a>."

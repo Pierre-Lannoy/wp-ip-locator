@@ -2,55 +2,88 @@
 # This file is distributed under the same license as the Plugins - IP Locator - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-18 20:17+0200\n"
+"PO-Revision-Date: 2021-06-24 14:31+0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 "Language: fr_BE\n"
 "Project-Id-Version: Plugins - IP Locator - Stable (latest release)\n"
 "POT-Creation-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
 
-#: admin/class-ip-locator-admin.php:528
+#: admin/class-ip-locator-admin.php:510
+msgid "Note: for this to work, you must install DecaLog."
+msgstr "Remarque : pour que cela fonctionne, vous devez installer DecaLog."
+
+#: admin/class-ip-locator-admin.php:510
+msgid "If checked, IP Locator will collate and publish IP database metrics."
+msgstr "Si coché, IP Locator collectera et publiera les métriques de la base de données IP."
+
+#: admin/class-ip-locator-admin.php:502
+msgid "Metrics"
+msgstr "Métriques"
+
+#: functions.php:34
+msgid "Could not create Temporary file."
+msgstr "Impossible de créer le fichier temporaire."
+
+#: functions.php:27
+msgid "Invalid URL Provided."
+msgstr "URL fournie non valide."
+
+#: admin/class-ip-locator-admin.php:359
+msgid "Zlib is not supported on your site. It is not possible to automatically update IP database."
+msgstr "Zlib n’est pas pris en charge sur votre site. Il n’est pas possible de mettre à jour automatiquement la base de données IP."
+
+#: admin/partials/ip-locator-admin-settings-data.php:49
+msgid "Google Cloud-LB reception: "
+msgstr "Réception de géolocalisation Google Cloud-LB : "
+
+#: admin/partials/ip-locator-admin-settings-data.php:33
+#: admin/partials/ip-locator-admin-settings-data.php:38
+msgid "%s / CC0."
+msgstr "%s / CC0."
+
+#: admin/class-ip-locator-admin.php:565
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d année"
 msgstr[1] "%d années"
 
-#: admin/class-ip-locator-admin.php:524
+#: admin/class-ip-locator-admin.php:561
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#: admin/class-ip-locator-admin.php:473
+#: admin/class-ip-locator-admin.php:494
 msgid "Maximum age of data to keep for statistics."
 msgstr "Âge maximum des données à conserver pour les statistiques."
 
-#: admin/class-ip-locator-admin.php:465
+#: admin/class-ip-locator-admin.php:486
 msgid "Historical data"
 msgstr "Données d’historiques"
 
-#: admin/class-ip-locator-admin.php:457
+#: admin/class-ip-locator-admin.php:478
 msgid "If checked, IP Locator will store statistics about detected countries and languages."
 msgstr "Si coché, IP Locator stockera les statistiques concernant les pays et les langues."
 
-#: admin/class-ip-locator-admin.php:454
+#: admin/class-ip-locator-admin.php:475 admin/class-ip-locator-admin.php:507
 msgid "Activated"
 msgstr "Activé"
 
-#: admin/class-ip-locator-admin.php:449
+#: admin/class-ip-locator-admin.php:470
 msgid "Analytics"
 msgstr "Analyse de données"
 
-#: admin/class-ip-locator-admin.php:397
+#: admin/class-ip-locator-admin.php:418
 msgid "Device Detection"
 msgstr "Détection d’appareil"
 
-#: admin/class-ip-locator-admin.php:393
+#: admin/class-ip-locator-admin.php:414
 msgid "Your site does not use any device detection mechanism. To precisely detect \"real humans\" countries and languages, I recommend you to install the excellent (and free) %s. But it is not mandatory."
 msgstr "Votre site n’utilise aucun mécanisme de détection de périphérique. Pour détecter encore plus précisément les pays et les langues, je vous recommande d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
 
@@ -581,19 +614,19 @@ msgstr "Statistiques %s"
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: includes/system/class-environment.php:231
+#: includes/system/class-environment.php:253
 msgid "Debug disabled"
 msgstr "Débogage désactivé"
 
-#: includes/system/class-environment.php:231
+#: includes/system/class-environment.php:253
 msgid "Debug enabled"
 msgstr "Débogage activé"
 
-#: includes/system/class-environment.php:225
+#: includes/system/class-environment.php:247
 msgid "display"
 msgstr "affichage"
 
-#: includes/system/class-environment.php:220
+#: includes/system/class-environment.php:242
 msgid "log"
 msgstr "Registre"
 
@@ -809,39 +842,39 @@ msgstr "Cache objet"
 
 #. translators: as in the sentence "Product W version X by author Y (license
 #. Z)"
-#: includes/libraries/class-libraries.php:230
+#: includes/libraries/class-libraries.php:275
 msgid "<a href=\"%1$s\">%2$s %3$s</a>%4$s by %5$s (%6$s)"
 msgstr "<a href=\"%1$s\">%2$s %3$s</a>%4$s par %5$s (%6$s)"
 
-#: includes/libraries/class-libraries.php:139
+#: includes/libraries/class-libraries.php:179
 msgid "unknown license"
 msgstr "licence inconnue"
 
-#: includes/libraries/class-libraries.php:136
+#: includes/libraries/class-libraries.php:176
 msgid "GPL-3.0 license"
 msgstr "Licence GPL-3.0"
 
-#: includes/libraries/class-libraries.php:133
+#: includes/libraries/class-libraries.php:173
 msgid "GPL-2.0 license"
 msgstr "Licence GPL-2.0"
 
-#: includes/libraries/class-libraries.php:130
+#: includes/libraries/class-libraries.php:170
 msgid "Apache license, version 2.0"
 msgstr "Licence Apache, version 2.0"
 
-#: includes/libraries/class-libraries.php:127
+#: includes/libraries/class-libraries.php:167
 msgid "MIT license"
 msgstr "Licence MIT"
 
 #: includes/libraries/class-libraries.php:67
 #: includes/libraries/class-libraries.php:78
 #: includes/libraries/class-libraries.php:89
-#: includes/libraries/class-libraries.php:183
-#: includes/libraries/class-libraries.php:191
-#: includes/libraries/class-libraries.php:199
-#: includes/libraries/class-libraries.php:206
-#: includes/libraries/class-libraries.php:213
-#: includes/libraries/class-libraries.php:220
+#: includes/libraries/class-libraries.php:223
+#: includes/libraries/class-libraries.php:231
+#: includes/libraries/class-libraries.php:239
+#: includes/libraries/class-libraries.php:246
+#: includes/libraries/class-libraries.php:253
+#: includes/libraries/class-libraries.php:260
 msgid "%s & contributors"
 msgstr "%s et contributeurs"
 
@@ -1202,8 +1235,8 @@ msgstr "action commencée"
 msgid "action started via %s"
 msgstr "action lancée via %s"
 
-#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBLogger.php:134
 #: includes/libraries/action-scheduler/classes/abstracts/ActionScheduler_Logger.php:76
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_DBLogger.php:134
 msgid "action canceled"
 msgstr "action annulée"
 
@@ -1404,8 +1437,8 @@ msgstr[1] "%s années"
 msgid "Cancel the action now to avoid it being run in future"
 msgstr "Annuler l&rsquo;action maintenant pour éviter son exécution ultérieure"
 
-#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:133
 #: includes/features/class-analytics.php:1431
+#: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:133
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -1459,12 +1492,12 @@ msgstr "Crochet"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:19
-#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:30
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:60
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:75
 #: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:76
 #: includes/libraries/action-scheduler/classes/ActionScheduler_ListTable.php:89
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:19
+#: includes/libraries/action-scheduler/classes/data-stores/ActionScheduler_wpPostStore_PostTypeRegistrar.php:30
 msgid "Scheduled Actions"
 msgstr "Actions planifiées"
 
@@ -1525,13 +1558,13 @@ msgid "%1$s has been correctly installed."
 msgstr "%1$s a été correctement installé."
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-schema.php:453
-#: includes/features/class-schema.php:460
+#: includes/features/class-schema.php:462
+#: includes/features/class-schema.php:469
 msgid "%s data need to be initialized. Initialization will start in some minutes; note it could take many time to complete…"
 msgstr "Les données %s doivent être initialisées. L’initialisation commencera dans quelques minutes ; notez que cela peut prendre beaucoup de temps pour s’achever…"
 
 #. translators: %s can be "IPv4" or "IPv6"
-#: includes/features/class-ipdata.php:241
+#: includes/features/class-ipdata.php:242
 msgid "Unable to acquire %s data files. Retry will be done next cycle."
 msgstr "Impossible de rapatrier les fichiers de données %s. Une nouvelle tentative se fera au cours du prochain cycle."
 
@@ -1610,7 +1643,7 @@ msgstr "Cette version de %s n’est pas destinée à être mise en production. I
 msgid "Reset to Defaults"
 msgstr "Rétablir les valeurs par défaut"
 
-#: admin/partials/ip-locator-admin-settings-data.php:50
+#: admin/partials/ip-locator-admin-settings-data.php:51
 msgid "Last operations transcript"
 msgstr "Transcription des dernières opérations"
 
@@ -1625,12 +1658,14 @@ msgstr "Réception de géolocalisation IP AWS Cloudfront : "
 #: admin/partials/ip-locator-admin-settings-data.php:46
 #: admin/partials/ip-locator-admin-settings-data.php:47
 #: admin/partials/ip-locator-admin-settings-data.php:48
+#: admin/partials/ip-locator-admin-settings-data.php:49
 msgid "inactive"
 msgstr "désactivé"
 
 #: admin/partials/ip-locator-admin-settings-data.php:46
 #: admin/partials/ip-locator-admin-settings-data.php:47
 #: admin/partials/ip-locator-admin-settings-data.php:48
+#: admin/partials/ip-locator-admin-settings-data.php:49
 msgid "active"
 msgstr "activé"
 
@@ -1646,11 +1681,6 @@ msgstr "Données de secours %s : "
 #: admin/partials/ip-locator-admin-settings-data.php:40
 msgid "Content"
 msgstr "Contenu"
-
-#: admin/partials/ip-locator-admin-settings-data.php:33
-#: admin/partials/ip-locator-admin-settings-data.php:38
-msgid "%s / donationware."
-msgstr "%s / donationware."
 
 #: admin/partials/ip-locator-admin-settings-data.php:33
 #: admin/partials/ip-locator-admin-settings-data.php:38
@@ -1670,8 +1700,8 @@ msgstr "%d plages d’IP %s mises à jour."
 msgid "IP Data"
 msgstr "Données IP"
 
-#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:127
 #: admin/partials/ip-locator-admin-settings-main.php:56
+#: includes/libraries/action-scheduler/classes/ActionScheduler_AdminView.php:127
 msgid "About"
 msgstr "À propos"
 
@@ -1679,121 +1709,118 @@ msgstr "À propos"
 msgid "Options"
 msgstr "Options"
 
-#: admin/class-ip-locator-admin.php:505
+#: admin/class-ip-locator-admin.php:542
 msgid "If checked, IP Locator will append to the body tag a CSS class describing the detected connexion (mainly countries)."
 msgstr "Si coché, IP Locator ajoutera une classe spécifique à la connexion détectée à la balise body (généralement le pays)."
 
-#: admin/class-ip-locator-admin.php:502
+#: admin/class-ip-locator-admin.php:539
 msgid "Add country as CSS class"
 msgstr "Ajouter le pays comme classe CSS"
 
-#: admin/class-ip-locator-admin.php:497
+#: admin/class-ip-locator-admin.php:534
 msgid "CSS"
 msgstr "CSS"
 
-#: admin/class-ip-locator-admin.php:489
+#: admin/class-ip-locator-admin.php:526
 msgid "see details"
 msgstr "voir le détail"
 
-#: admin/class-ip-locator-admin.php:489
+#: admin/class-ip-locator-admin.php:526
 msgid "If checked, IP Locator will render its own shortcodes when needed (%s)."
 msgstr "Si coché, IP Locator restituera ses propres codes courts si nécessaire (%s)."
 
-#: admin/class-ip-locator-admin.php:486
+#: admin/class-ip-locator-admin.php:523
 msgid "Activate shortcodes rendering"
 msgstr "Activer le rendu des codes courts"
 
-#: admin/class-ip-locator-admin.php:481
+#: admin/class-ip-locator-admin.php:518
+#: admin/partials/ip-locator-admin-settings-main.php:97
 msgid "Shortcodes"
 msgstr "Codes courts"
 
-#: admin/class-ip-locator-admin.php:432
+#: admin/class-ip-locator-admin.php:453
 msgid "Note: IP Locator respects DISABLE_NAG_NOTICES flag."
 msgstr "Note : IP Locator respecte l’indicateur DISABLE_NAG_NOTICES."
 
-#: admin/class-ip-locator-admin.php:432
+#: admin/class-ip-locator-admin.php:453
 msgid "Allows IP Locator to display admin notices throughout the admin dashboard."
 msgstr "Autoriser IP Locator à afficher les avis d’administration dans le Tableau de bord."
 
-#: admin/class-ip-locator-admin.php:429
+#: admin/class-ip-locator-admin.php:450
 msgid "Display"
 msgstr "Affichage"
 
-#: admin/class-ip-locator-admin.php:424
+#: admin/class-ip-locator-admin.php:445
 msgid "Admin notices"
 msgstr "Avis d’administration"
 
-#: admin/class-ip-locator-admin.php:416
+#: admin/class-ip-locator-admin.php:437
 msgid "If checked, IP Locator will use a public CDN (jsDelivr) to serve scripts and stylesheets."
 msgstr "Si coché, IP Locator utilisera un CDN public (jsDelivr) pour la distribution des scripts et des feuilles de style."
 
-#: admin/class-ip-locator-admin.php:413
+#: admin/class-ip-locator-admin.php:434
 msgid "Use public CDN"
 msgstr "Utiliser un CDN public"
 
-#: admin/class-ip-locator-admin.php:408
+#: admin/class-ip-locator-admin.php:429
 msgid "Resources"
 msgstr "Ressources"
 
-#: admin/class-ip-locator-admin.php:379
+#: admin/class-ip-locator-admin.php:400
 msgid "Logging"
 msgstr "Enregistrement"
 
-#: admin/class-ip-locator-admin.php:375
+#: admin/class-ip-locator-admin.php:396
 msgid "Your site does not use any logging plugin. To log all events triggered in IP Locator, I recommend you to install the excellent (and free) %s. But it is not mandatory."
 msgstr "Votre site n’utilise aucune extension d’enregistrement. Pour enregistrer tous les évènements déclenchés par IP Locator, je vous recommande d’installer l’excellent (et gratuit) %s. Mais ce n’est pas obligatoire."
 
-#: admin/class-ip-locator-admin.php:372 admin/class-ip-locator-admin.php:390
+#: admin/class-ip-locator-admin.php:393 admin/class-ip-locator-admin.php:411
 msgid "Your site is currently using %s."
 msgstr "Votre site utilise actuellement %s."
 
-#: admin/class-ip-locator-admin.php:364
+#: admin/class-ip-locator-admin.php:383
 msgid "If checked, IP Locator will regularly update its IP database."
 msgstr "Si coché, IP Locator mettra régulièrement à jour sa base de données IP."
 
-#: admin/class-ip-locator-admin.php:361
+#: admin/class-ip-locator-admin.php:380
 msgid "Auto-update"
 msgstr "Mise à jour automatique"
 
-#: admin/class-ip-locator-admin.php:356
+#: admin/class-ip-locator-admin.php:363 admin/class-ip-locator-admin.php:375
 msgid "IP database"
 msgstr "Base de données IP"
 
-#: admin/class-ip-locator-admin.php:348
-msgid "Note: to use CloudFlare, AWS CloudFront or Apache mod_geoip geolocation, uncheck this."
-msgstr "Remarque : pour utiliser la géolocalisation CloudFlare, AWS CloudFront ou Apache mod_geoip, décochez ceci."
+#: admin/class-ip-locator-admin.php:351
+msgid "Note: to use CloudFlare, AWS CloudFront, Google Cloud-LB or Apache mod_geoip geolocation, uncheck this."
+msgstr "Remarque : pour utiliser la géolocalisation CloudFlare, AWS CloudFront, Google Cloud-LB ou Apache mod_geoip, décochez cette case."
 
-#: admin/class-ip-locator-admin.php:348
+#: admin/class-ip-locator-admin.php:351
 msgid "If checked, IP Locator will not try to verify country in the request header."
 msgstr "Si coché, IP Locator n’essaiera pas de vérifier le pays dans l’en-tête de la demande."
 
-#: admin/class-ip-locator-admin.php:345
+#: admin/class-ip-locator-admin.php:348
 msgid "Ignore HTTP header"
 msgstr "Ignorer l’en-tête HTTP"
 
-#: admin/class-ip-locator-admin.php:340
+#: admin/class-ip-locator-admin.php:343
 msgid "Detection"
 msgstr "Détection"
 
-#: admin/class-ip-locator-admin.php:323
+#: admin/class-ip-locator-admin.php:326
 msgid "Plugin settings have not been reset to defaults. Please try again."
 msgstr "Les réglages n’ont pas été réinitialisés à leurs valeurs par défaut. Veuillez réessayer."
 
-#: admin/class-ip-locator-admin.php:318
+#: admin/class-ip-locator-admin.php:321
 msgid "Plugin settings have been reset to defaults."
 msgstr "Le réglages ont été réinitialisées aux valeurs par défaut."
 
-#: admin/class-ip-locator-admin.php:301
+#: admin/class-ip-locator-admin.php:304
 msgid "Plugin settings have not been saved. Please try again."
 msgstr "Les réglages n’ont pas été mis à jour. Veuillez réessayer."
 
-#: admin/class-ip-locator-admin.php:296
+#: admin/class-ip-locator-admin.php:299
 msgid "Plugin settings have been saved."
 msgstr "Les réglages ont été mis à jour."
-
-#: admin/class-ip-locator-admin.php:226
-msgid "GitHub repository"
-msgstr "dépôt GitHub"
 
 #: admin/class-ip-locator-admin.php:225
 msgid "Support"
@@ -1817,9 +1844,9 @@ msgstr "Fonctionnalités de l’extension"
 
 #. translators: as in the sentence "IP Locator Settings" or "WordPress
 #. Settings"
-#: perfopsone/class-adminmenus.php:70
-#: admin/partials/ip-locator-admin-settings-main.php:27
 #: admin/class-ip-locator-admin.php:98
+#: admin/partials/ip-locator-admin-settings-main.php:27
+#: perfopsone/class-adminmenus.php:70
 msgid "%s Settings"
 msgstr "Réglages %s"
 
