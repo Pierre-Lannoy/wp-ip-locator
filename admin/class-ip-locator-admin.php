@@ -223,7 +223,7 @@ class IP_Locator_Admin {
 	public function add_row_meta( $links, $file ) {
 		if ( 0 === strpos( $file, IPLOCATOR_SLUG . '/' ) ) {
 			$links[] = '<a href="https://wordpress.org/support/plugin/' . IPLOCATOR_SLUG . '/">' . __( 'Support', 'ip-locator' ) . '</a>';
-			$links[] = '<a href="https://github.com/Pierre-Lannoy/wp-ip-locator">' . __( 'GitHub repository', 'ip-locator' ) . '</a>';
+			$links[] = '<a href="https://perfops.one">PefOps One</a>';
 		}
 		return $links;
 	}

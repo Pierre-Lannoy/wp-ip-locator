@@ -1,6 +1,6 @@
 <?php
 /**
- * The file that defines the core plugin class
+ * The file that defines the core  plugin class
  *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
@@ -141,12 +141,12 @@ class Core {
 	 * @access private
 	 */
 	private function define_metrics() {
-		$span    = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->start_span( 'Metrics collation' );
+		$span    = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->startSpan( 'Metrics collation', DECALOG_SPAN_PLUGINS_LOAD );
 		$schema  = new Schema();
 		$metrics = \DecaLog\Engine::metricsLogger( IPLOCATOR_SLUG );
 		$metrics->createProdGauge( 'ipv4_range', $schema->count_ranges( 'v4', false ), 'Number of known IPv4 ranges - [count]' );
 		$metrics->createProdGauge( 'ipv6_range', $schema->count_ranges( 'v6', false ), 'Number of known IPv6 ranges - [count]' );
-		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->end_span( $span );
+		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->endSpan( $span );
 	}
 
 	/**
