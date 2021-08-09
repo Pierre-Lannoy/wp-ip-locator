@@ -41,6 +41,10 @@ class Initializer {
 	public function initialize() {
 		\IPLocator\System\Sitehealth::init();
 		\IPLocator\System\APCu::init();
+		if ( 'en_US' !== determine_locale() ) {
+			unload_textdomain( IPLOCATOR_SLUG );
+			load_plugin_textdomain( IPLOCATOR_SLUG );
+		}
 		require_once IPLOCATOR_PLUGIN_DIR . 'includes/api/functions.php';
 	}
 
