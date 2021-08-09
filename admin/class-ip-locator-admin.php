@@ -21,7 +21,7 @@ use IPLocator\System\Date;
 use IPLocator\System\Timezone;
 use IPLocator\System\GeoIP;
 use IPLocator\System\Environment;
-use PerfOpsOne\AdminMenus;
+use PerfOpsOne\Menus;
 use IPLocator\Plugin\Feature\CSSModifier;
 
 /**
@@ -87,7 +87,7 @@ class IP_Locator_Admin {
 	 * @return array    The completed menus array.
 	 * @since 1.0.0
 	 */
-	public function init_perfops_admin_menus( $perfops ) {
+	public function init_perfopsone_admin_menus( $perfops ) {
 		if ( Role::SUPER_ADMIN === Role::admin_type() || Role::SINGLE_ADMIN === Role::admin_type() ) {
 			$perfops['settings'][] = [
 				'name'          => IPLOCATOR_PRODUCT_NAME,
@@ -99,7 +99,6 @@ class IP_Locator_Admin {
 				'menu_title'    => IPLOCATOR_PRODUCT_NAME,
 				'capability'    => 'manage_options',
 				'callback'      => [ $this, 'get_settings_page' ],
-				'position'      => 50,
 				'plugin'        => IPLOCATOR_SLUG,
 				'version'       => IPLOCATOR_VERSION,
 				'activated'     => true,
@@ -116,7 +115,6 @@ class IP_Locator_Admin {
 				'menu_title'    => esc_html__( 'Locations', 'ip-locator' ),
 				'capability'    => 'manage_options',
 				'callback'      => [ $this, 'get_viewer_page' ],
-				'position'      => 50,
 				'plugin'        => IPLOCATOR_SLUG,
 				'activated'     => Option::network_get( 'analytics' ),
 				'remedy'        => esc_url( admin_url( 'admin.php?page=iplocator-settings' ) ),
@@ -140,13 +138,22 @@ class IP_Locator_Admin {
 	}
 
 	/**
+	 * Dispatch the items in the settings menu.
+	 *
+	 * @since 2.0.0
+	 */
+	public function finalize_admin_menus() {
+		Menus::finalize();
+	}
+
+	/**
 	 * Set the items in the settings menu.
 	 *
 	 * @since 1.0.0
 	 */
 	public function init_admin_menus() {
-		add_filter( 'init_perfops_admin_menus', [ $this, 'init_perfops_admin_menus' ] );
-		AdminMenus::initialize();
+		add_filter( 'init_perfopsone_admin_menus', [ $this, 'init_perfopsone_admin_menus' ] );
+		Menus::initialize();
 	}
 
 	/**

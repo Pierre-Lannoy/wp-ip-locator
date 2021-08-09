@@ -3,6 +3,14 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.2] - Unreleased
+
+### Changed
+- New redesigned UI for Perfops One plugins management and menus.
+
+### Fixed
+- Purging analytics history may produce a PHP notice.
+
 ## [3.1.1] - 2021-06-22
 
 ### Fixed
