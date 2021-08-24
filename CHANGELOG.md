@@ -3,6 +3,11 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.3] - Unreleased
+
+### Changed
+- Updated Action Scheduler from 3.1.4 to 3.2.1.
+
 ## [3.1.2] - 2021-08-11
 
 ### Changed
