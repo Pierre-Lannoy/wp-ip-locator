@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 - Updated Action Scheduler from 3.1.4 to 3.2.1.
 
+### Fixed
+- There may be name collisions for some functions if version of WordPress is lower than 5.6.
+
 ## [3.1.2] - 2021-08-11
 
 ### Changed
