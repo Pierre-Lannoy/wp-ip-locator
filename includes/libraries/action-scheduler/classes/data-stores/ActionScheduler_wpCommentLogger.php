@@ -206,7 +206,7 @@ class ActionScheduler_wpCommentLogger extends ActionScheduler_Logger {
 
 	/**
 	 * Delete comment count cache whenever there is new comment or the status of a comment changes. Cache
-	 * will be regenerated next time ActionScheduler_wpComment\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->filter_comment_count() is called.
+	 * will be regenerated next time ActionScheduler_wpCommentLogger::filter_comment_count() is called.
 	 */
 	public function delete_comment_count_cache() {
 		delete_transient( 'as_comment_count' );

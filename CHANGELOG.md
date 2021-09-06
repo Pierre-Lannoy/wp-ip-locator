@@ -3,6 +3,28 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - Unreleased
+
+### Added
+- It's now possible to hide the main PerfOps One menu via the `poo_hide_main_menu` filter or each submenu via the `poo_hide_analytics_menu`, `poo_hide_consoles_menu`, `poo_hide_insights_menu`, `poo_hide_tools_menu`, `poo_hide_records_menu` and `poo_hide_settings_menu` filters (thanks to [Jan Thiel](https://github.com/JanThiel)).
+
+### Changed
+- Updated DecaLog SDK from 1.2.0 to 2.0.0.
+- Updated Action Scheduler from 3.1.4 to 3.2.1.
+
+### Fixed
+- There may be name collisions for some functions if version of WordPress is lower than 5.6.
+- The main PerfOps One menu is not hidden when it doesn't contain any items (thanks to [Jan Thiel](https://github.com/JanThiel)).
+
+## [3.1.2] - 2021-08-11
+
+### Changed
+- New redesigned UI for PerfOps One plugins management and menus (thanks to [Loïc Antignac](https://github.com/webaxones), [Paul Bonaldi](https://profiles.wordpress.org/bonaldi/), [Axel Ducoron](https://github.com/aksld), [Laurent Millet](https://profiles.wordpress.org/wplmillet/), [Samy Rabih](https://github.com/samy) and [Raphaël Riehl](https://github.com/raphaelriehl) for their invaluable help).
+
+### Fixed
+- In some conditions, the plugin may be in the default site language rather than the user's language.
+- Purging analytics history may produce a PHP notice.
+
 ## [3.1.1] - 2021-06-22
 
 ### Fixed

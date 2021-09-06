@@ -125,7 +125,7 @@ class Libraries {
 			'name'    => 'DecaLog SDK',
 			'prefix'  => 'DecaLog',
 			'base'    => IPLOCATOR_VENDOR_DIR . 'decalog-sdk/',
-			'version' => '1.2.0',
+			'version' => '2.0.0',
 			'author'  => 'Pierre Lannoy',
 			'url'     => 'https://github.com/Pierre-Lannoy/wp-decalog-sdk',
 			'license' => 'mit',
@@ -219,7 +219,7 @@ class Libraries {
 		$list[]          = $item;
 		$item            = [];
 		$item['name']    = 'Action Scheduler';
-		$item['version'] = '3.1.4';
+		$item['version'] = '3.2.1';
 		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Automattic' );
 		$item['url']     = 'https://actionscheduler.org';
 		$item['license'] = $this->license_name( 'gpl3' );

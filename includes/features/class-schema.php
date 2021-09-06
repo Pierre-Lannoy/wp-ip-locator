@@ -187,7 +187,7 @@ class Schema {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( '1 old record deleted.' );
 			Cache::delete_global( 'data/oldestdate' );
 		} else {
-			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( '%1$s old records deleted.', [ 'code' => $count ] ) );
+			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( '%d old records deleted.', $count ), [ 'code' => $count ] );
 			Cache::delete_global( 'data/oldestdate' );
 		}
 	}
