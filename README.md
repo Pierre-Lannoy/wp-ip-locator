@@ -43,18 +43,17 @@ Technically, __IP Locator__:
 
 (2): [PHP Intl extension](https://www.php.net/manual/en/intro.intl.php) needs to be activated on your server if you want to use it in IP Locator.
 
+> __IP Locator__ is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
+
+__IP Locator__ is a free and open source plugin for WordPress. It integrates many other free and open source works (as-is or modified). Please, see 'about' tab in the plugin settings to see the details.
+
 ## WP-CLI
 
-__IP Locator__ supports an extensive set of WP-CLI commands to:
+__IP Locator__ implements a set of WP-CLI commands. For a full help on these commands, please read [this guide](WP-CLI.md).
 
-* get location detail: see `wp help location describe` for details;
-* display IP Locator status: see `wp help location status` for details;
-* toggle on/off main settings: see `wp help location settings` for details;
-* display location and languages statistics: see `wp help location analytics` for details.
+## Hooks
 
-For a full help on WP-CLI commands in Device Detector, please [read this guide](WP-CLI.md).
-
-> __IP Locator__ is part of [PerfOps One](https://perfops.one/), a suite of free and open source WordPress plugins dedicated to observability and operations performance.
+__IP Locator__ introduces some filters and actions to allow plugin customization. Please, read the [hooks reference](HOOKS.md) to learn more about them.
 
 ## Installation
 

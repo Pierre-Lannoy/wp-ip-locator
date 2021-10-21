@@ -76,7 +76,7 @@ class Flag {
 		$class = '' === $class ? ' class="iplocator-country-flag"' : ' class="iplocator-country-flag ' . $class . '"';
 		$style = '' === $style ? '' : ' style="' . $style . '"';
 		$id    = '' === $id ? '' : ' $id="' . $id . '"';
-		$alt   = '' === $alt ? '' : ' alt="' . $alt . '"';
+		$alt   = '' === $alt ? '' : ' title="' . $alt . '" alt="' . $alt . '"';
 		return '<img' . $class . $style . $id . $alt . ' src="' . $this->svg( $squared ) . '" />';
 	}
 
