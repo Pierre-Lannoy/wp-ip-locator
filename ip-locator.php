@@ -8,13 +8,13 @@
  *
  * @wordpress-plugin
  * Plugin Name:       IP Locator
- * Plugin URI:        https://github.com/Pierre-Lannoy/wp-ip-locator
+ * Plugin URI:        https://perfops.one/ip-locator
  * Description:       Country and language IP-based detection.
  * Version:           3.2.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
- * Author:            Pierre Lannoy
- * Author URI:        https://pierre.lannoy.fr
+ * Author:            PerfOps One / Pierre Lannoy
+ * Author URI:        https://perfops.one
  * License:           GPLv3
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       ip-locator
