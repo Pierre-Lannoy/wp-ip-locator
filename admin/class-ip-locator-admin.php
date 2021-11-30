@@ -22,6 +22,7 @@ use IPLocator\System\Timezone;
 use IPLocator\System\GeoIP;
 use IPLocator\System\Environment;
 use PerfOpsOne\Menus;
+use PerfOpsOne\AdminBar;
 use IPLocator\Plugin\Feature\CSSModifier;
 
 /**
@@ -163,6 +164,7 @@ class IP_Locator_Admin {
 	public function init_admin_menus() {
 		add_filter( 'init_perfopsone_admin_menus', [ $this, 'init_perfopsone_admin_menus' ] );
 		Menus::initialize();
+		AdminBar::initialize();
 	}
 
 	/**
@@ -265,6 +267,26 @@ class IP_Locator_Admin {
 									$this->save_options();
 								} elseif ( ! empty( $_POST ) && array_key_exists( 'reset-to-defaults', $_POST ) ) {
 									$this->reset_options();
+								}
+							}
+							break;
+						case 'install-decalog':
+							if ( class_exists( 'PerfOpsOne\Installer' ) ) {
+								$result = \PerfOpsOne\Installer::do( 'decalog', true );
+								if ( '' === $result ) {
+									add_settings_error( 'iplocator_no_error', '', esc_html__( 'Plugin successfully installed and activated with default settings.', 'ip-locator' ), 'info' );
+								} else {
+									add_settings_error( 'iplocator_install_error', '', sprintf( esc_html__( 'Unable to install or activate the plugin. Error message: %s.', 'ip-locator' ), $result ), 'error' );
+								}
+							}
+							break;
+						case 'install-podd':
+							if ( class_exists( 'PerfOpsOne\Installer' ) ) {
+								$result = \PerfOpsOne\Installer::do( 'device-detector', true );
+								if ( '' === $result ) {
+									add_settings_error( 'iplocator_no_error', '', esc_html__( 'Plugin successfully installed and activated with default settings.', 'ip-locator' ), 'info' );
+								} else {
+									add_settings_error( 'iplocator_install_error', '', sprintf( esc_html__( 'Unable to install or activate the plugin. Error message: %s.', 'ip-locator' ), $result ), 'error' );
 								}
 							}
 							break;
@@ -409,6 +431,9 @@ class IP_Locator_Admin {
 		} else {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'alert-triangle', 'none', '#FF8C00' ) . '" />&nbsp;';
 			$help .= sprintf( esc_html__('Your site does not use any logging plugin. To log all events triggered in IP Locator, I recommend you to install the excellent (and free) %s. But it is not mandatory.', 'ip-locator' ), '<a href="https://wordpress.org/plugins/decalog/">DecaLog</a>' );
+			if ( class_exists( 'PerfOpsOne\Installer' ) && ! Environment::is_wordpress_multisite() ) {
+				$help .= '<br/><a href="' . esc_url( admin_url( 'admin.php?page=iplocator-settings&tab=misc&action=install-decalog' ) ) . '" class="poo-button-install"><img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'download-cloud', 'none', '#FFFFFF', 3 ) . '" />&nbsp;&nbsp;' . esc_html__('Install It Now', 'ip-locator' ) . '</a>';
+			}
 		}
 		add_settings_field(
 			'iplocator_plugin_options_logger',
@@ -427,6 +452,9 @@ class IP_Locator_Admin {
 		} else {
 			$help  = '<img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'alert-triangle', 'none', '#FF8C00' ) . '" />&nbsp;';
 			$help .= sprintf( esc_html__('Your site does not use any device detection mechanism. To precisely detect "real humans" countries and languages, I recommend you to install the excellent (and free) %s. But it is not mandatory.', 'ip-locator' ), '<a href="https://wordpress.org/plugins/device-detector/">Device Detector</a>' );
+			if ( class_exists( 'PerfOpsOne\Installer' ) && ! Environment::is_wordpress_multisite() ) {
+				$help .= '<br/><a href="' . esc_url( admin_url( 'admin.php?page=iplocator-settings&tab=misc&action=install-podd' ) ) . '" class="poo-button-install"><img style="width:16px;vertical-align:text-bottom;" src="' . \Feather\Icons::get_base64( 'download-cloud', 'none', '#FFFFFF', 3 ) . '" />&nbsp;&nbsp;' . esc_html__('Install It Now', 'ip-locator' ) . '</a>';
+			}
 		}
 		add_settings_field(
 			'iplocator_plugin_options_podd',
