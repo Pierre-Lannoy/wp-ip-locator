@@ -65,6 +65,7 @@ class Option {
 	 * @since 1.0.0
 	 */
 	public static function init() {
+		self::$defaults['use_apcu']         = true;
 		self::$defaults['use_cdn']          = false;
 		self::$defaults['script_in_footer'] = false;
 		self::$defaults['display_nag']      = false;
@@ -81,7 +82,7 @@ class Option {
 		self::$defaults['history']          = 30;
 		self::$defaults['analytics']        = true;
 		self::$defaults['metrics']          = true;
-		self::$network                      = [ 'version', 'use_cdn', 'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate', 'history', 'analytics', 'metrics' ];
+		self::$network                      = [ 'version', 'use_cdn', 'use_apcu',  'script_in_footer', 'display_nag', 'override', 'css', 'shortcode', 'autoupdate', 'history', 'analytics', 'metrics' ];
 	}
 
 	/**
