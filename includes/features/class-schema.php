@@ -85,7 +85,7 @@ class Schema {
 	 * @since    1.0.0
 	 */
 	public static function write() {
-		if ( Option::network_get( 'analytics' ) ) {
+		if ( Option::network_get( 'analytics', false ) ) {
 			self::write_statistics();
 		}
 	}
@@ -384,6 +384,7 @@ class Schema {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv4 ) );
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->debug( sprintf( 'Table "%s" created.', $wpdb->base_prefix . self::$ipv6 ) );
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->info( 'Schema installed.' );
+			Option::network_set( 'analytics', true );
 			$this->init_data();
 		} catch ( \Throwable $e ) {
 			\DecaLog\Engine::eventsLogger( IPLOCATOR_SLUG )->alert( sprintf( 'Unable to create a table: %s', $e->getMessage() ), [ 'code' => $e->getCode() ] );
