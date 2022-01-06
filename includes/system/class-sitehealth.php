@@ -120,7 +120,7 @@ class Sitehealth {
 		$key = 'perfopsone_objectcache';
 		if ( ! array_key_exists( $key, $debug_info ) ) {
 			$debug_info[ $key ] = [
-				'label'  => esc_html__( 'Object cache', 'ip-locator' ),
+				'label'  => 'PerfOps One - ' . esc_html__( 'Object cache', 'ip-locator' ),
 				'fields' => Cache::debug_info(),
 			];
 		}
