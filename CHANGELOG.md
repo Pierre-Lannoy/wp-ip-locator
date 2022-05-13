@@ -3,6 +3,11 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.0] - Not Yet Released
+
+### Changed
+- Improved ephemeral cache in analytics.
+
 ## [3.5.0] - 2022-04-21
 
 ### Added
