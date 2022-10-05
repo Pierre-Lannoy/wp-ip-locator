@@ -7,15 +7,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - Compatibility with WordPress 6.1.
+- There's a new warning in admin pages when PHP Intl extension is not installed.
 - [WPCLI] The results of `wp location` commands are now logged in [DecaLog](https://wordpress.org/plugins/decalog/).
 
 ### Changed
+- Improved primary language detection.
 - Improved ephemeral cache in analytics.
 - Updated Action Scheduler from 3.4.0 to 3.5.2.
 - [WPCLI] The results of `wp location` commands are now prefixed by the product name.
+- Improved resiliency to partially wrong ICU data.
 
 ### Fixed
 - [SEC003] Moment.js library updated to 2.29.4 / [Regular Expression Denial of Service (ReDoS)](https://github.com/moment/moment/issues/6012).
+- With some versions of Intl PHP extension, language detection may be wrong.
+- Some ICU data is partially wrong.
 
 ## [3.5.0] - 2022-04-21
 

@@ -13,6 +13,8 @@
 
 namespace IPLocator\System;
 
+use IPLocator\System\I18n;
+
 /**
  * Define the nag functionality.
  *
@@ -98,11 +100,28 @@ class Nag {
 	}
 
 	/**
+	 * Show critical notice if needed.
+	 *
+	 * @since 3.6.0
+	 */
+	private function critical() {
+		if ( false !== strpos( get_current_screen()->id, 'page_iplocator-' ) ) {
+			if ( ! I18n::is_extension_loaded() ) {
+				$text = __( 'PHP Intl extension is not installed. Primary language detection cannot work properly.', 'ip-locator ' );
+				$html = '<div id="iplocator-i18n-critical" class="notice notice-error"><p>' . $text . '</p></div>';
+				// phpcs:ignore
+				print( $html );
+			}
+		}
+	}
+
+	/**
 	 * Show all available notices.
 	 *
 	 * @since 1.0.0
 	 */
 	public function display() {
+		$this->critical();
 		if ( self::$allowed ) {
 			foreach ( self::$nags as $key => $nag ) {
 				$nonce_action = sanitize_key( $key );
