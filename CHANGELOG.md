@@ -3,7 +3,7 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.6.0] - Not Yet Released
+## [3.6.0] - 2022-10-06
 
 ### Added
 - Compatibility with WordPress 6.1.
@@ -21,7 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - [SEC003] Moment.js library updated to 2.29.4 / [Regular Expression Denial of Service (ReDoS)](https://github.com/moment/moment/issues/6012).
 - With some versions of Intl PHP extension, language detection may be wrong.
-- Some ICU data is partially wrong.
+- ICU data may be partially wrong.
 
 ## [3.5.0] - 2022-04-21
 
