@@ -66,7 +66,7 @@ class IP_Locator_Public {
 	 * @since 1.0.0
 	 */
 	public function enqueue_styles() {
-		$this->assets->register_style( IPLOCATOR_ASSETS_ID, IPLOCATOR_PUBLIC_URL, 'css/ip-locator.min.css' );
+		//$this->assets->register_style( IPLOCATOR_ASSETS_ID, IPLOCATOR_PUBLIC_URL, 'css/ip-locator.min.css' );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class IP_Locator_Public {
 	 * @since 1.0.0
 	 */
 	public function enqueue_scripts() {
-		$this->assets->register_script( IPLOCATOR_ASSETS_ID, IPLOCATOR_PUBLIC_URL, 'js/ip-locator.min.js', [ 'jquery' ] );
+		//$this->assets->register_script( IPLOCATOR_ASSETS_ID, IPLOCATOR_PUBLIC_URL, 'js/ip-locator.min.js', [ 'jquery' ] );
 	}
 
 	/**
