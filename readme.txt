@@ -1,5 +1,5 @@
 === IP Locator ===
-Contributors: PierreLannoy
+Contributors: PierreLannoy, hosterra
 Tags: country, flag, geolocation, language
 Requires at least: 5.2
 Requires PHP: 7.2
