@@ -30,12 +30,12 @@ foreach ( Option::network_get( 'infolog' ) as $s ) {
 ?>
 <h2><?php echo esc_html__( 'IP detection' ); ?></h2>
 <p>
-    <?php echo sprintf( esc_html__( '%s main data: ', 'ip-locator' ), 'IPv4' ); ?><strong><?php echo sprintf( esc_html__( '%s / CC0.', 'ip-locator' ), '<a href="https://perfops.one">PerfOps One / Pierre Lannoy</a>' ); ?></strong>
+    <?php echo sprintf( esc_html__( '%s main data: ', 'ip-locator' ), 'IPv4' ); ?><strong><?php echo sprintf( esc_html__( '%s / CC0.', 'ip-locator' ), '<a href="https://hosterra.eu">Hosterra</a>' ); ?></strong>
     <br/>
 	<?php echo esc_html__( 'Content', 'ip-locator' ) . ': '; ?><strong><?php echo $ipv4; ?></strong>
 </p>
 <p>
-	<?php echo sprintf( esc_html__( '%s main data: ', 'ip-locator' ), 'IPv6' ); ?><strong><?php echo sprintf( esc_html__( '%s / CC0.', 'ip-locator' ), '<a href="https://perfops.one">PerfOps One / Pierre Lannoy</a>' ); ?></strong>
+	<?php echo sprintf( esc_html__( '%s main data: ', 'ip-locator' ), 'IPv6' ); ?><strong><?php echo sprintf( esc_html__( '%s / CC0.', 'ip-locator' ), '<a href="https://hosterra.eu">Hosterra</a>' ); ?></strong>
     <br/>
 	<?php echo esc_html__( 'Content', 'ip-locator' ) . ': '; ?><strong><?php echo $ipv6; ?></strong>
 </p>
