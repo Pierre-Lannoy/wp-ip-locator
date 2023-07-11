@@ -3,6 +3,14 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.0] - Not Yet Released
+
+### Added
+- Compatibility with WordPress 6.3.
+
+### Changed
+- The color for `shmop` test in Site Health is now gray to not worry to much about it (was previously orange).
+
 ## [3.7.1] - 2023-03-02
 
 ### Fixed
