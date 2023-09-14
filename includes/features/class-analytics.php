@@ -756,7 +756,7 @@ class Analytics {
 						'ratio'       => null,
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'percent'  => round( $data['kpi-index-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
@@ -775,7 +775,7 @@ class Analytics {
 						'ratio'       => null,
 						'variation'   => [
 					'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
-					'percent'  => round( $data['kpi-index-' . $query], 2 ),
+					'percent'  => round( $data['kpi-index-' . $query] ?? 0, 2 ),
 					'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 				],
 						'value'       => [
@@ -793,12 +793,12 @@ class Analytics {
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'percent'  => round( $data['kpi-main-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
 						],
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'percent'  => round( $data['kpi-index-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
@@ -816,12 +816,12 @@ class Analytics {
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'percent'  => round( $data['kpi-main-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
 						],
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'percent'  => round( $data['kpi-index-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
@@ -839,12 +839,12 @@ class Analytics {
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'percent'  => round( $data['kpi-main-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
 						],
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'percent'  => round( $data['kpi-index-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
@@ -862,12 +862,12 @@ class Analytics {
 						'dimension'   => 'none',
 						'ratio'       => [
 							'raw'      => round( $data['kpi-main-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-main-' . $query], 2 ),
+							'percent'  => round( $data['kpi-main-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-main-' . $query] * 10, 2 ),
 						],
 						'variation'   => [
 							'raw'      => round( $data['kpi-index-' . $query] / 100, 6 ),
-							'percent'  => round( $data['kpi-index-' . $query], 2 ),
+							'percent'  => round( $data['kpi-index-' . $query] ?? 0, 2 ),
 							'permille' => round( $data['kpi-index-' . $query] * 10, 2 ),
 						],
 						'value'       => [
