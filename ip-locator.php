@@ -10,9 +10,9 @@
  * Plugin Name:       IP Locator
  * Plugin URI:        https://perfops.one/ip-locator
  * Description:       Country and language IP-based detection.
- * Version:           3.9.0
- * Requires at least: 5.2
- * Requires PHP:      7.2
+ * Version:           3.10.0
+ * Requires at least: 6.1
+ * Requires PHP:      8.1
  * Author:            Pierre Lannoy / PerfOps One
  * Author URI:        https://perfops.one
  * License:           GPLv3
