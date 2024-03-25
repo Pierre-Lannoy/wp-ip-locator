@@ -219,7 +219,7 @@ class Libraries {
 		$list[]          = $item;
 		$item            = [];
 		$item['name']    = 'Action Scheduler';
-		$item['version'] = '3.5.2';
+		$item['version'] = '3.7.3';
 		$item['author']  = sprintf( esc_html__( '%s & contributors', 'ip-locator' ), 'Automattic' );
 		$item['url']     = 'https://actionscheduler.org';
 		$item['license'] = $this->license_name( 'gpl3' );
