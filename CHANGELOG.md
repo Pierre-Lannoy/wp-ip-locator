@@ -3,6 +3,14 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.10.1] - 2024-03-25
+
+### Changed
+- Updated Action Scheduler from 3.5.2 to 3.7.3.
+
+### Fixed
+- IP Locator may interfere with WooCommerce table migration (thanks to [Mil1](https://github.com/Mil1)).
+
 ## [3.10.0] - 2024-03-02
 
 ### Added
