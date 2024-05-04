@@ -3,10 +3,11 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.10.2] - Not Yet Released
+## [3.10.2] - 2024-05-04
 
 ### Changed
 - Updated DecaLog SDK from version 3.0.0 to version 4.1.0.
+- Updated ActionScheduler from version 3.7.3 to version 3.7.4.
 - Minimal required WordPress version is now 6.2.
 
 ## [3.10.1] - 2024-03-25
