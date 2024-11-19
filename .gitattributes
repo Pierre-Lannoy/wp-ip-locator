@@ -8,4 +8,5 @@
 /.gitignore export-ignore
 /.github export-ignore
 /.translations export-ignore
+/plugin.json
 /.idea export-ignore
