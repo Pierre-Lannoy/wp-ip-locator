@@ -134,7 +134,7 @@ class Updater {
 			$remotes->author_profile = $plugin_info['author_profile'] ?? 'https://profiles.wordpress.org/pierrelannoy/';
 
 			$remote = wp_remote_get(
-				str_replace( 'github.com', 'api.github.com/repos', $this->product ) . '/releases/latest',
+				'https://releases.perfops.one/' . $this->product . '.json',
 				[
 					'timeout' => 10,
 					'headers' => [

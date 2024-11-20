@@ -175,7 +175,7 @@ class IPData {
 		}
 		Cache::set( 'update/' . $version . '/' . $mode . 'semaphore', time(), 'infinite' );
 		$span = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->startSpan( 'File download', $spanroot );
-		$file = self::acquire( 'https://geoip.assets.hosterra.eu/iplocator/db-v' . IPLOCATOR_API_VERSION . '/' . $version . '_db.csv.gz', 'https://geoip.assets.hosterra.eu/iplocator/db-v' . IPLOCATOR_API_VERSION . '/' . $version . '_db.csv.sig' );
+		$file = self::acquire( 'https://geoip.assets.perfops.one/db-v' . IPLOCATOR_API_VERSION . '/' . $version . '_db.gz', 'https://geoip.assets.perfops.one/db-v' . IPLOCATOR_API_VERSION . '/' . $version . '_db.sig' );
 		\DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->endSpan( $span );
 		if ( false !== $file && $wp_filesystem->exists( $file ) ) {
 			$span  = \DecaLog\Engine::tracesLogger( IPLOCATOR_SLUG )->startSpan( 'Database ' . $mode, $spanroot );
