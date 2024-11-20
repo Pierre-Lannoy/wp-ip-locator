@@ -3,6 +3,23 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0] - Not Yet Released
+
+### Added
+- Compatibility with WordPress 6.6 & 6.7.
+
+### Changed
+- Ability to self-update from Github.
+- The source of IP data is now hosted on its own domain (geoip.assets.perfops.one).
+- Updated ActionScheduler from version 3.7.4 to version 3.9.0.
+
+### Fixed
+- a
+
+### Removed
+- Ability to launch a test site from wordpress.org plugin page.
+- All Databeam hooks and libraries, as the Databeam project is abandoned.
+
 ## [4.0.0] - 2024-05-28
 
 ### Added

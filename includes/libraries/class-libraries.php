@@ -224,7 +224,7 @@ class Libraries {
 		$list[]          = $item;
 		$item            = [];
 		$item['name']    = 'Action Scheduler';
-		$item['version'] = '3.7.4';
+		$item['version'] = '3.9.0';
 		$item['author']  = 'Automattic';
 		$item['url']     = 'https://actionscheduler.org';
 		$item['license'] = $this->license_name( 'gpl3' );
