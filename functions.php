@@ -74,10 +74,8 @@ function iplocator_download_url( $url, $timeout = 300, $signature_verification =
 			'stream'     => true,
 			'filename'   => $tmpfname,
 			'headers'    => [
-				'User-Agent'     => $ua,
-				'Decalog-No-Log' => 'outbound',
-			],
-			'user-agent' => $ua,
+				'user-agent' => $ua,
+			]
 		]
 	);
 

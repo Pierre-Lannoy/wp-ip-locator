@@ -10,15 +10,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 - Ability to self-update from Github.
+- The plugin user agent is now more consistent and "standard".
 - The source of IP data is now hosted on its own domain (geoip.assets.perfops.one).
 - Updated ActionScheduler from version 3.7.4 to version 3.9.0.
 
 ### Fixed
-- a
+- IP Locator trigger PHP Fatal error when trying to guess a language with ICU version greater than 74.0 (thanks to [Lukas Gächter](https://github.com/gchtr)).
+- There's a WordPress core "feature" which causes some PII to leak (to wp.org) during plugin and theme updates. This is no more the case for this plugin.
+- In some cases, a WordPress notice can be triggered concerning the loading sequence of translations.
 
 ### Removed
-- Ability to launch a test site from wordpress.org plugin page.
+- Test site launching from wordpress.org plugin page.
 - All Databeam hooks and libraries, as the Databeam project is abandoned.
+- Dependency on wp.org for updates.
 
 ## [4.0.0] - 2024-05-28
 

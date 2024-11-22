@@ -12,8 +12,7 @@ define( 'IPLOCATOR_PRODUCT_URL', 'https://github.com/Pierre-Lannoy/wp-ip-locator
 define( 'IPLOCATOR_PRODUCT_SHORTNAME', 'IP Locator' );
 define( 'IPLOCATOR_PRODUCT_ABBREVIATION', 'iplocator' );
 define( 'IPLOCATOR_SLUG', 'ip-locator' );
-define( 'IPLOCATOR_USER_AGENT', 'PO-IP-LCTR' );
-define( 'IPLOCATOR_VERSION', '4.0.0' );
+define( 'IPLOCATOR_VERSION', '4.1.0' );
 define( 'IPLOCATOR_API_VERSION', '3' );
 define( 'IPLOCATOR_CODENAME', '"-"' );
 
