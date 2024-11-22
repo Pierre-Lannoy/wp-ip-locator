@@ -186,7 +186,7 @@ class Http {
 	 * @since  1.0.0
 	 */
 	public static function user_agent() {
-		return IPLOCATOR_PRODUCT_NAME . ' [' . IPLOCATOR_USER_AGENT . IPLOCATOR_API_VERSION . '] (' . Environment::wordpress_version_id() . '; ' . Environment::plugin_version_id() . '; +' . IPLOCATOR_PRODUCT_URL . ')';
+		return 'PerfOps One - ' . IPLOCATOR_PRODUCT_NAME . ' / ' . IPLOCATOR_VERSION . ' (https://perfops.one/' . IPLOCATOR_SLUG . ')';
 	}
 
 	/**
