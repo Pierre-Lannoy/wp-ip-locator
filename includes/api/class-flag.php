@@ -73,6 +73,10 @@ class Flag {
 	 * @since 1.0.0
 	 */
 	public function image( $class = '', $style = '', $id = '', $alt = '', $squared = false ) {
+		$class       = sanitize_html_class( $class );
+		$style       = safecss_filter_attr( $style );
+		$id          = sanitize_key( $id );
+		$alt         = esc_attr( $alt );
 		$class = '' === $class ? ' class="iplocator-country-flag"' : ' class="iplocator-country-flag ' . $class . '"';
 		$style = '' === $style ? '' : ' style="' . $style . '"';
 		$id    = '' === $id ? '' : ' $id="' . $id . '"';
