@@ -379,9 +379,8 @@ class L10n {
 					return \Locale::getPrimaryLanguage( $locale );
 				}
 			}
-			// Fallback
-			return 'en_US';
 		}
+		// Fallback
 		return 'en_US';
 	}
 
