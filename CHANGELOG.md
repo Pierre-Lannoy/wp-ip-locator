@@ -3,18 +3,19 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.2.0] - Not Yet Released
+## [4.2.0] - 2025-03-17
 
 ### Added
 - Compatibility with WordPress 6.8.
 
 ### Changed
--
+- Updated ActionScheduler from version 3.9.0 to version 3.9.2.
 
 ### Fixed
+- [SEC005] XSS vulnerability in shortcode (thanks to [Trương Hữu Phúc](https://patchstack.com/database/researcher/932d7d24-fe48-49a3-b915-74f9883dd900) from [Patchstack](https://patchstack.com)).
 - Plugin update process may be confused when it founds error in release file.
 
-## [4.1.0] - Not Yet Released
+## [4.1.0] - 2024-11-22
 
 ### Added
 - Compatibility with WordPress 6.6 & 6.7.
