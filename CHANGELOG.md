@@ -3,6 +3,11 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.1] - 2025-04-14
+
+### Changed
+- Changes `readme.txt` for WordPress 6.8 compatibility.
+
 ## [4.2.0] - 2025-03-17
 
 ### Added
