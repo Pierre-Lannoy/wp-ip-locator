@@ -3,6 +3,19 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.4.0] - Not Yet Released
+
+### Added
+- Compatibility with WordPress 7.0.
+
+### Changed
+- Minimal requirements are now PHP 8.2 and WordPress 6.4.
+- Some strings in `readme.txt` have been updated.
+
+### Removed
+- Compatibility with PHP 8.1.
+- Compatibility with WordPress 6.2 & 6.3.
+
 ## [4.3.0] - 2025-11-22
 
 ### Added
