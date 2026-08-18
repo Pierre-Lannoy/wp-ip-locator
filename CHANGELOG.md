@@ -3,13 +3,16 @@ All notable changes to **IP Locator** are documented in this *changelog*.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and **IP Locator** adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.5.0] - Not Yet Released
+## [4.5.0] - 2026-08-18
 
 ### Added
 - Compatibility with WordPress 7.1.
 
 ### Changed
-- Collation for tables are now `utf8mb4_unicode_520_ci` (thanks to [Dareth Nhang](https://profiles.wordpress.org/d-signed/).
+- Collation for tables are now `utf8mb4_unicode_520_ci` (thanks to [Dareth Nhang](https://profiles.wordpress.org/d-signed/)).
+
+### Fixed
+- IP data may be flushed in case of problem while downloading IP files or signatures.
 
 ## [4.4.0] - 2026-03-20
 

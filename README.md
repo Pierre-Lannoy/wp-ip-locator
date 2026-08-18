@@ -1,7 +1,7 @@
 # IP Locator
 [![version](https://badgen.net/github/release/Pierre-Lannoy/wp-ip-locator/)](https://wordpress.org/plugins/ip-locator/)
-[![php](https://badgen.net/badge/php/7.1+/green)](https://wordpress.org/plugins/ip-locator/)
-[![wordpress](https://badgen.net/badge/wordpress/5.0+/green)](https://wordpress.org/plugins/ip-locator/)
+[![php](https://badgen.net/badge/php/8.2+/green)](https://wordpress.org/plugins/ip-locator/)
+[![wordpress](https://badgen.net/badge/wordpress/6.4+/green)](https://wordpress.org/plugins/ip-locator/)
 [![license](https://badgen.net/github/license/Pierre-Lannoy/wp-ip-locator/)](/license.txt)
 
 __IP Locator__ is a country and language detection tool for WordPress. It is fast, reliable and plug & play.
@@ -74,7 +74,3 @@ If you find bugs, have good ideas to make this plugin better, you're welcome to 
 Before submitting an issue or a pull request, please read the [contribution guidelines](CONTRIBUTING.md).
 
 > ⚠️ The `master` branch is the current development state of the plugin. If you want a stable, production-ready version, please pick the last official [release](https://github.com/Pierre-Lannoy/wp-ip-locator/releases).
-
-## Smoke tests
-[![WP compatibility](https://plugintests.com/plugins/ip-locator/wp-badge.svg)](https://plugintests.com/plugins/ip-locator/latest)
-[![PHP compatibility](https://plugintests.com/plugins/ip-locator/php-badge.svg)](https://plugintests.com/plugins/ip-locator/latest)
