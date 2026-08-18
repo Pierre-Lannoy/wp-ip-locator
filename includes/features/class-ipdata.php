@@ -184,7 +184,7 @@ class IPData {
 			$ins   = [];
 			$clean = [ '"' ];
 			$db    = new Schema();
-			if ( 0 < count( $data ) ) {
+			if ( 1000 < count( $data ) ) {
 				$db->prepare_table( $version, $mode );
 				foreach ( $data as $datum ) {
 					if ( is_string( $datum ) && 0 < strlen( $datum ) ) {
