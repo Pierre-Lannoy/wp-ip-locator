@@ -127,7 +127,7 @@ class Schema {
 		$value_update    = [];
 		foreach ( $record as $k => $v ) {
 			$field_insert[] = '`' . $k . '`';
-			$value_insert[] = "'" . $v . "'";
+			$value_insert[] = "'" . esc_sql( $v ) . "'";
 			if ( 'hit' === $k ) {
 				$value_update[] = '`hit`=hit + 1';
 			}
